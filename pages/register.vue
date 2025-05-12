@@ -16,7 +16,7 @@
       </section>
   
       <!-- Registration form -->
-      <section class="flex w-full md:w-1/2 items-center justify-center p-8">
+      <section class="flex bg-white w-full md:w-1/2 items-center justify-center p-8 h-screen">
         <form
           @submit.prevent="submit"
           class="w-full max-w-lg space-y-6"
@@ -81,9 +81,9 @@
           </div>
   
           <!-- Attendance -->
-          <fieldset>
-            <legend class="label">How will you attend?</legend>
-            <div class="mt-1 flex items-center gap-6">
+          <fieldset class="rounded-xl">
+            <legend class="label bg-white mx-2 px-1">How will you attend?</legend>
+            <div class="mt-0 p-2 flex items-center gap-6">
               <label
                 class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
               >
@@ -206,7 +206,7 @@
     @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
   }
   .input {
-    @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
+    @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
   }
   .radio,
   .checkbox {

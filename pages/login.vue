@@ -14,7 +14,7 @@
     </section>
 
     <!-- Login form -->
-    <section class="flex w-full md:w-1/2 items-center justify-center p-8">
+    <section class="bg-white flex w-full md:w-1/2 items-center justify-center p-8 h-screen">
       <form
         @submit.prevent="submit"
         class="w-full max-w-md space-y-6"
@@ -136,7 +136,7 @@ function social(provider) {
   @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
 }
 .input {
-  @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
+  @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
 }
 .checkbox {
   @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
