@@ -25,7 +25,7 @@ useHead({
 
 <template>
   <NuxtLayout name="page">
-    <Tree/>
+    <!-- <Tree/> -->
     <HomeHeroSection :data="data['0_hero']" />
     <HomeAbout :data="data['1_why']" />
     <!-- <HomePortfolio /> -->
