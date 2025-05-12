@@ -40,7 +40,7 @@ const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
     </figure>
     <ul
       v-if="scheduleDays.length"
-      class="list md:w-max -ml-[18%] md:ml-0"
+      class="list md:w-max md:-ml-[18%] "
       data-scroll
       data-scroll-class="visible"
       :data-scroll-offset="isMobile ? '0' : '25%'"

@@ -42,7 +42,7 @@ const handleScrollTo = (target: string) => {
 
       <!-- Mobile Menu -->
       <transition name="slide-fade">
-        <ul dir="rtl" v-if="menuOpen && isMobile" class="h-6 mobile-menu bg-[#313131]">
+        <ul dir="rtl" v-if="menuOpen && isMobile" class="h-max mobile-menu bg-[#313131]">
           <li
             v-for="item in data.navbar"
             :key="item.slug"

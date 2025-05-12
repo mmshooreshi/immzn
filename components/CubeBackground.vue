@@ -7,7 +7,8 @@ const spline = ref<Spline.Application>();
 const isMobile = useIsMobile();
 
 onMounted(async () => {
-  if (window.innerWidth > 480 && canvas.value) {
+  // if (window.innerWidth > 480 && canvas.value) {
+    if (window.innerWidth > 180 && canvas.value) {
     const { Application } = await import('@splinetool/runtime');
     spline.value = new Application(canvas.value);
     await spline.value?.load('/spline/cube.splinecode');
@@ -28,15 +29,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <img
+  <!-- <img
     v-if="isMobile"
     :class="['image', { visible }]"
     src="/images/cube.webp"
     alt=""
     width="384"
     height="384"
-  />
-  <canvas v-else ref="canvas" :class="['canvas', { visible }]" />
+  /> -->
+  <canvas ref="canvas" :class="['canvas', { visible }]" />
 </template>
 
 <style scoped lang="scss">
