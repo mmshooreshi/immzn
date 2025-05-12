@@ -60,6 +60,9 @@ importers:
       '@unocss/nuxt':
         specifier: ^66.1.1
         version: 66.1.1(postcss@8.4.38)(vite@5.2.10(@types/node@20.12.7)(sass@1.76.0)(terser@5.39.0))(vue@3.4.26(typescript@5.4.5))(webpack@5.99.8)
+      '@unocss/transformer-directives':
+        specifier: ^66.1.1
+        version: 66.1.1
       eslint:
         specifier: ^9.1.1
         version: 9.1.1

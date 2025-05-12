@@ -1,159 +1,171 @@
 <template>
-    <div class="min-h-screen flex flex-col md:flex-row dark:bg-gray-900">
-      <!-- Left side decorative panel (hidden on small screens) -->
+    <div class="min-h-screen flex flex-col md:flex-row dark:bg-gray-900 font-sans">
+      <!-- Left hero panel -->
       <section
         class="hidden md:flex md:w-1/2 items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-500 to-blue-500 p-12 text-center text-white"
       >
-        <div>
-          <h1 class="text-4xl font-bold mb-4 animate-fade-in-down">
-            Welcome!
+        <div class="space-y-4 animate-fade-in-down">
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+            ImmUnity Horizons
           </h1>
-          <p class="text-lg leading-relaxed opacity-90">
-            Join our community and start your journey today.
+          <p class="text-lg md:text-xl">Bridging Computation &amp; Immunology</p>
+          <p class="opacity-90 text-sm">
+            9&nbsp;&ndash;&nbsp;11&nbsp;July&nbsp;2025 · Tehran &amp; online
           </p>
         </div>
       </section>
   
       <!-- Registration form -->
       <section class="flex w-full md:w-1/2 items-center justify-center p-8">
-        <form @submit.prevent="submit" class="w-full max-w-md space-y-6">
-          <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 text-center">
-            Create account
+        <form
+          @submit.prevent="submit"
+          class="w-full max-w-lg space-y-6"
+          novalidate
+        >
+          <h2
+            class="text-3xl font-semibold text-gray-800 dark:text-gray-100 text-center"
+          >
+            Register
           </h2>
   
           <!-- Name -->
           <div>
-            <label
-              for="name"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >Full name</label
-            >
+            <label for="name" class="label">Full name</label>
             <input
               v-model="form.name"
               id="name"
               type="text"
               required
-              class="mt-1 input"
+              class="input"
               placeholder="Ada Lovelace"
             />
           </div>
   
           <!-- Email -->
           <div>
-            <label
-              for="email"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >Email</label
-            >
+            <label for="email" class="label">Email</label>
             <input
               v-model="form.email"
               id="email"
               type="email"
               required
-              class="mt-1 input"
+              class="input"
               placeholder="ada@example.com"
             />
           </div>
   
-          <!-- Password -->
+          <!-- Affiliation -->
           <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >Password</label
-            >
+            <label for="affiliation" class="label">Affiliation / Institution</label>
             <input
-              v-model="form.password"
-              id="password"
-              type="password"
+              v-model="form.affiliation"
+              id="affiliation"
+              type="text"
               required
-              minlength="8"
-              class="mt-1 input"
-              placeholder="••••••••"
+              class="input"
+              placeholder="University of Tehran"
             />
           </div>
   
-          <!-- Confirm Password -->
+          <!-- Role dropdown -->
           <div>
-            <label
-              for="confirm"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >Confirm password</label
-            >
-            <input
-              v-model="form.confirm"
-              id="confirm"
-              type="password"
-              required
-              minlength="8"
-              class="mt-1 input"
-              placeholder="••••••••"
-            />
-            <p
-              v-if="passwordMismatch"
-              class="text-red-500 text-sm mt-1"
-            >
-              Passwords do not match
-            </p>
+            <label for="role" class="label">Role</label>
+            <select v-model="form.role" id="role" required class="input">
+              <option disabled value="">Select role</option>
+              <option>Researcher</option>
+              <option>Engineer</option>
+              <option>Designer</option>
+              <option>Student</option>
+              <option>Other</option>
+            </select>
+          </div>
+  
+          <!-- Attendance -->
+          <fieldset>
+            <legend class="label">How will you attend?</legend>
+            <div class="mt-1 flex items-center gap-6">
+              <label
+                class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+              >
+                <input
+                  v-model="form.attendance"
+                  type="radio"
+                  value="In‑person"
+                  required
+                  class="radio"
+                />
+                In‑person
+              </label>
+              <label
+                class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+              >
+                <input
+                  v-model="form.attendance"
+                  type="radio"
+                  value="Remote"
+                  required
+                  class="radio"
+                />
+                Remote
+              </label>
+            </div>
+          </fieldset>
+  
+          <!-- Interests -->
+          <div>
+            <span class="label">Tracks of interest</span>
+            <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <label
+                v-for="track in tracks"
+                :key="track"
+                class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+              >
+                <input
+                  type="checkbox"
+                  :value="track"
+                  v-model="form.tracks"
+                  class="checkbox"
+                />
+                {{ track }}
+              </label>
+            </div>
+          </div>
+  
+          <!-- Newsletter -->
+          <div class="flex items-center">
+            <input v-model="form.newsletter" id="newsletter" type="checkbox" class="checkbox" />
+            <label for="newsletter" class="ml-2 text-sm text-gray-700 dark:text-gray-300">Send me occasional updates about ImmUnity Horizons</label>
           </div>
   
           <!-- Terms -->
           <div class="flex items-center">
-            <input
-              v-model="form.terms"
-              id="terms"
-              type="checkbox"
-              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-            />
-            <label
-              for="terms"
-              class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-              >I agree to the
-              <a href="#" class="text-indigo-600 underline">terms &amp; conditions</a></label
-            >
+            <input v-model="form.terms" id="terms" type="checkbox" required class="checkbox" />
+            <label for="terms" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+              I agree to the
+              <a href="/terms" target="_blank" class="text-indigo-600 underline"
+                >terms &amp; conditions</a
+              >
+            </label>
           </div>
   
           <!-- Submit button -->
-          <button
-            :disabled="submitting || !form.terms || passwordMismatch"
-            type="submit"
-            class="w-full btn-primary"
-          >
-            <span v-if="!submitting">Create account</span>
-            <span v-else>Creating...</span>
+          <button :disabled="submitting || !form.terms" type="submit" class="btn-primary w-full">
+            <span v-if="!submitting">Complete registration</span>
+            <span v-else>Registering…</span>
           </button>
   
           <!-- Link to login -->
           <p class="text-center text-sm text-gray-600 dark:text-gray-300">
-            Already have an account?
-            <router-link to="/login" class="text-indigo-600 underline"
-              >Sign in</router-link
-            >
+            Already registered?
+            <router-link to="/login" class="text-indigo-600 underline">Log in</router-link>
           </p>
-  
-          <!-- Divider -->
-          <div class="flex items-center gap-3">
-            <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600"></div>
-            <span class="text-xs uppercase text-gray-500 dark:text-gray-400">OR</span>
-            <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600"></div>
-          </div>
-  
-          <!-- Social buttons -->
-          <div class="flex flex-col space-y-4">
-            <button type="button" @click="social('google')" class="btn-secondary">
-              Continue with Google
-            </button>
-            <button type="button" @click="social('github')" class="btn-secondary">
-              Continue with GitHub
-            </button>
-          </div>
         </form>
       </section>
     </div>
   </template>
   
   <script setup>
-  import { reactive, computed, ref } from 'vue'
+  import { reactive, ref } from 'vue'
   import { useRouter } from 'vue-router'
   
   const router = useRouter()
@@ -162,52 +174,47 @@
   const form = reactive({
     name: '',
     email: '',
-    password: '',
-    confirm: '',
+    affiliation: '',
+    role: '',
+    attendance: '',
+    tracks: [],
+    newsletter: true,
     terms: false,
   })
   
-  const passwordMismatch = computed(
-    () => form.password !== form.confirm && form.confirm.length > 0,
-  )
+  const tracks = ['Keynotes', 'Workshops', 'Hackathon', 'Lightning Talks']
   
   function fakeApiRequest(payload) {
-    // Simulates an async registration call (replace with real API request)
-    return new Promise((resolve) => setTimeout(() => resolve(payload), 1000))
+    // Simulate an async request (replace with real API)
+    return new Promise((resolve) => setTimeout(() => resolve(payload), 1200))
   }
   
   async function submit() {
-    if (passwordMismatch.value || !form.terms) return
+    if (!form.terms) return
     submitting.value = true
     try {
-      // TODO: Replace with actual API integration
       await fakeApiRequest(form)
-      router.push('/dashboard')
+      router.push('/thanks')
     } finally {
       submitting.value = false
     }
   }
-  
-  function social(provider) {
-    // TODO: Replace with actual social sign-in
-    alert(`Social sign-in with ${provider} coming soon!`)
-  }
   </script>
   
   <style scoped>
-  /* Tailwind utility shortcuts — use @apply for clarity & reusability */
+  .label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
   .input {
     @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
   }
-  
+  .radio,
+  .checkbox {
+    @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
+  }
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-md bg-indigo-600 py-2 px-4 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 transition;
   }
-  
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-4 font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition;
-  }
-  
   @keyframes fade-in-down {
     from {
       opacity: 0;
@@ -218,7 +225,6 @@
       transform: translateY(0);
     }
   }
-  
   .animate-fade-in-down {
     animation: fade-in-down 0.8s ease-out both;
   }
