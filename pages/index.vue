@@ -2,6 +2,7 @@
 import { useData } from '@/composables/useData'
 import JsonViewer from '@/components/JsonViewer.vue'
 const data = useData()
+const showTree = ref(false)
 
 useHead({
   title: 'Colin Lienard | Fullstack Engineer',
@@ -20,12 +21,42 @@ useHead({
   ],
 });
 
+const tapCount = ref(0)
+onMounted(() => {
+  tapCount.value = 0
+  let lastTap = 0
+  const tapTimeout = 600 // ms
+
+  const handleTap = () => {
+    const now = Date.now()
+    if (now - lastTap > tapTimeout) {
+      tapCount.value = 1
+    } else {
+      tapCount.value ++
+      if (tapCount.value  >= 7) {
+        showTree.value = true
+      }
+    }
+    lastTap = now
+  }
+
+  window.addEventListener('touchend', handleTap)
+  window.addEventListener('mouseup', handleTap)
+
+})
 
 </script>
 
 <template>
+  <teleport to="body">
+    <Tree v-show="showTree" />
+    <!-- {{ tapCount }} {{  showTree }} -->
+
+  </teleport>
+
   <NuxtLayout name="page">
-    <!-- <Tree/> -->
+    
+  
     <HomeHeroSection :data="data['0_hero']" />
     <HomeAbout :data="data['1_why']" />
     <!-- <HomePortfolio /> -->

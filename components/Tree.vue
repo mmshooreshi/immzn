@@ -1,11 +1,10 @@
 <template>
 
-<teleport to="body">
+    
     <div class="absolute z-500">
-    <button @click="showModal = true">Edit JSON</button>
+    <button class="rounded-xl p-2 bg-purple/30 hover:bg-purple/60 transition-all mt-22 ml-[2.7vw]" @click="showModal = true">Edit JSON</button>
     <DataEditorModal v-if="showModal" :data="data" @close="showModal = false" />
     </div>
-    </teleport>
     
 </template>
 
