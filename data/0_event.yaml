@@ -1,0 +1,23 @@
+# event.yml
+slug: immunity-horizons
+name:
+  en: ImmUnity Horizons
+  fa: گستره ایمنی
+tagline:
+  en: Bridging computation & immunology
+  fa: پل میان محاسبات و ایمنی‌شناسی
+theme:
+  en: Compute to decode the immune system
+  fa: محاسبه برای رمزگشایی سیستم ایمنی
+dates:
+  start: 2025-07-09
+  end:   2025-07-11
+  timezone: Asia/Tehran
+venue:
+  name:
+    en: National Library Conf. Ctr
+    fa: مرکز همایش کتابخانه ملی
+  address:
+    en: Haqqani Hwy, Chamran Expwy, Tehran, Iran
+    fa: تهران، بزرگراه حقانی، اتوبان چمران
+  map: https://maps.example.com/tehran-conf

@@ -37,6 +37,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 8rem;
   overflow: hidden;
+  z-index:10;
 
   @include screens.laptop {
     gap: 16rem;

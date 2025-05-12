@@ -1,0 +1,30 @@
+{
+  "headline": "Tools & sparks",
+  "sections": [
+    {
+      "title": "Workshops",
+      "items": [
+        "Python for Immunomics",
+        "Fast.ai on Protein Graphs"
+      ]
+    },
+    {
+      "title": "Starter kits",
+      "items": [
+        "Curated immune datasets",
+        "Reproducible notebook templates"
+      ]
+    },
+    {
+      "title": "Community hub",
+      "items": [
+        "Slack Q&A channels",
+        "Office-hours with dataset curators"
+      ]
+    }
+  ],
+  "cta": {
+    "label": "Grab the resources",
+    "href": "/resources"
+  }
+}

@@ -5,7 +5,7 @@ const config = useRuntimeConfig();
 <template>
   <NuxtLayout name="section">
     <h2 id="contact" class="hero">
-      <span>Contact </span><span class="stroke">me</span>
+      <span>Contact </span><span class="stroke">us</span>
     </h2>
     <div class="galaxy">
       <div class="orbit orbit-1">
@@ -84,8 +84,8 @@ const config = useRuntimeConfig();
         </a>
       </div>
       <img
-        class="image"
-        src="/images/colin-small.webp"
+        class="image object-contain"
+        src="/images/event-small.webp"
         alt=""
         width="128"
         height="128"

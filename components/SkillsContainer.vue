@@ -21,8 +21,15 @@ const placeSkill = (event: MouseEvent) => {
   const container = (event.target as Element).getBoundingClientRect();
   const x = event.clientX;
   const y = event.clientY - container.top;
+  const newSkill = { source, x, y };
+  skills.value.push(newSkill);
 
-  skills.value.push({ source, x, y });
+  setTimeout(() => {
+  const i = skills.value.indexOf(newSkill);
+  if (i > -1) skills.value.splice(i, 1);
+}, 5000);
+
+
 };
 
 // Preload images
@@ -57,4 +64,19 @@ onMounted(() => {
     height: calc(100% + 14rem * 2);
   }
 }
+
+
+li { animation: fadeOut 1s ease forwards; }
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+
+
+
+
+
+
 </style>

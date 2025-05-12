@@ -1,0 +1,11 @@
+{
+    "setup": "Hybrid onsite+online",
+    "av": ["Hall", "Breakouts", "Wi-Fi", "Streaming"],
+    "catering": ["Coffee breaks", "Lunch (Day 1)"],
+    "access": ["Wheelchair", "Live captions"],
+    "local_tips": {
+      "en": "Nearby hotels, restaurants, transit",
+      "fa": "هتل‌ها، رستوران‌ها، مسیرهای دسترسی"
+    }
+  }
+  

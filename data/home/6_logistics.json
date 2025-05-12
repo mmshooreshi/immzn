@@ -1,0 +1,23 @@
+{
+  "headline": "Everything you need",
+  "icons": [
+    {
+      "label": "Ultra-Wi-Fi",
+      "icon": "wifi"
+    },
+    {
+      "label": "Wheelchair access",
+      "icon": "wheelchair"
+    },
+    {
+      "label": "Live captions",
+      "icon": "captions"
+    },
+    {
+      "label": "Bottomless coffee",
+      "icon": "coffee"
+    }
+  ],
+  "venue_snippet": "National Library Conference Center — 10 min walk from Taleghani metro.",
+  "map_link": "https://maps.example.com/tehran-conf"
+}

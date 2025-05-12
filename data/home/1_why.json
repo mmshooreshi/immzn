@@ -1,0 +1,16 @@
+{
+  "headline": "Why we gather",
+  "statements": [
+    "What if antibodies were algorithms?",
+    "What if infection curves bent to computation?",
+    "What if every researcher spoke the same code?"
+  ],
+  "copy": [
+    "ImmUnity Horizons is **not** another conference. It’s a sandbox where data scientists, immunologists, designers and dreamers fuse ideas to fast-forward human health.",
+    "Across three immersive days we’ll remix models, spark serendipity and leave with prototypes ready for real-world labs."
+  ],
+  "quote": {
+    "text": "“The immune system is the original distributed network. We’re just teaching it JavaScript.”",
+    "author": "Prof. Aliresza Eslahchi"
+  }
+}

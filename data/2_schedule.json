@@ -1,0 +1,42 @@
+{
+    "schedule": [
+      {
+        "date": "2025-07-09",
+        "label": { "en": "Day 1: Keynotes & Panels", "fa": "روز ۱: سخنرانی و پنل" },
+        "sessions": [
+          { "time": "10:00–10:30", "speaker": "eslahchi", "title": { "en": "Anthem & Welcome", "fa": "سرود ملی و خوش‌آمدگویی" } },
+          { "time": "10:30–11:10", "speaker": "bahram", "title": { "en": "Genetics of the Immune System", "fa": "ژنتیک سیستم ایمنی" } },
+          { "time": "11:10–11:50", "speaker": "tsoka", "title": { "en": "Network Approaches…", "fa": "رویکردهای شبکه‌ای…" } },
+          { "time": "11:50–12:30", "speaker": "psomopoulos", "title": { "en": "Reproducibility & ML", "fa": "تکرارپذیری و یادگیری ماشین" } },
+          { "time": "12:30–13:30", "title": { "en": "Lunch & Networking", "fa": "ناهار و شبکه‌سازی" } },
+          { "time": "13:30–14:00", "title": { "en": "Hackathon Kickoff", "fa": "آغاز هکاتون" } },
+          { "time": "14:00–14:40", "speaker": "imgt", "title": { "en": "IMGT: Standards to Discovery", "fa": "IMGT: از استانداردها تا کشف" } },
+          { "time": "14:40–15:20", "speaker": "vlachakis", "title": { "en": "Structural Horizons", "fa": "افق‌های ساختاری" } },
+          { "time": "15:20–15:40", "title": { "en": "Coffee Break", "fa": "وقفه قهوه" } },
+          { "time": "15:40–16:20", "speaker": "karagiannis", "title": { "en": "Translational Cancer Immunology", "fa": "ایمنی‌شناسی سرطان ترجمه‌ای" } },
+          { "time": "16:20–17:10", "title": { "en": "Roundtable & Future Directions", "fa": "میزگرد و جهت‌های آینده" } },
+          { "time": "17:10–17:30", "title": { "en": "Closing Reflections", "fa": "تفکرات پایانی" } }
+        ]
+      },
+      {
+        "date": "2025-07-10",
+        "label": { "en": "Day 2: Hackathon Day 1", "fa": "روز ۲: هکاتون روز ۱" },
+        "sessions": [
+          { "time": "09:00–12:30", "title": { "en": "Hacking w/ Mentors", "fa": "کدنویسی با منتورها" } },
+          { "time": "12:30–13:30", "title": { "en": "Lunch & Check-in", "fa": "ناهار و بررسی" } },
+          { "time": "13:30–17:00", "title": { "en": "Continued Hacking", "fa": "ادامه کدنویسی" } }
+        ]
+      },
+      {
+        "date": "2025-07-11",
+        "label": { "en": "Day 3: Finale & Awards", "fa": "روز ۳: اختتامیه و جوایز" },
+        "sessions": [
+          { "time": "09:00–12:00", "title": { "en": "Final Polishing", "fa": "تکمیل نهایی" } },
+          { "time": "12:00–14:00", "title": { "en": "Presentations", "fa": "ارائه‌ها" } },
+          { "time": "14:00–16:00", "title": { "en": "Judging & Feedback", "fa": "داوری و بازخورد" } },
+          { "time": "16:00–17:00", "title": { "en": "Awards & Closing", "fa": "جوایز و اختتامیه" } }
+        ]
+      }
+    ]
+  }
+  

@@ -1,0 +1,26 @@
+# committee.yml
+committee:
+  - role:
+      en: Event Chair
+      fa: رئیس رویداد
+    name: Prof. Alireza Eslahchi
+  - role:
+      en: Program Chair
+      fa: رئیس برنامه
+    name: Prof. Siamak Bahram
+  - role:
+      en: Hack Chair
+      fa: رئیس هکاتون
+    name: Nika
+  - role:
+      en: Logistics Lead
+      fa: مسئول لجستیک
+    name: Reza
+  - role:
+      en: Outreach Lead
+      fa: مسئول ارتباطات
+    name: Sara
+  - role:
+      en: Volunteer Coord.
+      fa: هماهنگ‌کننده داوطلبان
+    name: "[TBA]"

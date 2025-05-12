@@ -1,0 +1,12 @@
+{
+  "headline": "Join the frontier.",
+  "sub": "Three days. One ecosystem. Endless possibility.",
+  "cta": {
+    "label": "Register now →",
+    "href": "/register"
+  },
+  "background": {
+    "image": "/media/outro/horizon-flare.jpg",
+    "alt": "Sunrise-like gradient over a stylised immune landscape"
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "speakers": [
+      {
+        "id": "eslahchi",
+        "name": { "en": "Prof. Alireza Eslahchi", "fa": "پروفسور علیرضا اصلاحچی" },
+        "role": { "en": "Chair & Host", "fa": "رئیس رویداد و مجری افتتاحیه" },
+        "affiliation": { "en": "Sharif University of Technology", "fa": "دانشگاه صنعتی شریف" },
+        "bio": { "en": "Renowned computational biologist.", "fa": "زیست‌شناس محاسباتی مشهور." },
+        "confirmed": true
+      },
+      {
+        "id": "bahram",
+        "name": { "en": "Prof. Siamak Bahram, MD, PhD", "fa": "پروفسور سیامک بهرام" },
+        "affiliation": { "en": "Strasbourg University School of Medicine", "fa": "دانشکده پزشکی استراسبورگ" },
+        "bio": { "en": "Leader in immunogenetics.", "fa": "چهره‌ای برجسته در ایمنی‌ژنتیک." },
+        "confirmed": true
+      },
+      {
+        "id": "psomopoulos",
+        "name": { "en": "Dr. Fotis Psomopoulos", "fa": "دکتر فوتیس پسوموپولوس" },
+        "affiliation": { "en": "CERTH, Greece", "fa": "مرکز پژوهش و فناوری هلاس" },
+        "bio": { "en": "Bioinformatics & ML expert.", "fa": "متخصص بیوانفورماتیک و یادگیری ماشین." },
+        "confirmed": true
+      },
+      {
+        "id": "vlachakis",
+        "name": { "en": "Prof. Dimitrios Vlachakis", "fa": "پروفسور دیمیتریوس ولاکاکیس" },
+        "affiliation": { "en": "Agricultural University of Athens", "fa": "دانشگاه کشاورزی آتن" },
+        "bio": { "en": "Structural immunology pioneer.", "fa": "پیشگام ایمنی‌شناسی ساختاری." },
+        "confirmed": true
+      },
+      {
+        "id": "karagiannis",
+        "name": { "en": "Prof. Sophia Karagiannis", "fa": "پروفسور سوفیا کاراجیاننیس" },
+        "affiliation": { "en": "King’s College London", "fa": "کینگز کالج لندن" },
+        "bio": { "en": "Cancer immunology leader.", "fa": "رهبر ایمنی‌شناسی سرطان." },
+        "confirmed": true
+      },
+      {
+        "id": "imgt",
+        "name": { "en": "IMGT®", "fa": "IMGT®" },
+        "affiliation": {
+          "en": "International ImMunoGeneTics Sys.",
+          "fa": "سامانه بین‌المللی ایمنی‌ژن‌شناسی"
+        },
+        "bio": { "en": "Global immunogenetics ref.", "fa": "مرجع جهانی ایمنی‌ژن‌شناسی." },
+        "confirmed": true
+      }
+    ]
+  }
+  

@@ -1,0 +1,33 @@
+{
+  "headline": "Three days, one mission",
+  "days": [
+    {
+      "label": "Day 1 · Ignite",
+      "bullets": [
+        "Keynotes that redraw the map",
+        "Live annotation of immune datasets",
+        "Hackathon kickoff at sunset"
+      ]
+    },
+    {
+      "label": "Day 2 · Build",
+      "bullets": [
+        "48-hour code sprint (yes, naps welcome)",
+        "Mentor walk-ups & lightning demos",
+        "Starlit pizza on the rooftop"
+      ]
+    },
+    {
+      "label": "Day 3 · Launch",
+      "bullets": [
+        "Demo arena & rapid-fire judging",
+        "Immune-inspired award trophies",
+        "Closing toast with pomegranate tea"
+      ]
+    }
+  ],
+  "cta": {
+    "label": "See full agenda",
+    "href": "/schedule"
+  }
+}

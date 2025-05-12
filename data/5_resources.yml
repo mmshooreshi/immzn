@@ -1,0 +1,20 @@
+# resources.yml
+resources:
+  workshops:
+    - en: Python & immunology
+      fa: پایتون و ایمنی‌شناسی
+  toolkits:
+    - en: Sample datasets
+      fa: مجموعه داده نمونه
+    - en: Code templates
+      fa: قالب‌های کد
+  helpdesk:
+    en: Slack/Discord channels & office hours
+    fa: کانال‌های Slack/Discord و ساعات اداری
+  topics:
+    - en: Immune modeling
+      fa: مدل‌سازی سیستم ایمنی
+    - en: ML for bioinformatics
+      fa: یادگیری ماشین برای بیوانفورماتیک
+    - en: Network immunology
+      fa: ایمنی‌شناسی شبکه‌ای

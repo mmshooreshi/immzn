@@ -1,0 +1,9 @@
+[
+    { "name": "About", "slug": "about" },
+    { "name": "Speakers", "slug": "speakers" },
+    { "name": "Program", "slug": "program" },
+    { "name": "Essentials", "slug": "essentials" },
+    { "name": "Team & Partners", "slug": "team-partners" },
+    { "name": "Register", "slug": "register" }
+]
+  

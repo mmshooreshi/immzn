@@ -1,0 +1,17 @@
+.git
+.nuxt
+.vscode
+o.json
+s.json
+.catignore
+node_modules
+
+
+pnpm-lock.yaml
+.DS_Store
+
+.stylelintrc.json
+.stylelintignore
+.prettierrc.json
+.prettierignore
+.npmrc

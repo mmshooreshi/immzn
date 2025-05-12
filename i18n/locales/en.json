@@ -1,0 +1,95 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "program": "Program",
+        "speakers": "Speakers",
+        "getInvolved": "Get Involved",
+        "partners": "Partners & Media",
+        "registration": "Registration",
+        "resources": "Resources",
+        "logistics": "Logistics",
+        "contact": "Contact",
+        "news": "News & Blog"
+    },
+    "hero": {
+        "greeting": "Welcome to",
+        "subtitle": "Join us May 20–22, 2025 in Berlin"
+    },
+    "buttons": {
+        "register": "Register Now",
+        "applyCfp": "Submit a Proposal",
+        "volunteer": "Become a Volunteer",
+        "sponsor": "Become a Sponsor",
+        "downloadProspectus": "Download Prospectus",
+        "submit": "Submit"
+    },
+    "about": {
+        "overview": "Overview",
+        "venue": "Venue & Travel",
+        "team": "Organizing Team",
+        "codeOfConduct": "Code of Conduct"
+    },
+    "program": {
+        "schedule": "Schedule",
+        "tracks": "Tracks",
+        "workshops": "Workshops",
+        "hackathon": "Hackathon"
+    },
+    "speakers": {
+        "all": "All Speakers",
+        "keynotes": "Keynotes"
+    },
+    "getInvolved": {
+        "cfp": "Call for Proposals",
+        "volunteers": "Volunteers",
+        "sponsors": "Sponsors",
+        "exhibitors": "Exhibitors"
+    },
+    "partners": {
+        "mediaPartners": "Media Partners",
+        "becomePartner": "Become a Partner"
+    },
+    "registration": {
+        "ticketOptions": "Ticket Options",
+        "pricingComparison": "Pricing Comparison",
+        "promoCode": "Promo Code",
+        "terms": "Terms & Conditions",
+        "payment": "Payment",
+        "confirmation": "Thank you for registering!",
+        "addToCalendar": "Add to Calendar"
+    },
+    "resources": {
+        "faq": "FAQ",
+        "downloads": "Downloads",
+        "helpdesk": "Helpdesk",
+        "toolkits": "Toolkits"
+    },
+    "logistics": {
+        "av": "AV Requirements",
+        "catering": "Catering",
+        "tips": "On-site Tips",
+        "accessibility": "Accessibility"
+    },
+    "contact": {
+        "generalInquiries": "General Inquiries",
+        "pressMedia": "Press & Media Requests",
+        "social": "Social & Mailing List"
+    },
+    "news": {
+        "announcements": "Announcements",
+        "recaps": "Recaps & Interviews",
+        "filterByTag": "Filter by Tag"
+    },
+    "footer": {
+        "newsletter": "Subscribe to our newsletter",
+        "copyright": "© {year} {organizer}"
+    },
+    "language": {
+        "select": "Language",
+        "english": "English",
+        "persian": "فارسی"
+    },
+    "loading": "Loading…",
+    "search": "Search"
+}

@@ -1,0 +1,26 @@
+# contact_faq.yml
+contact:
+  email:    info@immunityhorizons.org
+  phone:    +98-21-1234-5678
+  twitter:  \@ImmunityHorizons
+  linkedin: immunity-horizons
+
+faq:
+  - q:
+      en: Who can attend?
+      fa: چه کسانی می‌توانند شرکت کنند؟
+    a:
+      en: Students, researchers & pros across CS, AI, bio, physics, math, medicine.
+      fa: دانشجویان، پژوهشگران و حرفه‌ای‌ها در CS، AI، زیست، فیزیک، ریاضیات، پزشکی.
+  - q:
+      en: Refund policy?
+      fa: سیاست بازپرداخت؟
+    a:
+      en: 100% until 30 days; 50% until 7 days prior.
+      fa: ۱۰۰٪ تا ۳۰ روز قبل؛ ۵۰٪ تا ۷ روز قبل.
+  - q:
+      en: Virtual access?
+      fa: دسترسی مجازی؟
+    a:
+      en: Yes—live stream & recordings.
+      fa: بله—پخش زنده و ضبط.

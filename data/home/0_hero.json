@@ -1,0 +1,28 @@
+{
+  "title": {
+    "first": "Imm",
+    "second":"Unity",
+    "third": "Horizons"
+  },
+  "tagline": {
+    "first": "Bridging ",
+    "second": "Computation ",
+    "third": "& ",
+    "fourth": "Immunology"
+  },
+  "punch": "Decode immunity. Recode the future.",
+  "dates": "9 – 11 July 2025 · Tehran",
+  "cta": {
+    "label": "Grab Your Pass",
+    "link": "/register"
+  },
+  "scroll_hint": "Dive below",
+  "background": {
+    "video": "/media/hero/immune-matrix.mp4",
+    "poster": "/media/hero/immune-matrix.jpg",
+    "alt": "Nebula-like swirl of immune cells rendered as glowing particles and code glyphs"
+  },
+  "meta": {
+    "description": "Three days of keynotes, hacking and radical collaboration at the intersection of biology and machine intelligence."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "headline": "Powered by visionaries",
+  "platinum": [
+    "National Research Institute"
+  ],
+  "gold": [
+    "BioTech Corp"
+  ],
+  "silver": [
+    "AI Solutions"
+  ],
+  "cta": {
+    "label": "Become a sponsor",
+    "href": "/sponsors"
+  }
+}

@@ -1,0 +1,18 @@
+# hackathon.yml
+overview:
+  en: Collaborative coding for immunology challenges.
+  fa: رقابت کدنویسی برای چالش‌های ایمنی‌شناسی.
+dates: 2025-07-09 to 2025-07-11
+register: https://immunityhorizons.org/register
+deadlines:
+  early:   2025-05-31
+  regular: 2025-06-30
+cost:
+  student:      "50/75 €"
+  professional: "100/150 €"
+mentors: [Nika, Reza, Sara, IMGT]
+judges:  [Eslahchi, Bahram, IMGT]
+rules:
+  en: Teams of 3–5; open-source or original; CC BY 4.0.
+  fa: تیم‌های ۳–۵؛ متن‌باز/اصل؛ CC BY 4.0.
+resources: [datasets/genomics.zip, slides/hackathon-guide.pdf, api-docs.md]

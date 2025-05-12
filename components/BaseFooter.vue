@@ -16,9 +16,9 @@ const handleScrollTo = (target: string) => {
 <template>
   <NuxtLayout name="section">
     <footer class="footer">
-      <SpotifyListening />
+      <!-- <SpotifyListening /> -->
       <nav class="links-list">
-        <ul class="list">
+        <!-- <ul class="list">
           <li>
             <button class="button" @click="handleScrollTo('#portfolio')">
               Portfolio
@@ -34,8 +34,8 @@ const handleScrollTo = (target: string) => {
               Contact
             </button>
           </li>
-        </ul>
-        <ul class="list">
+        </ul> -->
+        <!-- <ul class="list">
           <li>
             <a
               class="button"
@@ -61,10 +61,10 @@ const handleScrollTo = (target: string) => {
               {{ config.public.email }}
             </CopyButton>
           </li>
-        </ul>
-      </nav>
+        </ul>-->
+      </nav> 
       <p class="copyright">
-        © Copyright 2022 - All rights reserved, Colin Lienard
+        © Copyright 2022 - All rights reserved, ImmUnity Horizon
       </p>
     </footer>
   </NuxtLayout>

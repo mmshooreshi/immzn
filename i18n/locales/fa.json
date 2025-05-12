@@ -1,0 +1,95 @@
+{
+    "nav": {
+        "home": "خانه",
+        "about": "درباره",
+        "program": "برنامه",
+        "speakers": "سخنرانان",
+        "getInvolved": "مشارکت",
+        "partners": "شرکا و رسانه",
+        "registration": "ثبت‌نام",
+        "resources": "منابع",
+        "logistics": "لجستیک",
+        "contact": "تماس",
+        "news": "اخبار و بلاگ"
+    },
+    "hero": {
+        "greeting": "خوش‌آمدید به",
+        "subtitle": "از ۲۰ تا ۲۲ مه ۲۰۲۵ در برلین به ما بپیوندید"
+    },
+    "buttons": {
+        "register": "ثبت‌نام اکنون",
+        "applyCfp": "ارسال پیشنهاد",
+        "volunteer": "داوطلب شوید",
+        "sponsor": "حامی شوید",
+        "downloadProspectus": "دانلود بروشور",
+        "submit": "ارسال"
+    },
+    "about": {
+        "overview": "بررسی اجمالی",
+        "venue": "محل برگزاری و سفر",
+        "team": "تیم برگزارکننده",
+        "codeOfConduct": "قوانین رفتاری"
+    },
+    "program": {
+        "schedule": "برنامه زمانی",
+        "tracks": "مسیرها",
+        "workshops": "کارگاه‌ها",
+        "hackathon": "هکاتون"
+    },
+    "speakers": {
+        "all": "همه سخنرانان",
+        "keynotes": "سخنرانی‌های اصلی"
+    },
+    "getInvolved": {
+        "cfp": "دعوت به ارائه پیشنهاد",
+        "volunteers": "داوطلبان",
+        "sponsors": "حامیان",
+        "exhibitors": "نمایندگان"
+    },
+    "partners": {
+        "mediaPartners": "شرکای رسانه‌ای",
+        "becomePartner": "همکاری کنید"
+    },
+    "registration": {
+        "ticketOptions": "گزینه‌های بلیط",
+        "pricingComparison": "مقایسه قیمت‌ها",
+        "promoCode": "کد تخفیف",
+        "terms": "شرایط و ضوابط",
+        "payment": "پرداخت",
+        "confirmation": "از ثبت‌نام شما سپاسگزاریم!",
+        "addToCalendar": "افزودن به تقویم"
+    },
+    "resources": {
+        "faq": "پرسش‌های متداول",
+        "downloads": "دانلودها",
+        "helpdesk": "دفتر راهنما",
+        "toolkits": "ابزارها"
+    },
+    "logistics": {
+        "av": "نیازمندی‌های صوتی و تصویری",
+        "catering": "پذیرایی",
+        "tips": "نکات محل برگزاری",
+        "accessibility": "دسترس‌پذیری"
+    },
+    "contact": {
+        "generalInquiries": "سؤالات عمومی",
+        "pressMedia": "درخواست‌های مطبوعاتی و رسانه",
+        "social": "شبکه‌های اجتماعی و خبرنامه"
+    },
+    "news": {
+        "announcements": "اعلانات",
+        "recaps": "گزارش‌ها و مصاحبه‌ها",
+        "filterByTag": "فیلتر بر اساس برچسب"
+    },
+    "footer": {
+        "newsletter": "عضویت در خبرنامه",
+        "copyright": "© {year} {organizer}"
+    },
+    "language": {
+        "select": "زبان",
+        "english": "English",
+        "persian": "فارسی"
+    },
+    "loading": "در حال بارگذاری…",
+    "search": "جستجو"
+}

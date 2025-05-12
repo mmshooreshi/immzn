@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const isMobile = useIsMobile();
-const { data } = await useAsyncData('milestones', () =>
-  queryContent('/milestones').findOne(),
-);
+import { useData } from '@/composables/useData'
+const data = useData()
+
+const props = defineProps<{ data: any }>()
+const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
 </script>
 
 <template>
@@ -10,11 +12,11 @@ const { data } = await useAsyncData('milestones', () =>
     <SkillsContainer />
     <figure id="about" class="figure">
       <figcaption v-if="isMobile">
-        <h2 class="hero">About <span class="empty">me</span></h2>
+        <h2 class="hero">About <span class="empty">ImmUnity</span></h2>
       </figcaption>
       <img
-        class="image"
-        src="/images/colin.webp"
+        class="image object-cover"
+        src="/images/event.webp"
         alt=""
         width="256"
         height="384"
@@ -22,44 +24,42 @@ const { data } = await useAsyncData('milestones', () =>
       />
       <figcaption class="figcaption">
         <h2 v-if="!isMobile" class="hero">
-          About <span class="empty">me</span>
+          About <span class="empty">ImmUnity</span>
         </h2>
-        <p class="paragraph">
-          I am a French <strong>fullstack engineer</strong> working from Limoges
-          and Paris.<br /><br />
-          I am passionate about <strong>creating interfaces</strong>, both from
-          a design and development perspective, and I love to test new trends
-          and technologies.<br /><br />
-          I recently joined <strong>Mobsuccess</strong> where I create
-          interfaces using <strong>React</strong> and
-          <strong>Typescript</strong>, but I also do side projects on my free
-          time.<br /><br />
-          To discover my tech stack,
-          <strong class="blink">click anywhere</strong>...
+        <p class="paragraph mt-2">
+          <strong>ImmUnity Horizons</strong> is a three-day forum where
+          computation meets immunology.<br /><br />
+          From <strong>9 – 11 July 2025</strong> in Tehran, researchers,
+          engineers, and designers unite to decode immune data and build the
+          next wave of tools.<br /><br />
+          Keynotes, a 48-hour hackathon, and hands-on workshops drive rapid
+          collaboration.<br /><br />
+          Join us and help recode the future of health.
         </p>
       </figcaption>
     </figure>
     <ul
-      v-if="data"
-      class="list"
+      v-if="scheduleDays.length"
+      class="list md:w-max -ml-[18%] md:ml-0"
       data-scroll
       data-scroll-class="visible"
       :data-scroll-offset="isMobile ? '0' : '25%'"
     >
-      <li class="timeline" />
+      <li class="timeline " />
       <li
-        v-for="(milestone, index) in data.milestones"
+        v-for="(day, index) in scheduleDays"
         :key="index"
         class="list-item"
       >
         <span class="circle" />
         <div class="content">
-          <h3 class="title">{{ milestone.start }} - {{ milestone.end }}</h3>
-          <p class="description">
-            <strong>{{ milestone.name }}</strong>
-          </p>
-          <p class="sub">
-            <strong>{{ milestone.description }}</strong>
+          <h3 class="title">{{ day.label }} </h3>
+          <p
+            v-for="(bullet, i) in day.bullets"
+            :key="i"
+            class="description"
+          >
+            {{ bullet }}
           </p>
         </div>
       </li>

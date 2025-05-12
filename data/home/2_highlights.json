@@ -1,0 +1,13 @@
+{
+  "headline": "Spotlight voices",
+  "speaker_ids": [
+    "eslahchi",
+    "bahram",
+    "karagiannis"
+  ],
+  "microcopy": "…plus 20 more pioneers.",
+  "link": {
+    "label": "Explore all speakers",
+    "href": "/speakers"
+  }
+}

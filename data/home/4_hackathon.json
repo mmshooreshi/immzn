@@ -1,0 +1,17 @@
+{
+  "badge": "48-hour challenge",
+  "title": "Code for Immunity",
+  "copy": [
+    "Form a squad of three-to-five. Pick a data problem that scares you. Ship a working prototype before the buzzer.",
+    "Winning teams score €5 000, cloud credits and an invite to publish in the ImmUnity proceedings."
+  ],
+  "link": {
+    "label": "Join the hack",
+    "href": "/hackathon"
+  },
+  "stats": {
+    "datasets": 12,
+    "mentors": 18,
+    "cups_of_coffee": "∞"
+  }
+}

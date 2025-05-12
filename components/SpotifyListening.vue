@@ -33,7 +33,7 @@ onUnmounted(() => {
       rel="noreferrer"
       >{{ music.track }} • {{ music.artist }}</a
     >
-    <p v-else class="text">Not playing • Spotify</p>
+    <!-- <p v-else class="text">Not playing • Spotify</p> -->
     <div v-if="music" class="music">
       <span />
       <span />

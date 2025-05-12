@@ -1,0 +1,21 @@
+{
+  "headline": "Quick answers",
+  "entries": [
+    {
+      "q": "Who can attend?",
+      "a": "Anyone curious about code, cells or convincing pizza to arrive on time."
+    },
+    {
+      "q": "Is this hybrid?",
+      "a": "Yes, fully livestreamed and chat-enabled for remote rebels."
+    },
+    {
+      "q": "Refunds?",
+      "a": "100 % until 30 days out · 50 % until 7 days out · hugs thereafter."
+    }
+  ],
+  "cta": {
+    "label": "Still puzzled? Ping us",
+    "href": "/contact"
+  }
+}
