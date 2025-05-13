@@ -4,22 +4,58 @@ import JsonViewer from '@/components/JsonViewer.vue'
 const data = useData()
 const showTree = ref(false)
 
+// useHead({
+//   title: 'Colin Lienard | Fullstack Engineer',
+//   meta: [
+//     {
+//       name: 'description',
+//       content:
+//         "Hi! I'm Colin Lienard, a Fullstack Engineer with a passion for frontend development. I use React, Typescript and Svelte.",
+//     },
+//   ],
+//   script: [
+//     {
+//       src: 'https://cursor-party.colinlienardpnp.partykit.dev/cursors.js',
+//       tagPosition: 'bodyClose',
+//     },
+//   ],
+// });
+
+
 useHead({
-  title: 'Colin Lienard | Fullstack Engineer',
+  title: 'ImmUnity Horizons | Bridging Computation & Immunology',
   meta: [
     {
       name: 'description',
       content:
-        "Hi! I'm Colin Lienard, a Fullstack Engineer with a passion for frontend development. I use React, Typescript and Svelte.",
+        'ImmUnity Horizons is a three-day gathering in Tehran (July 9–11, 2025) uniting researchers, engineers, and designers to decode immune data. Join us for keynotes, a 48-hour hackathon, and hands-on workshops that spark the future of health tech.',
+    },
+    {
+      name: 'og:title',
+      content: 'ImmUnity Horizons 2025',
+    },
+    {
+      name: 'og:description',
+      content:
+        'Where code meets cells: Join ImmUnity Horizons in Tehran for keynotes, hackathons, and immune-inspired innovation.',
+    },
+    {
+      name: 'og:image',
+      content: '/images/event.webp',
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image',
     },
   ],
-  script: [
+  link: [
     {
-      src: 'https://cursor-party.colinlienardpnp.partykit.dev/cursors.js',
-      tagPosition: 'bodyClose',
+      rel: 'icon',
+      href: '/favicon.ico',
     },
   ],
 });
+
 
 const tapCount = ref(0)
 onMounted(() => {
@@ -51,7 +87,6 @@ onMounted(() => {
   <teleport to="body">
     <Tree v-show="showTree" />
     <!-- {{ tapCount }} {{  showTree }} -->
-
   </teleport>
 
   <NuxtLayout name="page">
