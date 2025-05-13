@@ -23,30 +23,35 @@ const showTree = ref(false)
 
 
 useHead({
-  title: 'ImmUnity Horizons | Bridging Computation & Immunology',
+  title: 'ImmUnity Horizons | Tehran · July 9–11, 2025',
   meta: [
     {
       name: 'description',
       content:
-        'ImmUnity Horizons is a three-day gathering in Tehran (July 9–11, 2025) uniting researchers, engineers, and designers to decode immune data. Join us for keynotes, a 48-hour hackathon, and hands-on workshops that spark the future of health tech.',
+        'Where code meets cells. ImmUnity Horizons is a 3-day forum in Tehran blending computation & immunology — with keynotes, a 48-hour hackathon, and workshops. Join us to recode the future of health.',
     },
+    // Open Graph (Telegram, Facebook, LinkedIn)
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://immzn.vercel.app' },
+    { property: 'og:title', content: 'ImmUnity Horizons | July 9–11 · Tehran' },
     {
-      name: 'og:title',
-      content: 'ImmUnity Horizons 2025',
-    },
-    {
-      name: 'og:description',
+      property: 'og:description',
       content:
-        'Where code meets cells: Join ImmUnity Horizons in Tehran for keynotes, hackathons, and immune-inspired innovation.',
+        'A 3-day summit where researchers, engineers & designers decode immune data. Code sprints, keynotes, and rooftop pizza nights await.',
     },
+    { property: 'og:image', content: 'https://immzn.vercel.app/images/event.webp' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+
+    // Twitter Card
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'ImmUnity Horizons | July 9–11 · Tehran' },
     {
-      name: 'og:image',
-      content: '/images/event.webp',
+      name: 'twitter:description',
+      content:
+        'Join ImmUnity Horizons: 3 days of immune data, algorithms, hackathons & community. Code for health in Tehran or online.',
     },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
+    { name: 'twitter:image', content: 'https://immzn.vercel.app/images/event.webp' },
   ],
   link: [
     {
