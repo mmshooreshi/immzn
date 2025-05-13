@@ -121,9 +121,10 @@ const handleScrollTo = (target: string) => {
 
   position: fixed;
   top: 2rem;
-  mix-blend-mode: difference;
+  // mix-blend-mode: difference;
   z-index: 999;
   animation: appear 2s variables.$ease-in-out;
+
 
   .nav {
     display: flex;

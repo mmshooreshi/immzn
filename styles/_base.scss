@@ -56,8 +56,8 @@ html, body, #__nuxt, #__layout {
 header {
   position: fixed;
   z-index: 9999; // force top layer
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); // for Safari/iOS
+  // backdrop-filter: blur(20px);
+  // -webkit-backdrop-filter: blur(20px); // for Safari/iOS
 }
 
 input,
