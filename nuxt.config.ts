@@ -4,6 +4,12 @@ import yaml from '@rollup/plugin-yaml'
 
 
 export default defineNuxtConfig({
+  app:{      
+    head: {
+    link: [
+    { rel: 'icon', type: 'image/x-icon', href: `/favicon.ico?v=${Date.now()}` },
+  ]}
+  },
   css: [
     '~/styles/_reset.scss',
     'locomotive-scroll/dist/locomotive-scroll.css',
