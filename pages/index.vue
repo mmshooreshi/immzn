@@ -53,12 +53,6 @@ useHead({
     },
     { name: 'twitter:image', content: 'https://immzn.vercel.app/images/event.webp' },
   ],
-  link: [
-    {
-      rel: 'icon',
-      href: '/favicon.ico',
-    },
-  ],
 });
 
 
