@@ -34,3 +34,36 @@ body {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* globals.scss or app.vue style */
+html, body, #__nuxt, #__layout {
+  position: relative;
+  z-index: 0; // establish base stacking
+}
+
+header {
+  position: fixed;
+  z-index: 9999; // force top layer
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); // for Safari/iOS
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}

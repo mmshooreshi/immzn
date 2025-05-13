@@ -66,7 +66,7 @@ onMounted(() => {
 }
 
 
-li { animation: fadeOut 1s ease forwards; }
+li { animation: fadeOut 10s ease forwards; }
 
 @keyframes fadeOut {
   from { opacity: 1; }

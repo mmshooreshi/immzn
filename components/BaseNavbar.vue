@@ -41,29 +41,34 @@ const handleScrollTo = (target: string) => {
       </button>
 
       <!-- Mobile Menu -->
-      <transition name="slide-fade">
-        <ul dir="rtl" v-if="menuOpen && isMobile" class="h-max mobile-menu bg-[#313131]">
-          <li
-            v-for="item in data.navbar"
-            :key="item.slug"
-            class="link hover:text-purple-300 hover:bg-purple-300/30 rounded-lg p-2 w-max border-white hover:border-red"
-          >
-            <button
-              v-if="isButton(item)"
-              @click="handleScrollTo(`#${item.slug}`)"
-            >
-              {{ item.name }}
-            </button>
-            <NuxtLink
-              v-else
-              :href="`/${item.slug}`"
-              @click="menuOpen = false"
-            >
-              {{ item.name }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </transition>
+      <teleport to="body">
+  <transition name="slide-fade">
+    <ul
+      v-if="menuOpen && isMobile"
+      class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2 text-white"
+      >
+      <li
+        v-for="item in data.navbar"
+        :key="item.slug"
+        class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300"
+      >
+        <button
+          v-if="isButton(item)"
+          @click="handleScrollTo(`#${item.slug}`)"
+        >
+          {{ item.name }}
+        </button>
+        <NuxtLink
+          v-else
+          :href="`/${item.slug}`"
+          @click="menuOpen = false"
+        >
+          {{ item.name }}
+        </NuxtLink>
+      </li>
+    </ul>
+  </transition>
+</teleport>
 
       <!-- Desktop Menu -->
       <ul class="h-6 list mt-1" v-if="!isMobile">
@@ -144,12 +149,14 @@ const handleScrollTo = (target: string) => {
     }
 
     .hamburger {
+      
       display: flex;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
 
       span {
+        
         display: block;
         width: 24px;
         height: 4px;
@@ -158,13 +165,13 @@ const handleScrollTo = (target: string) => {
         transition: all 0.3s ease;
 
         &.open:nth-child(1) {
-          transform: rotate(45deg) translateY(11px);
+          transform: rotate(45deg) translateY(5px) translateX(6px);
         }
         &.open:nth-child(2) {
           opacity: 0;
         }
         &.open:nth-child(3) {
-          transform: rotate(-45deg) translateY(-11px);
+          transform: rotate(-45deg) translateY(-5px) translateX(6px);
         }
       }
     }

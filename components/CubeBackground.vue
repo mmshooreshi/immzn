@@ -37,7 +37,7 @@ onUnmounted(() => {
     width="384"
     height="384"
   /> -->
-  <canvas ref="canvas" :class="['canvas', { visible }]" />
+  <!-- <canvas ref="canvas" :class="['canvas', { visible }]" /> -->
 </template>
 
 <style scoped lang="scss">
