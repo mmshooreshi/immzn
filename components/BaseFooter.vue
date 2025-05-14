@@ -15,7 +15,7 @@ const handleScrollTo = (target: string) => {
 
 <template>
   <NuxtLayout name="section">
-    <footer class="footer">
+    <footer class="!gap-2 footer">
       <!-- <SpotifyListening /> -->
       <nav class="links-list">
         <!-- <ul class="list">
@@ -63,9 +63,11 @@ const handleScrollTo = (target: string) => {
           </li>
         </ul>-->
       </nav> 
-      <p class="copyright">
-        © Copyright 2022 - All rights reserved, ImmUnity Horizon
+      <p class="font-mono text-[10px] md:text-[14px] text-left md:text-center text-gray/80" >
+        © Copyright 2025 - All rights reserved, ImmUnity Horizon
       </p>
+      <div class="flex flex-row font-mono text-center text-gray/80"><small class="leading-[15px] love ">Made with </small><Icon class="bg-red w-6 h-[15px]" name="nrk:heart-active"/><small class="leading-[15px] "> by <span class=" border-teal/80 border-0 border-b-1 border-solid"> <a class="text-teal/80" href="https://github.com/mmshooreshi">mmti <Icon name="mdi:robot-love"/></a></span></small></div>
+
     </footer>
   </NuxtLayout>
 </template>
@@ -116,6 +118,7 @@ const handleScrollTo = (target: string) => {
   .copyright {
     color: variables.$grey;
     text-align: center;
+    
   }
 }
 </style>
