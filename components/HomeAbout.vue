@@ -1,64 +1,54 @@
 <script setup lang="ts">
 const isMobile = useIsMobile();
-import { useData } from '@/composables/useData'
-const data = useData()
+// import { useData } from '@/composables/useData'
+// const data = useData()
 
-const props = defineProps<{ data: any }>()
-const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
+const props = defineProps<{
+  data: {
+    headline: string
+    description: string
+    image: string
+    altText: string
+    scheduleDays: Array<{ label: string; bullets: string[] }>
+  }
+}>()
+
+const scheduleDays = computed(() => props.data.scheduleDays || [])
+const descriptionParagraphs = computed(() => props.data.description.split('\n\n'))
+
+
+console.log("aaaaa", props.data)
+// const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
 </script>
 
+
+
+
+
 <template>
+  <!-- {{ data }} -->
   <NuxtLayout name="section">
     <SkillsContainer />
     <figure id="about" class="figure">
       <figcaption v-if="isMobile">
-        <h2 class="hero">About <span class="empty">ImmUnity</span></h2>
+        <h2 class="hero">{{ data?.headline }} <span class="empty"></span></h2>
       </figcaption>
-      <img
-        class="image object-cover"
-        src="/images/event.webp"
-        alt=""
-        width="256"
-        height="384"
-        loading="lazy"
-      />
+      <img class="image object-cover" src="~/public/images/event.webp" alt="" width="256" height="384" loading="lazy" />
       <figcaption class="figcaption">
         <h2 v-if="!isMobile" class="hero">
-          About <span class="empty">ImmUnity</span>
+          {{ data?.headline }} <span class="empty"></span>
         </h2>
-        <p class="paragraph mt-2">
-          <strong>ImmUnity Horizons</strong> is a three-day forum where
-          computation meets immunology.<br /><br />
-          From <strong>9 – 11 July 2025</strong> in Tehran, researchers,
-          engineers, and designers unite to decode immune data and build the
-          next wave of tools.<br /><br />
-          Keynotes, a 48-hour hackathon, and hands-on workshops drive rapid
-          collaboration.<br /><br />
-          Join us and help recode the future of health.
-        </p>
+        <p v-html="data?.description" class="paragraph mt-2"></p>
       </figcaption>
     </figure>
-    <ul
-      v-if="scheduleDays.length"
-      class="list md:w-max md:-ml-[18%] "
-      data-scroll
-      data-scroll-class="visible"
-      :data-scroll-offset="isMobile ? '0' : '25%'"
-    >
+    <ul v-if="scheduleDays?.length" class="list md:w-max  " data-scroll data-scroll-class="visible"
+      :data-scroll-offset="isMobile ? '0' : '25%'">
       <li class="timeline " />
-      <li
-        v-for="(day, index) in scheduleDays"
-        :key="index"
-        class="list-item"
-      >
+      <li v-for="(day, index) in scheduleDays" :key="index" class="list-item">
         <span class="circle" />
         <div class="content">
           <h3 class="title">{{ day.label }} </h3>
-          <p
-            v-for="(bullet, i) in day.bullets"
-            :key="i"
-            class="description"
-          >
+          <p v-for="(bullet, i) in day.bullets" :key="i" class="description">
             {{ bullet }}
           </p>
         </div>
@@ -105,14 +95,18 @@ const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
 
     color: variables.$grey;
 
+
     strong {
       color: variables.$white;
     }
+
 
     .blink {
       @include mixins.blink;
     }
   }
+
+
 }
 
 .list {
@@ -121,29 +115,60 @@ const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
   gap: 4rem;
   position: relative;
 
+  [dir="ltr"] & {
+    margin-left: -19%;
+  }
+
+  [dir="rtl"] & {
+    margin-right: -17%;
+
+  }
+
   @include screens.laptop {
-    gap: 8rem;
-    right: 2.5rem;
+    [dir="ltr"] & {
+      gap: 8rem;
+      right: 2.5rem;
+    }
+
+    [dir="rtl"] & {
+      gap: 8rem;
+      left: 2.5rem;
+
+    }
   }
 
   .timeline {
     position: absolute;
     top: 2rem;
     bottom: 2rem;
-    left: calc(1rem - 1px);
+
     width: 2px;
-    background-image: linear-gradient(
-      to bottom,
-      variables.$blue,
-      variables.$green
-    );
+    background-image: linear-gradient(to bottom,
+        variables.$blue,
+        variables.$green );
     z-index: -1;
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1.5s variables.$ease-in-out;
 
+    [dir="ltr"] & {
+      left: calc(1rem - 1px);
+    }
+
+    [dir="rtl"] & {
+      right: calc(1rem - 1px);
+
+    }
+
     @include screens.laptop {
-      left: calc(1.5rem - 1px);
-      top: -6rem;
+      [dir="ltr"] & {
+        left: calc(1.5rem - 1px);
+        top: -6rem;
+      }
+
+      [dir="rtl"] & {
+        right: calc(1.5rem - 1px);
+        top: -6rem;
+      }
     }
   }
 

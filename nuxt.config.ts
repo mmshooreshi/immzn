@@ -1,4 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config';
+import { fontPreloadLinks } from './utils/font-preload';
+
 // nuxt.config.ts
 import yaml from '@rollup/plugin-yaml';
 // nuxt.config.ts
@@ -18,10 +20,12 @@ export default defineNuxtConfig({
           type: 'image/x-icon',
           href: `/favicon.ico?v=${Date.now()}`,
         },
+        ...fontPreloadLinks,
       ],
     },
   },
   css: [
+    '~/styles/fontiran.css',
     '~/styles/_reset.scss',
     'locomotive-scroll/dist/locomotive-scroll.css',
     '~/styles/_fonts.scss',

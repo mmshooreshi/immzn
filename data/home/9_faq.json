@@ -1,21 +1,45 @@
 {
-  "headline": "Quick answers",
+  "headline": {
+    "en": "Quick answers",
+    "fa": "پاسخ‌های سریع"
+  },
   "entries": [
     {
-      "q": "Who can attend?",
-      "a": "Anyone curious about code, cells or convincing pizza to arrive on time."
+      "q": {
+        "en": "Who can attend?",
+        "fa": "چه کسانی می‌توانند شرکت کنند؟"
+      },
+      "a": {
+        "en": "Anyone curious about code, cells or convincing pizza to arrive on time.",
+        "fa": "هر کسی که در مورد کد، سلول‌ها یا آوردن به‌موقع پیتزا کنجکاو است."
+      }
     },
     {
-      "q": "Is this hybrid?",
-      "a": "Yes, fully livestreamed and chat-enabled for remote rebels."
+      "q": {
+        "en": "Is this hybrid?",
+        "fa": "آیا این ترکیبی است؟"
+      },
+      "a": {
+        "en": "Yes, fully livestreamed and chat-enabled for remote rebels.",
+        "fa": "بله، به‌طور کامل پخش زنده و با چت برای شورشیان از راه دور فعال است."
+      }
     },
     {
-      "q": "Refunds?",
-      "a": "100 % until 30 days out · 50 % until 7 days out · hugs thereafter."
+      "q": {
+        "en": "Refunds?",
+        "fa": "استرداد وجه؟"
+      },
+      "a": {
+        "en": "100 % until 30 days out · 50 % until 7 days out · hugs thereafter.",
+        "fa": "۱۰۰٪ تا ۳۰ روز قبل · ۵۰٪ تا ۷ روز قبل · پس از آن بغل‌ها."
+      }
     }
   ],
   "cta": {
-    "label": "Still puzzled? Ping us",
+    "label": {
+      "en": "Still puzzled? Ping us",
+      "fa": "هنوز سردرگم؟ به ما پیام دهید"
+    },
     "href": "/contact"
   }
 }

@@ -1,23 +1,41 @@
 {
-  "headline": "Everything you need",
+  "headline": {
+    "en": "Everything you need",
+    "fa": "هر آنچه نیاز دارید"
+  },
   "icons": [
     {
-      "label": "Ultra-Wi-Fi",
+      "label": {
+        "en": "Ultra-Wi-Fi",
+        "fa": "وای‌فای فوق‌سریع"
+      },
       "icon": "wifi"
     },
     {
-      "label": "Wheelchair access",
+      "label": {
+        "en": "Wheelchair access",
+        "fa": "دسترسی ویلچر"
+      },
       "icon": "wheelchair"
     },
     {
-      "label": "Live captions",
+      "label": {
+        "en": "Live captions",
+        "fa": "زیرنویس زنده"
+      },
       "icon": "captions"
     },
     {
-      "label": "Bottomless coffee",
+      "label": {
+        "en": "Bottomless coffee",
+        "fa": "قهوه بی‌پایان"
+      },
       "icon": "coffee"
     }
   ],
-  "venue_snippet": "National Library Conference Center — 10 min walk from Taleghani metro.",
+  "venue_snippet": {
+    "en": "National Library Conference Center — 10 min walk from Taleghani metro.",
+    "fa": "مرکز همایش‌های کتابخانه ملی — ۱۰ دقیقه پیاده تا ایستگاه متروی طالقانی."
+  },
   "map_link": "https://maps.example.com/tehran-conf"
 }

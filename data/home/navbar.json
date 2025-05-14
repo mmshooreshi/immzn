@@ -1,26 +1,44 @@
 [
   {
-    "name": "About",
+    "name": {
+      "en": "About",
+      "fa": "درباره"
+    },
     "slug": "about"
   },
   {
-    "name": "Speakers",
+    "name": {
+      "en": "Speakers",
+      "fa": "سخنرانان"
+    },
     "slug": "speakers"
   },
   {
-    "name": "Program",
+    "name": {
+      "en": "Program",
+      "fa": "برنامه"
+    },
     "slug": "program"
   },
   {
-    "name": "Essentials",
+    "name": {
+      "en": "Essentials",
+      "fa": "ضروریات"
+    },
     "slug": "essentials"
   },
   {
-    "name": "Team & Partners",
+    "name": {
+      "en": "Team & Partners",
+      "fa": "تیم و شرکا"
+    },
     "slug": "team-partners"
   },
   {
-    "name": "Register",
+    "name": {
+      "en": "Register",
+      "fa": "ثبت‌نام"
+    },
     "slug": "register"
   }
 ]

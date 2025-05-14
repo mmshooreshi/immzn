@@ -1,12 +1,24 @@
 {
-  "headline": "Join the frontier.",
-  "sub": "Three days. One ecosystem. Endless possibility.",
+  "headline": {
+    "en": "Join the frontier.",
+    "fa": "به خط مقدم بپیوندید."
+  },
+  "sub": {
+    "en": "Three days. One ecosystem. Endless possibility.",
+    "fa": "سه روز. یک اکوسیستم. امکان بی‌پایان."
+  },
   "cta": {
-    "label": "Register now →",
+    "label": {
+      "en": "Register now →",
+      "fa": "همین حالا ثبت‌نام کنید →"
+    },
     "href": "/register"
   },
   "background": {
     "image": "/media/outro/horizon-flare.jpg",
-    "alt": "Sunrise-like gradient over a stylised immune landscape"
+    "alt": {
+      "en": "Sunrise-like gradient over a stylised immune landscape",
+      "fa": "گرادیان مانند طلوع خورشید بر فراز یک چشم‌انداز ایمنی استایلیزه"
+    }
   }
 }

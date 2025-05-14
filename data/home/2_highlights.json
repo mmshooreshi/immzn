@@ -1,13 +1,22 @@
 {
-  "headline": "Spotlight voices",
+  "headline": {
+    "en": "Spotlight voices",
+    "fa": "صدای برجسته‌ها"
+  },
   "speaker_ids": [
     "eslahchi",
     "bahram",
     "karagiannis"
   ],
-  "microcopy": "…plus 20 more pioneers.",
+  "microcopy": {
+    "en": "…plus 20 more pioneers.",
+    "fa": "…و ۲۰ پیشگام دیگر."
+  },
   "link": {
-    "label": "Explore all speakers",
+    "label": {
+      "en": "Explore all speakers",
+      "fa": "همه سخنرانان را ببینید"
+    },
     "href": "/speakers"
   }
 }

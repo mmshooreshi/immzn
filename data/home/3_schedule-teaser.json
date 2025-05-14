@@ -1,33 +1,75 @@
 {
-  "headline": "Three days, one mission",
+  "headline": {
+    "en": "Three days, one mission",
+    "fa": "سه روز، یک مأموریت"
+  },
   "days": [
     {
-      "label": "Day 1 · Ignite",
+      "label": {
+        "en": "Day 1 · Ignite",
+        "fa": "روز اول · جرقه"
+      },
       "bullets": [
-        "Keynotes that redraw the map",
-        "Live annotation of immune datasets",
-        "Hackathon kickoff at sunset"
+        {
+          "en": "Keynotes that redraw the map",
+          "fa": "سخنرانی‌های اصلی که نقشه را دوباره ترسیم می‌کنند"
+        },
+        {
+          "en": "Live annotation of immune datasets",
+          "fa": "حاشیه‌نویسی زنده داده‌های ایمنی"
+        },
+        {
+          "en": "Hackathon kickoff at sunset",
+          "fa": "آغاز هکاتون هنگام غروب"
+        }
       ]
     },
     {
-      "label": "Day 2 · Build",
+      "label": {
+        "en": "Day 2 · Build",
+        "fa": "روز دوم · ساخت"
+      },
       "bullets": [
-        "48-hour code sprint (yes, naps welcome)",
-        "Mentor walk-ups & lightning demos",
-        "Starlit pizza on the rooftop"
+        {
+          "en": "48-hour code sprint (yes, naps welcome)",
+          "fa": "اسپرینت کد ۴۸ ساعته (بله، چرت‌ها پذیرفته‌اند)"
+        },
+        {
+          "en": "Mentor walk-ups & lightning demos",
+          "fa": "مشاوره بی‌وقفه مربیان و دموهای سریع"
+        },
+        {
+          "en": "Starlit pizza on the rooftop",
+          "fa": "پیتزای زیر ستارگان روی پشت‌بام"
+        }
       ]
     },
     {
-      "label": "Day 3 · Launch",
+      "label": {
+        "en": "Day 3 · Launch",
+        "fa": "روز سوم · پرتاب"
+      },
       "bullets": [
-        "Demo arena & rapid-fire judging",
-        "Immune-inspired award trophies",
-        "Closing toast with pomegranate tea"
+        {
+          "en": "Demo arena & rapid-fire judging",
+          "fa": "عرصه دمو و داوری سریع"
+        },
+        {
+          "en": "Immune-inspired award trophies",
+          "fa": "جوایز الهام‌گرفته از ایمنی"
+        },
+        {
+          "en": "Closing toast with pomegranate tea",
+          "fa": "پایان مراسم با چای انار"
+        }
       ]
     }
   ],
   "cta": {
-    "label": "See full agenda",
+    "label": {
+      "en": "See full agenda",
+      "fa": "برنامه کامل را ببینید"
+    },
     "href": "/schedule"
   }
 }

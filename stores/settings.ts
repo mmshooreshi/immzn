@@ -1,7 +1,7 @@
 // stores/settings.ts
 import { defineStore } from 'pinia';
 
-export type Locale = 'en' | 'de' | 'fa';
+export type Locale = 'en' | 'fa';
 export type Theme = 'light' | 'dark';
 
 export const useSettingsStore = defineStore('settings', {
@@ -16,7 +16,7 @@ export const useSettingsStore = defineStore('settings', {
       this.locale = lang;
     },
     nextLanguage() {
-      const langs: Locale[] = ['en', 'de', 'fa'];
+      const langs: Locale[] = ['en', 'fa'];
       const i = langs.indexOf(this.language);
       this.language = langs[(i + 1) % langs.length];
     },

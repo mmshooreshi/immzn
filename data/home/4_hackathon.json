@@ -1,12 +1,27 @@
 {
-  "badge": "48-hour challenge",
-  "title": "Code for Immunity",
+  "badge": {
+    "en": "48-hour challenge",
+    "fa": "چالش ۴۸ ساعته"
+  },
+  "title": {
+    "en": "Code for Immunity",
+    "fa": "کدنویسی برای ایمنی"
+  },
   "copy": [
-    "Form a squad of three-to-five. Pick a data problem that scares you. Ship a working prototype before the buzzer.",
-    "Winning teams score €5 000, cloud credits and an invite to publish in the ImmUnity proceedings."
+    {
+      "en": "Form a squad of three-to-five. Pick a data problem that scares you. Ship a working prototype before the buzzer.",
+      "fa": "یک تیم سه تا پنج نفره تشکیل دهید. یک مسئله داده‌ای ترسناک انتخاب کنید. قبل از پایان زمان، یک نمونه اولیه عملی ارسال کنید."
+    },
+    {
+      "en": "Winning teams score €5 000, cloud credits and an invite to publish in the ImmUnity proceedings.",
+      "fa": "تیم‌های برنده ۵۰۰۰ یورو، اعتبارات ابری و دعوتنامه برای نشر در مجموعه مقالات ایمونیتی هورایزونز دریافت می‌کنند."
+    }
   ],
   "link": {
-    "label": "Join the hack",
+    "label": {
+      "en": "Join the hack",
+      "fa": "به هکاتون بپیوندید"
+    },
     "href": "/hackathon"
   },
   "stats": {

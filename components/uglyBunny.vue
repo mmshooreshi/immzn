@@ -22,8 +22,9 @@ onMounted(async () => {
   const center = new THREE.Vector3()
   bbox.getCenter(center)
   console.log(center)
-  center.x=-140
-  center.y=1400
+  center.x = -140
+  center.y = 1300
+
   model.position.sub(center)
 
   // 2️⃣ Load an environment map for real reflections
@@ -43,20 +44,20 @@ onMounted(async () => {
       // build a brand-new MeshPhysicalMaterial…
       const glass = new THREE.MeshPhysicalMaterial({
         // …but reuse whatever maps your GLTF came with:
-        map:         oldMat.map,
-        normalMap:   oldMat.normalMap,
-        roughnessMap:oldMat.roughnessMap,
-        metalnessMap:oldMat.metalnessMap,
+        map: oldMat.map,
+        normalMap: oldMat.normalMap,
+        roughnessMap: oldMat.roughnessMap,
+        metalnessMap: oldMat.metalnessMap,
 
         transparent: true,
         transmission: 1,  // full glass
-        roughness:    0,  // perfectly smooth
-        metalness:    0,
-        ior:          0.9,  // typical glass IOR
-        thickness:    0.2,  // gives it some volume
+        roughness: 0,  // perfectly smooth
+        metalness: 0,
+        ior: 0.9,  // typical glass IOR
+        thickness: 0.2,  // gives it some volume
         envMapIntensity: 1.0
 
-        
+
       })
 
       mesh.material = glass
@@ -69,7 +70,7 @@ onMounted(async () => {
 const { onBeforeRender } = useLoop()
 onBeforeRender(({ delta }) => {
   pivot.rotation.y += delta * 0.5
-  
+
 })
 </script>
 

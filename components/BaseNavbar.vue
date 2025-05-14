@@ -1,16 +1,21 @@
 <!-- @/components/BaseNavbar.vue -->
 <script setup lang="ts">
 import Emitter from '~~/utils/emitter'
-import { useData } from '@/composables/useData'
+// import { useData } from '@/composables/useData'
 import { ref, computed, watch } from 'vue'
 import { useSettings } from '~/composables/useSettings'
+import { useLocalizedData } from '~/composables/useLocalizedData'
+
+
+const data = useLocalizedData()  // now `data.value.speakers`, etc. all have plain strings
+
 const { language, nextLanguage, theme, toggleTheme } = useSettings()
 
 console.log("useSettings(): ", useSettings())
 
 const isMobile = useIsMobile();
 
-const data = useData();
+// const data = useData();
 
 const open = ref(!isMobile.value);
 const menuOpen = ref(false);
@@ -33,28 +38,33 @@ const handleScrollTo = (target: string) => {
 </script>
 
 <template>
+
   <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky
     data-scroll-target="main">
-    <nav class="nav px-4 py-3 flex items-center justify-start">
+    <nav class="nav px-4 py-3 pb-2 flex items-center justify-start">
       <button class="home-link h-6" @click="handleScrollTo('#hero')">
         Imm<span class="text-purple-200">Unity</span> Horizons
       </button>
 
 
-      <div class="flex items-center space-x-2 mx-2">
+      <div class="flex items-center gap-2 mx-2">
         <!-- Language Switcher -->
         <button @click="nextLanguage"
-          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
+          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-black"
           :aria-label="`Switch language (current: ${language.toUpperCase()})`">
-          {{ language.toUpperCase() }}
+          {{ language == "fa" ? 'فا' : language.toUpperCase() }}
         </button>
 
         <!-- Theme Toggle -->
         <button @click="toggleTheme"
           class="w-8 h-8 rounded-xl  text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
           :aria-label="`Switch theme (current: ${theme})`">
-          <span v-if="theme === 'light'">🌞</span>
-          <span v-else>🌜</span>
+          <span v-if="theme === 'light'" class=" my-auto">
+            <Icon class="w-6 h-6 mt-1 text-yellow-500" name="material-symbols:light-mode" />
+          </span>
+          <span v-else>
+            <Icon class="w-6 h-6 mt-1 text-blue-500" name="material-symbols:dark-mode" />
+          </span>
         </button>
 
 

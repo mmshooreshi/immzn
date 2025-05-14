@@ -1,0 +1,382 @@
+{
+    "hero": {
+        "title": {
+            "first": {
+                "en": "Imm",
+                "fa": "ایمم"
+            },
+            "second": {
+                "en": "Unity",
+                "fa": "یونیتی"
+            },
+            "third": {
+                "en": "Horizons",
+                "fa": "افق‌ها"
+            }
+        },
+        "tagline": {
+            "first": {
+                "en": "Bridging ",
+                "fa": "پل زدن میان "
+            },
+            "second": {
+                "en": "Computation ",
+                "fa": "محاسبات "
+            },
+            "third": {
+                "en": "& ",
+                "fa": "و "
+            },
+            "fourth": {
+                "en": "Immunology",
+                "fa": "ایمنی‌شناسی"
+            }
+        },
+        "punch": {
+            "en": "Decode immunity. Recode the future.",
+            "fa": "رمزگشایی ایمنی. بازنویسی آینده."
+        },
+        "dates": {
+            "en": "9 – 11 July 2025 · Tehran",
+            "fa": "۹ تا ۱۱ ژوئیهٔ ۲۰۲۵ · تهران"
+        },
+        "cta": {
+            "label": {
+                "en": "Grab Your Pass",
+                "fa": "پاس خود را بگیرید"
+            },
+            "link": "/register"
+        },
+        "scroll_hint": {
+            "en": "Dive below",
+            "fa": "به پایین بروید"
+        },
+        "background": {
+            "video": "/media/hero/immune-matrix.mp4",
+            "poster": "/media/hero/immune-matrix.jpg",
+            "alt": {
+                "en": "Nebula-like swirl of immune cells rendered as glowing particles and code glyphs",
+                "fa": "گرداب سلول‌های ایمنی شبیه سحابی با ذرات درخشان و نمادهای کد"
+            }
+        },
+        "meta": {
+            "description": {
+                "en": "Three days of keynotes, hacking and radical collaboration at the intersection of biology and machine intelligence.",
+                "fa": "سه روز سخنرانی‌های اصلی، هکاتون و همکاری‌های رادیکال در تقاطع زیست‌شناسی و هوش ماشینی."
+            }
+        }
+    },
+    "whyGather": {
+        "headline": {
+            "en": "Why we gather",
+            "fa": "چرا گرد هم می‌آییم"
+        },
+        "statements": [
+            {
+                "en": "What if antibodies were algorithms?",
+                "fa": "اگر آنتی‌بادی‌ها الگوریتم بودند چه می‌شد؟"
+            },
+            {
+                "en": "What if infection curves bent to computation?",
+                "fa": "اگر منحنی‌های عفونت به محاسبات خم می‌شد چه؟"
+            },
+            {
+                "en": "What if every researcher spoke the same code?",
+                "fa": "اگر هر پژوهشگری زبان کد یکسانی داشت چه؟"
+            }
+        ],
+        "copy": [
+            {
+                "en": "ImmUnity Horizons is **not** another conference. It’s a sandbox where data scientists, immunologists, designers and dreamers fuse ideas to fast-forward human health.",
+                "fa": "ایمونیتی هورایزونز یک کنفرانس معمولی نیست. اینجا یک فضای آزمایشی است که دانشمندان داده، ایمنی‌شناسان، طراحان و رؤیابافان ایده‌ها را برای تسریع سلامت انسان در هم می‌آمیزند."
+            },
+            {
+                "en": "Across three immersive days we’ll remix models, spark serendipity and leave with prototypes ready for real-world labs.",
+                "fa": "در طول سه روز غوطه‌ورانه، مدل‌ها را بازآفرینی می‌کنیم، جرقه‌های تصادفی را شعله‌ور می‌کنیم و با نمونه‌های اولیه‌ای که برای آزمایشگاه‌های واقعی آماده‌اند، راهی می‌شویم."
+            }
+        ],
+        "quote": {
+            "text": {
+                "en": "“The immune system is the original distributed network. We’re just teaching it JavaScript.”",
+                "fa": "«سیستم ایمنی نخستین شبکه توزیع‌شده است. ما فقط داریم به آن جاوااسکریپت یاد می‌دهیم.»"
+            },
+            "author": {
+                "en": "Prof. Aliresza Eslahchi",
+                "fa": "پروفسور علیرضا اصلاحچی"
+            }
+        }
+    },
+    "spotlightVoices": {
+        "headline": {
+            "en": "Spotlight voices",
+            "fa": "صدای برجسته‌ها"
+        },
+        "speaker_ids": [
+            "eslahchi",
+            "bahram",
+            "karagiannis"
+        ],
+        "microcopy": {
+            "en": "…plus 20 more pioneers.",
+            "fa": "…و ۲۰ پیشگام دیگر."
+        },
+        "link": {
+            "label": {
+                "en": "Explore all speakers",
+                "fa": "همه سخنرانان را ببینید"
+            },
+            "href": "/speakers"
+        }
+    },
+    "threeDays": {
+        "headline": {
+            "en": "Three days, one mission",
+            "fa": "سه روز، یک مأموریت"
+        },
+        "days": [
+            {
+                "label": {
+                    "en": "Day 1 · Ignite",
+                    "fa": "روز اول · جرقه"
+                },
+                "bullets": [
+                    {
+                        "en": "Keynotes that redraw the map",
+                        "fa": "سخنرانی‌های اصلی که نقشه را دوباره ترسیم می‌کنند"
+                    },
+                    {
+                        "en": "Live annotation of immune datasets",
+                        "fa": "حاشیه‌نویسی زنده داده‌های ایمنی"
+                    },
+                    {
+                        "en": "Hackathon kickoff at sunset",
+                        "fa": "آغاز هکاتون هنگام غروب"
+                    }
+                ]
+            },
+            {
+                "label": {
+                    "en": "Day 2 · Build",
+                    "fa": "روز دوم · ساخت"
+                },
+                "bullets": [
+                    {
+                        "en": "48-hour code sprint (yes, naps welcome)",
+                        "fa": "اسپرینت کد ۴۸ ساعته (بله، چرت‌ها پذیرفته‌اند)"
+                    },
+                    {
+                        "en": "Mentor walk-ups & lightning demos",
+                        "fa": "مشاوره بی‌وقفه مربیان و دموهای سریع"
+                    },
+                    {
+                        "en": "Starlit pizza on the rooftop",
+                        "fa": "پیتزای زیر ستارگان روی پشت‌بام"
+                    }
+                ]
+            },
+            {
+                "label": {
+                    "en": "Day 3 · Launch",
+                    "fa": "روز سوم · پرتاب"
+                },
+                "bullets": [
+                    {
+                        "en": "Demo arena & rapid-fire judging",
+                        "fa": "عرصه دمو و داوری سریع"
+                    },
+                    {
+                        "en": "Immune-inspired award trophies",
+                        "fa": "جوایز الهام‌گرفته از ایمنی"
+                    },
+                    {
+                        "en": "Closing toast with pomegranate tea",
+                        "fa": "پایان مراسم با چای انار"
+                    }
+                ]
+            }
+        ],
+        "cta": {
+            "label": {
+                "en": "See full agenda",
+                "fa": "برنامه کامل را ببینید"
+            },
+            "href": "/schedule"
+        }
+    },
+    "codeForImmunity": {
+        "badge": {
+            "en": "48-hour challenge",
+            "fa": "چالش ۴۸ ساعته"
+        },
+        "title": {
+            "en": "Code for Immunity",
+            "fa": "کدنویسی برای ایمنی"
+        },
+        "copy": [
+            {
+                "en": "Form a squad of three-to-five. Pick a data problem that scares you. Ship a working prototype before the buzzer.",
+                "fa": "یک تیم سه تا پنج نفره تشکیل دهید. یک مسئله داده‌ای ترسناک انتخاب کنید. قبل از پایان زمان، یک نمونه اولیه عملی ارسال کنید."
+            },
+            {
+                "en": "Winning teams score €5 000, cloud credits and an invite to publish in the ImmUnity proceedings.",
+                "fa": "تیم‌های برنده ۵۰۰۰ یورو، اعتبارات ابری و دعوتنامه برای نشر در مجموعه مقالات ایمونیتی هورایزونز دریافت می‌کنند."
+            }
+        ],
+        "link": {
+            "label": {
+                "en": "Join the hack",
+                "fa": "به هکاتون بپیوندید"
+            },
+            "href": "/hackathon"
+        },
+        "stats": {
+            "datasets": 12,
+            "mentors": 18,
+            "cups_of_coffee": "∞"
+        }
+    },
+    "toolsSparks": {
+        "headline": {
+            "en": "Tools & sparks",
+            "fa": "ابزارها و جرقه‌ها"
+        },
+        "sections": [
+            {
+                "title": {
+                    "en": "Workshops",
+                    "fa": "کارگاه‌ها"
+                },
+                "items": [
+                    {
+                        "en": "Python for Immunomics",
+                        "fa": "پایتون برای ایمنی‌شناسی محاسباتی"
+                    },
+                    {
+                        "en": "Fast.ai on Protein Graphs",
+                        "fa": "Fast.ai بر روی گراف‌های پروتئین"
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en": "Starter kits",
+                    "fa": "کیت‌های شروع"
+                },
+                "items": [
+                    {
+                        "en": "Curated immune datasets",
+                        "fa": "مجموعه داده‌های ایمنی گزینشی"
+                    },
+                    {
+                        "en": "Reproducible notebook templates",
+                        "fa": "قالب‌های دفترچه یادداشت قابل تکرار"
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en": "Community hub",
+                    "fa": "هاب جامعه"
+                },
+                "items": [
+                    {
+                        "en": "Slack Q&A channels",
+                        "fa": "کانال‌های پرسش و پاسخ Slack"
+                    },
+                    {
+                        "en": "Office-hours with dataset curators",
+                        "fa": "ساعات اداری با گردآورندگان داده"
+                    }
+                ]
+            }
+        ],
+        "cta": {
+            "label": {
+                "en": "Grab the resources",
+                "fa": "منابع را دریافت کنید"
+            },
+            "href": "/resources"
+        }
+    },
+    "essentials": {
+        "headline": {
+            "en": "Everything you need",
+            "fa": "هر آنچه نیاز دارید"
+        },
+        "icons": [
+            {
+                "label": {
+                    "en": "Ultra-Wi-Fi",
+                    "fa": "وای‌فای فوق‌سریع"
+                },
+                "icon": "wifi"
+            },
+            {
+                "label": {
+                    "en": "Wheelchair access",
+                    "fa": "دسترسی ویلچر"
+                },
+                "icon": "wheelchair"
+            },
+            {
+                "label": {
+                    "en": "Live captions",
+                    "fa": "زیرنویس زنده"
+                },
+                "icon": "captions"
+            },
+            {
+                "label": {
+                    "en": "Bottomless coffee",
+                    "fa": "قهوه بی‌پایان"
+                },
+                "icon": "coffee"
+            }
+        ],
+        "venue_snippet": {
+            "en": "National Library Conference Center — 10 min walk from Taleghani metro.",
+            "fa": "مرکز همایش‌های کتابخانه ملی — ۱۰ دقیقه پیاده تا ایستگاه متروی طالقانی."
+        },
+        "map_link": "https://maps.example.com/tehran-conf"
+    },
+    "sponsors": {
+        "headline": {
+            "en": "Powered by visionaries",
+            "fa": "با قدرت رویاپردازان"
+        },
+        "platinum": [
+            "National Research Institute"
+        ],
+        "gold": [
+            "BioTech Corp"
+        ],
+        "silver": [
+            "AI Solutions"
+        ],
+        "cta": {
+            "label": {
+                "en": "Become a sponsor",
+                "fa": "حامی شوید"
+            },
+            "href": "/sponsors"
+        }
+    },
+    "teamPartners": {
+        "headline": {
+            "en": "Brains behind the scenes",
+            "fa": "نوابغ پشت صحنه"
+        },
+        "members": [
+            {
+                "name": {
+                    "en": "Prof. Alireza Eslahchi",
+                    "fa": "پروفسور علیرضا اصلاحچی"
+                },
+                "role": {
+                    "en": "Event Chair",
+                    "fa": "رئیس رویداد"
+                }
+            },
+            {
+                "name": {
+                    "en": "Prof. Siamak Bahram", "...

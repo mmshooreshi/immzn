@@ -1,25 +1,58 @@
 {
-  "headline": "Brains behind the scenes",
+  "headline": {
+    "en": "Brains behind the scenes",
+    "fa": "نوابغ پشت صحنه"
+  },
   "members": [
     {
-      "name": "Prof. Alireza Eslahchi",
-      "role": "Event Chair"
+      "name": {
+        "en": "Prof. Alireza Eslahchi",
+        "fa": "پروفسور علیرضا اصلاحچی"
+      },
+      "role": {
+        "en": "Event Chair",
+        "fa": "رئیس رویداد"
+      }
     },
     {
-      "name": "Prof. Siamak Bahram",
-      "role": "Program Chair"
+      "name": {
+        "en": "Prof. Siamak Bahram",
+        "fa": "پروفسور سیامک بهرام"
+      },
+      "role": {
+        "en": "Program Chair",
+        "fa": "رئیس برنامه"
+      }
     },
     {
-      "name": "Nika",
-      "role": "Hackathon Lead"
+      "name": {
+        "en": "Nika",
+        "fa": "نیکا"
+      },
+      "role": {
+        "en": "Hackathon Lead",
+        "fa": "رهبر هکاتون"
+      }
     },
     {
-      "name": "Reza",
-      "role": "Logistics Maestro"
+      "name": {
+        "en": "Reza",
+        "fa": "رضا"
+      },
+      "role": {
+        "en": "Logistics Maestro",
+        "fa": "استاد لجستیک"
+      }
     },
     {
-      "name": "Sara",
-      "role": "Outreach Captain"
+      "name": {
+        "en": "Sara",
+        "fa": "سارا"
+      },
+      "role": {
+        "en": "Outreach Captain",
+        "fa": "کاپیتان ارتباطات"
+      }
     }
   ]
 }

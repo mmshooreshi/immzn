@@ -1,0 +1,77 @@
+{
+    "headline": {
+        "en": "About",
+        "fa": "درباره"
+    },
+    "description": {
+        "en": "<bb>ImmUnity Horizons</bb> is a three-day forum wherecomputation meets immunology.<br /><br />From <bb>9 – 11 July 2025</bb> in Tehran, researchers,engineers, and designers unite to decode immune data and build thenext wave of tools.<br /><br />Keynotes, a 48-hour hackathon, and hands-on workshops drive rapidcollaboration.<br /><br />Join us and help recode the future of health.",
+        "fa": "ایمونیتی هورایزونز یک نشست سه‌روزه است که در آن محاسبات و ایمنی‌شناسی به هم می‌رسند.\n\nاز ۹ تا ۱۱ ژوئیهٔ ۲۰۲۵ در تهران، پژوهشگران، مهندسان و طراحان گرد هم می‌آیند تا داده‌های ایمنی را رمزگشایی کنند و نسل بعدی ابزارها را بسازند.\n\nسخنرانی‌های اصلی، هکاتون ۴۸ ساعته و کارگاه‌های عملی همکاری سریع را رقم می‌زنند.\n\nبه ما بپیوندید و به بازنویسی آینده سلامت کمک کنید."
+    },
+    "image": "/images/event.webp",
+    "altText": {
+        "en": "ImmUnity Horizons event photo",
+        "fa": "عکس رویداد ایمونیتی هورایزونز"
+    },
+    "scheduleDays": [
+        {
+            "label": {
+                "en": "Day 1 · Ignite",
+                "fa": "روز اول · جرقه"
+            },
+            "bullets": [
+                {
+                    "en": "Keynotes that redraw the map",
+                    "fa": "سخنرانی‌های اصلی که نقشه را دوباره ترسیم می‌کنند"
+                },
+                {
+                    "en": "Live annotation of immune datasets",
+                    "fa": "حاشیه‌نویسی زنده داده‌های ایمنی"
+                },
+                {
+                    "en": "Hackathon kickoff at sunset",
+                    "fa": "آغاز هکاتون هنگام غروب"
+                }
+            ]
+        },
+        {
+            "label": {
+                "en": "Day 2 · Build",
+                "fa": "روز دوم · ساخت"
+            },
+            "bullets": [
+                {
+                    "en": "48-hour code sprint (yes, naps welcome)",
+                    "fa": "اسپرینت کد ۴۸ ساعته (چرت‌ها پذیرفته‌اند)"
+                },
+                {
+                    "en": "Mentor walk-ups & lightning demos",
+                    "fa": "مراجعه مربیان و دموهای سریع"
+                },
+                {
+                    "en": "Starlit pizza on the rooftop",
+                    "fa": "پیتزای زیر ستارگان روی پشت‌بام"
+                }
+            ]
+        },
+        {
+            "label": {
+                "en": "Day 3 · Launch",
+                "fa": "روز سوم · پرتاب"
+            },
+            "bullets": [
+                {
+                    "en": "Demo arena & rapid-fire judging",
+                    "fa": "عرصه دمو و داوری سریع"
+                },
+                {
+                    "en": "Immune-inspired award trophies",
+                    "fa": "جوایز الهام‌گرفته از ایمنی"
+                },
+                {
+                    "en": "Closing toast with pomegranate tea",
+                    "fa": "پایان مراسم با چای انار"
+                }
+            ]
+        }
+    ]
+}

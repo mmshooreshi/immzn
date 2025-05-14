@@ -1,30 +1,63 @@
 {
-  "headline": "Tools & sparks",
+  "headline": {
+    "en": "Tools & sparks",
+    "fa": "ابزارها و جرقه‌ها"
+  },
   "sections": [
     {
-      "title": "Workshops",
+      "title": {
+        "en": "Workshops",
+        "fa": "کارگاه‌ها"
+      },
       "items": [
-        "Python for Immunomics",
-        "Fast.ai on Protein Graphs"
+        {
+          "en": "Python for Immunomics",
+          "fa": "پایتون برای ایمنی‌شناسی محاسباتی"
+        },
+        {
+          "en": "Fast.ai on Protein Graphs",
+          "fa": "Fast.ai بر روی گراف‌های پروتئین"
+        }
       ]
     },
     {
-      "title": "Starter kits",
+      "title": {
+        "en": "Starter kits",
+        "fa": "کیت‌های شروع"
+      },
       "items": [
-        "Curated immune datasets",
-        "Reproducible notebook templates"
+        {
+          "en": "Curated immune datasets",
+          "fa": "مجموعه داده‌های ایمنی گزینشی"
+        },
+        {
+          "en": "Reproducible notebook templates",
+          "fa": "قالب‌های دفترچه یادداشت قابل تکرار"
+        }
       ]
     },
     {
-      "title": "Community hub",
+      "title": {
+        "en": "Community hub",
+        "fa": "هاب جامعه"
+      },
       "items": [
-        "Slack Q&A channels",
-        "Office-hours with dataset curators"
+        {
+          "en": "Slack Q&A channels",
+          "fa": "کانال‌های پرسش و پاسخ Slack"
+        },
+        {
+          "en": "Office-hours with dataset curators",
+          "fa": "ساعات اداری با گردآورندگان داده"
+        }
       ]
     }
   ],
   "cta": {
-    "label": "Grab the resources",
+    "label": {
+      "en": "Grab the resources",
+      "fa": "منابع را دریافت کنید"
+    },
     "href": "/resources"
   }
 }

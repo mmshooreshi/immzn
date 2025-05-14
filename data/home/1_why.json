@@ -1,16 +1,40 @@
 {
-  "headline": "Why we gather",
+  "headline": {
+    "en": "Why we gather",
+    "fa": "چرا گرد هم می‌آییم"
+  },
   "statements": [
-    "What if antibodies were algorithms?",
-    "What if infection curves bent to computation?",
-    "What if every researcher spoke the same code?"
+    {
+      "en": "What if antibodies were algorithms?",
+      "fa": "اگر آنتی‌بادی‌ها الگوریتم بودند چه می‌شد؟"
+    },
+    {
+      "en": "What if infection curves bent to computation?",
+      "fa": "اگر منحنی‌های عفونت به محاسبات خم می‌شد چه؟"
+    },
+    {
+      "en": "What if every researcher spoke the same code?",
+      "fa": "اگر هر پژوهشگری زبان کد یکسانی داشت چه؟"
+    }
   ],
   "copy": [
-    "ImmUnity Horizons is **not** another conference. It’s a sandbox where data scientists, immunologists, designers and dreamers fuse ideas to fast-forward human health.",
-    "Across three immersive days we’ll remix models, spark serendipity and leave with prototypes ready for real-world labs."
+    {
+      "en": "ImmUnity Horizons is **not** another conference. It’s a sandbox where data scientists, immunologists, designers and dreamers fuse ideas to fast-forward human health.",
+      "fa": "ایمونیتی هورایزونز یک کنفرانس معمولی نیست. اینجا یک فضای آزمایشی است که دانشمندان داده، ایمنی‌شناسان، طراحان و رؤیابافان ایده‌ها را برای تسریع سلامت انسان در هم می‌آمیزند."
+    },
+    {
+      "en": "Across three immersive days we’ll remix models, spark serendipity and leave with prototypes ready for real-world labs.",
+      "fa": "در طول سه روز غوطه‌ورانه، مدل‌ها را بازآفرینی می‌کنیم، جرقه‌های تصادفی را شعله‌ور می‌کنیم و با نمونه‌های اولیه‌ای که برای آزمایشگاه‌های واقعی آماده‌اند، راهی می‌شویم."
+    }
   ],
   "quote": {
-    "text": "“The immune system is the original distributed network. We’re just teaching it JavaScript.”",
-    "author": "Prof. Aliresza Eslahchi"
+    "text": {
+      "en": "“The immune system is the original distributed network. We’re just teaching it JavaScript.”",
+      "fa": "«سیستم ایمنی نخستین شبکه توزیع‌شده است. ما فقط داریم به آن جاوااسکریپت یاد می‌دهیم.»"
+    },
+    "author": {
+      "en": "Prof. Aliresza Eslahchi",
+      "fa": "پروفسور علیرضا اصلاحچی"
+    }
   }
 }

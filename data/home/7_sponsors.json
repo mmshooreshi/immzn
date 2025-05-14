@@ -1,5 +1,8 @@
 {
-  "headline": "Powered by visionaries",
+  "headline": {
+    "en": "Powered by visionaries",
+    "fa": "با قدرت رویاپردازان"
+  },
   "platinum": [
     "National Research Institute"
   ],
@@ -10,7 +13,10 @@
     "AI Solutions"
   ],
   "cta": {
-    "label": "Become a sponsor",
+    "label": {
+      "en": "Become a sponsor",
+      "fa": "حامی شوید"
+    },
     "href": "/sponsors"
   }
 }

@@ -13,11 +13,11 @@ const props = defineProps<{ data: any }>()
 const hero = ref<HTMLElement | null>(null)
 
 const { animate, cleanup } = useSplitTextSequence(hero, {
-  selector:      '.sequence-item',   // defaults to this
-  type:          'words',
+  selector: '.sequence-item',   // defaults to this
+  type: 'words',
   containerVars: { opacity: 0, y: 40, duration: 0.7, ease: 'expo.out' },
-  fromVars:      { opacity: 0, y: 15, stagger: 0.1, duration: 0.5, ease: 'expo.out' },
-  elementDelay:  0.8                  // 0.8s pause between each item
+  fromVars: { opacity: 0, y: 15, stagger: 0.1, duration: 0.5, ease: 'expo.out' },
+  elementDelay: 0.8                  // 0.8s pause between each item
 })
 
 onMounted(animate)
@@ -27,26 +27,27 @@ onBeforeUnmount(cleanup)
 </script>
 
 <template>
-      
 
-      <section ref="hero" id="hero" class="container">
-        
-      <!-- purely static heading, animated by GSAP/SplitText -->
-      <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none ">
-        <!-- mix-blend-difference -->
-        <span>{{ data.title.first }}</span>
-        <strong class="nf">{{ data.title.second }}</strong><br/>
-        <span>{{ data.title.third }}</span><br />
-      </h1>
 
-      <!-- purely static subheading -->
-      <h2 class="sequence-item z-1 text-md text-[12px] mt-8 p-2 px-4  rounded-2xl md:text-xl  tracking-[5px] w-max max-w-[80vw]  text-left  text-teal-100 mx-8  leading-[1.5]">
-        <span class="text-white/80 text-xs">{{ data.tagline.first }}</span>
-        <br v-if="isMobile"/>
-        <span>{{ data.tagline.second }}</span>
-        <span>{{ data.tagline.third }}</span>
-        <span>{{ data.tagline.fourth }}</span>
-      </h2>
+  <section ref="hero" id="hero" class="container">
+
+    <!-- purely static heading, animated by GSAP/SplitText -->
+    <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none ">
+      <!-- mix-blend-difference -->
+      <span>{{ data.title.first }}</span>
+      <strong class="nf">{{ data.title.second }}</strong><br />
+      <span>{{ data.title.third }}</span><br />
+    </h1>
+
+    <!-- purely static subheading -->
+    <h2
+      class="sequence-item taglineC z-1 text-md text-[12px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]  text-left  text-teal-100 mx-8  leading-[1.5]">
+      <span class="text-white/80 text-xs">{{ data.tagline.first }}</span>
+      <br v-if="isMobile" />
+      <span>{{ data.tagline.second }}</span>
+      <span>{{ data.tagline.third }}</span>
+      <span>{{ data.tagline.fourth }}</span>
+    </h2>
 
 
 
@@ -55,21 +56,14 @@ onBeforeUnmount(cleanup)
       <span>Scroll</span>
     </div>
     <div class="sequence-item button-container">
-      <IconButton
-        class="button"
-        icon-src="/icons/telegram-logo.svg"
-        :href="config.public.telegramChannelLink"
-      >
-      <span>Check out our Channel</span>
+      <IconButton class="button" icon-src="/icons/telegram-logo.svg" :href="config.public.telegramChannelLink">
+        <span>Check out our Channel</span>
 
       </IconButton>
     </div>
     <!-- <CubeBackground /> -->
-    <div
-    ref="b3d"
-    class="b3d-wrapper"
-  >
-    <B3DLoader/>
+    <div ref="b3d" class="b3d-wrapper">
+      <B3DLoader />
     </div>
   </section>
 </template>
@@ -112,10 +106,11 @@ onBeforeUnmount(cleanup)
   .heading-1 {
     @include typography.heading-1;
   }
+
   .nf {
-  @include mixins.text-stroke;
+    @include mixins.text-stroke;
   }
-  
+
   .hero {
     @include typography.heading-1;
 
@@ -155,7 +150,6 @@ onBeforeUnmount(cleanup)
 
     position: absolute;
     bottom: 2rem;
-    left: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,6 +158,17 @@ onBeforeUnmount(cleanup)
 
     @include screens.laptop {
       left: auto;
+      right: auto;
+    }
+
+    [dir="rtl"] & {
+      right: 1.5rem;
+
+    }
+
+    [dir="ltr"] & {
+      left: 1.5rem;
+
     }
 
     .arrow {
@@ -181,6 +186,21 @@ onBeforeUnmount(cleanup)
     display: flex;
     justify-content: flex-end;
     z-index: 1;
+  }
+}
+
+
+
+.taglineC {
+
+  [dir="rtl"] & {
+    letter-spacing: 0px;
+    margin-top: -32px;
+  }
+
+  [dir="ltr"] & {
+    letter-spacing: 5px;
+    margin-top: 32px;
   }
 }
 </style>

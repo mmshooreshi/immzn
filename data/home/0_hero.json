@@ -1,28 +1,67 @@
 {
   "title": {
-    "first": "Imm",
-    "second": "Unity",
-    "third": "Horizons"
+    "first": {
+      "en": "Imm",
+      "fa": "گستره‌ی"
+    },
+    "second": {
+      "en": "Unity",
+      "fa": "‌ایمنی"
+    },
+    "third": {
+      "en": "Horizons",
+      "fa": " "
+    }
   },
   "tagline": {
-    "first": "Bridging ",
-    "second": "Computation ",
-    "third": "& ",
-    "fourth": "Immunology"
+    "first": {
+      "en": "A Dialogue on the ",
+      "fa": "‌گفت‌وگویی پیرامون"
+    },
+    "second": {
+      "en": "Computational",
+      "fa": "‌ایمنی‌شناسی"
+    },
+    "third": {
+      "en": " ",
+      "fa": "‌"
+    },
+    "fourth": {
+      "en": "Immunology",
+      "fa": "محاسباتی"
+    }
   },
-  "punch": "Decode immunity. Recode the future.",
-  "dates": "9 – 11 July 2025 · Tehran",
+  "punch": {
+    "en": "Decode immunity. Recode the future.",
+    "fa": "رمزگشایی ایمنی. بازنویسی آینده."
+  },
+  "dates": {
+    "en": "9 – 11 July 2025 · Tehran",
+    "fa": "۹ تا ۱۱ ژوئیهٔ ۲۰۲۵ · تهران"
+  },
   "cta": {
-    "label": "Grab Your Pass",
+    "label": {
+      "en": "Grab Your Pass",
+      "fa": "پاس خود را بگیرید"
+    },
     "link": "/register"
   },
-  "scroll_hint": "Dive below",
+  "scroll_hint": {
+    "en": "Dive below",
+    "fa": "به پایین بروید"
+  },
   "background": {
     "video": "/media/hero/immune-matrix.mp4",
     "poster": "/media/hero/immune-matrix.jpg",
-    "alt": "Nebula-like swirl of immune cells rendered as glowing particles and code glyphs"
+    "alt": {
+      "en": "Nebula-like swirl of immune cells rendered as glowing particles and code glyphs",
+      "fa": "گرداب سلول‌های ایمنی شبیه سحابی با ذرات درخشان و نمادهای کد"
+    }
   },
   "meta": {
-    "description": "Three days of keynotes, hacking and radical collaboration at the intersection of biology and machine intelligence."
+    "description": {
+      "en": "Three days of keynotes, hacking and radical collaboration at the intersection of biology and machine intelligence.",
+      "fa": "سه روز سخنرانی‌های اصلی، هکاتون و همکاری‌های رادیکال در تقاطع زیست‌شناسی و هوش ماشینی."
+    }
   }
 }
