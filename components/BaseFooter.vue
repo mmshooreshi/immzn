@@ -66,7 +66,7 @@ const handleScrollTo = (target: string) => {
       <p class="font-mono text-[10px] md:text-[14px] text-left md:text-center text-gray/80" >
         © Copyright 2025 - All rights reserved, ImmUnity Horizon
       </p>
-      <div class="flex flex-row font-mono text-center text-gray/80"><small class="leading-[15px] love ">Made with </small><Icon class="bg-red w-6 h-[15px]" name="nrk:heart-active"/><small class="leading-[15px] "> by <span class=" border-teal/80 border-0 border-b-1 border-solid"> <a class="text-teal/80" href="https://github.com/mmshooreshi">mmti <Icon name="mdi:robot-love"/></a></span></small></div>
+      <div class="text-left md:text-center justify-center flex flex-row font-mono  text-gray/80"><small class="leading-[15px] love ">Made with </small><Icon class="bg-red w-6 h-[15px]" name="nrk:heart-active"/><small class="leading-[15px] "> by <span class=" border-teal/80 border-0 border-b-1 border-solid"> <a class="text-teal/80" href="https://github.com/mmshooreshi">mmti <Icon name="mdi:robot-love"/></a></span></small></div>
 
     </footer>
   </NuxtLayout>
