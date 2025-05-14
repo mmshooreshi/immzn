@@ -27,7 +27,7 @@ onMounted(async () => {
     new RGBELoader().setPath('/spline/').load('s.hdr', res, undefined, rej)
   )
   hdr.mapping = THREE.EquirectangularReflectionMapping
-//   tresScene.value.environment = hdr
+  tresScene.value.environment = hdr
 
   // 3️⃣ Traverse every mesh and swap in a physical “glass” material with prismatic dispersion
   model.traverse((o) => {
@@ -68,10 +68,11 @@ onMounted(async () => {
 const { onBeforeRender } = useLoop()
 onBeforeRender(({ elapsed }) => {
   // steady yaw
-  pivot.rotation.y = elapsed  * 0.5
+  pivot.rotation.y = elapsed * 0.5
   // gentle pitch & roll wiggle
-  pivot.rotation.x = Math.sin(elapsed * 0.3) * 0.2
+  pivot.rotation.x = Math.sin(elapsed * 0.3) * 0.2 
   pivot.rotation.z = Math.sin(elapsed * 0.2) * 0.1
+  
 })
 </script>
 
