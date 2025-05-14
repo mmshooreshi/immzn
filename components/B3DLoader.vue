@@ -4,6 +4,9 @@ import { TresCanvas } from '@tresjs/core'
 import uglyBunny from '@/components/uglyBunny.vue'
 import { gsap } from 'gsap'
 
+
+
+
 // animate the loaded scene immediately
 </script>
 
@@ -11,7 +14,9 @@ import { gsap } from 'gsap'
   <TresCanvas clear-color="#0b0b0d" window-size   preset="realistic" class="myTresCanvas">
     <TresPerspectiveCamera :position="[300,-10,300]" />
     <!-- disable panning -->
-    <OrbitControls :enablePan="false" :enableRotate="true" :enableZoom="false" />
+    <OrbitControls :enablePan="false" :enableRotate="true" :enableZoom="false"  />
+    <!-- :minPolarAngle="Math.PI / 2"
+    :maxPolarAngle="Math.PI / 2" -->
 
     <Suspense>
       <uglyBunny />
@@ -30,6 +35,8 @@ import { gsap } from 'gsap'
   opacity: 0;
   animation: fadeIn 3s ease-out forwards;
   animation-delay: 3s;
+  touch-action: pan-y !important; 
+
 
 }
 
