@@ -67,9 +67,7 @@ onMounted(async () => {
 const { onBeforeRender } = useLoop()
 onBeforeRender(({ delta }) => {
   pivot.rotation.y += delta * 0.5
-  pivot.position.z = 50
-  pivot.position.y = 50
-
+  
 })
 </script>
 

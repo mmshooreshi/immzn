@@ -68,9 +68,7 @@ onMounted(async () => {
 const { onBeforeRender } = useLoop()
 onBeforeRender(({ elapsed }) => {
   // steady yaw
-  pivot.rotation.y = (elapsed + 0.5) * 0.5
-  pivot.position.z = -50
-  pivot.position.y = -50
+  pivot.rotation.y = elapsed  * 0.5
   // gentle pitch & roll wiggle
 //   pivot.rotation.x = Math.sin(elapsed * 0.3) * 0.2
 //   pivot.rotation.z = Math.sin(elapsed * 0.2) * 0.1

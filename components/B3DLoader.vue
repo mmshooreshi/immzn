@@ -20,10 +20,10 @@ import { gsap } from 'gsap'
     <!-- :minPolarAngle="Math.PI / 2"
     :maxPolarAngle="Math.PI / 2" -->
 
-    <Suspense>
+    <!-- <Suspense>
       
       <uglyBunny />
-    </Suspense>
+    </Suspense> -->
 
     <Suspense>
       <uglyBunnyPrism />
