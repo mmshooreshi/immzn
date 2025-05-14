@@ -22,11 +22,11 @@ import { gsap } from 'gsap'
 
     <!-- <Suspense>
       
-      <uglyBunny />
+      <uglyBunnyPrism />
     </Suspense> -->
 
     <Suspense>
-      <uglyBunnyPrism />
+      <uglyBunny />
     </Suspense>
 
     <!-- <TresDirectionalLight :intensity="200" :position="[3, 3, -30]" />
