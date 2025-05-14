@@ -70,8 +70,8 @@ onBeforeRender(({ elapsed }) => {
   // steady yaw
   pivot.rotation.y = elapsed  * 0.5
   // gentle pitch & roll wiggle
-//   pivot.rotation.x = Math.sin(elapsed * 0.3) * 0.2
-//   pivot.rotation.z = Math.sin(elapsed * 0.2) * 0.1
+  pivot.rotation.x = Math.sin(elapsed * 0.3) * 0.2
+  pivot.rotation.z = Math.sin(elapsed * 0.2) * 0.1
 })
 </script>
 
