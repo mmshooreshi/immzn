@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Tree from '@/components/Tree.vue'
+import B3DLoader from '~/components/B3DLoader.vue'
+
 const isMobile = useIsMobile();
 
 import { useSplitTextSequence } from '@/composables/useSplitTextMotion'
-
 const config = useRuntimeConfig();
 const props = defineProps<{ data: any }>()
 
@@ -31,7 +32,8 @@ onBeforeUnmount(cleanup)
       <section ref="hero" id="hero" class="container">
         
       <!-- purely static heading, animated by GSAP/SplitText -->
-      <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none mix-blend-difference">
+      <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none ">
+        <!-- mix-blend-difference -->
         <span>{{ data.title.first }}</span>
         <strong class="nf">{{ data.title.second }}</strong><br/>
         <span>{{ data.title.third }}</span><br />
@@ -62,7 +64,8 @@ onBeforeUnmount(cleanup)
 
       </IconButton>
     </div>
-    <CubeBackground />
+    <!-- <CubeBackground /> -->
+    <B3DLoader/>
   </section>
 </template>
 
@@ -115,7 +118,7 @@ onBeforeUnmount(cleanup)
     max-width: 24rem;
     z-index: 1;
     pointer-events: none;
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
     translate: 0 6rem;
 
     @include screens.laptop {

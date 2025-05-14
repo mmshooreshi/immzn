@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     enabled: true,
   },
   modules: [
+     "@tresjs/nuxt",
     '@unocss/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/content',
@@ -36,6 +37,7 @@ export default defineNuxtConfig({
   //   lazy: true,
   //   langDir: 'locales/',
   // },
+
   nitro: {
     prerender: {
       crawlLinks: true,

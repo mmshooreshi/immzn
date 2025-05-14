@@ -2,6 +2,7 @@
 // Global meta data
 useHead({
 });
+
 </script>
 
 <template>

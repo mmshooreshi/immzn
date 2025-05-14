@@ -14,12 +14,15 @@ onMounted(async () => {
     await spline.value?.load('/spline/cube.splinecode');
 
     visible.value = true;
+    console.log(spline.value.getSplineEvents().start['b0527698-26a5-4abf-83c4-6d066821070d']);
 
     return;
+    
   }
 
   setTimeout(() => {
     visible.value = true;
+    
   }, 1000);
 });
 
