@@ -20,7 +20,6 @@ const { animate, cleanup } = useSplitTextSequence(hero, {
   elementDelay:  0.8                  // 0.8s pause between each item
 })
 
-
 onMounted(animate)
 onBeforeUnmount(cleanup)
 
@@ -69,10 +68,6 @@ onBeforeUnmount(cleanup)
     <div
     ref="b3d"
     class="b3d-wrapper"
-    @pointerdown="start"
-    @pointermove="drag"
-    @pointerup="end"
-    @pointercancel="end"
   >
     <B3DLoader/>
     </div>
