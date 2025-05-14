@@ -1,14 +1,25 @@
 import { defineNuxtConfig } from 'nuxt/config';
 // nuxt.config.ts
-import yaml from '@rollup/plugin-yaml'
+import yaml from '@rollup/plugin-yaml';
+// nuxt.config.ts
+import { resolve } from 'path';
+import fs from 'fs';
 
+// SAFETY: nuke all leftover cached plugins
+const pluginPath = resolve('.nuxt/plugins/server.mjs');
+if (fs.existsSync(pluginPath)) fs.rmSync(pluginPath, { force: true });
 
 export default defineNuxtConfig({
-  app:{      
+  app: {
     head: {
-    link: [
-    { rel: 'icon', type: 'image/x-icon', href: `/favicon.ico?v=${Date.now()}` },
-  ]}
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: `/favicon.ico?v=${Date.now()}`,
+        },
+      ],
+    },
   },
   css: [
     '~/styles/_reset.scss',
@@ -20,12 +31,14 @@ export default defineNuxtConfig({
     enabled: true,
   },
   modules: [
-     "@tresjs/nuxt",
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+    '@tresjs/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/content',
     '@nuxt/eslint',
-    "@nuxt/icon"
+    '@nuxt/icon',
   ],
 
   // i18n: {
@@ -37,6 +50,9 @@ export default defineNuxtConfig({
   //   lazy: true,
   //   langDir: 'locales/',
   // },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 
   nitro: {
     prerender: {

@@ -1,7 +1,13 @@
+<!-- @/components/BaseNavbar.vue -->
 <script setup lang="ts">
 import Emitter from '~~/utils/emitter'
 import { useData } from '@/composables/useData'
 import { ref, computed, watch } from 'vue'
+import { useSettings } from '~/composables/useSettings'
+const { language, nextLanguage, theme, toggleTheme } = useSettings()
+
+console.log("useSettings(): ", useSettings())
+
 const isMobile = useIsMobile();
 
 const data = useData();
@@ -27,68 +33,68 @@ const handleScrollTo = (target: string) => {
 </script>
 
 <template>
-  <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky data-scroll-target="main">
-    <nav class="nav px-4 p-2 pt-3">
+  <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky
+    data-scroll-target="main">
+    <nav class="nav px-4 py-3 flex items-center justify-start">
       <button class="home-link h-6" @click="handleScrollTo('#hero')">
         Imm<span class="text-purple-200">Unity</span> Horizons
       </button>
 
-      <!-- Hamburger button -->
-      <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
-        <span :class="{ open: menuOpen }"></span>
-        <span :class="{ open: menuOpen }"></span>
-        <span :class="{ open: menuOpen }"></span>
-      </button>
+
+      <div class="flex items-center space-x-2 mx-2">
+        <!-- Language Switcher -->
+        <button @click="nextLanguage"
+          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
+          :aria-label="`Switch language (current: ${language.toUpperCase()})`">
+          {{ language.toUpperCase() }}
+        </button>
+
+        <!-- Theme Toggle -->
+        <button @click="toggleTheme"
+          class="w-8 h-8 rounded-xl  text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
+          :aria-label="`Switch theme (current: ${theme})`">
+          <span v-if="theme === 'light'">🌞</span>
+          <span v-else>🌜</span>
+        </button>
+
+
+        <!-- Hamburger button -->
+        <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
+          <span :class="{ open: menuOpen }"></span>
+          <span :class="{ open: menuOpen }"></span>
+          <span :class="{ open: menuOpen }"></span>
+        </button>
+      </div>
+
 
       <!-- Mobile Menu -->
       <teleport to="body">
-  <transition name="slide-fade">
-    <ul
-      v-if="menuOpen && isMobile"
-      class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2 text-white"
-      >
-      <li
-        v-for="item in data.navbar"
-        :key="item.slug"
-        class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300"
-      >
-        <button
-          v-if="isButton(item)"
-          @click="handleScrollTo(`#${item.slug}`)"
-        >
-          {{ item.name }}
-        </button>
-        <NuxtLink
-          v-else
-          :href="`/${item.slug}`"
-          @click="menuOpen = false"
-        >
-          {{ item.name }}
-        </NuxtLink>
-      </li>
-    </ul>
-  </transition>
-</teleport>
+        <transition name="slide-fade">
+          <ul v-if="menuOpen && isMobile"
+            class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2 text-white">
+            <li v-for="item in data.navbar" :key="item.slug"
+              class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
+              <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
+                {{ item.name }}
+              </button>
+              <NuxtLink v-else :href="`/${item.slug}`" @click="menuOpen = false">
+                {{ item.name }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </transition>
+      </teleport>
+
+      <div class="flex-grow"></div>
 
       <!-- Desktop Menu -->
       <ul class="h-6 list mt-1" v-if="!isMobile">
-        <li
-          v-for="item in data.navbar"
-          :key="item.slug"
-          class="hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link"
-        >
-          <div
-            v-if="isButton(item)"
-            class=""
-            @click="handleScrollTo(`#${item.slug}`)"
-          >
+        <li v-for="item in data.navbar" :key="item.slug"
+          class="hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link">
+          <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
             {{ item.name }}
-      </div>
-          <NuxtLink
-            v-else
-            class=""
-            :href="`/${item.slug}`"
-          >
+          </div>
+          <NuxtLink v-else class="" :href="`/${item.slug}`">
             {{ item.name }}
           </NuxtLink>
         </li>
@@ -99,16 +105,25 @@ const handleScrollTo = (target: string) => {
 
 <style scoped lang="scss">
 @keyframes appear {
-  0%, 50% { opacity: 0; }
-  100% { opacity: 1; }
+
+  0%,
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .slide-fade-enter-active {
   transition: all 0.4s ease;
 }
+
 .slide-fade-leave-active {
   transition: all 0.3s ease;
 }
+
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   transform: translateY(-20px);
@@ -128,8 +143,8 @@ const handleScrollTo = (target: string) => {
 
   .nav {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    // align-items: flex-start;
+    // justify-content: space-between;
 
     .home-link {
       font-weight: 700;
@@ -150,14 +165,14 @@ const handleScrollTo = (target: string) => {
     }
 
     .hamburger {
-      
+
       display: flex;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
 
       span {
-        
+
         display: block;
         width: 24px;
         height: 4px;
@@ -168,9 +183,11 @@ const handleScrollTo = (target: string) => {
         &.open:nth-child(1) {
           transform: rotate(45deg) translateY(5px) translateX(6px);
         }
+
         &.open:nth-child(2) {
           opacity: 0;
         }
+
         &.open:nth-child(3) {
           transform: rotate(-45deg) translateY(-5px) translateX(6px);
         }

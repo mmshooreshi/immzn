@@ -54,15 +54,9 @@ onMounted(async () => {
         metalness:    0,
         ior:          0.9,  // typical glass IOR
         thickness:    0.2,  // gives it some volume
-        envMapIntensity: 1.0,
+        envMapIntensity: 1.0
 
-                // ✨ Prism dispersion!
-        clearcoat:                    1,
-        clearcoatRoughness:           0,
-        iridescence:                  1,
-        iridescenceIOR:               1.3,
-        iridescenceThicknessRange:    [100, 1000],
-
+        
       })
 
       mesh.material = glass
