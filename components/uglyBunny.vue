@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { useGLTF } from '@tresjs/cientos'
 import { useLoop, useTresContext } from '@tresjs/core'
 import { RGBELoader } from 'three-stdlib'
+const isMobile = useIsMobile();
 
 // — create your pivot group as before —
 const pivot = new THREE.Group()
@@ -22,8 +23,15 @@ onMounted(async () => {
   const center = new THREE.Vector3()
   bbox.getCenter(center)
   console.log(center)
-  center.x = -140
-  center.y = 1300
+  if (isMobile.value) {
+    center.x = -300
+    center.y = 1250
+  } else {
+    center.x = -340
+    center.y = 1330
+  }
+
+
 
   model.position.sub(center)
 

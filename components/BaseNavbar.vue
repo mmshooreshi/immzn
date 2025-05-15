@@ -41,13 +41,14 @@ const handleScrollTo = (target: string) => {
 
   <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky
     data-scroll-target="main">
-    <nav class="nav px-4 py-3 pb-2 flex items-center justify-start">
-      <button class="home-link h-6" @click="handleScrollTo('#hero')">
-        Imm<span class="text-purple-200">Unity</span> Horizons
+    <nav class="nav px-4 py-3 pb-3 flex items-center justify-start">
+      <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
+        <span v-if="language == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
+        <span v-if="language == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
       </button>
 
 
-      <div class="flex items-center gap-2 mx-2">
+      <div class="flex items-center  w-full justify-between gap-2">
         <!-- Language Switcher -->
         <button @click="nextLanguage"
           class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
@@ -66,6 +67,7 @@ const handleScrollTo = (target: string) => {
             <Icon class="w-6 h-6 mt-1 text-blue-500" name="material-symbols:dark-mode" />
           </span>
         </button>
+        <div class="flex-grow"></div>
 
 
         <!-- Hamburger button -->
@@ -74,6 +76,8 @@ const handleScrollTo = (target: string) => {
           <span :class="{ open: menuOpen }"></span>
           <span :class="{ open: menuOpen }"></span>
         </button>
+
+
       </div>
 
 
@@ -81,7 +85,7 @@ const handleScrollTo = (target: string) => {
       <teleport to="body">
         <transition name="slide-fade">
           <ul v-if="menuOpen && isMobile"
-            class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2 text-white">
+            class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2  text-white">
             <li v-for="item in data.navbar" :key="item.slug"
               class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
               <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
@@ -98,7 +102,7 @@ const handleScrollTo = (target: string) => {
       <div class="flex-grow"></div>
 
       <!-- Desktop Menu -->
-      <ul class="h-6 list mt-1" v-if="!isMobile">
+      <ul class="text-nowrap h-6 list mt-1" v-if="!isMobile">
         <li v-for="item in data.navbar" :key="item.slug"
           class="hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link">
           <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">

@@ -1,6 +1,6 @@
 <!-- pages/edit/[name].vue -->
 <template>
-    <div class="min-h-screen bg-gray-100 p-6  h-screen overflow-scroll">
+    <div class="min-h-screen bg-gray-100 p-6  h-screen overflow-scroll ltr">
         <button @click="$router.push('/edit')"
             class="mb-4 inline-flex items-center text-sm text-gray-700 hover:text-gray-900">
             ← Back

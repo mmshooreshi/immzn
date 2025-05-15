@@ -7,6 +7,7 @@ import {
 import uglyBunny from '@/components/uglyBunny.vue'
 import { GUI } from 'lil-gui'
 import { Box3, Vector3 } from 'three'
+const isMobile = useIsMobile();
 
 // Refs for three objects
 const cameraRef = ref<any>(null)
@@ -60,7 +61,15 @@ function updateGroup() {
   controlsRef.value.update()
 }
 
+
 onMounted(() => {
+  console.log("isMobile: ", isMobile.value)
+
+  if (isMobile.value) {
+    bunnyGroupRef?.value?.scale.set(0.6, 0.6, 0.6)
+
+  }
+
   // const gui = new GUI()
 
   // // Camera folder

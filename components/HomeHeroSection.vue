@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Tree from '@/components/Tree.vue'
 import B3DLoader from '~/components/B3DLoader.vue'
+import { useSettings } from '~/composables/useSettings'
+
+const { language } = useSettings()
+
 
 const isMobile = useIsMobile();
 
@@ -40,24 +44,37 @@ onBeforeUnmount(cleanup)
     </h1>
 
     <!-- purely static subheading -->
+
     <h2
-      class="sequence-item taglineC z-1 text-md text-[12px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]  text-left  text-teal-100 mx-8  leading-[1.5]">
-      <span class="text-white/80 text-xs">{{ data.tagline.first }}</span>
-      <br v-if="isMobile" />
-      <span>{{ data.tagline.second }}</span>
-      <span>{{ data.tagline.third }}</span>
-      <span>{{ data.tagline.fourth }}</span>
+      class="sequence-item taglineC z-1 text-md text-[12px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]   text-teal-100 mx-8  leading-[1.5]"
+      :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
+      <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
+        data.tagline.first
+      }}</span>
+
+      <span class="">{{ data.tagline.second }}</span>
+      <span class="">{{ data.tagline.third }}</span>
+      <span class="">{{ data.tagline.fourth }}</span>
+
+      <br>
+      <span class="text-xs text-purple tracking-0">{{ data.dates }}</span>
+
+
     </h2>
 
 
 
     <div class="sequence-item scroll-guide">
       <img class="arrow" src="/icons/arrow.svg" alt="" width="24" height="24" />
-      <span>Scroll</span>
+
+      <span v-if="language == 'en'">Scroll</span>
+      <span v-if="language == 'fa'"></span>
+
     </div>
     <div class="sequence-item button-container">
       <IconButton class="button" icon-src="/icons/telegram-logo.svg" :href="config.public.telegramChannelLink">
-        <span>Check out our Channel</span>
+        <span v-if="language == 'en'">Check out our Channel</span>
+        <span v-if="language == 'fa'">ما را دنبال کنید</span>
 
       </IconButton>
     </div>

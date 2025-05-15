@@ -14,10 +14,9 @@ const props = defineProps<{
 }>()
 
 const scheduleDays = computed(() => props.data.scheduleDays || [])
-const descriptionParagraphs = computed(() => props.data.description.split('\n\n'))
+const descriptionHtml = computed(() => props.data.description.split('\n').join('<br/>'))
 
-
-console.log("aaaaa", props.data)
+// console.log("aaaaa", props.data)
 // const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
 </script>
 
@@ -38,17 +37,18 @@ console.log("aaaaa", props.data)
         <h2 v-if="!isMobile" class="hero">
           {{ data?.headline }} <span class="empty"></span>
         </h2>
-        <p v-html="data?.description" class="paragraph mt-2"></p>
+
+        <p v-html="descriptionHtml" class="paragraph mt-2"></p>
       </figcaption>
     </figure>
-    <ul v-if="scheduleDays?.length" class="list md:w-max  " data-scroll data-scroll-class="visible"
-      :data-scroll-offset="isMobile ? '0' : '25%'">
+    <ul v-if="scheduleDays?.length" class="list md:w-max  md:-translate-y-12 -z-5" data-scroll
+      data-scroll-class="visible" :data-scroll-offset="isMobile ? '0' : '25%'">
       <li class="timeline " />
       <li v-for="(day, index) in scheduleDays" :key="index" class="list-item">
         <span class="circle" />
         <div class="content">
           <h3 class="title">{{ day.label }} </h3>
-          <p v-for="(bullet, i) in day.bullets" :key="i" class="description">
+          <p v-for="(bullet, i) in day.bullets" :key="i" class="description max-w-[500px] text-md leading-normal">
             {{ bullet }}
           </p>
         </div>
@@ -115,24 +115,19 @@ console.log("aaaaa", props.data)
   gap: 4rem;
   position: relative;
 
-  [dir="ltr"] & {
-    margin-left: -19%;
-  }
-
-  [dir="rtl"] & {
-    margin-right: -17%;
-
-  }
-
   @include screens.laptop {
     [dir="ltr"] & {
       gap: 8rem;
       right: 2.5rem;
+      // margin-left: -19%;
+
     }
 
     [dir="rtl"] & {
       gap: 8rem;
       left: 2.5rem;
+      // margin-right: -17%;
+
 
     }
   }
