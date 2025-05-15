@@ -1,6 +1,9 @@
 <script setup lang="ts">
 // import { useData } from '@/composables/useData'
 import JsonViewer from '@/components/JsonViewer.vue'
+import { useSettings } from '~/composables/useSettings'
+
+const { language } = useSettings()
 
 import { useLocalizedData } from '~/composables/useLocalizedData'
 
@@ -93,8 +96,8 @@ onMounted(() => {
     <!-- {{ tapCount }} {{  showTree }} -->
   </teleport>
 
-  <NuxtLayout name="page">
-
+  <NuxtLayout :key="language" name="page">
+    {{ language }}
     <!-- {{ data }} -->
 
     <HomeHeroSection :data="data['0_hero']" />
