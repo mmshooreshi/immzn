@@ -99,7 +99,8 @@ onMounted(() => {
     <!-- {{ tapCount }} {{  showTree }} -->
   </teleport>
   <div v-if="Object.keys(data).length === 0">
-    <SkeletonHero />
+    <!-- <SkeletonHero /> -->
+    loading . . .
   </div>
   <NuxtLayout v-else :key="language" name="page">
     <!-- {{ language }} -->

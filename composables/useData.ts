@@ -27,6 +27,7 @@ const localEntries = Object.entries(localFiles)
 
 const fetchRemoteData = async () => {
   const filenames = localEntries.map((e) => e.filename);
+  console.log('filenames: ', filenames);
 
   await Promise.all(
     filenames.map(async (name) => {
