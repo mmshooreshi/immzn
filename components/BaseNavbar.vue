@@ -50,7 +50,7 @@ const handleScrollTo = (target: string) => {
       <div class="flex items-center gap-2 mx-2">
         <!-- Language Switcher -->
         <button @click="nextLanguage"
-          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-black"
+          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
           :aria-label="`Switch language (current: ${language.toUpperCase()})`">
           {{ language == "fa" ? 'فا' : language.toUpperCase() }}
         </button>
