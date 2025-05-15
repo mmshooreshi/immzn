@@ -1,4 +1,3 @@
-// ~/composables/useData.ts
 import { reactive } from 'vue';
 
 /** Load all JSON files eagerly from /data/home */
@@ -8,8 +7,31 @@ const localFiles = import.meta.glob('~/data/home/*.json', { eager: true });
 const toCamelCase = (s: string) =>
   s.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
+/** Remove leading number and underscore/dash */
+const cleanKey = (s: string) => s.replace(/^\d+[-_]/, '');
+
+/** Recursively prefix strings in fallback data with '*' for debug */
+const markFallback = (obj: any): any => {
+  if (typeof obj === 'string') return `*${obj}`;
+  if (Array.isArray(obj)) return obj.map(markFallback);
+  if (obj && typeof obj === 'object') {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [key, markFallback(value)]),
+    );
+  }
+  return obj;
+};
+
 /** Build reactive store */
 const data = reactive({} as Record<string, any>);
+
+/** Initialize with local defaults for debug/fallback */
+Object.entries(localFiles).forEach(([path, file]) => {
+  const filename = path.split('/').pop()?.replace('.json', '') as string;
+  const key = toCamelCase(cleanKey(filename));
+  const localData = (file as { default: any }).default;
+  data[key] = markFallback(localData);
+});
 
 /** Extract sorted local filenames */
 const localEntries = Object.entries(localFiles)
@@ -31,7 +53,7 @@ const fetchRemoteData = async () => {
 
   await Promise.all(
     filenames.map(async (name) => {
-      const key = toCamelCase(name);
+      const key = toCamelCase(cleanKey(name));
       try {
         const response = await fetch(`/api/data/${name}`);
         if (!response.ok) throw new Error(`Failed to fetch ${name}`);
@@ -39,8 +61,11 @@ const fetchRemoteData = async () => {
         data[key] = json;
       } catch (err) {
         console.warn(`Could not fetch remote ${name}, using local fallback`);
-        const local = localEntries.find((e) => e.filename === name);
-        if (local) data[key] = local.file.default;
+        const localEntry = localEntries.find((e) => e.filename === name);
+        if (localEntry) {
+          const fallback = localEntry.file.default;
+          data[key] = markFallback(fallback);
+        }
       }
     }),
   );
@@ -49,6 +74,7 @@ const fetchRemoteData = async () => {
 const init = async () => {
   await fetchRemoteData();
 };
+
 init();
 
 export const useData = () => data;

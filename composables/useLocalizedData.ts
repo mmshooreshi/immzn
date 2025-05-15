@@ -60,7 +60,7 @@ function localize<T>(value: any, locale: string, path: string = ''): T {
 export function useLocalizedData() {
   const { language } = useSettings(); // reactive `language` ref
   const raw = useData(); // your reactive data store
-
+  console.log(raw);
   // compute a full copy of the store, but with all en/fa maps replaced by the selected locale
   const localized = computed(() => {
     // console.debug(

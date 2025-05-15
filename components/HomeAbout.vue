@@ -13,9 +13,11 @@ const props = defineProps<{
   }
 }>()
 
-const scheduleDays = computed(() => props.data.scheduleDays || [])
-const descriptionHtml = computed(() => props.data.description.split('\n').join('<br/>'))
 
+const scheduleDays = computed(() => props.data.scheduleDays || [])
+const descriptionHtml = computed(() => props.data?.description?.split('\n').join('<br/>') ?? '')
+const descriptionHtmlKey = ref()
+descriptionHtmlKey.value = descriptionHtml.value[0]
 // console.log("aaaaa", props.data)
 // const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
 </script>
@@ -27,6 +29,7 @@ const descriptionHtml = computed(() => props.data.description.split('\n').join('
 <template>
   <!-- {{ data }} -->
   <NuxtLayout name="section">
+
     <SkillsContainer />
     <figure id="about" class="figure">
       <figcaption v-if="isMobile">
@@ -38,7 +41,9 @@ const descriptionHtml = computed(() => props.data.description.split('\n').join('
           {{ data?.headline }} <span class="empty"></span>
         </h2>
 
-        <p v-html="descriptionHtml" class="paragraph mt-2"></p>
+
+        <p v-if="descriptionHtmlKey != '*'" v-html="descriptionHtml" class="paragraph mt-2"></p>
+
       </figcaption>
     </figure>
     <ul v-if="scheduleDays?.length" class="list md:w-max  md:-translate-y-12 -z-5" data-scroll
