@@ -1,77 +1,77 @@
 {
-    "headline": {
-        "en": "About",
-        "fa": "درباره"
-    },
-    "description": {
-        "en": "<bb>ImmUnity Horizons</bb> is a three-day forum wherecomputation meets immunology.<br /><br />From <bb>9 – 11 July 2025</bb> in Tehran, researchers,engineers, and designers unite to decode immune data and build thenext wave of tools.<br /><br />Keynotes, a 48-hour hackathon, and hands-on workshops drive rapidcollaboration.<br /><br />Join us and help recode the future of health.",
-        "fa": "ایمونیتی هورایزونز یک نشست سه‌روزه است که در آن محاسبات و ایمنی‌شناسی به هم می‌رسند.\n\nاز ۹ تا ۱۱ ژوئیهٔ ۲۰۲۵ در تهران، پژوهشگران، مهندسان و طراحان گرد هم می‌آیند تا داده‌های ایمنی را رمزگشایی کنند و نسل بعدی ابزارها را بسازند.\n\nسخنرانی‌های اصلی، هکاتون ۴۸ ساعته و کارگاه‌های عملی همکاری سریع را رقم می‌زنند.\n\nبه ما بپیوندید و به بازنویسی آینده سلامت کمک کنید."
-    },
-    "image": "/images/event.webp",
-    "altText": {
-        "en": "ImmUnity Horizons event photo",
-        "fa": "عکس رویداد ایمونیتی هورایزونز"
-    },
-    "scheduleDays": [
+  "headline": {
+    "en": "About",
+    "fa": "درباره"
+  },
+  "description": {
+    "en": "ImmUnity Horizons introduces computational immunology, connecting biology with computational sciences. Targeted at students, researchers, and professionals across fields like computer science, mathematics, AI, physics, and biology, this event explores immune system dynamics through computational methods. The first edition will lay a strong foundation for computational immunology in Iran while offering an international perspective. Through expert discussions, interactive panels, and a hands-on hackathon, participants will engage with key challenges and innovative methodologies, fostering cross-disciplinary collaboration. ImmUnity Horizons aims to advance the role of computation in immunological research and inspire future developments.",
+    "fa": "رویداد گستره ایمنی دریچه‌ای نو به دنیای ایمونولوژی محاسباتی می‌گشاید و پلی میان زیست‌شناسی و علوم رایانه برقرار می‌کند. این رویداد با حضور دانشجویان، پژوهشگران و متخصصان رشته‌های مختلف از جمله علوم کامپیوتر، ریاضی، هوش مصنوعی، فیزیک و زیست‌شناسی، به بررسی پویایی‌های سیستم ایمنی از منظر محاسباتی می‌پردازد.\nنخستین دوره این رویداد، پایه‌ای مستحکم برای ایمونولوژی محاسباتی در ایران، با روی‌ کردی بین‌المللی بنا نهاده‌است. شرکت‌کنندگان از طریق سخنرانی‌های تخصصی، پنل‌های تعاملی و هکاتونی عملی، با چالش‌های کلیدی و روش‌های نوآورانه این حوزه آشنا خواهند شد و بستری برای همکاری میان‌رشته‌ای فراهم می‌گردد.\nگستره ایمنی با هدف گسترش نقش محاسبات در پژوهش‌های ایمونولوژیک و الهام‌بخشی به نسل آینده دانشمندان، مسیر تازه‌ای در پیوند علم و فناوری ترسیم می‌کند."
+  },
+  "image": "/images/event.webp",
+  "altText": {
+    "en": "ImmUnity Horizons event photo",
+    "fa": "عکس رویداد ایمونیتی هورایزونز"
+  },
+  "scheduleDays": [
+    {
+      "label": {
+        "en": "Day 1 · Ignite",
+        "fa": "روز اول · جرقه"
+      },
+      "bullets": [
         {
-            "label": {
-                "en": "Day 1 · Ignite",
-                "fa": "روز اول · جرقه"
-            },
-            "bullets": [
-                {
-                    "en": "Keynotes that redraw the map",
-                    "fa": "سخنرانی‌های اصلی که نقشه را دوباره ترسیم می‌کنند"
-                },
-                {
-                    "en": "Live annotation of immune datasets",
-                    "fa": "حاشیه‌نویسی زنده داده‌های ایمنی"
-                },
-                {
-                    "en": "Hackathon kickoff at sunset",
-                    "fa": "آغاز هکاتون هنگام غروب"
-                }
-            ]
+          "en": "Keynotes that redraw the map",
+          "fa": "سخنرانی‌های اصلی که نقشه را دوباره ترسیم می‌کنند"
         },
         {
-            "label": {
-                "en": "Day 2 · Build",
-                "fa": "روز دوم · ساخت"
-            },
-            "bullets": [
-                {
-                    "en": "48-hour code sprint (yes, naps welcome)",
-                    "fa": "اسپرینت کد ۴۸ ساعته (چرت‌ها پذیرفته‌اند)"
-                },
-                {
-                    "en": "Mentor walk-ups & lightning demos",
-                    "fa": "مراجعه مربیان و دموهای سریع"
-                },
-                {
-                    "en": "Starlit pizza on the rooftop",
-                    "fa": "پیتزای زیر ستارگان روی پشت‌بام"
-                }
-            ]
+          "en": "Live annotation of immune datasets",
+          "fa": "حاشیه‌نویسی زنده داده‌های ایمنی"
         },
         {
-            "label": {
-                "en": "Day 3 · Launch",
-                "fa": "روز سوم · پرتاب"
-            },
-            "bullets": [
-                {
-                    "en": "Demo arena & rapid-fire judging",
-                    "fa": "عرصه دمو و داوری سریع"
-                },
-                {
-                    "en": "Immune-inspired award trophies",
-                    "fa": "جوایز الهام‌گرفته از ایمنی"
-                },
-                {
-                    "en": "Closing toast with pomegranate tea",
-                    "fa": "پایان مراسم با چای انار"
-                }
-            ]
+          "en": "Hackathon kickoff at sunset",
+          "fa": "آغاز هکاتون هنگام غروب"
         }
-    ]
+      ]
+    },
+    {
+      "label": {
+        "en": "Day 2 · Build",
+        "fa": "روز دوم · ساخت"
+      },
+      "bullets": [
+        {
+          "en": "48-hour code sprint (yes, naps welcome)",
+          "fa": "اسپرینت کد ۴۸ ساعته (چرت‌ها پذیرفته‌اند)"
+        },
+        {
+          "en": "Mentor walk-ups & lightning demos",
+          "fa": "مراجعه مربیان و دموهای سریع"
+        },
+        {
+          "en": "Starlit pizza on the rooftop",
+          "fa": "پیتزای زیر ستارگان روی پشت‌بام"
+        }
+      ]
+    },
+    {
+      "label": {
+        "en": "Day 3 · Launch",
+        "fa": "روز سوم · پرتاب"
+      },
+      "bullets": [
+        {
+          "en": "Demo arena & rapid-fire judging",
+          "fa": "عرصه دمو و داوری سریع"
+        },
+        {
+          "en": "Immune-inspired award trophies",
+          "fa": "جوایز الهام‌گرفته از ایمنی"
+        },
+        {
+          "en": "Closing toast with pomegranate tea",
+          "fa": "پایان مراسم با چای انار"
+        }
+      ]
+    }
+  ]
 }
