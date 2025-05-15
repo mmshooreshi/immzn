@@ -14,13 +14,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@lljj/vue3-form-element": "^1.19.0",
     "@nuxtjs/i18n": "^9.5.4",
+    "@octokit/rest": "^21.1.1",
     "@pinia/nuxt": "^0.11.0",
     "@splinetool/runtime": "^1.2.4",
     "@tresjs/nuxt": "^3.0.8",
     "@tresjs/post-processing": "^2.3.1",
     "@vercel/analytics": "^1.2.2",
     "@vueuse/core": "^13.1.0",
+    "generate-schema": "^2.6.0",
     "lil-gui": "^0.20.0",
     "locomotive-scroll": "^4.1.4",
     "pinia": "^3.0.2",
