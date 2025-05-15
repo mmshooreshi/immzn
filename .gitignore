@@ -7,3 +7,4 @@ node_modules
 .cache
 .output
 .env
+ud.sh
