@@ -1,4 +1,4 @@
-// useData.ts
+// ~/composables/useData.ts
 import { reactive } from 'vue';
 
 /** Load all JSON files eagerly from /data/home */
@@ -25,7 +25,6 @@ const localEntries = Object.entries(localFiles)
     return getNumber(a.filename) - getNumber(b.filename);
   });
 
-/** Fetch latest JSON files from Nuxt server API and update the reactive data */
 const fetchRemoteData = async () => {
   const filenames = localEntries.map((e) => e.filename);
 
@@ -46,6 +45,10 @@ const fetchRemoteData = async () => {
   );
 };
 
-await fetchRemoteData();
+const init = async () => {
+  await fetchRemoteData();
+  // now do other things
+};
+init();
 
 export const useData = () => data;
