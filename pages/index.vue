@@ -97,7 +97,7 @@ onMounted(() => {
   </teleport>
 
   <NuxtLayout :key="language" name="page">
-    {{ language }}
+    <!-- {{ language }} -->
     <!-- {{ data }} -->
 
     <HomeHeroSection :data="data['0_hero']" />
