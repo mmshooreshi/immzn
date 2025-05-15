@@ -65,10 +65,17 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    spotifyClientId: '',
-    spotifyClientSecret: '',
-    spotifyRefreshToken: '',
+    // server-only values
+    githubToken: process.env.GITHUB_TOKEN,
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
+    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
+    spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN || '',
+
     public: {
+      // exposed to both server & client
+      githubOwner: process.env.GITHUB_OWNER,
+      githubRepo: process.env.GITHUB_REPO,
+
       githubLink: 'https://github.com/immunity_horizon_event',
       telegramChannelLink: 'https://t.me/immunity_horizon_event',
       linkedinLink: 'https://www.linkedin.com/in/immunity_horizon_event/',
@@ -77,6 +84,7 @@ export default defineNuxtConfig({
       email: 'contact@immhzn.com',
     },
   },
+
   typescript: {
     strict: true,
   },
