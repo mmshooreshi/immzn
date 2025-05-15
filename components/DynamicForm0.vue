@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import { toRaw } from 'vue'
 import { defineProps, defineEmits, watch } from 'vue'
-import DynamicForm from './DynamicForm.vue'
+import DynamicForm from '~/components/DynamicForm0.vue'
 
 interface Translation { en: string; fa: string }
 

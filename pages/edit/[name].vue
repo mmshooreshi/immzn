@@ -1,3 +1,4 @@
+<!-- pages/edit/[name].vue -->
 <template>
     <div class="min-h-screen bg-gray-100 p-6  h-screen overflow-scroll">
         <button @click="$router.push('/edit')"
@@ -68,7 +69,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Form from '@lljj/vue3-form-element'
-import DynamicForm from '~/components/DynamicForm.vue'
+import DynamicForm from '~/components/DynamicForm0.vue'
 
 const route = useRoute()
 const router = useRouter()
