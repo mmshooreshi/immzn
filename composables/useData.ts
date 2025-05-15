@@ -11,7 +11,9 @@ const toCamelCase = (s: string) =>
 const cleanKey = (s: string) => s.replace(/^\d+[-_]/, '');
 
 // yo0hahahaha
-const prefix = '*';
+// const prefix = '*';
+const prefix = '';
+
 // yo0hahahaha
 
 /** Recursively prefix strings in fallback data with '*' for debug */
