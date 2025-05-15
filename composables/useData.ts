@@ -47,7 +47,6 @@ const fetchRemoteData = async () => {
 
 const init = async () => {
   await fetchRemoteData();
-  // now do other things
 };
 init();
 
