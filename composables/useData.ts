@@ -10,9 +10,15 @@ const toCamelCase = (s: string) =>
 /** Remove leading number and underscore/dash */
 const cleanKey = (s: string) => s.replace(/^\d+[-_]/, '');
 
+// yo0hahahaha
+const prefix = '*';
+// yo0hahahaha
+
 /** Recursively prefix strings in fallback data with '*' for debug */
 const markFallback = (obj: any): any => {
-  if (typeof obj === 'string') return `*${obj}`;
+  // if (typeof obj === 'string') return `*${obj}`;
+  if (typeof obj === 'string') return `${prefix}${obj}`;
+
   if (Array.isArray(obj)) return obj.map(markFallback);
   if (obj && typeof obj === 'object') {
     return Object.fromEntries(
