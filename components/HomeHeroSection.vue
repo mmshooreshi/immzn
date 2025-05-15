@@ -117,7 +117,8 @@ onBeforeUnmount(cleanup)
     content: '';
     position: absolute;
     inset: 0;
-    background-color: variables.$dark;
+    // background-color: variables.$dark;
+    background-color: #141414;
   }
 
   .heading-1 {

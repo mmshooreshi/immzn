@@ -120,7 +120,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <TresCanvas clear-color="#0b0b0d" window-size preset="realistic" class="myTresCanvas">
+  <TresCanvas clear-color="#141414" window-size preset="realistic" class="myTresCanvas">
     <TresPerspectiveCamera ref="cameraRef" :position="[params.cameraX, params.cameraY, params.cameraZ]" />
 
     <OrbitControls ref="controlsRef" :enablePan="params.enablePan" :enableRotate="params.enableRotate"
