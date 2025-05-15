@@ -38,9 +38,9 @@ onBeforeUnmount(cleanup)
     <!-- purely static heading, animated by GSAP/SplitText -->
     <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none ">
       <!-- mix-blend-difference -->
-      <span>{{ data.title.first }}</span>
-      <strong class="nf">{{ data.title.second }}</strong><br />
-      <span>{{ data.title.third }}</span><br />
+      <span>{{ data?.title?.first }}</span>
+      <strong class="nf">{{ data?.title?.second }}</strong><br />
+      <span>{{ data?.title?.third }}</span><br />
     </h1>
 
     <!-- purely static subheading -->
@@ -49,15 +49,15 @@ onBeforeUnmount(cleanup)
       class="sequence-item taglineC z-1 text-md text-[12px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]   text-teal-100 mx-8  leading-[1.5]"
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
       <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
-        data.tagline.first
-      }}</span>
+        data?.tagline?.first
+        }}</span>
 
-      <span class="">{{ data.tagline.second }}</span>
-      <span class="">{{ data.tagline.third }}</span>
-      <span class="">{{ data.tagline.fourth }}</span>
+      <span class="">{{ data?.tagline?.second }}</span>
+      <span class="">{{ data?.tagline?.third }}</span>
+      <span class="">{{ data?.tagline?.fourth }}</span>
 
       <br>
-      <span class="text-xs text-purple tracking-0">{{ data.dates }}</span>
+      <span class="text-xs text-purple tracking-0">{{ data?.dates }}</span>
 
 
     </h2>

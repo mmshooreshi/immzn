@@ -7,8 +7,11 @@ const { language } = useSettings()
 
 import { useLocalizedData } from '~/composables/useLocalizedData'
 
-const data = useLocalizedData()  // now `data.value.speakers`, etc. all have plain strings
+
+const localized = useLocalizedData();
+const data = computed(() => localized.value || {}); // fallback to empty object
 console.log(useLocalizedData())
+
 // const data = useData()
 const showTree = ref(false)
 
@@ -95,8 +98,10 @@ onMounted(() => {
     <Tree v-show="showTree" />
     <!-- {{ tapCount }} {{  showTree }} -->
   </teleport>
-
-  <NuxtLayout :key="language" name="page">
+  <div v-if="Object.keys(data).length === 0">
+    <SkeletonHero />
+  </div>
+  <NuxtLayout v-else :key="language" name="page">
     <!-- {{ language }} -->
     <!-- {{ data }} -->
 
@@ -108,7 +113,7 @@ onMounted(() => {
       <h1></h1>
       <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
       <!-- {{ Object.keys(data.speakers) }} -->
-      <SpeakersSection :headline="data.navbar" :speakers="data.speakers" />
+      <SpeakersSection :headline="data?.navbar" :speakers="data?.speakers" />
     </div>
     <div id="program" class="text-center h-max w-full">
       <h1>Program</h1>

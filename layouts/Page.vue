@@ -17,7 +17,7 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  scroll.value.destroy();
+  scroll?.value.destroy();
 });
 </script>
 

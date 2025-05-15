@@ -2,7 +2,8 @@
 
   <section id="speakers" class="py-12 ">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-10">{{headline.find(item => item.slug === "speakers")?.name}}</h2>
+      <h2 class="text-3xl font-bold text-center mb-10"> {{headline?.find(item => item.slug === "speakers")?.name ||
+        'Speakers'}} </h2>
 
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         <article v-for="speaker in speakers" :key="speaker.id"
@@ -53,13 +54,25 @@ interface Speaker {
   confirmed: boolean
 }
 
-defineProps({
+interface HeadlineItem {
+  slug: string
+  name: string
+}
+
+const props = defineProps({
   speakers: {
     type: Array as PropType<Speaker[]>,
     required: true,
   },
-  headline: { type: String }
+  headline: {
+    type: Array as PropType<HeadlineItem[]>,
+    required: true,
+  },
 })
+
+
+console.log('headline:', props.headline)
+
 </script>
 
 <style scoped>

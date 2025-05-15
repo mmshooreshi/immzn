@@ -5,9 +5,8 @@ import Emitter from '~~/utils/emitter'
 import { ref, computed, watch } from 'vue'
 import { useSettings } from '~/composables/useSettings'
 import { useLocalizedData } from '~/composables/useLocalizedData'
-
-
-const data = useLocalizedData()  // now `data.value.speakers`, etc. all have plain strings
+const localized = useLocalizedData();
+const data = computed(() => localized.value || {}); // fallback to empty object
 
 const { language, nextLanguage, theme, toggleTheme } = useSettings()
 

@@ -1,8 +1,8 @@
-// ~/composables/useData.ts
+// useData.ts
 import { reactive } from 'vue';
 
 /** Load all JSON files eagerly from /data/home */
-const files = import.meta.glob('~/data/home/*.json', { eager: true });
+const localFiles = import.meta.glob('~/data/home/*.json', { eager: true });
 
 /** Convert dash-case to camelCase */
 const toCamelCase = (s: string) =>
@@ -11,7 +11,8 @@ const toCamelCase = (s: string) =>
 /** Build reactive store */
 const data = reactive({} as Record<string, any>);
 
-const entries = Object.entries(files)
+/** Extract sorted local filenames */
+const localEntries = Object.entries(localFiles)
   .map(([path, file]) => {
     const filename = path.split('/').pop()?.replace('.json', '') || path;
     return { path, file: file as { default: any }, filename };
@@ -24,11 +25,27 @@ const entries = Object.entries(files)
     return getNumber(a.filename) - getNumber(b.filename);
   });
 
-for (const { file, filename } of entries) {
-  const key = toCamelCase(filename);
-  data[key] = file.default;
-}
+/** Fetch latest JSON files from Nuxt server API and update the reactive data */
+const fetchRemoteData = async () => {
+  const filenames = localEntries.map((e) => e.filename);
 
-console.log(data);
+  await Promise.all(
+    filenames.map(async (name) => {
+      const key = toCamelCase(name);
+      try {
+        const response = await fetch(`/api/data/${name}`);
+        if (!response.ok) throw new Error(`Failed to fetch ${name}`);
+        const json = await response.json();
+        data[key] = json;
+      } catch (err) {
+        console.warn(`Could not fetch remote ${name}, using local fallback`);
+        const local = localEntries.find((e) => e.filename === name);
+        if (local) data[key] = local.file.default;
+      }
+    }),
+  );
+};
+
+await fetchRemoteData();
 
 export const useData = () => data;
