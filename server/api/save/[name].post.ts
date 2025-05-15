@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     owner: githubOwner,
     repo: githubRepo,
     path: `data/home/${name}`,
-    message: `Edit ${name} via UI`,
+    message: `Edit ${name} via UI skip-vercel`,
     content: Buffer.from(JSON.stringify(newData, null, 2)).toString('base64'),
     sha: file.sha,
   });
