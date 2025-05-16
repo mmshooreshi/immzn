@@ -68,7 +68,7 @@ onUnmounted(() => {
       <BaseNavbar :key="viewLang" :lang="viewLang" :items="navbarItems" @request-lang="onLangRequest" />
 
     </Transition>
-    <CustomCursor v-if="!isMobile" />
+    <!-- <CustomCursor v-if="!isMobile" /> -->
     <Transition name="lang" mode="out-in">
       <!-- key forces a remount on every language change -->
       <div :key="viewLang">
