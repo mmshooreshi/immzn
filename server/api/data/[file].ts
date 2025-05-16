@@ -6,7 +6,8 @@ export default defineEventHandler(async (event: H3Event) => {
   if (!file) return { error: 'Missing filename' };
 
   const githubRepo = 'mmshooreshi/immzn';
-  const githubPath = `data/home/${file}.json`;
+  const githubPath = `data/home/${file}${file.endsWith('.json') ? '' : '.json'}`;
+  
   const [owner, repo] = githubRepo.split('/');
 
   const octokit = getOctokit();
