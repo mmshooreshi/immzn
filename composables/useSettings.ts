@@ -1,16 +1,16 @@
-// composables/useSettings.ts
-// import { computed } from 'vue';
-import { useSettingsStore } from '~/stores/settings';
+/* ~/composables/useSettings.ts */
+import { storeToRefs } from 'pinia'
+import { useSettingsStore } from '~/stores/settings'
 
 export function useSettings() {
-  const store = useSettingsStore();
+  const store = useSettingsStore()
+  const { language, theme } = storeToRefs(store)
 
   return {
-    locale: computed(() => store.locale),
-    language: computed(() => store.language),
-    theme: computed(() => store.theme),
-    setLocale: store.setLocale,
+    language,                       // refs – not plain values
+    theme,
     nextLanguage: store.nextLanguage,
-    toggleTheme: store.toggleTheme,
-  };
+    setLanguage: store.setLanguage,
+    toggleTheme:  store.toggleTheme,
+  }
 }

@@ -42,11 +42,11 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
         </h2>
 
 
-        <p v-if="descriptionHtmlKey != '*'" v-html="descriptionHtml" class="paragraph mt-2"></p>
+        <p v-if="descriptionHtmlKey != '*'" v-html="descriptionHtml" class=" max-w-lg paragraph mt-2"></p>
 
       </figcaption>
     </figure>
-    <ul v-if="scheduleDays?.length" class="list md:w-max  md:-translate-y-12 -z-5" data-scroll
+    <ul v-if="scheduleDays?.length" class="list md:w-max  lg:-translate-y-12 -z-5" data-scroll
       data-scroll-class="visible" :data-scroll-offset="isMobile ? '0' : '25%'">
       <li class="timeline " />
       <li v-for="(day, index) in scheduleDays" :key="index" class="list-item">
@@ -121,14 +121,14 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
   position: relative;
 
   @include screens.laptop {
-    [dir="ltr"] & {
+    [data-lang='en'] & {
       gap: 8rem;
       right: 2.5rem;
       // margin-left: -19%;
 
     }
 
-    [dir="rtl"] & {
+    [data-lang='fa'] & {
       gap: 8rem;
       left: 2.5rem;
       // margin-right: -17%;
@@ -150,22 +150,22 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
     clip-path: inset(0 0 100% 0);
     transition: clip-path 1.5s variables.$ease-in-out;
 
-    [dir="ltr"] & {
+    [data-lang='en'] & {
       left: calc(1rem - 1px);
     }
 
-    [dir="rtl"] & {
+    [data-lang='fa'] & {
       right: calc(1rem - 1px);
 
     }
 
     @include screens.laptop {
-      [dir="ltr"] & {
+      [data-lang='en'] & {
         left: calc(1.5rem - 1px);
         top: -6rem;
       }
 
-      [dir="rtl"] & {
+      [data-lang='fa'] & {
         right: calc(1.5rem - 1px);
         top: -6rem;
       }

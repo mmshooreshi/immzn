@@ -3,8 +3,17 @@
 import { useSettings } from '~/composables/useSettings'
 const { language, nextLanguage, theme, toggleTheme } = useSettings()
 
-useHead({ htmlAttrs: { dir: computed(() => language.value === 'fa' ? 'rtl' : 'ltr') } })
+// useHead({ htmlAttrs: { dir: computed(() => language.value === 'fa' ? 'rtl' : 'ltr') } })
+// useHead({
+//   htmlAttrs: {
+//     'data-lang': computed(() => language.value === 'fa' ? 'en' : 'fa')
+//   }
+// });
 
+
+watchEffect(() => {
+  useHead({ htmlAttrs: { 'data-lang': language.value === 'fa' ? 'fa' : 'en' } })
+})
 
 </script>
 

@@ -1,3 +1,4 @@
+<!-- components/HomeHeroSection.vue -->
 <script setup lang="ts">
 import Tree from '@/components/Tree.vue'
 import B3DLoader from '~/components/B3DLoader.vue'
@@ -50,7 +51,7 @@ onBeforeUnmount(cleanup)
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
       <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
         data?.tagline?.first
-        }}</span>
+      }}</span>
 
       <span class="">{{ data?.tagline?.second }}</span>
       <span class="">{{ data?.tagline?.third }}</span>
@@ -179,12 +180,12 @@ onBeforeUnmount(cleanup)
       right: auto;
     }
 
-    [dir="rtl"] & {
+    [data-lang='fa'] & {
       right: 1.5rem;
 
     }
 
-    [dir="ltr"] & {
+    [data-lang='en'] & {
       left: 1.5rem;
 
     }
@@ -211,12 +212,12 @@ onBeforeUnmount(cleanup)
 
 .taglineC {
 
-  [dir="rtl"] & {
+  [data-lang='fa'] & {
     letter-spacing: 0px;
     margin-top: -32px;
   }
 
-  [dir="ltr"] & {
+  [data-lang='en'] & {
     letter-spacing: 5px;
     margin-top: 32px;
   }

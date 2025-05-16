@@ -63,10 +63,33 @@ bb {
   color: variables.$white !important;
 }
 
-[dir='rtl'] {
-  body {
-    font-family: 'IRANSansX-d4' !important;
-  }
+
+[data-lang='fa'] > body {
+  font-family: 'IRANSansX-d4' !important;
+  direction: rtl;
+  text-align: right;
+}
+
+[data-lang='fa'] .menno{
+  animation: appear 0.5s variables.$ease-in-out;
+right: 20px;
+}
+[data-lang='en'] .menno{
+  animation: appear 0.5s variables.$ease-in-out;
+left: 20px;
+  
+}
+  
+
+[data-lang='fa'] * {
+  font-family: 'IRANSansX-d4' !important;
+  direction: rtl;
+  text-align: right;
+}
+
+[data-lang='en'] > body {
+  direction: ltr;
+  text-align: left;
 }
 
 .text-d4 {

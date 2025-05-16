@@ -1,16 +1,23 @@
+<!-- pages/index.vue -->
 <script setup lang="ts">
 // import { useData } from '@/composables/useData'
 import JsonViewer from '@/components/JsonViewer.vue'
-import { useSettings } from '~/composables/useSettings'
+import LoadingOverlay from '@/components/LoadingOverlay.vue'
+import HomeHeroSection from '~/components/HomeHeroSection.vue'
+import HomeAbout from '~/components/HomeAbout.vue'
+import SpeakersSection from '~/components/SpeakersSection.vue'
 
+import { useSettings } from '~/composables/useSettings'
+import { useDataStore } from '~/stores/dataStore'
+import { storeToRefs } from 'pinia'
+const { localizedData, loading } = storeToRefs(useDataStore())
 const { language } = useSettings()
 
-import { useLocalizedData } from '~/composables/useLocalizedData'
 
-
-const localized = useLocalizedData();
-const data = computed(() => localized.value || {}); // fallback to empty object
-console.log(useLocalizedData())
+// import { useLocalizedData } from '~/composables/useLocalizedData'
+// const localized = useLocalizedData();
+// const data = computed(() => localized.value || {}); // fallback to empty object
+// console.log(useLocalizedData())
 
 // const data = useData()
 const showTree = ref(false)
@@ -67,94 +74,72 @@ useHead({
 });
 
 
-const tapCount = ref(0)
-onMounted(() => {
-  tapCount.value = 0
-  let lastTap = 0
-  const tapTimeout = 600 // ms
-
-  const handleTap = () => {
-    const now = Date.now()
-    if (now - lastTap > tapTimeout) {
-      tapCount.value = 1
-    } else {
-      tapCount.value++
-      if (tapCount.value >= 7) {
-        showTree.value = true
-      }
-    }
-    lastTap = now
-  }
-
-  window.addEventListener('touchend', handleTap)
-  window.addEventListener('mouseup', handleTap)
-
-})
-
 </script>
 
 <template>
-  <teleport to="body">
-    <Tree v-show="showTree" />
-    <!-- {{ tapCount }} {{  showTree }} -->
-  </teleport>
-  <div v-if="Object.keys(data).length === 0">
-    <!-- <SkeletonHero /> -->
-    loading . . .
-  </div>
-  <NuxtLayout v-else :key="language" name="page">
-    <!-- {{ language }} -->
-    <!-- {{ data }} -->
 
-    <HomeHeroSection :data="data.hero" />
-    <HomeAbout :data="data.about" />
+  <NuxtLayout name="page">
+    <LoadingOverlay :show="loading" />
+
+
+    <Localized :is="HomeHeroSection" :data="localizedData.hero" />
+    <!-- <Localized :is="HomeAbout" :data="localizedData.about" /> -->
+    <HomeAbout :data="localizedData.about ?? {}" />
+    <Localized :is="SpeakersSection" :speakers="localizedData.speakers" :headline="localizedData.navbar" />
+    <!-- Your page content -->
+
+    <!-- {{ data }} -->
     <!-- <HomePortfolio /> -->
 
-    <div id="speakers" class=" w-full h-max">
-      <h1></h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <!-- {{ Object.keys(data.speakers) }} -->
-      <SpeakersSection :headline="data.navbar" :speakers="data.speakers" />
-    </div>
-    <div id="program" class="text-center h-max w-full">
-      <h1>Program</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <JsonViewer :data="data.hackathon" class="h-full" />
+    <!-- <HomeHeroSection :data="localizedData?.hero" /> -->
+    <!-- <HomeAbout :data="localizedData.about ?? {}" /> -->
 
-    </div>
-    <div id="essentials" class="text-center h-max w-full">
-      <h1>Essentials</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <JsonViewer :data="data.resources" class="h-full" />
-      <JsonViewer :data="data.logistics" class="h-full" />
+    <!-- <div id="speakers" class=" w-full h-max">
+        <h1></h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <SpeakersSection :headline="localizedData.navbar ?? []" :speakers="localizedData.speakers ?? []" />
+      </div>
+      <div id="program" class="text-center h-max w-full">
+        <h1>Program</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <JsonViewer :data="localizedData.hackathon" class="h-full" />
 
-    </div>
+      </div>
+      <div id="essentials" class="text-center h-max w-full">
+        <h1>Essentials</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <JsonViewer :data="localizedData.resources" class="h-full" />
+        <JsonViewer :data="localizedData.logistics" class="h-full" />
 
-    <div id="team-partners" class="text-center h-max w-full">
-      <h1>Team & Partners</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <JsonViewer :data="data.committee" class="h-full" />
-      <JsonViewer :data="data.sponsors" class="h-full" />
+      </div>
 
-    </div>
-    <div id="register" class="text-center h-max w-full">
-      <h1>Register</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-    </div>
-    <div id="faq" class="text-center h-max w-full">
-      <h1>FAQ</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <JsonViewer :data="data.faq" class="h-full" />
-    </div>
-    <div id="contact" class="text-center h-max w-full">
-      <h1>Contact</h1>
-      <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      <JsonViewer :data="data.contact" class="h-full" />
-      <JsonViewer :data="data.outro" class="h-full" />
+      <div id="team-partners" class="text-center h-max w-full">
+        <h1>Team & Partners</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <JsonViewer :data="localizedData.committee" class="h-full" />
+        <JsonViewer :data="localizedData.sponsors" class="h-full" />
 
-    </div>
+      </div>
+      <div id="register" class="text-center h-max w-full">
+        <h1>Register</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+      </div>
+      <div id="faq" class="text-center h-max w-full">
+        <h1>FAQ</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <JsonViewer :data="localizedData.faq" class="h-full" />
+      </div>
+      <div id="contact" class="text-center h-max w-full">
+        <h1>Contact</h1>
+        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
+        <JsonViewer :data="localizedData.contact" class="h-full" />
+        <JsonViewer :data="localizedData.outro" class="h-full" />
 
-    <HomeContact />
-    <BaseFooter />
+      </div>
+ -->
+    <!-- <HomeContact /> -->
+    <!-- <BaseFooter /> -->
   </NuxtLayout>
+
+
 </template>

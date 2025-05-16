@@ -1,31 +1,83 @@
+<!-- layouts/Page.vue -->
 <script setup lang="ts">
-const scroll = ref();
+import { useDataStore } from '~/stores/dataStore'
+import { storeToRefs } from 'pinia'
+
+const isMobile = useIsMobile()
+
+/* purely *reading* from the store—no fetching logic here */
+const store = useDataStore()
+const { localizedData, isLoaded } = storeToRefs(store)
+const navbarItems = computed(() => localizedData.value?.navbar ?? [])
+
+const { language, setLanguage, nextLanguage } = useSettings()
+
+const viewLang = ref<Lang>(language.value)
+const pendingLang = ref<Lang | null>(null)
+watch(language, val => { viewLang.value = val })
+
+function onLangRequest(wanted: Lang) {
+  if (viewLang.value === wanted) return         // same → nothing to do
+  pendingLang.value = wanted
+  viewLang.value = wanted                    // 1️⃣ trigger fade-out
+}
+
+function onAfterLeave() {
+  if (pendingLang.value) {
+    setLanguage(pendingLang.value)              // 2️⃣ commit to store
+    pendingLang.value = null
+  }
+}
+
+
+const scroll = ref<LocomotiveScroll | null>(null)
+const mainRef = ref<HTMLElement | null>(null)
 const cursorContent = ref<string | null>();
-const isMobile = useIsMobile();
 
 provide('scroll', scroll);
 provide('cursor', cursorContent);
 
+
 onMounted(async () => {
+
+  console.log("mainRef", mainRef.value)
+  if (!mainRef.value) {
+    console.warn('#main element not found');
+    return;
+  }
   const { default: LocomotiveScroll } = await import('locomotive-scroll');
   scroll.value = new LocomotiveScroll({
-    el: document.querySelector('#main') as HTMLElement,
+    el: mainRef.value,
     smooth: true,
     multiplier: 0.8,
     reloadOnContextChange: true,
   });
 });
 
+
 onUnmounted(() => {
-  scroll?.value.destroy();
+  scroll?.value?.destroy();
 });
+
 </script>
 
 <template>
-  <main id="main" class="main">
-    <BaseNavbar />
+  <main ref="mainRef" id="main" class="main">
+
+    <Transition name="fade" mode="out-in" @after-leave="onAfterLeave">
+      <BaseNavbar :key="viewLang" :lang="viewLang" :items="navbarItems" @request-lang="onLangRequest" />
+
+    </Transition>
     <CustomCursor v-if="!isMobile" />
-    <slot />
+    <Transition name="lang" mode="out-in">
+      <!-- key forces a remount on every language change -->
+      <div :key="viewLang">
+        <slot />
+        <CustomCursor v-if="!isMobile" />
+      </div>
+    </Transition>
+
+
   </main>
 </template>
 
@@ -46,4 +98,25 @@ onUnmounted(() => {
     gap: 16rem;
   }
 }
+
+
+.lang-enter-from,
+.lang-leave-to {
+  opacity: 0;
+  filter: blur(5px);
+}
+
+/* blurry & invisible */
+.lang-enter-active,
+.lang-leave-active {
+  transition: opacity 0.3s ease-in-out, filter 0.5s ease-in-out;
+}
+
+.lang-enter-to,
+.lang-leave-from {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* sharp & visible */
 </style>

@@ -1,58 +1,85 @@
 <!-- @/components/BaseNavbar.vue -->
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import Emitter from '~~/utils/emitter'
 // import { useData } from '@/composables/useData'
-import { ref, computed, watch } from 'vue'
 import { useSettings } from '~/composables/useSettings'
-import { useLocalizedData } from '~/composables/useLocalizedData'
-const localized = useLocalizedData();
-const data = computed(() => localized.value || {}); // fallback to empty object
+// import { useLocalizedData } from '~/composables/useLocalizedData'
+// const localized = useLocalizedData();
+// const data = computed(() => localized.value || {}); // fallback to empty object
 
-const { language, nextLanguage, theme, toggleTheme } = useSettings()
+export type Lang = 'en' | 'fa'
 
-console.log("useSettings(): ", useSettings())
+/* props */
+const props = defineProps({
+  items: {                        // menu data frozen per instance
+    type: Array as PropType<Array<{ slug: string; name: string | Record<string, string> }>>,
+    required: true,
+  },
+  lang: {                         //      ← frozen language
+    type: String as PropType<Lang>,
+    required: true,
+  },
+})
 
-const isMobile = useIsMobile();
+
+
+/* actions we still need (but NOT the reactive `language`) */
+const { nextLanguage, theme, toggleTheme } = useSettings()
+const isMobile = useIsMobile()
+const menuOpen = ref(false)
+const route = useRoute()
+const scrollTo = useScrollTo()
 
 // const data = useData();
 
-const open = ref(!isMobile.value);
-const menuOpen = ref(false);
+// const open = ref(!isMobile.value);
 
-const scrollTo = useScrollTo();
-const route = useRoute();
+function isButton(item: any) { return item.slug !== 'register' }
 
-function isButton(item: any) {
-  return item.slug !== 'register';
+function getItemName(item: any) {
+  if (typeof item.name === 'object')
+    return item.name[props.lang] ?? item.name.en ?? ''
+  return item.name
 }
 
-const handleScrollTo = (target: string) => {
-  if (route.path === '/') {
-    scrollTo(target);
-    return;
-  }
-  Emitter.emit('route-change', `/${target}`);
-  menuOpen.value = false; // close on nav
-};
+function handleScrollTo(target: string) {
+  if (route.path === '/') scrollTo(target)
+  else Emitter.emit('route-change', `/${target}`)
+  menuOpen.value = false
+}
+
+
+
+const emit = defineEmits<{ (e: 'request-lang', lang: Lang): void }>()
+
+function askForNextLang() {
+  // close any open menu inside this instance
+  menuOpen.value = false
+
+  // tell the parent which language we want *next*
+  emit('request-lang', props.lang === 'en' ? 'fa' : 'en')
+}
+onBeforeUnmount(() => { menuOpen.value = false })   // keep this
+
 </script>
 
 <template>
-
   <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky
     data-scroll-target="main">
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-start">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
-        <span v-if="language == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
-        <span v-if="language == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
+        <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
+        <span v-if="lang == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
       </button>
 
 
-      <div class="flex items-center  w-full justify-between gap-2">
+      <div class="flex flex-row-reverse items-center  w-full justify-between gap-2">
         <!-- Language Switcher -->
-        <button @click="nextLanguage"
+        <button @click="askForNextLang"
           class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
-          :aria-label="`Switch language (current: ${language.toUpperCase()})`">
-          {{ language == "fa" ? 'فا' : language.toUpperCase() }}
+          :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
+          {{ lang == "fa" ? 'فا' : lang.toUpperCase() }}
         </button>
 
         <!-- Theme Toggle -->
@@ -81,34 +108,40 @@ const handleScrollTo = (target: string) => {
 
 
       <!-- Mobile Menu -->
+
+      <!-- BaseNavbar.vue -->
+      <!-- Mobile Menu -->
       <teleport to="body">
-        <transition name="slide-fade">
-          <ul v-if="menuOpen && isMobile"
-            class="fixed top-22 right-5 z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2  text-white">
-            <li v-for="item in data.navbar" :key="item.slug"
-              class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
-              <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
-                {{ item.name }}
-              </button>
-              <NuxtLink v-else :href="`/${item.slug}`" @click="menuOpen = false">
-                {{ item.name }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </transition>
+        <ul v-if="menuOpen && isMobile" :key="props.lang"
+          class="menno fixed top-26 min-w-[150px] z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2  text-white">
+          <li :key="lang + '-' + item.slug" v-for="item in props.items"
+            class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
+            <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
+              {{ getItemName(item) }}
+
+            </button>
+            <NuxtLink v-else :href="`/${item.slug}`" @click="menuOpen = false">
+              {{ getItemName(item) }}
+
+            </NuxtLink>
+          </li>
+        </ul>
+
       </teleport>
+
+
 
       <div class="flex-grow"></div>
 
       <!-- Desktop Menu -->
       <ul class="text-nowrap h-6 list mt-1" v-if="!isMobile">
-        <li v-for="item in data.navbar" :key="item.slug"
+        <li v-for="item in props.items" :key="item.slug"
           class="hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link">
           <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
-            {{ item.name }}
+            {{ getItemName(item) }}
           </div>
           <NuxtLink v-else class="" :href="`/${item.slug}`">
-            {{ item.name }}
+            {{ getItemName(item) }}
           </NuxtLink>
         </li>
       </ul>
@@ -151,7 +184,7 @@ const handleScrollTo = (target: string) => {
   top: 2rem;
   // mix-blend-mode: difference;
   z-index: 999;
-  animation: appear 2s variables.$ease-in-out;
+  // animation: appear 2s variables.$ease-in-out;
 
 
   .nav {
