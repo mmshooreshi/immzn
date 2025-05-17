@@ -65,7 +65,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 </script>
 
 <template>
-  <header class="!sticky overflow-hidden w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll
+  <header class="sticky  overflow-hidden w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll
     data-scroll-sticky data-scroll-target="main">
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
@@ -122,7 +122,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
           class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
           :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
           <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
-            }}</span>
+          }}</span>
         </button>
 
         <!-- Theme Toggle -->

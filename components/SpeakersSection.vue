@@ -7,48 +7,48 @@
       </h2>
 
       <!-- Speakers grid -->
-      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-46">
+      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-46">
         <div v-for="sp in props.speakers" :key="sp.id" @click="open(sp)"
           class="group hover:scale-105 transition-all duration-100 ease relative flex flex-col rounded-[3rem] cursor-pointer backdrop-blur-sm speaker-item"
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
-          <div class="p-6 flex-1 flex flex-col">
+          <div class="p-6  flex-1 flex flex-col">
 
-            <header class="flex items-start flex-row gap-2 mb-3">
+            <header class="flex items-start flex-row  mb-3 ">
 
               <!-- <Icon v-if="sp.confirmed" name="material-symbols:check-circle-outline-rounded"
                 class="w-6 h-6 flex-shrink-0" :aria-label="'Confirmed speaker: ' + sp.name" /> -->
-              <h3
-                class="text-md  md:text-lg font-semibold leading-snug group-hover:text-primary-400 transition-colors  border border-teal-200 rounded-xl bg-teal-200/50 text-nowrap scale-90 text-black border-solid px-2 -ml-2 mr-16 mt-2"
-                :id="`speaker-${sp.id}`">
-                {{ sp.name }}
-              </h3>
-              <p class="text-[16px] mt-3 -mx-6 scale-80 w-max  leading-[16px]  text-blue-500 tracking-wider ">
-                {{ sp.role }}
-              </p>
+
 
 
 
             </header>
-            <div class="flex flex-row">
-              <div v-if="1" class=" relative w-24 h-24 md:w-32 md:h-38 -mt-2  rounded-[2rem]  overflow-hidden"
-                :class="{ 'md:-ml-8 -ml-8': currentLang == 'en', 'md:-mr-8 -mr-8': currentLang == 'fa' }">
-                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-36 h-full"
+            <div class="">
+              <div v-if="1"
+                class="w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
+                :class="{ '': currentLang == 'fa', '': currentLang == 'en' }">
+                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-66"
                   style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
-              </div>
-              <p v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-10 md:mt-12 md:mt-10"
-                :class="{ 'text-left ml-3 -mr-3 md:ml-20 md:-mr-4': currentLang == 'en', 'text-right mr-3 -ml-3 md:mr-20 md:-ml-4': currentLang == 'fa' }">
-                {{ sp.title }}, <br />
-              <div class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</div>
+                <h3
+                  class="font-extrabold text-md  py-1 w-64 -mr-1   md:text-lg  leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
+                  :class="{ '': currentLang == 'fa', '': currentLang == 'en' }" :id="`speaker-${sp.id}`">
+                  {{ sp.name }}
+                </h3>
 
-              </p>
+              </div>
+              <div v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-10 md:mt-6"
+                :class="{ 'text-left': currentLang == 'en', 'text-right mr-3 -ml-3  ': currentLang == 'fa' }">
+                {{ sp.title }} <br />
+                <p class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</p>
+
+              </div>
             </div>
 
 
 
 
 
-            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-6"
-              :class="{ 'ml-0 -mr-0': currentLang == 'en', 'mr-0 -ml-0': currentLang == 'fa' }">
+            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-5"
+              :class="{ 'ml-6 -mr-6': currentLang == 'en', 'mx-8': currentLang == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
             </p>
@@ -91,10 +91,8 @@
                   </div>
 
                   <div class="flex-grow"></div>
-                  <div
-                    class="w-54 h-30 sm:h-34 mt-12 md:w-56 md:h-36 rounded-[2rem] overflow-hidden mt-0 md:mr-3 md:-ml-3 ">
-                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
-                      class="object-cover w-full h-full "
+                  <div class="h-66  mt-12 md:w-66 rounded-[2rem] overflow-hidden mt-0 ">
+                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
                       style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
                   </div>
                 </DialogTitle>
