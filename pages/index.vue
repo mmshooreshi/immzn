@@ -82,7 +82,9 @@ useHead({
     <LoadingOverlay :show="loading" />
 
 
-    <Localized :is="HomeHeroSection" :data="localizedData.hero" />
+    <!-- <Localized :is="HomeHeroSection" :data="localizedData.hero" /> -->
+    <HomeHeroSection :data="localizedData?.hero" />
+
     <!-- <Localized :is="HomeAbout" :data="localizedData.about" /> -->
     <HomeAbout :data="localizedData.about ?? {}" />
     <Localized :is="SpeakersSection" :speakers="localizedData.speakers" :headline="localizedData.navbar" />

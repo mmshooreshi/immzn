@@ -70,6 +70,8 @@ onMounted(() => {
 
   }
 
+
+
   // const gui = new GUI()
 
   // // Camera folder
@@ -136,6 +138,7 @@ onMounted(() => {
       </Suspense>
     </TresGroup>
 
+
     <!-- Red pivot at origin -->
     <TresMesh>
       <!-- <TresSphereGeometry :args="[5, 16, 16]" /> -->
@@ -143,10 +146,10 @@ onMounted(() => {
     </TresMesh>
 
     <!-- Bounding box wireframe at origin -->
-    <TresMesh v-if="boxSize" :position="[0, 0, 0]">
+    <!-- <TresMesh v-if="boxSize" :position="[0, 0, 0]">
       <TresBoxGeometry :args="[boxSize.x, boxSize.y, boxSize.z]" />
       <TresMeshBasicMaterial color="white" wireframe />
-    </TresMesh>
+    </TresMesh> -->
   </TresCanvas>
 </template>
 

@@ -14,7 +14,7 @@ const props = defineProps<{
 }>()
 
 
-const scheduleDays = computed(() => props.data.scheduleDays || [])
+// const scheduleDays = computed(() => props.data.scheduleDays || [])
 const descriptionHtml = computed(() => props.data?.description?.split('\n').join('<br/>') ?? '')
 const descriptionHtmlKey = ref()
 descriptionHtmlKey.value = descriptionHtml.value[0]
@@ -46,10 +46,11 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
 
       </figcaption>
     </figure>
-    <ul v-if="scheduleDays?.length" class="list md:w-max  lg:-translate-y-12 -z-5" data-scroll
-      data-scroll-class="visible" :data-scroll-offset="isMobile ? '0' : '25%'">
+
+    <ul v-if="data?.scheduleDays?.length" class="list md:w-max  lg:-translate-y-12 -z-5" data-scroll
+      data-scroll-class="visible" data-scroll-repeat="true" :data-scroll-offset="isMobile ? '0' : '25%'">
       <li class="timeline " />
-      <li v-for="(day, index) in scheduleDays" :key="index" class="list-item">
+      <li v-for="(day, index) in data?.scheduleDays" :key="index" class="list-item">
         <span class="circle" />
         <div class="content">
           <h3 class="title">{{ day.label }} </h3>

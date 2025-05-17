@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
+import { useThrottleFn } from '@vueuse/core'    // just to avoid spamming sessionStorage
 
 const isMobile = useIsMobile()
 
@@ -20,6 +21,12 @@ function onLangRequest(wanted: Lang) {
   if (viewLang.value === wanted) return         // same → nothing to do
   pendingLang.value = wanted
   viewLang.value = wanted                    // 1️⃣ trigger fade-out
+
+
+  scroll.value.scrollTo(parseFloat(0), {
+    duration: 1,
+    disableLerp: true,
+  })
 }
 
 function onAfterLeave() {
@@ -27,6 +34,12 @@ function onAfterLeave() {
     setLanguage(pendingLang.value)              // 2️⃣ commit to store
     pendingLang.value = null
   }
+}
+function onLangEnter() {
+  // Wait for Vue to finish inserting the new DOM, then tell loco:
+  nextTick(() => {
+    scroll.value?.update()
+  })
 }
 
 
@@ -52,12 +65,19 @@ onMounted(async () => {
     multiplier: 0.8,
     reloadOnContextChange: true,
   });
+
+
+  // wait for images/fonts, then force a re-measurement
+  window.addEventListener('load', () => {
+    scroll.value?.update()
+  })
+
 });
 
 
-onUnmounted(() => {
-  scroll?.value?.destroy();
-});
+// onUnmounted(() => {
+//   scroll?.value?.destroy();
+// });
 
 </script>
 
@@ -69,9 +89,9 @@ onUnmounted(() => {
 
     </Transition>
     <!-- <CustomCursor v-if="!isMobile" /> -->
-    <Transition name="lang" mode="out-in">
+    <Transition name="lang" mode="out-in" @after-enter="onLangEnter">
       <!-- key forces a remount on every language change -->
-      <div :key="viewLang">
+      <div :key="viewLang" class=" w-full">
         <slot />
         <CustomCursor v-if="!isMobile" />
       </div>

@@ -65,46 +65,16 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 </script>
 
 <template>
-  <header class="w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll data-scroll-sticky
-    data-scroll-target="main">
-    <nav class="nav px-4 py-3 pb-3 flex items-center justify-start">
+  <header class="overflow-hidden w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll
+    data-scroll-sticky data-scroll-target="main">
+    <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
         <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
         <span v-if="lang == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
       </button>
 
 
-      <div class="flex flex-row-reverse items-center  w-full justify-between gap-2">
-        <!-- Language Switcher -->
-        <button @click="askForNextLang"
-          class="w-8 h-8 rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
-          :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
-          {{ lang == "fa" ? 'فا' : lang.toUpperCase() }}
-        </button>
 
-        <!-- Theme Toggle -->
-        <button @click="toggleTheme"
-          class="w-8 h-8 rounded-xl  text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
-          :aria-label="`Switch theme (current: ${theme})`">
-          <span v-if="theme === 'light'" class=" my-auto">
-            <Icon class="w-6 h-6 mt-1 text-yellow-500" name="material-symbols:light-mode" />
-          </span>
-          <span v-else>
-            <Icon class="w-6 h-6 mt-1 text-blue-500" name="material-symbols:dark-mode" />
-          </span>
-        </button>
-        <div class="flex-grow"></div>
-
-
-        <!-- Hamburger button -->
-        <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
-          <span :class="{ open: menuOpen }"></span>
-          <span :class="{ open: menuOpen }"></span>
-          <span :class="{ open: menuOpen }"></span>
-        </button>
-
-
-      </div>
 
 
       <!-- Mobile Menu -->
@@ -131,20 +101,55 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 
 
 
-      <div class="flex-grow"></div>
 
       <!-- Desktop Menu -->
-      <ul class="text-nowrap h-6 list mt-1" v-if="!isMobile">
+      <ul class="text-nowrap h-6 list mt-2" v-if="!isMobile">
         <li v-for="item in props.items" :key="item.slug"
-          class="hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link">
+          class="text-xs hover:scale-100 scale-90 hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link"
+          :class="{ 'w-full bg-gray-200/30 hover:bg-pink-800 flex-grow': !isButton(item) }">
           <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
             {{ getItemName(item) }}
           </div>
-          <NuxtLink v-else class="" :href="`/${item.slug}`">
+          <NuxtLink v-else :href="`/${item.slug}`">
             {{ getItemName(item) }}
           </NuxtLink>
         </li>
       </ul>
+
+      <div class="flex flex-row-reverse items-center  w-full md:w-min justify-between gap-2">
+        <!-- Language Switcher -->
+        <button @click="askForNextLang"
+          class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-white/20 flex items-center justify-center hover:bg-gray-200 hover:text-black"
+          :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
+          <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
+            }}</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button @click="toggleTheme"
+          class="group w-8 h-8 hover:scale-105 scale-90 transition-all rounded-xl  text-white bg-white/20 flex items-center justify-center text-gray-700 hover:bg-gray-200"
+          :aria-label="`Switch theme (current: ${theme})`">
+          <span v-if="theme === 'light'" class="my-auto ">
+            <Icon class="w-6 h-6 group-hover:scale-105 scale-90 transition-all mt-1 text-yellow-500"
+              name="material-symbols:light-mode" />
+          </span>
+          <span v-else class="my-auto">
+            <Icon class="w-6 h-6  group-hover:scale-105 scale-90 transition-all mt-1 text-blue-500"
+              name="material-symbols:dark-mode" />
+          </span>
+        </button>
+        <div class="flex-grow"></div>
+
+
+        <!-- Hamburger button -->
+        <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
+          <span :class="{ open: menuOpen }"></span>
+          <span :class="{ open: menuOpen }"></span>
+          <span :class="{ open: menuOpen }"></span>
+        </button>
+
+
+      </div>
     </nav>
   </header>
 </template>
