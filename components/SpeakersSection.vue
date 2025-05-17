@@ -1,46 +1,50 @@
 <template>
-  <section id="speakers" class="py-16 bg-gradient-to-b from-white/5 via-white/10 to-white/0 overflow-hidden">
+  <section id="speakers" class="py-12 mt-10  bg-gradient-to-b from-white/5 via-white/10 to-white/0 overflow-hidden">
     <div class="container mx-auto px-4 max-w-7xl">
       <!-- Headline title -->
-      <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-14 leading-tight drop-shadow-md">
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 leading-tight drop-shadow-md">
         {{ sectionTitle }}
       </h2>
 
       <!-- Speakers grid -->
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-46">
         <div v-for="sp in props.speakers" :key="sp.id" @click="open(sp)"
-          class="group hover:shadow-xl hover:scale-105 transition-all duration-100 ease relative flex flex-col bg-white/10 rounded-3xl shadow-md hover:shadow-xl cursor-pointer   backdrop-blur-sm"
+          class="group hover:scale-105 transition-all duration-100 ease relative flex flex-col rounded-[3rem] cursor-pointer backdrop-blur-sm speaker-item"
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
           <div class="p-6 flex-1 flex flex-col">
+
             <header class="flex items-start gap-2 mb-3">
-              <div v-if="1" class="relative w-20 h-20 -mt-2 rounded-full overflow-hidden">
+              <div v-if="1" class="relative w-32 h-48 -mt-4  rounded-[3rem]  overflow-hidden"
+                :class="{ '-ml-16': currentLang == 'en', '-mr-16': currentLang == 'fa' }">
                 <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-full h-full"
                   style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
               </div>
-              <Icon v-if="sp.confirmed" name="material-symbols:check-circle-outline-rounded"
-                class="w-6 h-6 flex-shrink-0" :aria-label="'Confirmed speaker: ' + sp.name" />
-              <h3 class="text-lg font-semibold leading-snug group-hover:text-primary-400 transition-colors"
+              <!-- <Icon v-if="sp.confirmed" name="material-symbols:check-circle-outline-rounded"
+                class="w-6 h-6 flex-shrink-0" :aria-label="'Confirmed speaker: ' + sp.name" /> -->
+              <h3
+                class="text-md  md:text-lg font-semibold leading-snug group-hover:text-primary-400 transition-colors  border border-teal-200 rounded-xl bg-teal-200/50 text-nowrap scale-90 text-black border-solid px-2 -ml-2"
                 :id="`speaker-${sp.id}`">
                 {{ sp.name }}
               </h3>
+              <p class="text-[10px] shadow-xl text-blue-500 mt-2 tracking-wider text-nowrap">
+                {{ sp.role }}
+              </p>
+
             </header>
 
-            <p v-if="sp.title" class="text-xs text-primary-600  mt-8"
-              :class="{ 'text-left ml-22': currentLang == 'en', 'text-right mr-22': currentLang == 'fa' }">
-              {{ sp.title }}, <br /> <span class="text-[11px] text-gray-400 "> {{ sp.affiliation }}</span>
+            <p v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-12 md:mt-10"
+              :class="{ 'text-left ml-20 -mr-4': currentLang == 'en', 'text-right mr-20 -ml-4': currentLang == 'fa' }">
+              {{ sp.title }}, <br />
+            <div class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</div>
 
             </p>
-            <p>
-
-            </p>
-
-            <p class="text-xs text-blue-500 mt-4 tracking-wider">
-              {{ sp.role }}
-            </p>
 
 
 
-            <p class="text-sm  !overflow-hidden min-h-16 mt-4 text-teal-400   line-clamp-4">
+
+
+            <p class="group-hover:text-teal-300 scale-80  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-3"
+              :class="{ 'ml-12': currentLang == 'en', 'mr-12': currentLang == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
             </p>
@@ -83,7 +87,7 @@
                   </div>
 
                   <div class="flex-grow"></div>
-                  <div class="w-56 h-56 mr-2 rounded-full overflow-hidden -mt-16 mr-6 -ml-6"> <img
+                  <div class="w-28 h-28 md:w-56 md:h-56 mr-2 rounded-full overflow-hidden -mt-16 md:mr-6 md:-ml-6"> <img
                       :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
                       class="object-cover w-full h-full"
                       style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
@@ -176,5 +180,26 @@ function open(sp: Speaker) {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+
+
+
+/* Default (mobile) styles, no shifting */
+.speaker-item {
+  transition: transform 0.3s ease;
+}
+
+/* Laptop and desktop styles */
+@media (min-width: 1024px) {
+  .speaker-item:nth-child(odd) {
+    transform: translateY(20px);
+    /* Odd items move up by 10px */
+  }
+
+  .speaker-item:nth-child(even) {
+    transform: translateY(80px);
+    /* Even items move down by 10px */
+  }
 }
 </style>

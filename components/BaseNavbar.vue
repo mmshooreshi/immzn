@@ -65,7 +65,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 </script>
 
 <template>
-  <header class="overflow-hidden w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll
+  <header class="!sticky overflow-hidden w-[95%] z-50 header backdrop-blur-2xl bg-white/5 rounded-2xl" data-scroll
     data-scroll-sticky data-scroll-target="main">
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
@@ -186,7 +186,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
   // @include mixins.section-width;
 
   position: fixed;
-  top: 2rem;
+  top: 1rem;
   // mix-blend-mode: difference;
   z-index: 999;
   // animation: appear 2s variables.$ease-in-out;

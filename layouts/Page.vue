@@ -107,7 +107,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8rem;
+  // gap: 8rem;
   overflow: hidden;
   z-index: 10;
 
@@ -115,7 +115,7 @@ onMounted(async () => {
   background-color: #141414;
 
   @include screens.laptop {
-    gap: 16rem;
+    // gap: 16rem;
   }
 }
 

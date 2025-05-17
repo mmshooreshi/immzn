@@ -158,12 +158,12 @@ onMounted(() => {
   position: absolute !important;
   opacity: 0;
   animation: fadeIn 3s ease-out forwards;
-  animation-delay: 3s;
+  animation-delay: 1.5s;
   touch-action: pan-y !important;
-  width: 110vw !important;
-  height: 150vh !important;
-  left: 0 !important;
-  right: 0 !important;
+  /* width: 110vw !important; */
+  /* height: 150vh !important; */
+  /* left: 0 !important; */
+  /* right: 0 !important; */
 }
 
 @keyframes fadeIn {
