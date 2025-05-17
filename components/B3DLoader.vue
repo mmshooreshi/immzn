@@ -66,7 +66,7 @@ onMounted(() => {
   console.log("isMobile: ", isMobile.value)
 
   if (isMobile.value) {
-    bunnyGroupRef?.value?.scale.set(0.6, 0.6, 0.6)
+    bunnyGroupRef?.value?.scale.set(0.9, 0.9, 0.9)
 
   }
 

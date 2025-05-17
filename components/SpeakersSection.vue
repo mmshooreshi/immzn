@@ -13,38 +13,42 @@
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
           <div class="p-6 flex-1 flex flex-col">
 
-            <header class="flex items-start gap-2 mb-3">
-              <div v-if="1" class="relative w-32 h-48 -mt-4  rounded-[3rem]  overflow-hidden"
-                :class="{ '-ml-16': currentLang == 'en', '-mr-16': currentLang == 'fa' }">
-                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-full h-full"
-                  style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
-              </div>
+            <header class="flex items-start flex-row gap-2 mb-3">
+
               <!-- <Icon v-if="sp.confirmed" name="material-symbols:check-circle-outline-rounded"
                 class="w-6 h-6 flex-shrink-0" :aria-label="'Confirmed speaker: ' + sp.name" /> -->
               <h3
-                class="text-md  md:text-lg font-semibold leading-snug group-hover:text-primary-400 transition-colors  border border-teal-200 rounded-xl bg-teal-200/50 text-nowrap scale-90 text-black border-solid px-2 -ml-2"
+                class="text-md  md:text-lg font-semibold leading-snug group-hover:text-primary-400 transition-colors  border border-teal-200 rounded-xl bg-teal-200/50 text-nowrap scale-90 text-black border-solid px-2 -ml-2 mr-16 mt-2"
                 :id="`speaker-${sp.id}`">
                 {{ sp.name }}
               </h3>
-              <p class="text-[10px] shadow-xl text-blue-500 mt-2 tracking-wider text-nowrap">
+              <p class="text-[16px] mt-3 -mx-6 scale-80 w-max  leading-[16px]  text-blue-500 tracking-wider ">
                 {{ sp.role }}
               </p>
 
+
+
             </header>
+            <div class="flex flex-row">
+              <div v-if="1" class=" relative w-24 h-24 md:w-32 md:h-38 -mt-2  rounded-[2rem]  overflow-hidden"
+                :class="{ 'md:-ml-8 -ml-8': currentLang == 'en', 'md:-mr-8 -mr-8': currentLang == 'fa' }">
+                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-36 h-full"
+                  style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
+              </div>
+              <p v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-10 md:mt-12 md:mt-10"
+                :class="{ 'text-left ml-3 -mr-3 md:ml-20 md:-mr-4': currentLang == 'en', 'text-right mr-3 -ml-3 md:mr-20 md:-ml-4': currentLang == 'fa' }">
+                {{ sp.title }}, <br />
+              <div class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</div>
 
-            <p v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-12 md:mt-10"
-              :class="{ 'text-left ml-20 -mr-4': currentLang == 'en', 'text-right mr-20 -ml-4': currentLang == 'fa' }">
-              {{ sp.title }}, <br />
-            <div class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</div>
-
-            </p>
+              </p>
+            </div>
 
 
 
 
 
-            <p class="group-hover:text-teal-300 scale-80  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-3"
-              :class="{ 'ml-12': currentLang == 'en', 'mr-12': currentLang == 'fa' }">
+            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-6"
+              :class="{ 'ml-0 -mr-0': currentLang == 'en', 'mr-0 -ml-0': currentLang == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
             </p>
@@ -71,25 +75,26 @@
                 <DialogTitle class="mb-4 flex justify-between items-center gap-2 ">
 
 
-                  <div>
-                    <span class="flex flex-row gap-2">
+                  <div class="z-10">
+                    <span class="mx-2 flex min-w-[200%] mt-0  z-50 flex-row gap-2">
                       <Icon v-if="selected?.confirmed" name="material-symbols:check-circle-outline-rounded"
                         class="w-7 h-7 flex-shrink-0" style="color: #42ffd9" />
-                      <p class="text-2xl font-bold">
+                      <p class="md:text-2xl  mt-1  z-10 font-bold">
                         {{ selected?.name }}</p>
                     </span>
-                    <p v-if="selected?.title" class="text-sm text-teal-400 font-medium mt-4">
+                    <p v-if="selected?.title" class="text-sm min-w-[110%] z-50 text-teal-400 font-medium mt-6">
                       {{ selected.title }}
                     </p>
-                    <p class="mt-0 text-teal-700 dark:text-gray-300 text-xs">
+                    <p class="mt-0 text-teal-700 min-w-[110%] mt-3 z-50 dark:text-gray-300 text-xs">
                       {{ selected?.affiliation }}
                     </p>
                   </div>
 
                   <div class="flex-grow"></div>
-                  <div class="w-28 h-28 md:w-56 md:h-56 mr-2 rounded-full overflow-hidden -mt-16 md:mr-6 md:-ml-6"> <img
-                      :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
-                      class="object-cover w-full h-full"
+                  <div
+                    class="w-54 h-30 sm:h-34 mt-12 md:w-56 md:h-36 rounded-[2rem] overflow-hidden mt-0 md:mr-3 md:-ml-3 ">
+                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
+                      class="object-cover w-full h-full "
                       style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
                   </div>
                 </DialogTitle>

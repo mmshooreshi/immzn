@@ -51,7 +51,7 @@ onBeforeUnmount(cleanup)
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
       <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
         data?.tagline?.first
-      }}</span>
+        }}</span>
 
       <span class="">{{ data?.tagline?.second }}</span>
       <span class="">{{ data?.tagline?.third }}</span>
@@ -110,8 +110,8 @@ onBeforeUnmount(cleanup)
   width: 100vw;
   height: 100vh;
 
-  @supports (height: 100svh) {
-    height: 100svh;
+  @supports (height: 94svh) {
+    height: 94svh;
   }
 
   &::before {
