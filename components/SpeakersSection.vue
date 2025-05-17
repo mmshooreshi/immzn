@@ -48,7 +48,7 @@
 
 
             <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-5"
-              :class="{ 'ml-6 -mr-6': currentLang == 'en', 'mx-8': currentLang == 'fa' }">
+              :class="{ 'ml-4 mr-18': currentLang == 'en', 'mx-8': currentLang == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
             </p>
@@ -70,16 +70,16 @@
 
 
               <div
-                class="relative bg-[#0b0b0d]/80 dark:bg-gray-900/95 rounded-3xl shadow-2xl max-w-2xl w-full p-8 overflow-y-visible max-h-[90vh] ">
+                class="relative bg-[#0b0b0d]/80 dark:bg-gray-900/95 rounded-3xl shadow-2xl max-w-2xl w-full p-8 overflow-y-auto max-h-[90vh] ">
 
-                <DialogTitle class="mb-4 flex justify-between items-center gap-2 ">
+                <DialogTitle class="mb-4 flex flex-wrap justify-between items-center gap-2 ">
 
 
                   <div class="z-10">
-                    <span class="mx-2 flex min-w-[200%] mt-0  z-50 flex-row gap-2">
-                      <Icon v-if="selected?.confirmed" name="material-symbols:check-circle-outline-rounded"
+                    <span class="mx-2 flex items-center min-w-[200%] mt-0  z-50 flex-row gap-2">
+                      <Icon v-if="selected?.confirmed || true" name="material-symbols:check-circle-outline-rounded"
                         class="w-7 h-7 flex-shrink-0" style="color: #42ffd9" />
-                      <p class="md:text-2xl  mt-1  z-10 font-bold">
+                      <p class="md:text-2xl  mt-0  z-10 font-bold">
                         {{ selected?.name }}</p>
                     </span>
                     <p v-if="selected?.title" class="text-sm min-w-[110%] z-50 text-teal-400 font-medium mt-6">
@@ -91,13 +91,13 @@
                   </div>
 
                   <div class="flex-grow"></div>
-                  <div class="h-66  mt-12 md:w-66 rounded-[2rem] overflow-hidden mt-0 ">
+                  <div class="h-66 ml-4  md:mt-12 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
                     <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
                       style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
                   </div>
                 </DialogTitle>
 
-                <p class="mb-6 leading-relaxed text-white/50 dark:text-gray-400 whitespace-pre-line">
+                <p class="mb-6  leading-relaxed text-white/50 dark:text-gray-400 whitespace-pre-line">
                   {{ selected?.brief }}
                 </p>
 
