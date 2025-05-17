@@ -7,9 +7,9 @@
       </h2>
 
       <!-- Speakers grid -->
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         <div v-for="sp in props.speakers" :key="sp.id" @click="open(sp)"
-          class="group relative flex flex-col bg-white/10 rounded-3xl shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 backdrop-blur-sm"
+          class="group hover:shadow-xl hover:scale-105 transition-all duration-100 ease relative flex flex-col bg-white/10 rounded-3xl shadow-md hover:shadow-xl cursor-pointer   backdrop-blur-sm"
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
           <div class="p-6 flex-1 flex flex-col">
             <header class="flex items-start gap-2 mb-3">

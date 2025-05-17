@@ -11,8 +11,6 @@ import GUI from 'lil-gui'
 // ────────────────────────────────────────────────────────────────────────────────
 const pivot = new THREE.Group()
 const { scene: model } = await useGLTF('/spline/scene.gltf', { draco: true })
-const cameraRef = ref<any>(null)
-
 pivot.add(model)
 
 const { scene: threeScene } = useTresContext()
@@ -61,25 +59,6 @@ const HOME = {
   pos: new THREE.Vector3(10, 50, 0),
   rot: new THREE.Euler(0, 0, 0, 'YXZ'),
   scl: new THREE.Vector3(1, 1, 1),
-}
-const raycaster = new THREE.Raycaster()
-const mouse = new THREE.Vector2()
-
-const onMouseClick = (event: MouseEvent) => {
-  // Convert mouse coordinates to normalized device coordinates
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
-
-  // Update raycaster with camera and mouse position
-  raycaster.update(cameraRef.value, mouse)
-
-  // Detect intersections with the 3D object
-  const intersects = raycaster.intersectObject(pivot, true)
-  if (intersects.length > 0) {
-    // Trigger poke action when clicked on 3D object
-    vPos.set(THREE.MathUtils.randFloatSpread(800), 400, THREE.MathUtils.randFloatSpread(800))
-    gui?.hide()  // Hide GUI upon interaction with the 3D object
-  }
 }
 
 const spring = reactive({
@@ -131,22 +110,13 @@ function dampEuler(current: THREE.Euler, target: THREE.Euler, vel: THREE.Euler, 
 // ────────────────────────────────────────────────────────────────────────────────
 let gui: GUI | undefined
 onMounted(() => {
-  gui = new GUI({ width: 200 })
-  gui.add(spring, 'stiffness', 1, 20, 0.1)
-  gui.add(spring, 'damping', 0.5, 0.99, 0.01)
-  gui.add({ poke() { vPos.set(THREE.MathUtils.randFloatSpread(800), 400, THREE.MathUtils.randFloatSpread(800)) } }, 'poke').name('⚡ poke')
-
-  window.addEventListener('click', onMouseClick)
-
+  // gui = new GUI({ width: 200 })
+  // gui.add(spring, 'stiffness', 1, 20, 0.1)
+  // gui.add(spring, 'damping', 0.5, 0.99, 0.01)
+  // gui.add({ poke() { vPos.set(THREE.MathUtils.randFloatSpread(800), 400, THREE.MathUtils.randFloatSpread(800)) } }, 'poke').name('⚡ poke')
 })
 
-
-
-
-onUnmounted(() => {
-  window.removeEventListener('click', onMouseClick);
-  gui?.destroy()
-})
+onUnmounted(() => gui?.destroy())
 
 // ────────────────────────────────────────────────────────────────────────────────
 // 5.  SPIN + FRAME LOOP

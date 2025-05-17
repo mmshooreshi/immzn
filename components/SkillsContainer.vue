@@ -25,9 +25,9 @@ const placeSkill = (event: MouseEvent) => {
   skills.value.push(newSkill);
 
   setTimeout(() => {
-  const i = skills.value.indexOf(newSkill);
-  if (i > -1) skills.value.splice(i, 1);
-}, 5000);
+    const i = skills.value.indexOf(newSkill);
+    if (i > -1) skills.value.splice(i, 1);
+  }, 5000);
 
 
 };
@@ -52,31 +52,32 @@ onMounted(() => {
 <style scoped lang="scss">
 .container {
   position: absolute;
-  inset: -8rem 0;
+  inset: 0rem 0;
   cursor: crosshair;
-  z-index: 1;
+  // background-color: red;
+  z-index: 100;
 
   @include screens.laptop {
-    top: -14rem;
+    // top: -14rem;
     left: 50%;
-    translate: -50%;
+    // translate: -50%;
     width: 100vw;
-    height: calc(100% + 14rem * 2);
+    // height: calc(100% + 14rem * 2);
   }
 }
 
 
-li { animation: fadeOut 10s ease forwards; }
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+li {
+  animation: fadeOut 10s ease forwards;
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
 
-
-
-
-
-
+  to {
+    opacity: 0;
+  }
+}
 </style>

@@ -123,14 +123,14 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
 
   @include screens.laptop {
     [data-lang='en'] & {
-      gap: 8rem;
+      gap: 3rem;
       right: 2.5rem;
       // margin-left: -19%;
 
     }
 
     [data-lang='fa'] & {
-      gap: 8rem;
+      gap: 3rem;
       left: 2.5rem;
       // margin-right: -17%;
 
