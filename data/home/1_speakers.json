@@ -109,27 +109,6 @@
     "confirmed": true
   },
   {
-    "id": "imgt",
-    "name": {
-      "en": "IMGT®",
-      "fa": "IMGT®"
-    },
-    "title": {
-      "en": "The Pioneering International Reference in Immunogenetics",
-      "fa": "مرجع بین‌المللی پیشگام در ایمنوژنتیک"
-    },
-    "affiliation": {
-      "en": "International ImMunoGeneTics System",
-      "fa": "سامانه بین‌المللی ایمنی‌ژن‌شناسی"
-    },
-    "brief": {
-      "en": "IMGT® is the first integrated knowledge platform in immunogenetics, empowering researchers worldwide with comprehensive resources to explore the adaptive immune response.",
-      "fa": "پلتفرم IMGT® نخستین پایگاه دانش یکپارچه در حوزه ایمنوژنتیک است که به پژوهشگران در سراسر جهان منابع جامعی را برای بررسی پاسخ ایمنی تطبیقی ارائه می‌دهد."
-    },
-    "website": "https://www.imgt.org/",
-    "confirmed": true
-  },
-  {
     "id": "david",
     "name": {
       "en": "Dr. Laurent David",
@@ -148,6 +127,27 @@
       "fa": "دکتر لوران داوید در تلاقی زیست‌شناسی محاسباتی، علم شبکه و یادگیری ماشین فعالیت دارد و با شبیه‌سازی محیط‌های سلولی واقعی از طریق شبکه‌های برهم‌کنش پروتئینی، به تسریع طراحی داروهای درون‌سیلیکویی کمک می‌کند."
     },
     "scholar": "",
+    "confirmed": false
+  },
+  {
+    "id": "abdollahi",
+    "name": {
+      "en": "Dr. Nika Abdollahi",
+      "fa": "دکتر نیکا عبداللهی"
+    },
+    "title": {
+      "en": "Postdoctoral Researcher in Computational Immunology",
+      "fa": "پژوهشگر پسادکترا در ایمنی‌شناسی محاسباتی"
+    },
+    "affiliation": {
+      "en": "",
+      "fa": ""
+    },
+    "brief": {
+      "en": "Dr. Abdollahi explores B- and T-cell receptor analysis and integrates diverse biological data to advance our understanding of the immune system, fostering cross-disciplinary collaboration and accessible science communication.",
+      "fa": "دکتر عبداللهی با تحلیل گیرنده‌های سلول‌های B و T و ادغام داده‌های زیستی متنوع، درک ما از سیستم ایمنی را ارتقا داده و با ساده‌سازی مفاهیم پیچیده، ارتباطات علمی را تسهیل می‌کند."
+    },
+    "scholar": "https://scholar.google.com/citations?hl=en&user=twtJv1YAAAAJ&view_op=list_works&sortby=pubdate",
     "confirmed": false
   },
   {
@@ -172,24 +172,24 @@
     "confirmed": false
   },
   {
-    "id": "abdollahi",
+    "id": "imgt",
     "name": {
-      "en": "Dr. Nika Abdollahi",
-      "fa": "دکتر نیکا عبداللهی"
+      "en": "IMGT®",
+      "fa": "IMGT®"
     },
     "title": {
-      "en": "Postdoctoral Researcher in Computational Immunology",
-      "fa": "پژوهشگر پسادکترا در ایمنی‌شناسی محاسباتی"
+      "en": "The Pioneering International Reference in Immunogenetics",
+      "fa": "مرجع بین‌المللی پیشگام در ایمنوژنتیک"
     },
     "affiliation": {
-      "en": "",
-      "fa": ""
+      "en": "International ImMunoGeneTics System",
+      "fa": "سامانه بین‌المللی ایمنی‌ژن‌شناسی"
     },
     "brief": {
-      "en": "Dr. Abdollahi explores B- and T-cell receptor analysis and integrates diverse biological data to advance our understanding of the immune system, fostering cross-disciplinary collaboration and accessible science communication.",
-      "fa": "دکتر عبداللهی با تحلیل گیرنده‌های سلول‌های B و T و ادغام داده‌های زیستی متنوع، درک ما از سیستم ایمنی را ارتقا داده و با ساده‌سازی مفاهیم پیچیده، ارتباطات علمی را تسهیل می‌کند."
+      "en": "IMGT® is the first integrated knowledge platform in immunogenetics, empowering researchers worldwide with comprehensive resources to explore the adaptive immune response.",
+      "fa": "پلتفرم IMGT® نخستین پایگاه دانش یکپارچه در حوزه ایمنوژنتیک است که به پژوهشگران در سراسر جهان منابع جامعی را برای بررسی پاسخ ایمنی تطبیقی ارائه می‌دهد."
     },
-    "scholar": "https://scholar.google.com/citations?hl=en&user=twtJv1YAAAAJ&view_op=list_works&sortby=pubdate",
-    "confirmed": false
+    "website": "https://www.imgt.org/",
+    "confirmed": true
   }
 ]
