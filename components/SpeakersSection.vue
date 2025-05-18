@@ -1,64 +1,56 @@
 <template>
   <section id="voices" class="py-12 mt-10  bg-gradient-to-b from-white/5 via-white/10 to-white/0 overflow-hidden">
-    <div class="container mx-auto px-4 max-w-7xl">
+    <div class="container mx-auto px-0 max-w-7xl">
       <!-- Headline title -->
       <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 leading-tight drop-shadow-md">
         {{ data?.headline }}
       </h2>
 
       <!-- Speakers grid -->
-      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 lg:mx-46">
-        <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)"
-          class="group hover:scale-105 transition-all duration-100 ease relative flex flex-col rounded-[3rem] cursor-pointer backdrop-blur-sm speaker-item"
-          role="listitem" :aria-labelledby="`speaker-${sp.id}`">
-          <div class="p-6  flex-1 flex flex-col">
+      <!-- Mobile-first, fully centered grid of speakers -->
+      <div
+        class="grid place-items-center gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 max-w-7xl mx-auto px-0">
+        <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)" role="listitem"
+          :aria-labelledby="`speaker-${sp.id}`"
+          class="group relative flex w-full max-w-xs flex-col cursor-pointer rounded-3xl backdrop-blur-sm transition-transform duration-150 ease-in-out hover:scale-105">
+          <div class="flex flex-1 flex-col py-6 items-center text-center">
+            <!-- Header (keep if confirmed icon will be used) -->
+            <!--
+      <header class="mb-3 flex flex-row items-start">
+        <Icon
+          v-if="sp.confirmed"
+          name="material-symbols:check-circle-outline-rounded"
+          class="h-6 w-6 flex-shrink-0"
+          :aria-label="'Confirmed speaker: ' + sp.name"
+        />
+      </header>
+      -->
 
-            <header class="flex items-start flex-row  mb-3 ">
-
-              <!-- <Icon v-if="sp.confirmed" name="material-symbols:check-circle-outline-rounded"
-                class="w-6 h-6 flex-shrink-0" :aria-label="'Confirmed speaker: ' + sp.name" /> -->
-
-
-
-
-            </header>
-            <div class="">
-              <div v-if="1"
-                class="mx-auto w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline transition-all group-hover:outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
-                :class="{ '': language == 'fa', '': language == 'en' }">
-                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image"
-                  class="object-cover w-66 bg-white/50 max-h-66"
-                  :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
-                <h3
-                  class="font-extrabold text-md  py-1 w-64 -mr-1   leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
-                  :class="{ '': language == 'fa', '': language == 'en' }" :id="`speaker-${sp.id}`">
-                  {{ sp.name }}
-                </h3>
-
-              </div>
-              <div v-if="sp.title" class="w-max mx-auto leading-[18px] text-[12px] text-primary-600 mt-6"
-                :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
-                {{ sp.title }} <br />
-                <p class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</p>
-
-              </div>
+            <!-- Speaker image & name -->
+            <div class="relative overflow-hidden rounded-2xl border border-white/20 shadow-lg">
+              <img :src="`/images/people/${sp.id}.png`" :alt="`Portrait of ${sp.name}`"
+                class="object-cover w-64 h-64 lg:w-66 lg:h-66"
+                :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+              <h3 :id="`speaker-${sp.id}`"
+                class="w-full py-2 text-md font-extrabold leading-snug text-teal-200/80 transition-colors group-hover:text-primary-400">
+                {{ sp.name }}
+              </h3>
             </div>
 
+            <!-- Title & affiliation -->
+            <div v-if="sp.title" class="text-left mt-6 leading-[18px] text-[12px] text-primary-600">
+              <span>{{ sp.title }}</span>
+              <p class="mt-1 text-[11px] text-lime-200">{{ sp.affiliation }}</p>
+            </div>
 
-
-
-
-            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-4"
-              :class="{ 'ml-4 mr-18': language == 'en', 'mx-8': language == 'fa' }">
-              <span>{{ sp.brief }}</span>
-              <span>...</span>
+            <!-- Brief description -->
+            <p
+              class="mt-4 text-left min-h-12 overflow-hidden text-xs leading-5 text-gray-200/80 transition-colors group-hover:text-teal-300 line-clamp-4">
+              {{ sp.brief }}
             </p>
           </div>
         </div>
-      </div>
-
-
-      <!-- Speaker modal -->
+      </div> <!-- Speaker modal -->
       <TransitionRoot as="template" :show="isOpen">
         <Dialog as="div" class="fixed inset-0 z-50" @close="isOpen = false">
           <div class="flex items-center justify-center min-h-screen p-4">
