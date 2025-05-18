@@ -1,6 +1,6 @@
 // components/ContactSection.vue
 <template>
-    <section id="contact" class="py-12 bg-gray-50">
+    <section id="contact" class="py-12 bg-[#0b0b0d]/80 dark:bg-white/50 text-white dark:text-[#0b0b0d] ">
         <h2 class="text-3xl font-bold text-center mb-8">{{ data.headline }}</h2>
         <div class="max-w-2xl mx-auto space-y-6 text-center">
             <p v-if="data.outro" class="text-gray-700">{{ data.outro }}</p>

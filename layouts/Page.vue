@@ -91,7 +91,7 @@ onMounted(async () => {
     <!-- <CustomCursor v-if="!isMobile" /> -->
     <Transition name="lang" mode="out-in" @after-enter="onLangEnter">
       <!-- key forces a remount on every language change -->
-      <div :key="viewLang" class=" w-full">
+      <div :key="viewLang" class="h-screen overflow-auto w-full">
         <slot />
         <CustomCursor v-if="!isMobile" />
       </div>

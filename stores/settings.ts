@@ -17,8 +17,23 @@ export const useSettingsStore = defineStore('settings', () => {
 
   /* ---------- theme in localStorage (client only) ------ */
   const theme = ref<Theme>('light')
-  const toggleTheme = () =>
-    (theme.value = theme.value === 'light' ? 'dark' : 'light')
+  function toggleTheme() {
+    if (!process.client) return
+    // system‐pref
+    const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    // decide next: if we've toggled before, flip; else pick saved‐or‐os
+    const next = theme.value
+      ? (theme.value === 'dark' ? 'light' : 'dark')
+      : (localStorage.theme ?? (osDark ? 'dark' : 'light'))
+
+    localStorage.theme = next
+    document.documentElement.classList.toggle('dark', next === 'dark')
+    theme.value = next
+  }
+
+  // run once on load to init from saved/OS
+  if (import.meta.client) toggleTheme()
+
 
   return { language, theme, setLanguage, nextLanguage, toggleTheme }
 }, {

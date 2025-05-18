@@ -112,7 +112,23 @@ useHead({
       </div>
  -->
     <!-- 2️⃣ plug in your new sections: -->
+
+    <div dir="ltr" class="text-left m-4 flex gap-2 ">
+      {{ Object.keys(localizedData) }}
+      hackathon.json:<br />{{ localizedData.hackathon }}<br /><br />
+      resources.json:<br />{{ localizedData.resources }}<br /><br />
+      logistics.json:<br />{{ localizedData.logistics }}<br /><br />
+      committee.json:<br />{{ localizedData.committee }}<br /><br />
+      sponsors.json:<br />{{ localizedData.sponsors }}<br /><br />
+      faq.json:<br />{{ localizedData.faq }}<br /><br />
+      register.json:<br />{{ localizedData.register }}<br /><br />
+
+      contact.json:<br />{{ localizedData.contact }}<br /><br />
+      outro.json:<br />{{ localizedData.outro }}<br /><br />
+    </div>
+
     <ProgramSection :data="localizedData.hackathon" />
+    <hr />
     <EssentialsSection :data="{
       headline: localizedData.resources.headline,
       sections: [
@@ -120,25 +136,30 @@ useHead({
         { title: localizedData.logistics.headline, items: localizedData.logistics.items }
       ]
     }" />
+    <hr />
     <TeamPartnersSection :data="{
       headline: localizedData.committee.headline,
       committee: localizedData.committee.members,
       sponsors: localizedData.sponsors.list
     }" />
-    <RegisterSection :data="{
+    <hr />
+    <!-- <RegisterSection :data="{
       headline: localizedData.register.headline,
       ctaText: localizedData.register.ctaText,
       link: localizedData.register.link
-    }" />
+    }" /> -->
+    <hr />
     <FAQSection :data="{
       headline: localizedData.faq.headline,
       faq: localizedData.faq.items
     }" />
+    <hr />
     <ContactSection :data="{
       headline: localizedData.contact.headline,
       contact: localizedData.contact.items,
       outro: localizedData.outro
     }" />
+    <!-- <BaseFooter />  -->
 
     <!-- <HomeContact /> -->
     <!-- <BaseFooter /> -->

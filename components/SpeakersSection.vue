@@ -7,7 +7,7 @@
       </h2>
 
       <!-- Speakers grid -->
-      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-46">
+      <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 lg:mx-46">
         <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)"
           class="group hover:scale-105 transition-all duration-100 ease relative flex flex-col rounded-[3rem] cursor-pointer backdrop-blur-sm speaker-item"
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
@@ -24,19 +24,19 @@
             </header>
             <div class="">
               <div v-if="1"
-                class="w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
-                :class="{ '': currentLang == 'fa', '': currentLang == 'en' }">
+                class="mx-auto w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline transition-all group-hover:outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
+                :class="{ '': language == 'fa', '': language == 'en' }">
                 <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-66 bg-white/50"
                   :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                 <h3
                   class="font-extrabold text-md  py-1 w-64 -mr-1   leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
-                  :class="{ '': currentLang == 'fa', '': currentLang == 'en' }" :id="`speaker-${sp.id}`">
+                  :class="{ '': language == 'fa', '': language == 'en' }" :id="`speaker-${sp.id}`">
                   {{ sp.name }}
                 </h3>
 
               </div>
-              <div v-if="sp.title" class="leading-[18px] text-[12px] text-primary-600 mt-10 md:mt-6"
-                :class="{ 'text-left': currentLang == 'en', 'text-right mr-3 -ml-3  ': currentLang == 'fa' }">
+              <div v-if="sp.title" class="w-max mx-auto leading-[18px] text-[12px] text-primary-600 mt-6"
+                :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
                 {{ sp.title }} <br />
                 <p class="text-[11px] mt-1 text-lime-200 "> {{ sp.affiliation }}</p>
 
@@ -48,7 +48,7 @@
 
 
             <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-4"
-              :class="{ 'ml-4 mr-18': currentLang == 'en', 'mx-8': currentLang == 'fa' }">
+              :class="{ 'ml-4 mr-18': language == 'en', 'mx-8': language == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
             </p>
@@ -70,9 +70,17 @@
 
 
               <div
-                class="relative bg-[#0b0b0d]/80 dark:bg-gray-900/95 rounded-3xl shadow-2xl max-w-2xl w-full p-8 overflow-y-auto max-h-[90vh] ">
+                class="relative bg-[#0b0b0d]/80 dark:bg-gray-900/95 rounded-3xl shadow-2xl max-w-2xl w-full p-8  max-h-[90vh] ">
 
-                <DialogTitle class="mb-4 flex flex-wrap justify-between items-center gap-2 ">
+                <DialogTitle class=" mb-4 flex flex-col justify-between items-center gap-2 ">
+
+
+
+                  <div class="flex-grow"></div>
+                  <div class="h-66 bg ml-4 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
+                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
+                      :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+                  </div>
 
 
                   <div class="z-10">
@@ -82,23 +90,17 @@
                       <p class="md:text-2xl  mt-0  z-10 font-bold">
                         {{ selected?.name }}</p>
                     </span>
-                    <p v-if="selected?.title" class="text-sm min-w-[110%] z-50 text-teal-400 font-medium mt-6">
+                    <p v-if="selected?.title" class="text-sm min-w-[110%] z-50 text-teal-400 font-medium mt-1">
                       {{ selected.title }}
                     </p>
-                    <p class="mt-0 text-teal-700 min-w-[110%] mt-3 z-50 dark:text-gray-300 text-xs">
+                    <p class="mt-0 text-teal-700 min-w-[110%] z-50 dark:text-gray-300 text-xs">
                       {{ selected?.affiliation }}
                     </p>
                   </div>
-
-                  <div class="flex-grow"></div>
-                  <div class="h-66 ml-4  md:mt-12 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
-                    {{ selected?.id }}
-                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
-                      :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
-                  </div>
                 </DialogTitle>
 
-                <p class="mb-6  leading-relaxed text-white/50 dark:text-gray-400 whitespace-pre-line">
+                <p
+                  class="mb-6 max-h-42 overflow-y-auto overflow-x-hidden leading-relaxed text-white/50 dark:text-gray-400 whitespace-pre-line">
                   {{ selected?.brief }}
                 </p>
 
@@ -151,7 +153,6 @@ const props = defineProps({
 })
 
 // Current language state (default: English)
-const currentLang = ref<'en' | 'fa'>('en')
 const langs = ['en', 'fa'] as const
 
 
