@@ -21,10 +21,11 @@ const { language } = useSettings()
 
 <template>
   <main class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 overflow-x-hidden">
+
     <ProgramSection :data="localizedData.hackathon" />
     <hr class="border-gray-200 dark:border-gray-800" />
 
-    <!-- <EssentialsSection :data="{
+    <EssentialsSection :data="{
       headline: localizedData.resources.headline,
       sections: [
         { title: localizedData.resources.headline, items: localizedData.resources.sections },
@@ -34,7 +35,8 @@ const { language } = useSettings()
     <hr class="border-gray-200 dark:border-gray-800" />
 
     <TeamPartnersSection :data="{
-      headline: localizedData.committee.headline,
+      headline1: localizedData.committee.headline,
+      headline2: localizedData.sponsors.headline,
       committee: localizedData.committee.members,
       sponsors: localizedData.sponsors.list
     }" />
@@ -57,6 +59,6 @@ const { language } = useSettings()
       headline: localizedData.contact.headline,
       contact: localizedData.contact.items,
       outro: localizedData.outro
-    }" /> -->
+    }" />
   </main>
 </template>

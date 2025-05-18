@@ -22,7 +22,7 @@ const dialogue = computed(() => props.data.schedule?.day_of_dialogue);
           <div class="w-32 shrink-0 text-sm font-mono text-indigo-600 dark:text-indigo-300">
             {{ slot.time }}
           </div>
-          <p class="text-gray-800 dark:text-gray-200 sm:ml-4">{{ slot }}</p>
+          <p class="text-gray-800 dark:text-gray-200 sm:ml-4">{{ slot.title }}</p>
         </li>
       </ul>
     </div>
