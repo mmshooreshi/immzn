@@ -9,7 +9,7 @@
       <!-- Speakers grid -->
       <!-- Mobile-first, fully centered grid of speakers -->
       <div
-        class="grid place-items-center gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 max-w-7xl mx-auto px-0">
+        class="grid place-items-center gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 max-w-7xl mx-auto px-0 lg:mx-56">
         <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)" role="listitem"
           :aria-labelledby="`speaker-${sp.id}`"
           class="group relative flex w-full max-w-xs flex-col cursor-pointer rounded-3xl backdrop-blur-sm transition-transform duration-150 ease-in-out hover:scale-105">
@@ -27,101 +27,73 @@
       -->
 
             <!-- Speaker image & name -->
-            <div class="relative overflow-hidden rounded-2xl border border-white/20 shadow-lg">
-              <img :src="`/images/people/${sp.id}.png`" :alt="`Portrait of ${sp.name}`"
-                class="object-cover w-64 h-64 lg:w-66 lg:h-66"
-                :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+            <div
+              class="relative overflow-hidden rounded-2xl border border-white/20 shadow-lg outline transition-all group-hover:outline-8 outline-offset-0 outline-teal/5 shadow-lg ">
+              <div class="relative group">
+
+                <img :src="`/images/people/${sp.id}.png`" :alt="`Portrait of ${sp.name}`"
+                  class="group-hover:opacity-20 transition-all  object-cover w-64 h-64 lg:w-66 lg:h-66"
+                  :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+                <p class="absolute top-0 p-2 text-left z-100 min-h-12 overflow-hidden text-xs leading-5
+           text-gray-200/80  opacity-0 z-100 
+           group-hover:opacity-100 group-hover:text-teal-300
+           transition-opacity duration-500" :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
+                  {{ sp.brief }}
+                </p>
+              </div>
+
+
               <h3 :id="`speaker-${sp.id}`"
-                class="w-full py-2 text-md font-extrabold leading-snug text-teal-200/80 transition-colors group-hover:text-primary-400">
+                class="w-full text-center py-2 text-md font-extrabold leading-snug text-teal-200/80 transition-colors group-hover:text-primary-400">
                 {{ sp.name }}
               </h3>
             </div>
 
             <!-- Title & affiliation -->
-            <div v-if="sp.title" class="text-left mt-6 leading-[18px] text-[12px] text-primary-600">
+            <div v-if="sp.title" :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }"
+              class=" mt-6 leading-[18px] text-[12px] text-primary-600">
               <span>{{ sp.title }}</span>
               <p class="mt-1 text-[11px] text-lime-200">{{ sp.affiliation }}</p>
             </div>
 
             <!-- Brief description -->
-            <p
-              class="mt-4 text-left min-h-12 overflow-hidden text-xs leading-5 text-gray-200/80 transition-colors group-hover:text-teal-300 line-clamp-4">
-              {{ sp.brief }}
-            </p>
           </div>
         </div>
       </div> <!-- Speaker modal -->
-      <TransitionRoot as="template" :show="isOpen">
-        <Dialog as="div" class="fixed inset-0 z-50" @close="isOpen = false">
-          <div class="flex items-center justify-center min-h-screen p-4">
-            <DialogOverlay class="fixed  inset-0 bg-black/30 backdrop-blur-xl transition-all" />
-            <TransitionChild as="template" enter="ease-out duration-300"
-              enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
-              leave-from="opacity-100 translate-y-0 sm:scale-100"
-              leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
 
+      <Modal :open="isOpen" @close="isOpen = false">
+        <div class="text-white  flex flex-col items-center"
+          :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
+          <img :src="`/images/people/${selected.id}.png`" alt="" class="rounded-2xl w-48 h-48 object-cover mx-auto"
+            :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
 
-              <div
-                class="relative bg-white/10 shadow-lg  dark:bg-[#0b0b0d]/60  rounded-3xl shadow-2xl max-w-2xl w-full p-8  max-h-[90vh] ">
-
-                <DialogTitle class=" mb-4 flex flex-col justify-between items-center gap-2 ">
-
-
-
-                  <div class="flex-grow"></div>
-                  <div class="h-55 md:h-64  bg ml-4 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
-                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
-                      class="object-cover w-55 h-55 md:h-66 md:w-66"
-                      :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
-                  </div>
-
-
-                  <div class="z-10">
-                    <span class="mx-2 flex items-center min-w-[200%] mt-0  z-50 flex-row gap-2">
-                      <Icon v-if="selected?.confirmed || true" name="material-symbols:check-circle-outline-rounded"
-                        class="w-7 h-7 flex-shrink-0" style="color: #42ffd9" />
-                      <p class="md:text-2xl  mt-0  z-10 font-bold">
-                        {{ selected?.name }}</p>
-                    </span>
-                    <p v-if="selected?.title" class="text-sm min-w-[110%] z-50 text-teal-400 font-medium mt-1">
-                      {{ selected.title }}
-                    </p>
-                    <p class="mt-0 text-teal-700 min-w-[110%] z-50 dark:text-gray-300 text-xs">
-                      {{ selected?.affiliation }}
-                    </p>
-                  </div>
-                </DialogTitle>
-
-                <p
-                  class="mb-6 max-h-42 overflow-y-auto overflow-x-hidden leading-relaxed text-white/50 dark:text-gray-400 whitespace-pre-line">
-                  {{ selected?.brief }}
-                </p>
-
-                <div class="group  transition-all transform-origin-left flex flex-wrap gap-4">
-                  <a v-if="selected?.scholar" :href="selected.scholar" target="_blank" rel="noopener noreferrer"
-                    class="bg-blue-800 p-2 rounded-3xl inline-flex items-center gap-1 text-sm font-semibold text-blue-100 hover:bg-blue-100 hover:text-blue-800 transition-all hover:underline">
-                    <Icon name="fa6-brands:google-scholar"
-                      class="transition-all group-hover:text-blue-800 w-5 h-5 text-white" />
-                    Google Scholar
-                  </a>
-                  <a v-if="selected?.website" :href="selected.website" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
-                    <Icon name="mdi:web" class="w-5 h-5" />
-                    Website
-                  </a>
-                </div>
-
-                <!-- Close button -->
-                <button @click="isOpen = false"
-                  class="absolute top-3 right-3 p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                  <Icon name="mdi:close" class="w-6 h-6" />
-                </button>
-              </div>
-            </TransitionChild>
+          <div class="flex flex-row items-center mt-4">
+            <Icon class="w-8 text-[#b9ffcc] h-6" name="fluent:person-star-28-filled" />
+            <h2 class="text-xl font-bold">{{ selected.name }}</h2>
           </div>
-        </Dialog>
-      </TransitionRoot>
+          <p class="text-teal-400 text-sm pt-2 mt-2 border-t border-t-solid border-t-gray/10 w-full">{{ selected.title
+            }}</p>
+          <p class="text-gray-400 text-xs  w-full">{{ selected.affiliation }}</p>
+          <p class="text-white/60 max-h-[200px] overflow-y-auto text-sm whitespace-pre-line mt-8">{{ selected.brief }}{{
+            selected.brief }}{{ selected.brief
+            }}{{ selected.brief }}{{ selected.brief }}</p>
+          <div class="flex justify-center gap-4 mt-4">
+
+            <a v-if="selected?.scholar" :href="selected.scholar" target="_blank"
+              class="group flex flex-row gap-2 items-center bg-blue-800 px-3 py-1.5 rounded-2xl text-sm text-blue-100 hover:bg-blue-100 hover:text-blue-800 transition">
+              <span class="">Google Scholar</span>
+              <Icon name="fa6-brands:google-scholar"
+                class="transition-all group-hover:text-blue-800 w-5 h-5 text-white" />
+            </a>
+            <a v-if="selected?.website" :href="selected.website" target="_blank"
+              class="group flex flex-row gap-2 items-center  bg-blue-800 px-3 py-1.5 rounded-2xl text-sm text-blue-100 hover:bg-blue-100 hover:text-blue-800 transition">
+              Website
+              <Icon name="mdi:web" class="transition-all w-5 h-5 group-hover:text-blue-800 text-white" />
+            </a>
+          </div>
+        </div>
+      </Modal>
+
     </div>
   </section>
 </template>
@@ -132,6 +104,7 @@ import { ref, computed } from 'vue'
 import { Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { Icon } from '#components'
 import { useSettings } from '~/composables/useSettings'
+import Modal from '@/components/Modal.vue';
 const { language } = useSettings()
 
 interface HeadlineItem {
@@ -187,6 +160,28 @@ function open(sp: Speaker) {
   .speaker-item:nth-child(even) {
     transform: translateY(80px);
     /* Even items move down by 10px */
+  }
+}
+
+
+@keyframes trackingExpand {
+  from {
+    letter-spacing: 0px;
+  }
+
+  to {
+    letter-spacing: 1px;
+  }
+}
+
+
+@keyframes trackingCollapse {
+  from {
+    letter-spacing: 1px;
+  }
+
+  to {
+    letter-spacing: 0px;
   }
 }
 </style>
