@@ -56,7 +56,8 @@ provide('cursor', cursorContent);
 onMounted(async () => {
 
   await nextTick()
-  if (isMobile) {
+  if (isMobile.value) {
+    console.log(isMobile)
     /* make sure the container is scrollable */
     mainRef.value?.style.setProperty('overflow', 'auto')
     return
