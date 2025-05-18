@@ -26,10 +26,10 @@
               <div v-if="1"
                 class="w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
                 :class="{ '': currentLang == 'fa', '': currentLang == 'en' }">
-                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-66"
-                  style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
+                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-66 bg-white/50"
+                  :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                 <h3
-                  class="font-extrabold text-md  py-1 w-64 -mr-1   md:text-lg  leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
+                  class="font-extrabold text-md  py-1 w-64 -mr-1   leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
                   :class="{ '': currentLang == 'fa', '': currentLang == 'en' }" :id="`speaker-${sp.id}`">
                   {{ sp.name }}
                 </h3>
@@ -47,7 +47,7 @@
 
 
 
-            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-5"
+            <p class="group-hover:text-teal-300  scale-110  text-gray-200/30 transition-all text-xs  !overflow-hidden min-h-12 leading-5 mt-4    line-clamp-4"
               :class="{ 'ml-4 mr-18': currentLang == 'en', 'mx-8': currentLang == 'fa' }">
               <span>{{ sp.brief }}</span>
               <span>...</span>
@@ -92,8 +92,9 @@
 
                   <div class="flex-grow"></div>
                   <div class="h-66 ml-4  md:mt-12 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
+                    {{ selected?.id }}
                     <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
-                      style="filter: grayscale(100%) contrast(100%) brightness(80%)" />
+                      :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                   </div>
                 </DialogTitle>
 
@@ -144,7 +145,7 @@ interface HeadlineItem {
 
 const props = defineProps({
   data: {
-    headline: string
+    headline: String,
     people: Array as PropType<Speaker[]>
   }
 })

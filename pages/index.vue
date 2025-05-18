@@ -6,6 +6,13 @@ import LoadingOverlay from '@/components/LoadingOverlay.vue'
 import HomeHeroSection from '~/components/HomeHeroSection.vue'
 import HomeAbout from '~/components/HomeAbout.vue'
 import SpeakersSection from '~/components/SpeakersSection.vue'
+import ProgramSection from '~/components/ProgramSection.vue'
+import EssentialsSection from '~/components/EssentialsSection.vue'
+import TeamPartnersSection from '~/components/TeamPartnersSection.vue'
+import RegisterSection from '~/components/RegisterSection.vue'
+import FAQSection from '~/components/FAQSection.vue'
+import ContactSection from '~/components/ContactSection.vue'
+
 
 import { useSettings } from '~/composables/useSettings'
 import { useDataStore } from '~/stores/dataStore'
@@ -87,6 +94,7 @@ useHead({
 
     <!-- <Localized :is="HomeAbout" :data="localizedData.about" /> -->
     <HomeAbout :data="localizedData.about ?? {}" />
+    <!-- {{ localizedData.voices }} -->
     <Localized :is="SpeakersSection" :data="localizedData.voices" />
     <!-- <SpeakersSection  :speakers="localizedData.speakers" :headline="localizedData.navbar"/> -->
     <!-- Your page content -->
@@ -102,44 +110,36 @@ useHead({
         <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
         <SpeakersSection :headline="localizedData.navbar ?? []" :speakers="localizedData.speakers ?? []" />
       </div>
-      <div id="program" class="text-center h-max w-full">
-        <h1>Program</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-        <JsonViewer :data="localizedData.hackathon" class="h-full" />
-
-      </div>
-      <div id="essentials" class="text-center h-max w-full">
-        <h1>Essentials</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-        <JsonViewer :data="localizedData.resources" class="h-full" />
-        <JsonViewer :data="localizedData.logistics" class="h-full" />
-
-      </div>
-
-      <div id="team-partners" class="text-center h-max w-full">
-        <h1>Team & Partners</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-        <JsonViewer :data="localizedData.committee" class="h-full" />
-        <JsonViewer :data="localizedData.sponsors" class="h-full" />
-
-      </div>
-      <div id="register" class="text-center h-max w-full">
-        <h1>Register</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-      </div>
-      <div id="faq" class="text-center h-max w-full">
-        <h1>FAQ</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-        <JsonViewer :data="localizedData.faq" class="h-full" />
-      </div>
-      <div id="contact" class="text-center h-max w-full">
-        <h1>Contact</h1>
-        <hr class="w-[20%] border-gray/40 mx-auto mt-4" />
-        <JsonViewer :data="localizedData.contact" class="h-full" />
-        <JsonViewer :data="localizedData.outro" class="h-full" />
-
-      </div>
  -->
+    <!-- 2️⃣ plug in your new sections: -->
+    <ProgramSection :data="localizedData.hackathon" />
+    <EssentialsSection :data="{
+      headline: localizedData.resources.headline,
+      sections: [
+        { title: localizedData.resources.headline, items: localizedData.resources.items },
+        { title: localizedData.logistics.headline, items: localizedData.logistics.items }
+      ]
+    }" />
+    <TeamPartnersSection :data="{
+      headline: localizedData.committee.headline,
+      committee: localizedData.committee.members,
+      sponsors: localizedData.sponsors.list
+    }" />
+    <RegisterSection :data="{
+      headline: localizedData.register.headline,
+      ctaText: localizedData.register.ctaText,
+      link: localizedData.register.link
+    }" />
+    <FAQSection :data="{
+      headline: localizedData.faq.headline,
+      faq: localizedData.faq.items
+    }" />
+    <ContactSection :data="{
+      headline: localizedData.contact.headline,
+      contact: localizedData.contact.items,
+      outro: localizedData.outro
+    }" />
+
     <!-- <HomeContact /> -->
     <!-- <BaseFooter /> -->
   </NuxtLayout>
