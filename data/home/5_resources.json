@@ -17,6 +17,10 @@
         {
           "en": "Fast.ai on Protein Graphs",
           "fa": "Fast.ai بر روی گراف‌های پروتئین"
+        },
+        {
+          "en": "Version-controlled pipelines with Nextflow",
+          "fa": "پایپ‌لاین‌های کنترل نسخه با Nextflow"
         }
       ]
     },
@@ -33,6 +37,10 @@
         {
           "en": "Reproducible notebook templates",
           "fa": "قالب‌های دفترچه یادداشت قابل تکرار"
+        },
+        {
+          "en": "Docker images for rapid prototyping",
+          "fa": "ایمیج‌های Docker برای نمونه‌سازی سریع"
         }
       ]
     },
@@ -49,10 +57,31 @@
         {
           "en": "Office-hours with dataset curators",
           "fa": "ساعات اداری با گردآورندگان داده"
+        },
+        {
+          "en": "Discord voice lounges",
+          "fa": "لانژ‌های صوتی Discord"
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Pre-event support",
+        "fa": "پشتیبانی پیش‌رویداد"
+      },
+      "items": [
+        {
+          "en": "Code of conduct & ethics briefing",
+          "fa": "معارفه آیین‌نامه رفتاری و اخلاقی"
+        },
+        {
+          "en": "FAQs & help-desk",
+          "fa": "سوالات متداول و میز یاری‌رسان"
         }
       ]
     }
   ],
+  "items": [],
   "cta": {
     "label": {
       "en": "Grab the resources",

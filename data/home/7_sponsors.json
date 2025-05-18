@@ -4,13 +4,16 @@
     "fa": "با قدرت رویاپردازان"
   },
   "platinum": [
-    "National Research Institute"
+    "National Research Institute",
+    "IMGT®"
   ],
   "gold": [
-    "BioTech Corp"
+    "BioTech Corp",
+    "AI Solutions"
   ],
   "silver": [
-    "AI Solutions"
+    "Cloud4Science",
+    "Data-Graph"
   ],
   "cta": {
     "label": {
@@ -18,5 +21,13 @@
       "fa": "حامی شوید"
     },
     "href": "/sponsors"
-  }
+  },
+  "list": [
+    "National Research Institute",
+    "IMGT®",
+    "BioTech Corp",
+    "AI Solutions",
+    "Cloud4Science",
+    "Data-Graph"
+  ]
 }

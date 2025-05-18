@@ -10,8 +10,8 @@
         "fa": "چه کسانی می‌توانند شرکت کنند؟"
       },
       "a": {
-        "en": "Anyone curious about code, cells or convincing pizza to arrive on time.",
-        "fa": "هر کسی که در مورد کد، سلول‌ها یا آوردن به‌موقع پیتزا کنجکاو است."
+        "en": "Students, researchers, coders, clinicians, and anyone curious about code or cells.",
+        "fa": "دانشجویان، پژوهشگران، برنامه‌نویسان، پزشکان و هر کسی که درباره کد یا سلول‌ها کنجکاو است."
       }
     },
     {
@@ -20,21 +20,42 @@
         "fa": "آیا این ترکیبی است؟"
       },
       "a": {
-        "en": "Yes, fully livestreamed and chat-enabled for remote rebels.",
-        "fa": "بله، به‌طور کامل پخش زنده و با چت برای شورشیان از راه دور فعال است."
+        "en": "Yes — fully livestreamed with interactive chat and captioning.",
+        "fa": "بله — پخش زنده کامل با چت تعاملی و زیرنویس."
       }
     },
     {
       "q": {
-        "en": "Refunds?",
-        "fa": "استرداد وجه؟"
+        "en": "How much does it cost?",
+        "fa": "هزینه چقدر است؟"
       },
       "a": {
-        "en": "100 % until 30 days out · 50 % until 7 days out · hugs thereafter.",
-        "fa": "۱۰۰٪ تا ۳۰ روز قبل · ۵۰٪ تا ۷ روز قبل · پس از آن بغل‌ها."
+        "en": "Conference only €XXX · Hackathon only €XXX · Combo €XXX (student discounts TBA).",
+        "fa": "فقط کنفرانس €XXX · فقط هکاتون €XXX · بسته ترکیبی €XXX (تخفیف دانشجویی اعلام خواهد شد)."
+      }
+    },
+    {
+      "q": {
+        "en": "Refund policy?",
+        "fa": "سیاست بازپرداخت؟"
+      },
+      "a": {
+        "en": "100 % refund until 30 days out · 50 % until 7 days out · no refund thereafter. Substitutions allowed until 48 h before the event.",
+        "fa": "۱۰۰٪ تا ۳۰ روز قبل · ۵۰٪ تا ۷ روز قبل · پس از آن بازپرداختی ندارد. جایگزینی تا ۴۸ ساعت پیش از رویداد امکان‌پذیر است."
+      }
+    },
+    {
+      "q": {
+        "en": "Travel support?",
+        "fa": "حمایت سفر؟"
+      },
+      "a": {
+        "en": "A limited number of travel grants will open in May 2025. Sign up to be notified.",
+        "fa": "تعداد محدودی بورسیه سفر در اردیبهشت ۱۴۰۴ اعلام می‌شود. برای اطلاع ثبت‌نام کنید."
       }
     }
   ],
+  "items": [],
   "cta": {
     "label": {
       "en": "Still puzzled? Ping us",

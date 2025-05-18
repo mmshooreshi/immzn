@@ -31,11 +31,32 @@
         "fa": "قهوه بی‌پایان"
       },
       "icon": "coffee"
+    },
+    {
+      "label": {
+        "en": "Hybrid streaming",
+        "fa": "پخش ترکیبی"
+      },
+      "icon": "broadcast"
+    }
+  ],
+  "items": [
+    {
+      "en": "Venue: Institute for Research in Fundamental Sciences (IPM), 70 Farbin Alley, Shahid Lavasani St, Tehran",
+      "fa": "محل برگزاری: پژوهشگاه دانش‌های بنیادی (IPM)، پلاک ۷۰، کوچه فربین، خیابان شهید لواسانی، تهران"
+    },
+    {
+      "en": "10 min taxi from Tajrish metro · on-site parking available",
+      "fa": "۱۰ دقیقه تاکسی از مترو تجریش · پارکینگ در محل موجود است"
+    },
+    {
+      "en": "Hybrid: join on site or via full-HD livestream with chat and live captions",
+      "fa": "ترکیبی: حضوری یا از طریق پخش HD با چت و زیرنویس زنده"
     }
   ],
   "venue_snippet": {
-    "en": "National Library Conference Center — 10 min walk from Taleghani metro.",
-    "fa": "مرکز همایش‌های کتابخانه ملی — ۱۰ دقیقه پیاده تا ایستگاه متروی طالقانی."
+    "en": "IPM campus — corner of Farbin Alley, Shahid Lavasani St.",
+    "fa": "کمپ IPM — نبش کوچه فربین، خیابان شهید لواسانی."
   },
-  "map_link": "https://maps.example.com/tehran-conf"
+  "map_link": "https://www.google.com/maps?cid=0xdfac9703aac9f904"
 }

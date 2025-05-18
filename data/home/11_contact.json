@@ -1,5 +1,27 @@
 {
-  "email": "info@immunityhorizons.org",
+  "headline": {
+    "en": "Let’s talk",
+    "fa": "با ما در تماس باشید"
+  },
+  "items": [
+    {
+      "type": "email",
+      "value": "*****@*****.com"
+    },
+    {
+      "type": "phone",
+      "value": "+98-21-1234-5678"
+    },
+    {
+      "type": "twitter",
+      "value": "@ImmunityHorizons"
+    },
+    {
+      "type": "linkedin",
+      "value": "immunity-horizons"
+    }
+  ],
+  "email": "*****@*****.com",
   "phone": "+98-21-1234-5678",
   "twitter": "@ImmunityHorizons",
   "linkedin": "immunity-horizons"

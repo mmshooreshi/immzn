@@ -1,0 +1,38 @@
+{
+  "headline": {
+    "en": "Secure your seat",
+    "fa": "جای خود را رزرو کنید"
+  },
+  "ctaText": {
+    "en": "Click below to register for ImmUnity Horizons 2025 now.",
+    "fa": "برای ثبت‌نام در ImmUnity Horizons 2025 همین حالا کلیک کنید."
+  },
+  "link": "/register",
+  "packages": [
+    {
+      "name": {
+        "en": "Conference only",
+        "fa": "فقط کنفرانس"
+      },
+      "price": "€XXX"
+    },
+    {
+      "name": {
+        "en": "Hackathon only",
+        "fa": "فقط هکاتون"
+      },
+      "price": "€XXX"
+    },
+    {
+      "name": {
+        "en": "Conference + Hackathon",
+        "fa": "کنفرانس + هکاتون"
+      },
+      "price": "€XXX"
+    }
+  ],
+  "refund_policy": {
+    "en": "100 % until 30 days out · 50 % until 7 days out · no refund thereafter (substitution allowed until 48 h before).",
+    "fa": "۱۰۰٪ تا ۳۰ روز قبل · ۵۰٪ تا ۷ روز قبل · پس از آن بدون بازپرداخت (امکان جایگزینی تا ۴۸ ساعت پیش از رویداد)."
+  }
+}

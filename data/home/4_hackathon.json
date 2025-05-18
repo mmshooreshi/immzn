@@ -13,12 +13,28 @@
   },
   "copy": [
     {
-      "en": "Form a squad of three-to-five. Pick a data problem that scares you. Ship a working prototype before the buzzer.",
-      "fa": "یک تیم سه تا پنج نفره تشکیل دهید. یک مسئله داده‌ای ترسناک انتخاب کنید. قبل از پایان زمان، یک نمونه اولیه عملی ارسال کنید."
+      "en": "This AI-augmented hackathon (9-11 July 2025 · 18-20 تیر 1404) equips you to learn, teach, and collaborate on real-world immunology problems. Expect hands-on challenges, creative problem-solving, and interdisciplinary teamwork.",
+      "fa": "این هکاتون تقویت‌شده با هوش مصنوعی (۱۸-۲۰ تیر ۱۴۰۴) شما را برای یادگیری، آموزش و همکاری روی مسائل واقعی ایمونولوژی آماده می‌کند. چالش‌های عملی، حل مسئله خلاقانه و کار تیمی میان‌رشته‌ای در انتظار شماست."
     },
     {
-      "en": "Winning teams score €5 000, cloud credits and an invite to publish in the ImmUnity proceedings.",
-      "fa": "تیم‌های برنده ۵۰۰۰ یورو، اعتبارات ابری و دعوتنامه برای نشر در مجموعه مقالات ایمونیتی هورایزونز دریافت می‌کنند."
+      "en": "Form a squad of three-to-five, pick the data problem that scares you most, and ship a working prototype before the buzzer.",
+      "fa": "یک تیم سه تا پنج نفره تشکیل دهید، ترسناک‌ترین مسئله داده‌ای را انتخاب کنید و قبل از پایان زمان یک نمونه اولیه عملی ارائه دهید."
+    },
+    {
+      "en": "Winning teams pocket €5 000, cloud credits, and an invitation to publish in the ImmUnity Horizons proceedings.",
+      "fa": "تیم‌های برنده ۵۰۰۰ یورو، اعتبارات ابری و دعوت‌نامه برای انتشار در مجموعه مقالات ImmUnity Horizons دریافت می‌کنند."
+    },
+    {
+      "en": "Visionary Guide · Dr Laurent David — here to ask the questions that spark breakthroughs.",
+      "fa": "ایده‌یار · دکتر لوران دیوید — اینجاست تا پرسش‌هایی را مطرح کند که جرقه پیشرفت‌ها را بزند."
+    },
+    {
+      "en": "Jury · Dr Changiz Eslahchi · Dr Reza Hassanzadeh · Prof Siamak Bahram · IMGT representative · Dr Sara Kaveh (with more to come).",
+      "fa": "هیئت داوران · دکتر چنگیز اصلاحچی · دکتر رضا حسن‌زاده · پروفسور سیامک بهرام · نماینده IMGT · دکتر سارا کاوه (در حال تکمیل)."
+    },
+    {
+      "en": "Mentors on-call all weekend, pre-event workshops, toolkits, and a round-the-clock help-desk.",
+      "fa": "منتورهای حاضر در طول آخر هفته، کارگاه‌های پیش از رویداد، جعبه ابزار و میز یاری‌رسان ۲۴ ساعته."
     }
   ],
   "link": {
@@ -32,5 +48,75 @@
     "datasets": 12,
     "mentors": 18,
     "cups_of_coffee": "∞"
+  },
+  "schedule": {
+    "day_of_dialogue": {
+      "headline": {
+        "en": "Day of Dialogue · 8 July 2025 (17 تیر 1404)",
+        "fa": "روز گفت‌وگو · ۱۷ تیر ۱۴۰۴"
+      },
+      "slots": [
+        {
+          "time": "10:00 – 10:30",
+          "en": "Opening Remarks & Welcome — Prof Eslahchi: Why computational immunology, why now?",
+          "fa": "آغاز رسمی و سخنرانی افتتاحیه — پروفسور اصلاحچی: چرا ایمونولوژی محاسباتی، چرا اکنون؟"
+        },
+        {
+          "time": "10:30 – 11:10",
+          "en": "Prof Siamak Bahram — Title TBA",
+          "fa": "پروفسور سیامک بهرام — عنوان به‌زودی"
+        },
+        {
+          "time": "11:10 – 11:50",
+          "en": "Dr Fotis Psomopoulos — Title TBA",
+          "fa": "دکتر فوتیس سموپولوس — عنوان به‌زودی"
+        },
+        {
+          "time": "11:50 – 12:30",
+          "en": "Dr Mirtavoosi — Title TBA",
+          "fa": "دکتر میرتوس — عنوان به‌زودی"
+        },
+        {
+          "time": "12:30 – 13:30",
+          "en": "Lunch Break & Informal Conversations",
+          "fa": "نهار و گفت‌وگوهای آزاد"
+        },
+        {
+          "time": "13:30 – 14:00",
+          "en": "Hackathon Vision & Overview — Themes, tools, team formation",
+          "fa": "معرفی هکاتن — موضوعات، ابزارها و تشکیل تیم‌ها"
+        },
+        {
+          "time": "14:00 – 14:40",
+          "en": "IMGT Guest Speaker — Title TBA",
+          "fa": "سخنران IMGT — عنوان به‌زودی"
+        },
+        {
+          "time": "14:40 – 15:20",
+          "en": "Dr Dimitrios Vlachakis — Title TBA",
+          "fa": "دکتر دیمیتریوس ولاخاکیس — عنوان به‌زودی"
+        },
+        {
+          "time": "15:20 – 15:40",
+          "en": "Coffee Break & Networking",
+          "fa": "استراحت و شبکه‌سازی"
+        },
+        {
+          "time": "15:40 – 16:20",
+          "en": "Prof Sophia Karagiannis — Title TBA",
+          "fa": "پروفسور سوفیا کاراگیانیس — عنوان به‌زودی"
+        },
+        {
+          "time": "16:20 – 17:10",
+          "en": "Round-table Discussion: Computational Immunology at a Crossroads",
+          "fa": "میزگرد: ایمونولوژی محاسباتی در تقاطع علوم"
+        },
+        {
+          "time": "17:10 – 17:30",
+          "en": "Closing Reflections & Next Steps",
+          "fa": "جمع‌بندی و گام‌های بعدی"
+        }
+      ]
+    }
   }
 }

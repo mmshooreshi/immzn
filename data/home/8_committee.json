@@ -6,8 +6,8 @@
   "members": [
     {
       "name": {
-        "en": "Prof. Alireza Eslahchi",
-        "fa": "پروفسور علیرضا اصلاحچی"
+        "en": "Dr Changiz Eslahchi",
+        "fa": "دکتر چنگیز اصلاحچی"
       },
       "role": {
         "en": "Event Chair",
@@ -16,42 +16,52 @@
     },
     {
       "name": {
-        "en": "Prof. Siamak Bahram",
+        "en": "Prof Siamak Bahram",
         "fa": "پروفسور سیامک بهرام"
       },
       "role": {
-        "en": "Program Chair",
-        "fa": "رئیس برنامه"
+        "en": "Honorary Advisor",
+        "fa": "مشاور افتخاری"
       }
     },
     {
       "name": {
-        "en": "Nika",
-        "fa": "نیکا"
+        "en": "Dr Nika Abdollahi",
+        "fa": "دکتر نیکا عبداللهی"
       },
       "role": {
-        "en": "Hackathon Lead",
-        "fa": "رهبر هکاتون"
+        "en": "Scientific Program Chair",
+        "fa": "رئیس برنامه علمی"
       }
     },
     {
       "name": {
-        "en": "Reza",
-        "fa": "رضا"
+        "en": "Dr Reza Hassanzadeh",
+        "fa": "دکتر رضا حسن‌زاده"
       },
       "role": {
-        "en": "Logistics Maestro",
-        "fa": "استاد لجستیک"
+        "en": "Hackathon Program Chair",
+        "fa": "مسئول برنامه هکاتون"
       }
     },
     {
       "name": {
-        "en": "Sara",
-        "fa": "سارا"
+        "en": "Dr Sara Kaveh",
+        "fa": "دکتر سارا کاوه"
       },
       "role": {
-        "en": "Outreach Captain",
-        "fa": "کاپیتان ارتباطات"
+        "en": "Communications & Outreach",
+        "fa": "ارتباطات و اطلاع‌رسانی"
+      }
+    },
+    {
+      "name": {
+        "en": "Dr Laurent David",
+        "fa": "دکتر لوران دیوید"
+      },
+      "role": {
+        "en": "Visionary Guide",
+        "fa": "ایده‌یار"
       }
     }
   ]
