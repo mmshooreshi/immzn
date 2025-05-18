@@ -34,7 +34,7 @@ onBeforeUnmount(cleanup)
 <template>
 
 
-  <section ref="hero" id="hero" class="container">
+  <section ref="hero" id="hero" class="container mx-auto">
 
     <!-- purely static heading, animated by GSAP/SplitText -->
     <h1 class="sequence-item heading-1 text-center max-w-screen-md mx-auto z-1 pointer-events-none ">
@@ -51,7 +51,7 @@ onBeforeUnmount(cleanup)
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
       <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
         data?.tagline?.first
-      }}</span>
+        }}</span>
 
       <span class="">{{ data?.tagline?.second }}</span>
       <span class="">{{ data?.tagline?.third }}</span>

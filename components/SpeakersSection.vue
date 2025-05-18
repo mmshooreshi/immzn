@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 max-w-7xl">
       <!-- Headline title -->
       <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 leading-tight drop-shadow-md">
-        {{ sectionTitle }}
+        {{ headline }}
       </h2>
 
       <!-- Speakers grid -->
@@ -162,7 +162,7 @@ const sectionTitle = computed(() => {
   currentLang.value = language.value
   return (
     props.headline?.find((item) => item.slug === 'speakers')?.name ||
-    (currentLang.value === 'fa' ? 'سخنرانان' : 'Speakers')
+    (currentLang.value === 'fa' ? 'صداهای رویداد' : 'Featured Voices')
   )
 })
 

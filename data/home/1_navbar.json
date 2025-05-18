@@ -4,41 +4,65 @@
       "en": "About",
       "fa": "درباره"
     },
-    "slug": "about"
+    "slug": "about",
+    "sectionTitle": {
+      "en": "About",
+      "fa": "درباره"
+    }
   },
   {
     "name": {
       "en": "Speakers",
       "fa": "سخنرانان"
     },
-    "slug": "speakers"
+    "slug": "speakers",
+    "sectionTitle": {
+      "en": "Featured Voices",
+      "fa": "صداهای رویداد"
+    }
   },
   {
     "name": {
       "en": "Program",
       "fa": "برنامه"
     },
-    "slug": "program"
+    "slug": "program",
+    "sectionTitle": {
+      "en": "Program",
+      "fa": "برنامه"
+    }
   },
   {
     "name": {
       "en": "Essentials",
       "fa": "ضروریات"
     },
-    "slug": "essentials"
+    "slug": "essentials",
+    "sectionTitle": {
+      "en": "Essentials",
+      "fa": "ضروریات"
+    }
   },
   {
     "name": {
       "en": "Team & Partners",
-      "fa": "تیم و شرکا"
+      "fa": "تیم و حامیان"
     },
-    "slug": "team-partners"
+    "slug": "team-partners",
+    "sectionTitle": {
+      "en": "Team & Partners",
+      "fa": "تیم و حامیان"
+    }
   },
   {
     "name": {
       "en": "Register",
       "fa": "ثبت‌نام"
     },
-    "slug": "register"
+    "slug": "register",
+    "sectionTitle": {
+      "en": "Register",
+      "fa": "ثبت‌نام"
+    }
   }
 ]
