@@ -1,14 +1,14 @@
 <template>
-  <section id="speakers" class="py-12 mt-10  bg-gradient-to-b from-white/5 via-white/10 to-white/0 overflow-hidden">
+  <section id="voices" class="py-12 mt-10  bg-gradient-to-b from-white/5 via-white/10 to-white/0 overflow-hidden">
     <div class="container mx-auto px-4 max-w-7xl">
       <!-- Headline title -->
       <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 leading-tight drop-shadow-md">
-        {{ sectionTitle }}
+        {{ data?.headline }}
       </h2>
 
       <!-- Speakers grid -->
       <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-46">
-        <div v-for="sp in props.speakers" :key="sp.id" @click="open(sp)"
+        <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)"
           class="group hover:scale-105 transition-all duration-100 ease relative flex flex-col rounded-[3rem] cursor-pointer backdrop-blur-sm speaker-item"
           role="listitem" :aria-labelledby="`speaker-${sp.id}`">
           <div class="p-6  flex-1 flex flex-col">
@@ -143,13 +143,9 @@ interface HeadlineItem {
 }
 
 const props = defineProps({
-  speakers: {
-    type: Array as PropType<Speaker[]>,
-    required: true
-  },
-  headline: {
-    type: Array as PropType<HeadlineItem[]>,
-    required: true
+  data: {
+    headline: string
+    people: Array as PropType<Speaker[]>
   }
 })
 
@@ -157,14 +153,6 @@ const props = defineProps({
 const currentLang = ref<'en' | 'fa'>('en')
 const langs = ['en', 'fa'] as const
 
-// Section title from headline prop
-const sectionTitle = computed(() => {
-  currentLang.value = language.value
-  return (
-    props.headline?.find((item) => item.slug === 'speakers')?.sectionTitle ||
-    (currentLang.value === 'fa' ? 'صداهای رویداد' : 'Featured Voices')
-  )
-})
 
 // Modal state
 const isOpen = ref(false)

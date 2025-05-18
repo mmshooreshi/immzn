@@ -87,7 +87,7 @@ useHead({
 
     <!-- <Localized :is="HomeAbout" :data="localizedData.about" /> -->
     <HomeAbout :data="localizedData.about ?? {}" />
-    <Localized :is="SpeakersSection" :speakers="localizedData.speakers" :headline="localizedData.navbar" />
+    <Localized :is="SpeakersSection" :data="localizedData.voices" />
     <!-- <SpeakersSection  :speakers="localizedData.speakers" :headline="localizedData.navbar"/> -->
     <!-- Your page content -->
 
