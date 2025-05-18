@@ -68,12 +68,12 @@
             :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
 
           <div class="flex flex-row items-center mt-4">
-            <Icon v-if="selected.name == 'imgt'" class="w-8 text-[#b9ffcc] h-6" name="charm:north-star" />
+            <Icon v-if="selected?.id === 'imgt'" class="w-8 text-[#b9ffcc] h-6" name="charm:north-star" />
             <Icon v-else class="w-8 text-[#b9ffcc] h-6" name="fluent:person-star-28-filled" />
             <h2 class="text-xl font-bold">{{ selected.name }}</h2>
           </div>
           <p class="text-teal-400 text-sm pt-2 mt-2 border-t border-t-solid border-t-gray/10 w-full">{{ selected.title
-          }}</p>
+            }}</p>
           <p class="text-gray-400 text-xs  w-full">{{ selected.affiliation }}</p>
           <p class="text-white/60 max-h-[200px] overflow-y-auto text-sm whitespace-pre-line mt-8">{{ selected.brief }}
           </p>
