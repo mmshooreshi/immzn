@@ -72,11 +72,10 @@
             <h2 class="text-xl font-bold">{{ selected.name }}</h2>
           </div>
           <p class="text-teal-400 text-sm pt-2 mt-2 border-t border-t-solid border-t-gray/10 w-full">{{ selected.title
-            }}</p>
+          }}</p>
           <p class="text-gray-400 text-xs  w-full">{{ selected.affiliation }}</p>
-          <p class="text-white/60 max-h-[200px] overflow-y-auto text-sm whitespace-pre-line mt-8">{{ selected.brief }}{{
-            selected.brief }}{{ selected.brief
-            }}{{ selected.brief }}{{ selected.brief }}</p>
+          <p class="text-white/60 max-h-[200px] overflow-y-auto text-sm whitespace-pre-line mt-8">{{ selected.brief }}
+          </p>
           <div class="flex justify-center gap-4 mt-4">
 
             <a v-if="selected?.scholar" :href="selected.scholar" target="_blank"
