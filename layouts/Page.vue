@@ -3,7 +3,7 @@
 import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
 import { useThrottleFn } from '@vueuse/core'    // just to avoid spamming sessionStorage
-const isTouch = matchMedia('(pointer:coarse)').matches   // TRUE on iOS/Android
+// const isTouch = matchMedia('(pointer:coarse)').matches   // TRUE on iOS/Android
 
 const isMobile = useIsMobile()
 
@@ -56,7 +56,7 @@ provide('cursor', cursorContent);
 onMounted(async () => {
 
   await nextTick()
-  if (isTouch) {
+  if (isMobile) {
     /* make sure the container is scrollable */
     mainRef.value?.style.setProperty('overflow', 'auto')
     return
