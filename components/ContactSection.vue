@@ -3,7 +3,7 @@
 const props = defineProps({ data: Object });
 </script>
 <template>
-    <section class="py-12 dark:bg-gray-900 bg-[#eef2ff]">
+    <section id="contact" class="py-12 dark:bg-gray-900 bg-[#eef2ff]">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">{{ data.headline }}</h2>
             <div class="llttrr grid gap-6 sm:grid-cols-2 lg:grid-cols-4 justify-center mb-8">
