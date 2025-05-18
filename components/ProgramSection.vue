@@ -1,20 +1,29 @@
+<!-- 1. ProgramSection.vue -->
+<script setup>
+import { computed } from 'vue';
+const props = defineProps({ data: Object });
+
+const dialogue = computed(() => props.data.schedule?.day_of_dialogue);
+</script>
 <template>
-  <section id="program" class="bg-[#0b0b0d]/80 dark:bg-white/50 text-white dark:text-[#0b0b0d] py-12">
-    <h2 class="text-3xl font-bold text-center mb-8">{{ data.headline }}</h2>
-    <ul class="space-y-8 max-w-3xl mx-auto">
-      <li v-for="(item, idx) in data.items" :key="idx" class="group">
-        <h3 class="text-xl font-semibold mb-2">{{ item.title }}</h3>
-        <p class="text-gray-700" v-for="(line, i) in item.details" :key="i">{{ line }}</p>
-      </li>
-    </ul>
+  <section class="py-12 lg:py-20 dark:bg-gray-900">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+        {{ props.data.headline ?? 'Program' }}
+      </h2>
+      <!-- Dialogue Day headline -->
+      <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4" v-if="dialogue">
+        {{ dialogue.headline }}
+      </h3>
+      <ul class="space-y-6">
+        <li v-for="slot in dialogue.slots" :key="slot.time" class="flex flex-col sm:flex-row sm:items-start">
+          <div class="w-32 shrink-0 text-sm font-mono text-indigo-600 dark:text-indigo-300">
+            {{ slot }}
+            {{ slot.time }}
+          </div>
+          <p class="text-gray-800 dark:text-gray-200 sm:ml-4">{{ slot }}</p>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
-
-<script setup lang="ts">
-const props = defineProps<{
-  data: {
-    headline: string;
-    items: Array<{ title: string; details: string[] }>;
-  };
-}>();
-</script>

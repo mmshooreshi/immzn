@@ -58,63 +58,87 @@
       "slots": [
         {
           "time": "10:00 – 10:30",
-          "en": "Opening Remarks & Welcome — Prof Eslahchi: Why computational immunology, why now?",
-          "fa": "آغاز رسمی و سخنرانی افتتاحیه — پروفسور اصلاحچی: چرا ایمونولوژی محاسباتی، چرا اکنون؟"
+          "title": {
+            "en": "Opening Remarks & Welcome — Prof Eslahchi: Why computational immunology, why now?",
+            "fa": "آغاز رسمی و سخنرانی افتتاحیه — پروفسور اصلاحچی: چرا ایمونولوژی محاسباتی، چرا اکنون؟"
+          }
         },
         {
           "time": "10:30 – 11:10",
-          "en": "Prof Siamak Bahram — Title TBA",
-          "fa": "پروفسور سیامک بهرام — عنوان به‌زودی"
+          "title": {
+            "en": "Prof Siamak Bahram — Title TBA",
+            "fa": "پروفسور سیامک بهرام — عنوان به‌زودی"
+          }
         },
         {
           "time": "11:10 – 11:50",
-          "en": "Dr Fotis Psomopoulos — Title TBA",
-          "fa": "دکتر فوتیس سموپولوس — عنوان به‌زودی"
+          "title": {
+            "en": "Dr Fotis Psomopoulos — Title TBA",
+            "fa": "دکتر فوتیس سموپولوس — عنوان به‌زودی"
+          }
         },
         {
           "time": "11:50 – 12:30",
-          "en": "Dr Mirtavoosi — Title TBA",
-          "fa": "دکتر میرتوس — عنوان به‌زودی"
+          "title": {
+            "en": "Dr Mirtavoosi — Title TBA",
+            "fa": "دکتر میرتوس — عنوان به‌زودی"
+          }
         },
         {
           "time": "12:30 – 13:30",
-          "en": "Lunch Break & Informal Conversations",
-          "fa": "نهار و گفت‌وگوهای آزاد"
+          "title": {
+            "en": "Lunch Break & Informal Conversations",
+            "fa": "نهار و گفت‌وگوهای آزاد"
+          }
         },
         {
           "time": "13:30 – 14:00",
-          "en": "Hackathon Vision & Overview — Themes, tools, team formation",
-          "fa": "معرفی هکاتن — موضوعات، ابزارها و تشکیل تیم‌ها"
+          "title": {
+            "en": "Hackathon Vision & Overview — Themes, tools, team formation",
+            "fa": "معرفی هکاتن — موضوعات، ابزارها و تشکیل تیم‌ها"
+          }
         },
         {
           "time": "14:00 – 14:40",
-          "en": "IMGT Guest Speaker — Title TBA",
-          "fa": "سخنران IMGT — عنوان به‌زودی"
+          "title": {
+            "en": "IMGT Guest Speaker — Title TBA",
+            "fa": "سخنران IMGT — عنوان به‌زودی"
+          }
         },
         {
           "time": "14:40 – 15:20",
-          "en": "Dr Dimitrios Vlachakis — Title TBA",
-          "fa": "دکتر دیمیتریوس ولاخاکیس — عنوان به‌زودی"
+          "title": {
+            "en": "Dr Dimitrios Vlachakis — Title TBA",
+            "fa": "دکتر دیمیتریوس ولاخاکیس — عنوان به‌زودی"
+          }
         },
         {
           "time": "15:20 – 15:40",
-          "en": "Coffee Break & Networking",
-          "fa": "استراحت و شبکه‌سازی"
+          "title": {
+            "en": "Coffee Break & Networking",
+            "fa": "استراحت و شبکه‌سازی"
+          }
         },
         {
           "time": "15:40 – 16:20",
-          "en": "Prof Sophia Karagiannis — Title TBA",
-          "fa": "پروفسور سوفیا کاراگیانیس — عنوان به‌زودی"
+          "title": {
+            "en": "Prof Sophia Karagiannis — Title TBA",
+            "fa": "پروفسور سوفیا کاراگیانیس — عنوان به‌زودی"
+          }
         },
         {
           "time": "16:20 – 17:10",
-          "en": "Round-table Discussion: Computational Immunology at a Crossroads",
-          "fa": "میزگرد: ایمونولوژی محاسباتی در تقاطع علوم"
+          "title": {
+            "en": "Round-table Discussion: Computational Immunology at a Crossroads",
+            "fa": "میزگرد: ایمونولوژی محاسباتی در تقاطع علوم"
+          }
         },
         {
           "time": "17:10 – 17:30",
-          "en": "Closing Reflections & Next Steps",
-          "fa": "جمع‌بندی و گام‌های بعدی"
+          "title": {
+            "en": "Closing Reflections & Next Steps",
+            "fa": "جمع‌بندی و گام‌های بعدی"
+          }
         }
       ]
     }

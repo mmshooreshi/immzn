@@ -1,3 +1,4 @@
+<!-- components/HomeAbout.vue -->
 <script setup lang="ts">
 const isMobile = useIsMobile();
 // import { useData } from '@/composables/useData'

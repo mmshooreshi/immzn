@@ -26,7 +26,8 @@
               <div v-if="1"
                 class="mx-auto w-66 h-max relative  rounded-[2rem]  overflow-hidden border border-0 border-white/20 outline transition-all group-hover:outline-8 outline-offset-0 outline-white/5 shadow-lg  border-solid border-x-solid"
                 :class="{ '': language == 'fa', '': language == 'en' }">
-                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image" class="object-cover w-66 bg-white/50"
+                <img :src="`/images/people/${sp.id}.png`" alt="Speaker's image"
+                  class="object-cover w-66 bg-white/50 max-h-66"
                   :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                 <h3
                   class="font-extrabold text-md  py-1 w-64 -mr-1   leading-snug group-hover:text-primary-400 transition-colors    text-center mb-1  rounded-b-[1.9rem] text-nowrap   text-teal-200/80  "
@@ -70,15 +71,16 @@
 
 
               <div
-                class="relative bg-[#0b0b0d]/80 dark:bg-gray-900/95 rounded-3xl shadow-2xl max-w-2xl w-full p-8  max-h-[90vh] ">
+                class="relative bg-white/10 shadow-lg  dark:bg-[#0b0b0d]/60  rounded-3xl shadow-2xl max-w-2xl w-full p-8  max-h-[90vh] ">
 
                 <DialogTitle class=" mb-4 flex flex-col justify-between items-center gap-2 ">
 
 
 
                   <div class="flex-grow"></div>
-                  <div class="h-66 bg ml-4 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
-                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image" class="object-cover w-66 h-66"
+                  <div class="h-55 md:h-64  bg ml-4 md:w-64 rounded-[2rem] overflow-hidden mt-0 ">
+                    <img :src="`/images/people/${selected.id}.png`" alt="Speaker's image"
+                      class="object-cover w-55 h-55 md:h-66 md:w-66"
                       :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                   </div>
 
