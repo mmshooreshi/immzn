@@ -38,6 +38,7 @@ function onAfterLeave() {
 function onLangEnter() {
   // Wait for Vue to finish inserting the new DOM, then tell loco:
   nextTick(() => {
+    scroll.value?.start()
     scroll.value?.update()
   })
 }
@@ -52,37 +53,56 @@ provide('cursor', cursorContent);
 
 
 onMounted(async () => {
+  await nextTick()
 
   console.log("mainRef", mainRef.value)
   if (!mainRef.value) {
     console.warn('#main element not found');
     return;
   }
+
   const { default: LocomotiveScroll } = await import('locomotive-scroll');
   scroll.value = new LocomotiveScroll({
-    el: mainRef.value,
+    el: mainRef.value!,
     smooth: true,
     multiplier: 0.8,
     reloadOnContextChange: true,
   });
+  // More robust: wait until fonts & images are loaded
+  const waitForReady = () =>
+    new Promise<void>(resolve => {
+      if (document.readyState === 'complete') return resolve()
+      window.addEventListener('load', () => resolve(), { once: true })
+    })
+
+  console.log('[Scroll] mounted mainRef:', mainRef.value)
+  // scroll.value?.on('scroll', (args) => {
+  //   console.log('[Scroll] scrolling:', args.scroll.y)
+  // })
+
+  await waitForReady()
+  scroll.value.update()
 
 
-  // wait for images/fonts, then force a re-measurement
-  window.addEventListener('load', () => {
-    scroll.value?.update()
-  })
 
 });
 
+watch(viewLang, () => {
+  nextTick(() => {
+    scroll.value?.start()
+    scroll.value?.update()
+  })
+})
 
-// onUnmounted(() => {
-//   scroll?.value?.destroy();
-// });
+
+onUnmounted(() => {
+  scroll?.value?.destroy();
+});
 
 </script>
 
 <template>
-  <main ref="mainRef" id="main" class="main">
+  <main data-scroll-container ref="mainRef" id="main" class="main">
 
     <Transition name="fade" mode="out-in" @after-leave="onAfterLeave">
       <BaseNavbar :key="viewLang" :lang="viewLang" :items="navbarItems" @request-lang="onLangRequest" />
@@ -110,6 +130,7 @@ onMounted(async () => {
   // gap: 8rem;
   overflow: hidden;
   z-index: 10;
+  will-change: transform; // optional, for smoother GPU handling
 
   // background: #333333;
   background-color: #141414;
