@@ -36,6 +36,13 @@
   },
   {
     "name": {
+      "en": "Contact",
+      "fa": "تماس"
+    },
+    "slug": "contact"
+  },
+  {
+    "name": {
       "en": "Register",
       "fa": "ثبت‌نام"
     },

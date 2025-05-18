@@ -5,7 +5,7 @@ const props = defineProps({ data: Object });
 
 
 <template>
-  <section class="py-12 bg-gray-50 dark:bg-gray-800">
+  <section id="essentials" class="py-12 bg-gray-50 dark:bg-gray-800">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">{{ data.headline }}</h2>
       <div class="grid gap-8 sm:grid-cols-2">

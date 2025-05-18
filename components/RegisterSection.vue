@@ -3,7 +3,7 @@
 const props = defineProps({ data: Object });
 </script>
 <template>
-    <section class="py-16 bg-indigo-600 dark:bg-indigo-700 text-center">
+    <section id="register" class="py-16 bg-indigo-600 dark:bg-indigo-700 text-center">
         <h2 class="text-3xl font-bold text-white mb-4 w-max mx-auto">{{ data.headline }}</h2>
         <p class="text-lg text-indigo-200 max-w-2xl  w-max  mx-auto mb-8">{{ data.ctaText }}</p>
         <a :href="data.link"
