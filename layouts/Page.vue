@@ -53,6 +53,7 @@ provide('cursor', cursorContent);
 
 
 onMounted(async () => {
+
   await nextTick()
 
   console.log("mainRef", mainRef.value)
@@ -66,6 +67,10 @@ onMounted(async () => {
     el: mainRef.value!,
     smooth: true,
     multiplier: 0.8,
+    smartphone: { smooth: true, breakpoint: 0 },
+    tablet: { smooth: true, breakpoint: 1024 },
+    scrollbarContainer: document.body,
+
     reloadOnContextChange: true,
   });
   // More robust: wait until fonts & images are loaded
@@ -102,24 +107,24 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main data-scroll-container ref="mainRef" id="main" class="main">
-
+  <!-- 1 — Navbar lives OUTSIDE the smooth-scroll container -->
+  <teleport to="body">
     <Transition name="fade" mode="out-in" @after-leave="onAfterLeave">
       <BaseNavbar :key="viewLang" :lang="viewLang" :items="navbarItems" @request-lang="onLangRequest" />
-
     </Transition>
-    <!-- <CustomCursor v-if="!isMobile" /> -->
+  </teleport>
+
+  <!-- 2 — Smooth-scroll container keeps everything else -->
+  <main id="main" ref="mainRef" data-scroll-container class="main">
     <Transition name="lang" mode="out-in" @after-enter="onLangEnter">
-      <!-- key forces a remount on every language change -->
-      <div :key="viewLang" class=" w-full">
+      <div :key="viewLang" class="w-full">
         <slot />
         <CustomCursor v-if="!isMobile" />
       </div>
     </Transition>
-
-
   </main>
 </template>
+
 
 <style scoped lang="scss">
 .main {
@@ -127,13 +132,19 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // gap: 8rem;
-  overflow: hidden;
   z-index: 10;
-  will-change: transform; // optional, for smoother GPU handling
-
-  // background: #333333;
   background-color: #141414;
+  will-change: transform;
+
+  // Prevent broken mobile experience
+  overflow: auto; // default fallback
+  // height: 100svh;
+
+  // When LocoScroll is enabled
+  html.has-scroll-smooth & {
+
+    // overflow: hidden;
+  }
 
   @include screens.laptop {
     // gap: 16rem;

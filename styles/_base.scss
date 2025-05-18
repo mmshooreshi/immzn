@@ -1,16 +1,19 @@
-html, body {
-  height: 100%;
-  overflow: hidden; // Important: prevent native scroll
-}
 
-
-html.has-scroll-smooth {
+html.has-scroll-smooth,
+html.has-scroll-smooth body {
   overflow: hidden;
 }
+/* keep horizontal overflow out of view */
+html, body { overflow-x:hidden; }
 
-html.has-scroll-dragging {
-  user-select: none;
+input,
+textarea,
+button,
+select,
+a, * {
+    -webkit-tap-highlight-color: transparent;
 }
+
 
 body {
   background-color: variables.$dark;
@@ -21,15 +24,18 @@ body {
 
   @include screens.laptop {
     font-size: 1rem;
-
     // Required for locomotive-scroll
-    overflow: hidden;
+    // overflow: hidden;
   }
 }
 
 // Scroll bar styles
 .c-scrollbar {
   opacity: 1 !important;
+
+  position: fixed !important;   // was absolute
+  right: 0;
+  top: 0;
 
   /* stylelint-disable-next-line selector-class-pattern */
   .c-scrollbar_thumb {
@@ -48,7 +54,9 @@ body {
     }
   }
 }
-
+[data-scroll-container] .c-scrollbar {  /* optional fallback */
+  transform: translateZ(0);            // keep GPU-friendly
+}
 /* globals.scss or app.vue style */
 html,
 body,

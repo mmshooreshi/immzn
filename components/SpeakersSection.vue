@@ -33,7 +33,7 @@
 
                 <img :src="`/images/people/${sp.id}.png`" :alt="`Portrait of ${sp.name}`"
                   class="group-hover:opacity-20 transition-all  object-cover w-64 h-64 lg:w-66 lg:h-66"
-                  :style="sp?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+                  :style="sp?.id === 'imgt' ? 'filter:  contrast(100%) brightness(50%)' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
                 <p class="absolute top-0 p-2 text-left z-100 min-h-12 overflow-hidden text-xs leading-5
            text-gray-200/80  opacity-0 z-100 
            group-hover:opacity-100 group-hover:text-teal-300
@@ -62,20 +62,25 @@
       </div> <!-- Speaker modal -->
 
       <Modal :open="isOpen" @close="isOpen = false">
-        <div class="text-white  flex flex-col items-center"
+        <div class="text-white flex flex-col items-center"
           :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
           <img :src="`/images/people/${selected.id}.png`" alt="" class="rounded-2xl w-48 h-48 object-cover mx-auto"
-            :style="selected?.id === 'imgt' ? '' : 'filter: grayscale(100%) contrast(100%) brightness(80%)'" />
+            :style="selected?.id === 'imgt' ? 'filter:  contrast(100%) brightness(90%)' : 'filter: grayscale(50%) contrast(100%) brightness(80%)'" />
 
           <div class="flex flex-row items-center mt-4">
             <Icon v-if="selected?.id === 'imgt'" class="w-8 text-[#b9ffcc] h-6" name="charm:north-star" />
             <Icon v-else class="w-8 text-[#b9ffcc] h-6" name="fluent:person-star-28-filled" />
             <h2 class="text-xl font-bold">{{ selected.name }}</h2>
           </div>
-          <p class="text-teal-400 text-sm pt-2 mt-2 border-t border-t-solid border-t-gray/10 w-full">{{ selected.title
+          <p class=" text-teal-400 text-xs md:text-sm pt-2 mt-2 border-t border-t-solid border-t-gray/10 w-full">
+            {{
+              selected.title
             }}</p>
           <p class="text-gray-400 text-xs  w-full">{{ selected.affiliation }}</p>
-          <p class="text-white/60 max-h-[200px] overflow-y-auto text-sm whitespace-pre-line mt-8">{{ selected.brief }}
+          <p
+            class="text-white/60 text-xs md:text-sm max-h-[100px] overflow-y-auto overflow-x-hidden text-sm whitespace-pre-line mt-8">
+            {{
+              selected.brief }}
           </p>
           <div class="flex justify-center gap-4 mt-4">
 
