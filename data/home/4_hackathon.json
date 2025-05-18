@@ -52,8 +52,12 @@
   "schedule": {
     "day_of_dialogue": {
       "headline": {
-        "en": "Day of Dialogue · 8 July 2025 (17 تیر 1404)",
-        "fa": "روز گفت‌وگو · ۱۷ تیر ۱۴۰۴"
+        "en": "Day of Dialogue",
+        "fa": "روز گفت‌وگو"
+      },
+      "date": {
+        "en": "8 July 2025",
+        "fa": "۱۷ تیر ۱۴۰۴"
       },
       "slots": [
         {

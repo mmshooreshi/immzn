@@ -14,11 +14,12 @@ const dialogue = computed(() => props.data.schedule?.day_of_dialogue);
       <!-- Dialogue Day headline -->
       <h3 class="text-xl font-semibold text-indigo-600 dark:text-indigo-300 mb-4" v-if="dialogue">
         {{ dialogue.headline }}
+        <small>{{ dialogue.date }}</small>
+
       </h3>
       <ul class="space-y-6">
         <li v-for="slot in dialogue.slots" :key="slot.time" class="flex flex-col sm:flex-row sm:items-start">
           <div class="w-32 shrink-0 text-sm font-mono text-indigo-600 dark:text-indigo-300">
-            {{ slot }}
             {{ slot.time }}
           </div>
           <p class="text-gray-800 dark:text-gray-200 sm:ml-4">{{ slot }}</p>
