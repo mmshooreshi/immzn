@@ -6,7 +6,7 @@ const props = defineProps({ data: Object });
 const dialogue = computed(() => props.data.schedule?.day_of_dialogue);
 </script>
 <template>
-  <section class="py-12 lg:py-20 dark:bg-gray-900">
+  <section class="py-12 lg:py-20 dark:bg-[#141414] bg-[#eef2ff] ">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
         {{ props.data.headline ?? 'Program' }}

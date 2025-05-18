@@ -115,32 +115,39 @@ useHead({
 
 
     <ProgramSection :data="localizedData.hackathon" />
-    <hr />
+    <hr class="border-gray-200 dark:border-gray-800" />
+
     <EssentialsSection :data="{
       headline: localizedData.resources.headline,
       sections: [
-        { title: localizedData.resources.headline, items: localizedData.resources.items },
+        { title: localizedData.resources.headline, items: localizedData.resources.sections },
         { title: localizedData.logistics.headline, items: localizedData.logistics.items }
       ]
     }" />
-    <hr />
+    <hr class="border-gray-200 dark:border-gray-800" />
+
     <TeamPartnersSection :data="{
-      headline: localizedData.committee.headline,
+      headline1: localizedData.committee.headline,
+      headline2: localizedData.sponsors.headline,
       committee: localizedData.committee.members,
       sponsors: localizedData.sponsors.list
     }" />
-    <hr />
-    <!-- <RegisterSection :data="{
+    <hr class="border-gray-200 dark:border-gray-800" />
+
+    <RegisterSection :data="{
       headline: localizedData.register.headline,
       ctaText: localizedData.register.ctaText,
+      ctaTitle: localizedData.register.ctaTitle,
       link: localizedData.register.link
-    }" /> -->
-    <hr />
+    }" />
+    <hr class="border-gray-200 dark:border-gray-800" />
+
     <FAQSection :data="{
       headline: localizedData.faq.headline,
-      faq: localizedData.faq.items
+      faq: localizedData.faq.entries ?? localizedData.faq.items
     }" />
-    <hr />
+    <hr class="border-gray-200 dark:border-gray-800" />
+
     <ContactSection :data="{
       headline: localizedData.contact.headline,
       contact: localizedData.contact.items,
