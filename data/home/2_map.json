@@ -1,337 +1,337 @@
 {
-    "headline": {
-        "en": "Venue & Access",
-        "fa": "محل و دسترسی"
+  "headline": {
+    "en": "Venue & Access",
+    "fa": "محل و دسترسی"
+  },
+  "address": {
+    "en": "Institute for Research in Fundamental Sciences (IPM), No. 70, Corner of Shahid Farbin Alley, Shahid Lavasani St, Tehran, Iran",
+    "fa": "ایران، تهران، خیابان شهید لواسانی (فرمانیه)، نبش کوچه فربین، پلاک ۷۰، پژوهشگاه دانش‌های بنیادی (IPM)"
+  },
+  "mapConfig": {
+    "styles": [
+      {
+        "id": "streets",
+        "title": {
+          "en": "Streets",
+          "fa": "نقشه Streets"
+        },
+        "url": "mapbox://styles/mapbox/streets-v11"
+      },
+      {
+        "id": "satellite",
+        "title": {
+          "en": "Satellite Streets",
+          "fa": "ماهواره"
+        },
+        "url": "mapbox://styles/mapbox/satellite-streets-v11"
+      }
+    ],
+    "defaultStyle": "streets",
+    "center": [
+      51.4628416581408,
+      35.80095487229376
+    ],
+    "zoom": 13,
+    "controls": {
+      "navigation": true,
+      "scale": true,
+      "geolocate": true
+    }
+  },
+  "marker": {
+    "coords": [
+      51.4628416581408,
+      35.80095487229376
+    ],
+    "popupHtml": {
+      "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
+      "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
     },
-    "address": {
-        "en": "Institute for Research in Fundamental Sciences (IPM), No. 70, Corner of Shahid Farbin Alley, Shahid Lavasani St, Tehran, Iran",
-        "fa": "ایران، تهران، خیابان شهید لواسانی (فرمانیه)، نبش کوچه فربین، پلاک ۷۰، پژوهشگاه دانش‌های بنیادی (IPM)"
-    },
-    "mapConfig": {
-        "styles": [
-            {
-                "id": "streets",
-                "title": {
-                    "en": "Streets",
-                    "fa": "نقشه Streets"
-                },
-                "url": "mapbox://styles/mapbox/streets-v11"
-            },
-            {
-                "id": "satellite",
-                "title": {
-                    "en": "Satellite Streets",
-                    "fa": "ماهواره"
-                },
-                "url": "mapbox://styles/mapbox/satellite-streets-v11"
-            }
+    "svg": "/icons/ipm.svg"
+  },
+  "routes": [
+    {
+      "id": "route_aghdasieh_metro",
+      "type": "metro",
+      "origin": [
+        51.48344693717809,
+        35.801211328594675
+      ],
+      "originPopupHtml": {
+        "en": "<strong>Aghdasieh Metro Station</strong>",
+        "fa": "ایستگاه مترو اقدسیه"
+      },
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "destinationsvg": "/icons/ipm.svg",
+      "color": "#6f42c1",
+      "description": {
+        "en": "Metro route from Aghdasieh Station to IPM",
+        "fa": "مسیر مترو از ایستگاه اقدسیه تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Board Line 1 southbound at Aghdasieh Metro Station.",
+          "Alight at Tajrish Metro Station.",
+          "Walk 500 m southeast to IPM entrance."
         ],
-        "defaultStyle": "streets",
-        "center": [
-            51.4628416581408,
-            35.80095487229376
-        ],
-        "zoom": 13,
-        "controls": {
-            "navigation": true,
-            "scale": true,
-            "geolocate": true
-        }
+        "fa": [
+          "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه اقدسیه.",
+          "پیاده شوید در ایستگاه مترو تجریش.",
+          "۵۰۰ متر پیاده تا ورودی IPM."
+        ]
+      }
     },
-    "marker": {
-        "coords": [
-            51.4628416581408,
-            35.80095487229376
+    {
+      "id": "route_nobonyad_metro",
+      "type": "metro",
+      "origin": [
+        51.4796502437746,
+        35.792209747410425
+      ],
+      "originPopupHtml": {
+        "en": "<strong>Nobonyad Metro Station</strong>",
+        "fa": "ایستگاه مترو نوبنیاد"
+      },
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "destinationsvg": "/icons/ipm.svg",
+      "color": "#6f42c1",
+      "description": {
+        "en": "Metro route from Nobonyad Station to IPM",
+        "fa": "مسیر مترو از ایستگاه نوبنیاد تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Board Line 1 southbound at Nobonyad Metro Station.",
+          "Alight at Tajrish Metro Station.",
+          "Walk 500 m southeast to IPM entrance."
         ],
-        "popupHtml": {
-            "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
-            "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
-        },
-        "svg": "/icons/ipm.svg"
+        "fa": [
+          "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه نوبنیاد.",
+          "پیاده شوید در ایستگاه مترو تجریش.",
+          "۵۰۰ متر پیاده تا ورودی IPM."
+        ]
+      }
     },
-    "routes": [
-        {
-            "id": "route_aghdasieh_metro",
-            "type": "metro",
-            "origin": [
-                51.48344693717809,
-                35.801211328594675
-            ],
-            "originPopupHtml": {
-                "en": "<strong>Aghdasieh Metro Station</strong>",
-                "fa": "ایستگاه مترو اقدسیه"
-            },
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "destinationsvg": "/icons/ipm.svg",
-            "color": "#6f42c1",
-            "description": {
-                "en": "Metro route from Aghdasieh Station to IPM",
-                "fa": "مسیر مترو از ایستگاه اقدسیه تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Board Line 1 southbound at Aghdasieh Metro Station.",
-                    "Alight at Tajrish Metro Station.",
-                    "Walk 500 m southeast to IPM entrance."
-                ],
-                "fa": [
-                    "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه اقدسیه.",
-                    "پیاده شوید در ایستگاه مترو تجریش.",
-                    "۵۰۰ متر پیاده تا ورودی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_nobonyad_metro",
-            "type": "metro",
-            "origin": [
-                51.4796502437746,
-                35.792209747410425
-            ],
-            "originPopupHtml": {
-                "en": "<strong>Nobonyad Metro Station</strong>",
-                "fa": "ایستگاه مترو نوبنیاد"
-            },
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "destinationsvg": "/icons/ipm.svg",
-            "color": "#6f42c1",
-            "description": {
-                "en": "Metro route from Nobonyad Station to IPM",
-                "fa": "مسیر مترو از ایستگاه نوبنیاد تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Board Line 1 southbound at Nobonyad Metro Station.",
-                    "Alight at Tajrish Metro Station.",
-                    "Walk 500 m southeast to IPM entrance."
-                ],
-                "fa": [
-                    "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه نوبنیاد.",
-                    "پیاده شوید در ایستگاه مترو تجریش.",
-                    "۵۰۰ متر پیاده تا ورودی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_gheitariyeh_metro",
-            "type": "metro",
-            "origin": [
-                51.43542870688529,
-                35.79495109327439
-            ],
-            "originPopupHtml": {
-                "en": "<strong>Gheitariyeh Metro Station</strong>",
-                "fa": "ایستگاه مترو قیطریه"
-            },
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "destinationsvg": "/icons/ipm.svg",
-            "color": "#6f42c1",
-            "description": {
-                "en": "Metro route from Gheitariyeh Station to IPM",
-                "fa": "مسیر مترو از ایستگاه قیطریه تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Board Line 1 southbound at Gheitariyeh Metro Station.",
-                    "Alight at Tajrish Metro Station.",
-                    "Walk 500 m southeast to IPM entrance."
-                ],
-                "fa": [
-                    "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه قیطریه.",
-                    "پیاده شوید در ایستگاه مترو تجریش.",
-                    "۵۰۰ متر پیاده تا ورودی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_tajrish_metro",
-            "type": "metro",
-            "origin": [
-                51.4336262625522,
-                35.80546280471999
-            ],
-            "originPopupHtml": {
-                "en": "<strong>Tajrish Metro Station</strong>",
-                "fa": "ایستگاه مترو تجریش"
-            },
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "destinationsvg": "/icons/ipm.svg",
-            "color": "#6f42c1",
-            "description": {
-                "en": "Metro route from Tajrish Station to IPM",
-                "fa": "مسیر مترو از ایستگاه تجریش تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Exit Tajrish Metro Station north gate.",
-                    "Walk 500 m southeast to IPM entrance."
-                ],
-                "fa": [
-                    "از خروجی شمالی ایستگاه تجریش خارج شوید.",
-                    "۵۰۰ متر پیاده تا ورودی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_bike",
-            "type": "bike",
-            "origin": [
-                51.39261,
-                35.699967
-            ],
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "color": "#ffc107",
-            "description": {
-                "en": "Cycling route from Head Office to IPM",
-                "fa": "مسیر دوچرخه‌سواری از دفتر مرکزی تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Cycle to the dedicated bike lane on Fath St.",
-                    "Enter Shahid Lavasani bike path.",
-                    "Park at IPM bike racks."
-                ],
-                "fa": [
-                    "دوچرخه‌سواری به مسیر دوچرخه خیابان فتح.",
-                    "ورود به مسیر دوچرخه شهید لواسانی.",
-                    "پارک در جایگاه دوچرخه IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_brt",
-            "type": "brt",
-            "origin": [
-                51.4336262625522,
-                35.80546280471999
-            ],
-            "originPopupHtml": {
-                "en": "<strong>Tajrish BRT Station</strong>",
-                "fa": "ایستگاه بی‌آر‌تی تجریش"
-            },
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "color": "#17a2b8",
-            "description": {
-                "en": "BRT route from Tajrish to IPM",
-                "fa": "مسیر بی‌آر‌تی از تجریش تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Board BRT Line 1 at Tajrish BRT Station.",
-                    "Alight at Shahid Lavasani BRT stop.",
-                    "Walk 200 m east to IPM entrance."
-                ],
-                "fa": [
-                    "سوار بی‌آر‌تی خط ۱ در تجریش.",
-                    "پیاده شوید در ایستگاه بی‌آر‌تی شهید لواسانی.",
-                    "۲۰۰ متر پیاده به سمت شرق تا ورودی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_drive",
-            "type": "drive",
-            "origin": [
-                51.39261,
-                35.699967
-            ],
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "color": "#007cbf",
-            "description": {
-                "en": "Driving route from Head Office to IPM",
-                "fa": "مسیر رانندگی از دفتر مرکزی تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Head southeast on South Karegar St.",
-                    "Merge onto Fath Highway to Shahid Lavasani exit.",
-                    "Continue to IPM main entrance."
-                ],
-                "fa": [
-                    "از دفتر مرکزی به سمت جنوب‌شرق خیابان کارگر جنوبی بروید.",
-                    "ورود به بزرگراه فتح تا خروجی شهید لواسانی.",
-                    "ادامه مسیر تا ورودی اصلی IPM."
-                ]
-            }
-        },
-        {
-            "id": "route_walk",
-            "type": "walk",
-            "origin": [
-                51.39261,
-                35.699967
-            ],
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "color": "#28a745",
-            "description": {
-                "en": "Walking route from Head Office to IPM",
-                "fa": "مسیر پیاده‌روی از دفتر مرکزی تا IPM"
-            },
-            "steps": {
-                "en": [
-                    "Follow Enghelab pedestrian path.",
-                    "Pass under Shahid Lavasani underpass.",
-                    "Arrive at IPM main gate."
-                ],
-                "fa": [
-                    "از مسیر پیاده‌رو انقلاب بروید.",
-                    "از زیرگذر شهید لواسانی عبور کنید.",
-                    "به دروازه اصلی IPM برسید."
-                ]
-            }
-        },
-        {
-            "id": "route_wheelchair",
-            "type": "accessibility",
-            "origin": [
-                51.39261,
-                35.699967
-            ],
-            "destination": [
-                51.4628416581408,
-                35.80095487229376
-            ],
-            "color": "#e83e8c",
-            "description": {
-                "en": "Fully accessible wheelchair route",
-                "fa": "مسیر بدون مانع مناسب ویلچر"
-            },
-            "steps": {
-                "en": [
-                    "Use Enghelab ramp from Head Office.",
-                    "Take underpass ramp beneath Shahid Lavasani.",
-                    "Enter IPM via south ramp."
-                ],
-                "fa": [
-                    "استفاده از رمپ انقلاب از دفتر مرکزی.",
-                    "رمپ زیرگذر زیر شهید لواسانی.",
-                    "ورود به IPM از رمپ جنوبی."
-                ]
-            }
-        }
-    ]
+    {
+      "id": "route_gheitariyeh_metro",
+      "type": "metro",
+      "origin": [
+        51.43542870688529,
+        35.79495109327439
+      ],
+      "originPopupHtml": {
+        "en": "<strong>Gheitariyeh Metro Station</strong>",
+        "fa": "ایستگاه مترو قیطریه"
+      },
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "destinationsvg": "/icons/ipm.svg",
+      "color": "#6f42c1",
+      "description": {
+        "en": "Metro route from Gheitariyeh Station to IPM",
+        "fa": "مسیر مترو از ایستگاه قیطریه تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Board Line 1 southbound at Gheitariyeh Metro Station.",
+          "Alight at Tajrish Metro Station.",
+          "Walk 500 m southeast to IPM entrance."
+        ],
+        "fa": [
+          "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه قیطریه.",
+          "پیاده شوید در ایستگاه مترو تجریش.",
+          "۵۰۰ متر پیاده تا ورودی IPM."
+        ]
+      }
+    },
+    {
+      "id": "route_tajrish_metro",
+      "type": "metro",
+      "origin": [
+        51.4336262625522,
+        35.80546280471999
+      ],
+      "originPopupHtml": {
+        "en": "<strong>Tajrish Metro Station</strong>",
+        "fa": "ایستگاه مترو تجریش"
+      },
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "destinationsvg": "/icons/ipm.svg",
+      "color": "#6f42c1",
+      "description": {
+        "en": "Metro route from Tajrish Station to IPM",
+        "fa": "مسیر مترو از ایستگاه تجریش تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Exit Tajrish Metro Station north gate.",
+          "Walk 500 m southeast to IPM entrance."
+        ],
+        "fa": [
+          "از خروجی شمالی ایستگاه تجریش خارج شوید.",
+          "۵۰۰ متر پیاده تا ورودی IPM."
+        ]
+      }
+    },
+    {
+      "id": "route_bike",
+      "type": "bike",
+      "origin": [
+        51.39261,
+        35.699967
+      ],
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "color": "#ffc107",
+      "description": {
+        "en": "Cycling route from Head Office to IPM",
+        "fa": "مسیر دوچرخه‌سواری از دفتر مرکزی تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Cycle to the dedicated bike lane on Fath St.",
+          "Enter Shahid Lavasani bike path.",
+          "Park at IPM bike racks."
+        ],
+        "fa": [
+          "دوچرخه‌سواری به مسیر دوچرخه خیابان فتح.",
+          "ورود به مسیر دوچرخه شهید لواسانی.",
+          "پارک در جایگاه دوچرخه IPM."
+        ]
+      }
+    },
+    {
+      "id": "route_brt",
+      "type": "brt",
+      "origin": [
+        "51.5336262625522",
+        35.80546280471999
+      ],
+      "originPopupHtml": {
+        "en": "<strong>Tajrish BRT Station</strong>",
+        "fa": "ایستگاه بی‌آر‌تی تجریش"
+      },
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "color": "#17a2b8",
+      "description": {
+        "en": "BRT route from Tajrish to IPM",
+        "fa": "مسیر بی‌آر‌تی از تجریش تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Board BRT Line 1 at Tajrish BRT Station.",
+          "Alight at Shahid Lavasani BRT stop.",
+          "Walk 200 m east to IPM entrance."
+        ],
+        "fa": [
+          "سوار بی‌آر‌تی خط ۱ در تجریش.",
+          "پیاده شوید در ایستگاه بی‌آر‌تی شهید لواسانی.",
+          "۲۰۰ متر پیاده به سمت شرق تا ورودی IPM."
+        ]
+      }
+    },
+    {
+      "id": "route_drive",
+      "type": "drive",
+      "origin": [
+        51.39261,
+        35.699967
+      ],
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "color": "#007cbf",
+      "description": {
+        "en": "Driving route from Head Office to IPM",
+        "fa": "مسیر رانندگی از دفتر مرکزی تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Head southeast on South Karegar St.",
+          "Merge onto Fath Highway to Shahid Lavasani exit.",
+          "Continue to IPM main entrance."
+        ],
+        "fa": [
+          "از دفتر مرکزی به سمت جنوب‌شرق خیابان کارگر جنوبی بروید.",
+          "ورود به بزرگراه فتح تا خروجی شهید لواسانی.",
+          "ادامه مسیر تا ورودی اصلی IPM."
+        ]
+      }
+    },
+    {
+      "id": "route_walk",
+      "type": "walk",
+      "origin": [
+        51.39261,
+        35.699967
+      ],
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "color": "#28a745",
+      "description": {
+        "en": "Walking route from Head Office to IPM",
+        "fa": "مسیر پیاده‌روی از دفتر مرکزی تا IPM"
+      },
+      "steps": {
+        "en": [
+          "Follow Enghelab pedestrian path.",
+          "Pass under Shahid Lavasani underpass.",
+          "Arrive at IPM main gate."
+        ],
+        "fa": [
+          "از مسیر پیاده‌رو انقلاب بروید.",
+          "از زیرگذر شهید لواسانی عبور کنید.",
+          "به دروازه اصلی IPM برسید."
+        ]
+      }
+    },
+    {
+      "id": "route_wheelchair",
+      "type": "accessibility",
+      "origin": [
+        51.39261,
+        35.699967
+      ],
+      "destination": [
+        51.4628416581408,
+        35.80095487229376
+      ],
+      "color": "#e83e8c",
+      "description": {
+        "en": "Fully accessible wheelchair route",
+        "fa": "مسیر بدون مانع مناسب ویلچر"
+      },
+      "steps": {
+        "en": [
+          "Use Enghelab ramp from Head Office.",
+          "Take underpass ramp beneath Shahid Lavasani.",
+          "Enter IPM via south ramp."
+        ],
+        "fa": [
+          "استفاده از رمپ انقلاب از دفتر مرکزی.",
+          "رمپ زیرگذر زیر شهید لواسانی.",
+          "ورود به IPM از رمپ جنوبی."
+        ]
+      }
+    }
+  ]
 }
