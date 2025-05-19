@@ -1,0 +1,418 @@
+{
+  "id": "route_nobonyad_metro",
+  "type": "metro",
+  "origin": [
+    51.4796502437746,
+    35.792209747410425
+  ],
+  "originPopupHtml": {
+    "en": "<strong>Nobonyad Metro Station</strong>",
+    "fa": "ایستگاه مترو نوبنیاد"
+  },
+  "destination": [
+    51.4628416581408,
+    35.80095487229376
+  ],
+  "destinationsvg": "/icons/ipm.svg",
+  "color": "#6f42c1",
+  "description": {
+    "en": "Metro route from Nobonyad Station to IPM",
+    "fa": "مسیر مترو از ایستگاه نوبنیاد تا IPM"
+  },
+  "steps": {
+    "en": [
+      "Board Line 1 southbound at Nobonyad Metro Station.",
+      "Alight at Tajrish Metro Station.",
+      "Walk 500 m southeast to IPM entrance."
+    ],
+    "fa": [
+      "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه نوبنیاد.",
+      "پیاده شوید در ایستگاه مترو تجریش.",
+      "۵۰۰ متر پیاده تا ورودی IPM."
+    ]
+  },
+  "directions": [
+    {
+      "overview_polyline": {
+        "points": "ktmyE{reyHu@fDlB}EpD|ByBbGCrAfCtAhWxVjAdCpB`L`Az@vGhCe@hB}EzCaF`I_@BeGpScDiAwEmDiG|L|AjA@|@cKxCkGdDkFOec@qFhAeH"
+      },
+      "legs": [
+        {
+          "summary": "پاسداران - پاشا ظهری",
+          "distance": {
+            "value": 4275,
+            "text": "۴ کیلومتر"
+          },
+          "duration": {
+            "value": 802,
+            "text": "۱۳ دقیقه"
+          },
+          "steps": [
+            {
+              "name": "",
+              "instruction": "در جهتِ شمال غربی، قرار بگیرید",
+              "bearing_after": 296,
+              "type": "depart",
+              "distance": {
+                "value": 80,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 16,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "ktmyE{reyH{@rCCJ",
+              "start_location": [
+                51.479658,
+                35.792223
+              ]
+            },
+            {
+              "name": "",
+              "instruction": "به چپ بپیچید",
+              "bearing_after": 210,
+              "type": "turn",
+              "modifier": "left",
+              "distance": {
+                "value": 7,
+                "text": "۷ متر"
+              },
+              "duration": {
+                "value": 7,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "kvmyE{meyHDBBB",
+              "start_location": [
+                51.478863,
+                35.792538
+              ]
+            },
+            {
+              "name": "",
+              "instruction": "به چپ بپیچید",
+              "bearing_after": 115,
+              "type": "turn",
+              "modifier": "left",
+              "distance": {
+                "value": 119,
+                "text": "۱۲۵ متر"
+              },
+              "duration": {
+                "value": 16,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "avmyEsmeyHDMfAsDHOHEJE",
+              "start_location": [
+                51.478824,
+                35.792486
+              ]
+            },
+            {
+              "name": "لنگری",
+              "instruction": "به سمت لنگری، به راست بپیچید",
+              "bearing_after": 206,
+              "type": "turn",
+              "modifier": "right",
+              "distance": {
+                "value": 97,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 14,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "srmyEqteyHxC~A",
+              "start_location": [
+                51.479932,
+                35.791944
+              ]
+            },
+            {
+              "name": "لنگری",
+              "instruction": "در لنگری، به راست برانید",
+              "bearing_after": 226,
+              "type": "continue",
+              "modifier": "slight right",
+              "distance": {
+                "value": 171,
+                "text": "۱۷۵ متر"
+              },
+              "duration": {
+                "value": 26,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "ymmyEqqeyHV\\?PCJw@tBe@fAGJKPCHAJCR",
+              "start_location": [
+                51.479449,
+                35.791165
+              ]
+            },
+            {
+              "name": "پاسداران",
+              "instruction": "در میدان نوبنیاد، از خروجی اول، خارج شوید",
+              "rotaryName": "میدان نوبنیاد",
+              "bearing_after": 291,
+              "type": "rotary",
+              "modifier": "straight",
+              "exit": 1,
+              "distance": {
+                "value": 50,
+                "text": "۵۰ متر"
+              },
+              "duration": {
+                "value": 8,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "aqmyEogeyHAHAH?H@JBHDF?@FDFBF@H?",
+              "start_location": [
+                51.477838,
+                35.791686
+              ]
+            },
+            {
+              "name": "",
+              "instruction": "به مسیر خود ادامه دهید",
+              "bearing_after": 198,
+              "type": "exit rotary",
+              "modifier": "slight right",
+              "exit": 1,
+              "distance": {
+                "value": 1101,
+                "text": "۱ کیلومتر"
+              },
+              "duration": {
+                "value": 162,
+                "text": "۳ دقیقه"
+              },
+              "polyline": "womyEeeeyHf@Pv@l@lAhATTBDh@h@p@n@rAhAVT|AzAnBfBrCvCvB|Bl@x@\\jApAtIPl@L\\LPNJNNRLhAb@|D|ANF",
+              "start_location": [
+                51.47747,
+                35.79148
+              ]
+            },
+            {
+              "name": "عابدینی زاده",
+              "instruction": "به سمت عابدینی زاده، به راست بپیچید",
+              "bearing_after": 288,
+              "type": "turn",
+              "modifier": "right",
+              "distance": {
+                "value": 386,
+                "text": "۴۰۰ متر"
+              },
+              "duration": {
+                "value": 83,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "uclyE}scyHCLI^I\\M\\YXWNo@\\_@RQJ_Ah@IH[^i@v@EH_@r@uBjD",
+              "start_location": [
+                51.469587,
+                35.784433
+              ]
+            },
+            {
+              "name": "لطیفی",
+              "instruction": "",
+              "bearing_after": 23,
+              "type": "roundabout turn",
+              "modifier": "straight",
+              "exit": 1,
+              "distance": {
+                "value": 355,
+                "text": "۳۷۵ متر"
+              },
+              "duration": {
+                "value": 72,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "{rlyEuacyHGEG?IBEDCHAJ@HDH[v@M^w@hCi@~AOf@o@tB_@dA[`A",
+              "start_location": [
+                51.466674,
+                35.786855
+              ]
+            },
+            {
+              "name": "غلامرضایی راد",
+              "instruction": "به راست بپیچید و وارد غلامرضایی راد شوید",
+              "bearing_after": 15,
+              "type": "end of road",
+              "modifier": "right",
+              "distance": {
+                "value": 241,
+                "text": "۲۵۰ متر"
+              },
+              "duration": {
+                "value": 62,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "a|lyE_mbyHiA[OCiAi@_@SWOUQk@e@_@[}@u@",
+              "start_location": [
+                51.463361,
+                35.788331
+              ]
+            },
+            {
+              "name": "تسلیمی",
+              "instruction": "به چپ بپیچید و وارد تسلیمی شوید",
+              "bearing_after": 333,
+              "type": "end of road",
+              "modifier": "left",
+              "distance": {
+                "value": 16,
+                "text": "۱۶ متر"
+              },
+              "duration": {
+                "value": 8,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "}gmyEwtbyHYL",
+              "start_location": [
+                51.464602,
+                35.79023
+              ]
+            },
+            {
+              "name": "بختیاری",
+              "instruction": "به سمت بختیاری، به چپ بپیچید",
+              "bearing_after": 258,
+              "type": "turn",
+              "modifier": "left",
+              "distance": {
+                "value": 240,
+                "text": "۲۵۰ متر"
+              },
+              "duration": {
+                "value": 59,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "whmyEitbyHBH?HCLMTqB|DoBxD",
+              "start_location": [
+                51.464525,
+                35.790356
+              ]
+            },
+            {
+              "name": "دیباجی جنوبی",
+              "instruction": "به چپ بپیچید و وارد دیباجی جنوبی شوید",
+              "bearing_after": 212,
+              "type": "end of road",
+              "modifier": "left",
+              "distance": {
+                "value": 94,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 26,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "gpmyEyfbyH|AjADLBF@LANGH",
+              "start_location": [
+                51.462372,
+                35.791561
+              ]
+            },
+            {
+              "name": "جوزی",
+              "instruction": "به سمت جوزی، به راست برانید",
+              "bearing_after": 341,
+              "type": "turn",
+              "modifier": "slight right",
+              "distance": {
+                "value": 184,
+                "text": "۲۰۰ متر"
+              },
+              "duration": {
+                "value": 39,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "gmmyEobbyHg@L]Lg@L_AXoCr@",
+              "start_location": [
+                51.461684,
+                35.79108
+              ]
+            },
+            {
+              "name": "پاشا ظهری",
+              "instruction": "در پاشا ظهری به مسیر خود ادامه دهید",
+              "bearing_after": 337,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 995,
+                "text": "۱۰۰۰ متر"
+              },
+              "duration": {
+                "value": 285,
+                "text": "۵ دقیقه"
+              },
+              "polyline": "ewmyEw~ayHeA`@sAj@cAx@c@\\A@e@Pg@La@JQ@QAa@C{AQg@EqBU{ASyDe@mBWeC]{AOuBUg@G{AU_C[OAQCQE",
+              "start_location": [
+                51.461081,
+                35.792667
+              ]
+            },
+            {
+              "name": "لواسانی",
+              "instruction": "به سمت لواسانی، به راست بپیچید",
+              "bearing_after": 101,
+              "type": "turn",
+              "modifier": "right",
+              "distance": {
+                "value": 81,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 11,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "imoyEq`byH@UHy@P}A",
+              "start_location": [
+                51.461366,
+                35.801334
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "به سمت فربین، به راست برانید",
+              "bearing_after": 115,
+              "type": "turn",
+              "modifier": "slight right",
+              "distance": {
+                "value": 60,
+                "text": "۷۵ متر"
+              },
+              "duration": {
+                "value": 14,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "kloyE_fbyHb@_BFW",
+              "start_location": [
+                51.462239,
+                35.801182
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "در مقصد قرار دارید",
+              "bearing_after": 0,
+              "type": "arrive",
+              "distance": {
+                "value": 0,
+                "text": ""
+              },
+              "duration": {
+                "value": 0,
+                "text": ""
+              },
+              "polyline": "_koyEwibyH",
+              "start_location": [
+                51.462843,
+                35.800957
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

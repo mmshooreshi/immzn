@@ -1,25 +1,27 @@
 <!-- /pages/neshanmap.vue -->
 <template>
   <NuxtLayout name="page">
-    <DataEditorModal v-if="showModal" :data="data" @close="showModal = false" />
+    <!-- <DataEditorModal v-if="showModal" :data="data" @close="showModal = false" /> -->
 
     <div class="max-w-screen-lg mx-auto my-8">
       <!-- Tab selector -->
-      <div class="flex space-x-4 border-b mb-4">
+      <!-- <div class="flex space-x-4 border-b mb-4">
         <button v-for="tab in tabList" :key="tab.id" @click="activeTab = tab.id"
           :class="['px-4 py-2 -mb-px', activeTab === tab.id ? 'border-b-2 border-blue-600 font-semibold' : 'text-gray-600']">
           {{ tab.label }}
         </button>
-      </div>
+      </div> -->
 
       <!-- Map -->
       <client-only>
-        <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="visibleRoutes"
+        <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="[]"
           :initialCenter="initialCenter" :initialZoom="initialZoom" />
+        <!-- <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="visibleRoutes" -->
+        <!-- :initialCenter="initialCenter" :initialZoom="initialZoom" /> -->
       </client-only>
 
       <!-- JSON debug -->
-      <JsonViewer :data="{ markers: visibleMarkers, routes: visibleRoutes }" />
+      <!-- <JsonViewer :data="{ markers: visibleMarkers, routes: visibleRoutes }" /> -->
     </div>
   </NuxtLayout>
 </template>
@@ -52,19 +54,22 @@ const activeTab = ref('marker')
 const initialCenter = computed(() => data.value.mapConfig.center as [number, number])
 const initialZoom = computed(() => data.value.mapConfig.zoom)
 
-// derive visible markers & routes
 const visibleMarkers = computed(() => {
-  if (activeTab.value === 'marker') {
-    return [data.value.marker]
-  }
-  const route = data.value.routes.find(r => r.id === activeTab.value)
-  if (!route) return []
-  // show origin marker and IPM marker
+  // map every route to its origin marker
+  const routeMarkers = data.value.routes.map(route => ({
+    coords: route.origin as [number, number],
+    popupHtml: route.originPopupHtml,
+    svg: `/icons/${route.type}.svg`,
+    label: route.originPopupHtml,
+  }))
+
+  // add your existing IPM marker last
   return [
-    { coords: route.origin as [number, number], popupHtml: route.originPopupHtml, svg: '/icons/' + route.type + '.svg', label: route.originPopupHtml },
+    ...routeMarkers,
     data.value.marker
   ]
 })
+
 
 const visibleRoutes = computed(() => {
   if (activeTab.value === 'marker') return []

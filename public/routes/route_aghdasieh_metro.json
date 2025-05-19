@@ -1,0 +1,215 @@
+{
+  "id": "route_aghdasieh_metro",
+  "type": "metro",
+  "origin": [
+    51.48344693717809,
+    35.801211328594675
+  ],
+  "originPopupHtml": {
+    "en": "<strong>Aghdasieh Metro Station</strong>",
+    "fa": "ایستگاه مترو اقدسیه"
+  },
+  "destination": [
+    51.4628416581408,
+    35.80095487229376
+  ],
+  "destinationsvg": "/icons/ipm.svg",
+  "color": "#6f42c1",
+  "description": {
+    "en": "Metro route from Aghdasieh Station to IPM",
+    "fa": "مسیر مترو از ایستگاه اقدسیه تا IPM"
+  },
+  "steps": {
+    "en": [
+      "Board Line 1 southbound at Aghdasieh Metro Station.",
+      "Alight at Tajrish Metro Station.",
+      "Walk 500 m southeast to IPM entrance."
+    ],
+    "fa": [
+      "سوار قطار خط ۱ به سمت جنوب شوید در ایستگاه اقدسیه.",
+      "پیاده شوید در ایستگاه مترو تجریش.",
+      "۵۰۰ متر پیاده تا ورودی IPM."
+    ]
+  },
+  "directions": [
+    {
+      "overview_polyline": {
+        "points": "amoyEgifyHxB`AAhBzCvJ`AzHzBxXKxC{MhkAFPPIP}Aj@wB"
+      },
+      "legs": [
+        {
+          "summary": "جهانبخش نژاد - لواسانی",
+          "distance": {
+            "value": 2171,
+            "text": "۲ کیلومتر"
+          },
+          "duration": {
+            "value": 734,
+            "text": "۱۲ دقیقه"
+          },
+          "steps": [
+            {
+              "name": "مسجد جامع",
+              "instruction": "در جهت جنوب غربی در مسجد جامع قرار بگیرید",
+              "bearing_after": 204,
+              "type": "depart",
+              "modifier": "left",
+              "distance": {
+                "value": 74,
+                "text": "۷۵ متر"
+              },
+              "duration": {
+                "value": 16,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "amoyEgifyH`Ab@v@\\",
+              "start_location": [
+                51.483242,
+                35.801286
+              ]
+            },
+            {
+              "name": "موحد دانش (اقدسیه)",
+              "instruction": "به راست بپیچید و وارد موحد دانش (اقدسیه) شوید",
+              "bearing_after": 270,
+              "type": "end of road",
+              "modifier": "right",
+              "distance": {
+                "value": 48,
+                "text": "۴۸ متر"
+              },
+              "duration": {
+                "value": 10,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "gioyEegfyHAX?F?fA",
+              "start_location": [
+                51.482905,
+                35.800683
+              ]
+            },
+            {
+              "name": "بدیعی",
+              "instruction": "به سمت بدیعی، به چپ برانید",
+              "bearing_after": 237,
+              "type": "turn",
+              "modifier": "slight left",
+              "distance": {
+                "value": 283,
+                "text": "۳۰۰ متر"
+              },
+              "duration": {
+                "value": 55,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "iioyE{cfyH^|@Nd@Z~@V`A\\dAXjAF`@D\\Dd@DXF\\Hf@",
+              "start_location": [
+                51.482379,
+                35.800685
+              ]
+            },
+            {
+              "name": "جهانبخش نژاد",
+              "instruction": "در جهانبخش نژاد به مسیر خود ادامه دهید",
+              "bearing_after": 255,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 435,
+                "text": "۴۵۰ متر"
+              },
+              "duration": {
+                "value": 199,
+                "text": "۳ دقیقه"
+              },
+              "polyline": "acoyE}qeyHD`@NrAJdAHz@d@tFBR`@dFLzAF`A@F@`@",
+              "start_location": [
+                51.479512,
+                35.79969
+              ]
+            },
+            {
+              "name": "لواسانی",
+              "instruction": "در لواسانی به مسیر خود ادامه دهید",
+              "bearing_after": 268,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 1204,
+                "text": "۱ کیلومتر"
+              },
+              "duration": {
+                "value": 520,
+                "text": "۹ دقیقه"
+              },
+              "polyline": "o~nyEmtdyH?`@Aj@IjAEb@]|CIn@]jCKr@MjASbB?He@xDc@hEOjAi@hFw@bHCPWzBGh@MhAY|B_@vCQbBS~AEb@M~@",
+              "start_location": [
+                51.474785,
+                35.798961
+              ]
+            },
+            {
+              "name": "لواسانی",
+              "instruction": "در لواسانی، دور بزنید",
+              "bearing_after": 196,
+              "type": "continue",
+              "modifier": "uturn",
+              "distance": {
+                "value": 67,
+                "text": "۷۵ متر"
+              },
+              "duration": {
+                "value": 21,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "wmoyEicbyH@D?B@DB@B@B?BA@ABGP}A",
+              "start_location": [
+                51.461814,
+                35.801395
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "به سمت فربین، به راست برانید",
+              "bearing_after": 115,
+              "type": "turn",
+              "modifier": "slight right",
+              "distance": {
+                "value": 60,
+                "text": "۷۵ متر"
+              },
+              "duration": {
+                "value": 14,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "kloyE_fbyHb@_BFW",
+              "start_location": [
+                51.462239,
+                35.801182
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "در مقصد قرار دارید",
+              "bearing_after": 0,
+              "type": "arrive",
+              "distance": {
+                "value": 0,
+                "text": ""
+              },
+              "duration": {
+                "value": 0,
+                "text": ""
+              },
+              "polyline": "_koyEwibyH",
+              "start_location": [
+                51.462843,
+                35.800957
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

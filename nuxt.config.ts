@@ -73,11 +73,13 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // server-only values
     githubToken: process.env.GITHUB_TOKEN,
+
     spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
     spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
     spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN || '',
 
     public: {
+      neshanPublicToken: process.env.NESHAN_PUBLIC_API_KEY,
       // exposed to both server & client
       githubOwner: process.env.GITHUB_OWNER,
       githubRepo: process.env.GITHUB_REPO,

@@ -14,6 +14,12 @@ import FAQSection from '~/components/FAQSection.vue'
 import ContactSection from '~/components/ContactSection.vue'
 // import Map from '~/components/Map.vue'
 import Mapbx from '~/components/Mapbx.vue'
+import SimpleNeshanMap from '~/components/SimpleNeshanMap.client.vue'
+import { useRuntimeConfig } from '#imports';
+
+const config = useRuntimeConfig();
+
+const apiKey = config.public.neshanPublicToken
 
 
 import { useSettings } from '~/composables/useSettings'
@@ -21,6 +27,27 @@ import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
 const { localizedData, loading } = storeToRefs(useDataStore())
 const { language } = useSettings()
+
+
+const initialCenter = computed(() => localizedData.value.map.mapConfig.center as [number, number])
+const initialZoom = computed(() => localizedData.value.map.mapConfig.zoom)
+const activeTab = ref('marker')
+
+const visibleMarkers = computed(() => {
+  // map every route to its origin marker
+  const routeMarkers = localizedData.value.map.routes.map(route => ({
+    coords: route.origin as [number, number],
+    popupHtml: route.originPopupHtml,
+    svg: `/icons/${route.type}.svg`,
+    label: route.originPopupHtml,
+  }))
+
+  // add your existing IPM marker last
+  return [
+    ...routeMarkers,
+    localizedData.value.map.marker
+  ]
+})
 
 
 // import { useLocalizedData } from '~/composables/useLocalizedData'
@@ -144,6 +171,15 @@ useHead({
         zoom: 5 // starting zoom
       }" />
     </div> -->
+
+    <div class="max-w-screen-lg mx-auto my-8">
+      <client-only>
+        <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="[]"
+          :initialCenter="initialCenter" :initialZoom="initialZoom" />
+      </client-only>
+
+    </div>
+
 
     <RegisterSection :data="{
       headline: localizedData.register.headline,

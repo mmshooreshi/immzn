@@ -1,16 +1,34 @@
-// components/SimpleNeshanMap.client.vue
+<!-- // components/SimpleNeshanMap.client.vue -->
 <template>
-  <div class="w-full h-[60vh]">
+  <div class="w-[100vw] left-[0vw] right-[0vw] h-[60vh] rounded-xl overflow-hidden">
+
     <component v-if="MapComponent && mapTypes && nmp" :is="MapComponent" :options="mapOptions"
       :map-setter="handleMap" />
+
+    <!-- {{ routes }} -->
+    <!-- {{ props.markers }} -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps, computed, onMounted } from 'vue'
 import type { Feature, Geometry } from 'geojson'
+import '@neshan-maps-platform/mapbox-gl-vue/dist/style.css'
 import('@neshan-maps-platform/mapbox-gl-vue')
 import('@neshan-maps-platform/mapbox-gl')
+import { useMapRoutes } from '@/composables/useMapRoutes'
+const routeFiles = [
+  '/routes/route_aghdasieh_metro.json',
+  '/routes/route_nobonyad_metro.json',
+  '/routes/route_gheitariyeh_metro.json',
+  '/routes/route_tajrish_metro.json',
+  '/routes/route_bike.json',
+  '/routes/route_brt.json',
+  '/routes/route_drive.json',
+  '/routes/route_walk.json',
+  '/routes/route_wheelchair.json',
+]
+const { routes, loading, error } = useMapRoutes(routeFiles)
 
 interface MarkerDef {
   coords: [number, number]
@@ -67,7 +85,60 @@ function icon(url: string, label: string) {
   return wrapper
 }
 
+
 function handleMap(map: any) {
+  console.log(props.markers)
+  props.markers.forEach(def => {
+    const popup = new nmp.value.Popup({ offset: 25 }).setHTML(def.popupHtml)
+    const marker = new nmp.value.Marker({ element: icon(def.svg, def.label) })
+      .setLngLat(def.coords)
+      .setPopup(popup)
+      .addTo(map)
+  })
+  // wait until the composable has loaded them
+  if (loading.value) {
+    map.once('idle', () => handleMap(map))
+    return
+  }
+  if (error.value) {
+    console.error(error.value)
+    return
+  }
+
+  // add each decoded route as its own GeoJSON source + layer
+  routes.value.forEach(r => {
+    // source
+    console.log(r.id)
+    // if (r.id == )
+    map.addSource(r.id, {
+      type: 'geojson',
+      data: r.geojson
+    })
+    // layer
+    map.addLayer({
+      id: `line-${r.id}`,
+      type: 'line',
+      source: r.id,
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': r.color,
+        'line-width': 4
+      }
+    })
+
+    // a start‐marker
+    new nmp.value
+      .Marker({ color: r.color })
+      .setLngLat(r.origin)
+      .setPopup(new nmp.value.Popup({ offset: 25 }).setHTML(r.popupHtml))
+      .addTo(map)
+  })
+}
+
+function handleMapPrev(map: any) {
   const overview = { center: center.value, zoom: zoom.value, speed: 1.4, curve: 1.4 }
 
   // add markers
@@ -269,8 +340,8 @@ body {
 /* sleek close button */
 .mapboxgl-popup-close-button {
   position: absolute;
-  top: 0.1rem;
-  right: 0.1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   width: 1.5rem;
   height: 1.5rem;
   padding-top: 2px;

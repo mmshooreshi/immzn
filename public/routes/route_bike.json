@@ -1,0 +1,452 @@
+{
+  "id": "route_bike",
+  "type": "bike",
+  "origin": [
+    51.39261,
+    35.699967
+  ],
+  "destination": [
+    51.4628416581408,
+    35.80095487229376
+  ],
+  "color": "#ffc107",
+  "description": {
+    "en": "Cycling route from Head Office to IPM",
+    "fa": "مسیر دوچرخه‌سواری از دفتر مرکزی تا IPM"
+  },
+  "steps": {
+    "en": [
+      "Cycle to the dedicated bike lane on Fath St.",
+      "Enter Shahid Lavasani bike path.",
+      "Park at IPM bike racks."
+    ],
+    "fa": [
+      "دوچرخه‌سواری به مسیر دوچرخه خیابان فتح.",
+      "ورود به مسیر دوچرخه شهید لواسانی.",
+      "پارک در جایگاه دوچرخه IPM."
+    ]
+  },
+  "directions": [
+    {
+      "overview_polyline": {
+        "points": "ys{xEyrtxHcCtFyCixCytArGiAchAgTiGkmAjk@{z@yMw}A~Nm{@sJgu@gb@kWiDg^mi@wU{nAyb@meAtAuMsMdJkh@mGhAeH"
+      },
+      "legs": [
+        {
+          "summary": "بزرگراه مدرس - پل صدر",
+          "distance": {
+            "value": 17229,
+            "text": "۱۷ کیلومتر"
+          },
+          "duration": {
+            "value": 2409,
+            "text": "۴۰ دقیقه"
+          },
+          "steps": [
+            {
+              "name": "شهدای ژاندارمری",
+              "instruction": "در جهت غرب در شهدای ژاندارمری قرار بگیرید",
+              "bearing_after": 269,
+              "type": "depart",
+              "distance": {
+                "value": 113,
+                "text": "۱۲۵ متر"
+              },
+              "duration": {
+                "value": 32,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "ys{xEyrtxH@vB@d@?xA",
+              "start_location": [
+                51.39261,
+                35.69997
+              ]
+            },
+            {
+              "name": "کارگر جنوبی",
+              "instruction": "به سمت کارگر جنوبی، به راست بپیچید",
+              "bearing_after": 354,
+              "type": "turn",
+              "modifier": "right",
+              "distance": {
+                "value": 77,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 18,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "us{xEaktxHcBJc@M",
+              "start_location": [
+                51.391366,
+                35.699945
+              ]
+            },
+            {
+              "name": "انقلاب اسلامی",
+              "instruction": "در میدان انقلاب اسلامی، از خروجی اول، خارج شوید",
+              "rotaryName": "میدان انقلاب اسلامی",
+              "bearing_after": 57,
+              "type": "rotary",
+              "modifier": "right",
+              "exit": 1,
+              "distance": {
+                "value": 13,
+                "text": "۱۳ متر"
+              },
+              "duration": {
+                "value": 2,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "}w{xEcktxHEKGK",
+              "start_location": [
+                51.391382,
+                35.700627
+              ]
+            },
+            {
+              "name": "",
+              "instruction": "به مسیر خود ادامه دهید",
+              "bearing_after": 73,
+              "type": "exit rotary",
+              "modifier": "slight right",
+              "exit": 1,
+              "distance": {
+                "value": 1673,
+                "text": "۲ کیلومتر"
+              },
+              "duration": {
+                "value": 299,
+                "text": "۵ دقیقه"
+              },
+              "polyline": "kx{xE{ktxHEUAMU{AAKEUAYA{@?e@CoF?[?WI_JCqK?_@?QImJ?Q?WA_@CkC?s@C}E?QCyF?MAgCAm@?G?E?WAk@?Q?WAqACuBCsEEcFCuBCwA?S",
+              "start_location": [
+                51.391495,
+                35.700698
+              ]
+            },
+            {
+              "name": "پل کالج",
+              "instruction": "در پل کالج به مسیر خود ادامه دهید",
+              "bearing_after": 87,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 539,
+                "text": "۵۵۰ متر"
+              },
+              "duration": {
+                "value": 78,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "}{{xEe_xxHAq@EyFGyFEyFEqF?m@@mA?Y",
+              "start_location": [
+                51.409951,
+                35.701271
+              ]
+            },
+            {
+              "name": "استاد نجات الهی(ویلا)",
+              "instruction": "به سمت استاد نجات الهی(ویلا)، به چپ بپیچید",
+              "bearing_after": 0,
+              "type": "turn",
+              "modifier": "left",
+              "distance": {
+                "value": 1529,
+                "text": "۲ کیلومتر"
+              },
+              "duration": {
+                "value": 353,
+                "text": "۶ دقیقه"
+              },
+              "polyline": "w|{xEmdyxHU?W@wDLQ@eAFM@]@c@BwAHcAFG?_DLU@O@uBJg@B{BJUBE?G?K@mAF}@Dk@DmAFuAFW@y@DmFX}AHy@DgADU@Q@y@Fk@BY@cCL{@Do@D_@@}@DWBmAFe@Bm@BaAFI?",
+              "start_location": [
+                51.415907,
+                35.701397
+              ]
+            },
+            {
+              "name": "پل کریمخان",
+              "instruction": "به راست بپیچید و وارد پل کریمخان شوید",
+              "bearing_after": 87,
+              "type": "end of road",
+              "modifier": "right",
+              "distance": {
+                "value": 566,
+                "text": "۵۷۵ متر"
+              },
+              "duration": {
+                "value": 55,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "qr~xEy{xxHA_AIoE?]EoFEmFEoFEeF",
+              "start_location": [
+                51.414528,
+                35.715128
+              ]
+            },
+            {
+              "name": "کریمخان زند",
+              "instruction": "در کریمخان زند به مسیر خود ادامه دهید",
+              "bearing_after": 91,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 489,
+                "text": "۵۰۰ متر"
+              },
+              "duration": {
+                "value": 83,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "us~xE{bzxH@cA?oAAs@AaHEoGA{ACuAA_@GaACi@",
+              "start_location": [
+                51.42078,
+                35.715305
+              ]
+            },
+            {
+              "name": "مفتح",
+              "instruction": "به سمت مفتح، به چپ بپیچید",
+              "bearing_after": 5,
+              "type": "turn",
+              "modifier": "left",
+              "distance": {
+                "value": 274,
+                "text": "۲۷۵ متر"
+              },
+              "duration": {
+                "value": 44,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "qt~xEsd{xHIIQK]Oe@OcA]y@Uy@Qa@Mi@Q{Ak@MG",
+              "start_location": [
+                51.426181,
+                35.715446
+              ]
+            },
+            {
+              "name": "مدرس",
+              "instruction": "به سمت مدرس، به چپ برانید",
+              "bearing_after": 8,
+              "type": "turn",
+              "modifier": "slight left",
+              "distance": {
+                "value": 132,
+                "text": "۱۵۰ متر"
+              },
+              "duration": {
+                "value": 19,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "_c_yEck{xHy@K{Bu@MEO?OB",
+              "start_location": [
+                51.427217,
+                35.717757
+              ]
+            },
+            {
+              "name": "بزرگراه مدرس",
+              "instruction": "در بزرگراه مدرس به مسیر خود ادامه دهید",
+              "bearing_after": 340,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 6778,
+                "text": "۷ کیلومتر"
+              },
+              "duration": {
+                "value": 931,
+                "text": "۱۶ دقیقه"
+              },
+              "polyline": "cj_yEgm{xHsA`@mA`@i@RgBj@eA\\MFSJUNg@d@gD|CWRUJQF{@P}B`@oATuC\\iAPc@Fe@Hk@Lk@Li@Rk@Tk@Vk@XOHEBw@j@q@f@q@l@KHg@d@yBzB]\\aCdCWV_@^QLg@^s@`@GBq@\\YLOFg@Nw@P_@FSBYDW@eABU@QAWAcAG]GYIw@Ug@QmAc@KEcF{B[Ky@Se@I_B[eEe@eEc@eEc@o@IsCYC?{CUg@Aa@CmA?uABA?i@Bk@DoBNeEZ_BL{AFcAA}@?i@CqBK_@CG?_BC_@?_AD}@D}@LyDrAa@NsChAKDkAb@s@Rg@Ju@JgG^qEJaABi@Hi@Fy@PkB`@cAR[Fw@Lm@Fq@Bw@?kE?sA?wACiBK_AIg@EA?kEm@oEm@mEm@}B]qASeEu@aB_@gDaAcC{@OEg@S[Om@WoCiA_CkAg@WuAq@oAs@cDgBECuCgB{AaA{AiA{B_By@s@mAeAq@e@u@g@c@Y{As@cAa@CAoA[y@O{@MeAK{@A",
+              "start_location": [
+                51.427564,
+                35.718901
+              ]
+            },
+            {
+              "name": "",
+              "instruction": "به راست برانید و از خروجی خارج شوید",
+              "bearing_after": 15,
+              "type": "off ramp",
+              "modifier": "slight right",
+              "distance": {
+                "value": 145,
+                "text": "۱۵۰ متر"
+              },
+              "duration": {
+                "value": 16,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "irjyE}q{xHk@O]Ce@?Y@a@@m@Bi@?",
+              "start_location": [
+                51.428311,
+                35.776527
+              ]
+            },
+            {
+              "name": "پل صدر، شرق",
+              "instruction": "به راست برانید  و وارد پل صدر، شرق شوید",
+              "bearing_after": 16,
+              "type": "fork",
+              "modifier": "slight right",
+              "distance": {
+                "value": 3056,
+                "text": "۳ کیلومتر"
+              },
+              "duration": {
+                "value": 393,
+                "text": "۷ دقیقه"
+              },
+              "polyline": "mzjyEir{xH]KYGWGg@U_@YY]IMQ_@]_BMq@K_@Y{@_AwCg@eA_@m@i@}@Q]eB_CEEeAoAcAeAEGmC{BOKqAgAq@q@QOg@m@c@m@[k@EIOY]u@[w@Uu@GQ_@iBMcAEUm@yECOe@mEGm@WmCG_@m@yE]eCWqA{@uE?Aw@eECMQcACWASAICO[kAiAmEEQs@iCSo@a@sAq@uBK]{@iCuA}DwA{DGMcBeEaCkE_CmE}BeEi@gA",
+              "start_location": [
+                51.428365,
+                35.777826
+              ]
+            },
+            {
+              "name": "بزرگراه صدر",
+              "instruction": "به راست برانید  و از بزرگراه صدر خارج شوید",
+              "bearing_after": 70,
+              "type": "off ramp",
+              "modifier": "slight right",
+              "distance": {
+                "value": 386,
+                "text": "۴۰۰ متر"
+              },
+              "duration": {
+                "value": 46,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "yomyE}bayHMm@w@eBq@aBISw@qB_@eAQm@YeAWqAWmB",
+              "start_location": [
+                51.456626,
+                35.791494
+              ]
+            },
+            {
+              "name": "بزرگراه صدر",
+              "instruction": "در بزرگراه صدر به مسیر خود ادامه دهید",
+              "bearing_after": 82,
+              "type": "continue",
+              "modifier": "straight",
+              "distance": {
+                "value": 109,
+                "text": "۱۲۵ متر"
+              },
+              "duration": {
+                "value": 15,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "oymyEszayHGkACaB@e@?W?C",
+              "start_location": [
+                51.460421,
+                35.793043
+              ]
+            },
+            {
+              "name": "صدر، غرب",
+              "instruction": "به راست برانید  و از صدر، غرب خارج شوید",
+              "bearing_after": 116,
+              "type": "off ramp",
+              "modifier": "slight right",
+              "distance": {
+                "value": 213,
+                "text": "۲۲۵ متر"
+              },
+              "duration": {
+                "value": 40,
+                "text": "۱ دقیقه"
+              },
+              "polyline": "yymyEcbbyHFMFs@HOJKJEL?R@NJPPLNJLR\\DZEXKNcAl@",
+              "start_location": [
+                51.461624,
+                35.793085
+              ]
+            },
+            {
+              "name": "پاشا ظهری",
+              "instruction": "در پاشا ظهری به مسیر خود ادامه دهید",
+              "bearing_after": 337,
+              "type": "new name",
+              "modifier": "straight",
+              "distance": {
+                "value": 995,
+                "text": "۱۰۰۰ متر"
+              },
+              "duration": {
+                "value": 285,
+                "text": "۵ دقیقه"
+              },
+              "polyline": "ewmyEw~ayHeA`@sAj@cAx@c@\\A@e@Pg@La@JQ@QAa@C{AQg@EqBU{ASyDe@mBWeC]{AOuBUg@G{AU_C[OAQCQE",
+              "start_location": [
+                51.461081,
+                35.792667
+              ]
+            },
+            {
+              "name": "لواسانی",
+              "instruction": "به سمت لواسانی، به راست بپیچید",
+              "bearing_after": 101,
+              "type": "turn",
+              "modifier": "right",
+              "distance": {
+                "value": 81,
+                "text": "۱۰۰ متر"
+              },
+              "duration": {
+                "value": 11,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "imoyEq`byH@UHy@P}A",
+              "start_location": [
+                51.461366,
+                35.801334
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "به سمت فربین، به راست برانید",
+              "bearing_after": 115,
+              "type": "turn",
+              "modifier": "slight right",
+              "distance": {
+                "value": 60,
+                "text": "۷۵ متر"
+              },
+              "duration": {
+                "value": 14,
+                "text": "کمتر از ۱ دقیقه"
+              },
+              "polyline": "kloyE_fbyHb@_BFW",
+              "start_location": [
+                51.462239,
+                35.801182
+              ]
+            },
+            {
+              "name": "فربین",
+              "instruction": "در مقصد قرار دارید",
+              "bearing_after": 0,
+              "type": "arrive",
+              "distance": {
+                "value": 0,
+                "text": ""
+              },
+              "duration": {
+                "value": 0,
+                "text": ""
+              },
+              "polyline": "_koyEwibyH",
+              "start_location": [
+                51.462843,
+                35.800957
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
