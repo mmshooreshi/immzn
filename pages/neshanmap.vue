@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import SimpleNeshanMap from '~/components/SimpleNeshanMap.client.vue'
+import JsonViewer from '@/components/JsonViewer.vue'
 
 
 import { useSettings } from '~/composables/useSettings'
@@ -37,13 +38,37 @@ const markers = computed(() => {
       }
     })
 })
+
+// const routes = computed(() => {
+//   return localizedData.value.map.tabs
+//     .filter(tab => 'route' in tab)
+//     .map(tab => {
+//       const r = (tab as any).route
+//       return {
+//         coords: r.origin as [number, number],
+//         // use whichever language you prefer here:
+//         label: r.origin as [string, string],
+//         svg: '/icons/metro.svg',
+//         popupHtml: (r.description as any) as string
+//       }
+//     })
+// })
+
+const showModal = ref(true)
 </script>
 
 <template>
   <NuxtLayout name="page">
     <!-- force a full-viewport height here -->
+    <div class="w-60 mx-auto mt-28">
+      <DataEditorModal v-if="showModal" :data="markers" @close="showModal = false" />
+
+    </div>
     <div class="flex flex-col items-center w-max bg-red h-max mt-28 mx-auto my-auto">
-      <SimpleNeshanMap :apiKey="apiKey" :markers="markers" :initialCenter="initialCenter" :initialZoom="initialZoom" />
+      <client-only>
+        <SimpleNeshanMap :apiKey="apiKey" :markers="markers" :initialCenter="initialCenter"
+          :initialZoom="initialZoom" />
+      </client-only>
     </div>
   </NuxtLayout>
 </template>
