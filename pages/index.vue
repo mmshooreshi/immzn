@@ -114,7 +114,7 @@ useHead({
     <!-- 2️⃣ plug in your new sections: -->
 
 
-    <ProgramSection :data="localizedData.hackathon" />
+    <ProgramSection :program="localizedData.program" />
     <hr class="border-gray-200 dark:border-gray-800" />
 
     <EssentialsSection :data="{

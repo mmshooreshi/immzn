@@ -1,5 +1,9 @@
 {
-    "program": [
+    "headline": {
+        "en": "Program",
+        "fa": "برنامه"
+    },
+    "schedule": [
         {
             "id": 1,
             "day": {

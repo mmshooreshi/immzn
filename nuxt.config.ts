@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
+    '@vueuse/motion/nuxt',
   ],
 
   // i18n: {
