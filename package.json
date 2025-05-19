@@ -25,6 +25,8 @@
     "@vercel/analytics": "^1.2.2",
     "@vueuse/core": "^13.1.0",
     "@vueuse/motion": "^3.0.3",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-vue": "^8.6.0",
     "generate-schema": "^2.6.0",
     "lil-gui": "^0.20.0",
     "locomotive-scroll": "^4.1.4",

@@ -90,12 +90,12 @@ useHead({
 
 
     <!-- <Localized :is="HomeHeroSection" :data="localizedData.hero" /> -->
-    <HomeHeroSection :data="localizedData?.hero" />
+    <HomeHeroSection v-motion-fade-visible-once :data="localizedData?.hero" />
 
     <!-- <Localized :is="HomeAbout" :data="localizedData.about" /> -->
     <HomeAbout :data="localizedData.about ?? {}" />
     <!-- {{ localizedData.voices }} -->
-    <Localized :is="SpeakersSection" :data="localizedData.voices" />
+    <Localized v-motion-fade-visible-once :is="SpeakersSection" :data="localizedData.voices" />
     <!-- <SpeakersSection  :speakers="localizedData.speakers" :headline="localizedData.navbar"/> -->
     <!-- Your page content -->
 

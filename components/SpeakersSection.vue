@@ -10,9 +10,9 @@
       <!-- Mobile-first, fully centered grid of speakers -->
       <div
         class="grid place-items-center gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 max-w-7xl mx-auto px-0 lg:mx-56">
-        <div v-for="sp in data?.people" :key="sp.id" @click="open(sp)" role="listitem"
+        <div v-motion-fade-visible-once v-for="(sp, idx) in data?.people" :key="sp.id" @click="open(sp)" role="listitem"
           :aria-labelledby="`speaker-${sp.id}`"
-          class="group relative flex w-full max-w-xs flex-col cursor-pointer rounded-3xl backdrop-blur-sm transition-transform duration-150 ease-in-out hover:scale-105">
+          class="group relative flex w-full max-w-xs flex-col cursor-pointer rounded-3xl backdrop-blur-sm transition-transform  ease-in-out hover:scale-105">
           <div class="flex flex-1 flex-col py-6 items-center text-center">
             <!-- Header (keep if confirmed icon will be used) -->
             <!--
