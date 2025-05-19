@@ -24,20 +24,20 @@ const initialZoom = computed<number>(
 )
 
 // 4️⃣: build your marker array from tabs that have `marker`
-const markers = computed(() => {
-  return localizedData.value.map.tabs
-    .filter(tab => 'marker' in tab)
-    .map(tab => {
-      const m = (tab as any).marker
-      return {
-        coords: m.coords as [number, number],
-        // use whichever language you prefer here:
-        label: m.coords as [string, string],
-        svg: '/icons/ipm.svg',
-        popupHtml: (m.popupHtml as any) as string
-      }
-    })
-})
+// const markers = computed(() => {
+//   return localizedData.value.map.tabs
+//     .filter(tab => 'marker' in tab)
+//     .map(tab => {
+//       const m = (tab as any).marker
+//       return {
+//         coords: m.coords as [number, number],
+//         // use whichever language you prefer here:
+//         label: m.coords as [string, string],
+//         svg: '/icons/ipm.svg',
+//         popupHtml: (m.popupHtml as any) as string
+//       }
+//     })
+// })
 
 // const routes = computed(() => {
 //   return localizedData.value.map.tabs
@@ -61,7 +61,7 @@ const showModal = ref(true)
   <NuxtLayout name="page">
     <!-- force a full-viewport height here -->
     <div class="w-60 mx-auto mt-28">
-      <DataEditorModal v-if="showModal" :data="markers" @close="showModal = false" />
+      <DataEditorModal v-if="showModal" :data="localizedData.map" @close="showModal = false" />
 
     </div>
     <div class="flex flex-col items-center w-max bg-red h-max mt-28 mx-auto my-auto">
