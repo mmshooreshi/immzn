@@ -16,6 +16,8 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@lljj/vue3-form-element": "^1.19.0",
+    "@neshan-maps-platform/mapbox-gl": "^1.1.5",
+    "@neshan-maps-platform/mapbox-gl-vue": "^1.0.1",
     "@nuxtjs/i18n": "^9.5.4",
     "@octokit/rest": "^21.1.1",
     "@pinia/nuxt": "^0.11.0",
@@ -52,7 +54,9 @@
     "eslint": "^9.1.1",
     "eslint-config-prettier": "^9.0.0",
     "gsap": "^3.13.0",
+    "mapbox-gl": "^3.12.0",
     "nuxt": "^3.17.3",
+    "nuxt-mapbox": "1.6.3",
     "nuxt-storage": "^1.2.2",
     "postcss": "^8.4.38",
     "postcss-html": "^1.5.0",

@@ -12,6 +12,8 @@ import TeamPartnersSection from '~/components/TeamPartnersSection.vue'
 import RegisterSection from '~/components/RegisterSection.vue'
 import FAQSection from '~/components/FAQSection.vue'
 import ContactSection from '~/components/ContactSection.vue'
+// import Map from '~/components/Map.vue'
+import Mapbx from '~/components/Mapbx.vue'
 
 
 import { useSettings } from '~/composables/useSettings'
@@ -133,6 +135,17 @@ useHead({
       sponsors: localizedData.sponsors.list
     }" />
     <hr class="border-gray-200 dark:border-gray-800" />
+
+    <!-- <MarkerIcon class="absolute top-[48%] left-[48%] z-10" /> -->
+    <!-- <div class=" w-screen h-100 z-100 bg-red">
+      <MapboxMap map-id="{ID}" style="width: 100%; height: 100%;" :options="{
+        style: 'mapbox://styles/mapbox/light-v11', // style URL
+        center: [-68.137343, 45.137451], // starting position
+        zoom: 5 // starting zoom
+      }" />
+    </div> -->
+
+    <Mapbx />
 
     <RegisterSection :data="{
       headline: localizedData.register.headline,

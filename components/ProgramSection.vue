@@ -49,7 +49,7 @@ function getClockIconName(session) {
   return `wi:time-${hour}`
 }
 
-defineProps<{
+const props = defineProps<{
   program: {
     headline: { en: string; fa: string }
     schedule: Array<any>
@@ -94,7 +94,7 @@ onMounted(() => {
   )
 
   nextTick(() => {
-    program.schedule.forEach((day) => {
+    props.program.schedule.forEach((day) => {
       const el = contentRefs.value[day.id]
       if (el) {
         el.dataset.dayId = String(day.id)

@@ -44,7 +44,12 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@vueuse/motion/nuxt',
+    'nuxt-mapbox',
   ],
+  mapbox: {
+    accessToken: process.env.MAPBOX_TOKEN,
+    
+  },
 
   // i18n: {
   //   locales: [
