@@ -1,45 +1,46 @@
-<!-- components/SimpleNeshanMap.client.vue -->
+// components/SimpleNeshanMap.client.vue
 <template>
-  <div class="w-[500px] h-[500px] m-auto">
-
-    <!-- only render once we've loaded the client-only bundle -->
-    <component class="h-[500px]" v-if="MapComponent && mapTypes && nmp" :is="MapComponent" :options="mapOptions"
+  <div class="w-full h-[60vh]">
+    <component v-if="MapComponent && mapTypes && nmp" :is="MapComponent" :options="mapOptions"
       :map-setter="handleMap" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps, computed } from 'vue'
+import { ref, defineProps, computed, onMounted } from 'vue'
+import type { Feature, Geometry } from 'geojson'
 import('@neshan-maps-platform/mapbox-gl-vue')
 import('@neshan-maps-platform/mapbox-gl')
+
 interface MarkerDef {
   coords: [number, number]
   label: string
   svg: string
   popupHtml: string
 }
+interface RouteDef {
+  id: string
+  type: string
+  origin: [number, number]
+  destination: [number, number]
+  color: string
+}
 
-// props as before
 const props = defineProps<{
   apiKey: string
   markers: MarkerDef[]
-  initialCenter?: [number, number]
-  initialZoom?: number
+  routes: RouteDef[]
+  initialCenter: [number, number]
+  initialZoom: number
 }>()
 
-// reactive holders for our dynamic imports
 const MapComponent = ref<any>(null)
 const mapTypes = ref<any>(null)
-const nmp = ref<any>(null)  // the mapbox-gl export
+const nmp = ref<any>(null)
 
-// compute center & zoom
-const center = computed(() => props.initialCenter ?? [
-  props.markers.reduce((s, m) => s + m.coords[0], 0) / props.markers.length,
-  props.markers.reduce((s, m) => s + m.coords[1], 0) / props.markers.length,
-])
-const zoom = computed(() => props.initialZoom ?? 12)
+const center = computed(() => props.initialCenter)
+const zoom = computed(() => props.initialZoom)
 
-// options for MapComponent
 const mapOptions = computed(() => ({
   mapKey: props.apiKey,
   mapType: mapTypes.value?.neshanVector,
@@ -52,7 +53,6 @@ const mapOptions = computed(() => ({
   isTouchPlatform: true
 }))
 
-// helper to build a DOM icon+label
 function icon(url: string, label: string) {
   const wrapper = document.createElement('div')
   wrapper.className = 'marker-wrapper'
@@ -67,60 +67,45 @@ function icon(url: string, label: string) {
   return wrapper
 }
 
-// when the map is ready, add our markers
 function handleMap(map: any) {
-  const overview = { center: center.value, zoom: zoom.value, speed: 1.4, curve: 1.4, essential: true }
+  const overview = { center: center.value, zoom: zoom.value, speed: 1.4, curve: 1.4 }
 
+  // add markers
   props.markers.forEach(def => {
-    const iconUrl = def.svg.startsWith('/')
-      ? def.svg
-      : `https://api.iconify.design/${def.svg}.svg?color=white`
-
-    const popup = new nmp.value.Popup({ offset: 25 })
-      .setHTML(def.popupHtml)
-      .on('close', () => map.flyTo(overview))
-
-    const marker = new nmp.value.Marker({ element: icon(iconUrl, def.label) })
+    const popup = new nmp.value.Popup({ offset: 25 }).setHTML(def.popupHtml)
+    const marker = new nmp.value.Marker({ element: icon(def.svg, def.label) })
       .setLngLat(def.coords)
       .setPopup(popup)
       .addTo(map)
-
-    const iconEl = marker.getElement().querySelector('.marker-icon') as HTMLElement
-    iconEl.addEventListener('click', ev => {
-      ev.stopPropagation()
-      if (iconEl.classList.contains('compact')) {
-        const [lng, lat] = def.coords
-        window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank')
-      } else {
-        popup.addTo(map)
-        map.flyTo({ center: def.coords, zoom: 16, speed: 2, curve: 1.5, essential: true })
-      }
-    })
   })
 
-  // compact mode on zoom
-  map.on('zoom', () => {
-    const z = map.getZoom()
-    map.getContainer().querySelectorAll<HTMLElement>('.marker-icon').forEach(el => {
-      if (z > 13) {
-        el.classList.add('compact')
-        el.innerHTML = `<img src="https://api.iconify.design/mdi:directions.svg?color=white" width="24" height="24" draggable="false"/>`
-      } else {
-        el.classList.remove('compact')
-      }
+  // add routes
+  props.routes.forEach(route => {
+    // add as GeoJSON line
+    map.addSource(route.id, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        geometry: { type: 'LineString', coordinates: [route.origin, route.destination] } as Geometry
+      } as Feature
+    })
+    map.addLayer({
+      id: route.id,
+      type: 'line',
+      source: route.id,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': route.color, 'line-width': 4 }
     })
   })
 
   // reset on double-click
   map.on('dblclick', () => {
     map.flyTo(overview)
-    map.getContainer().querySelectorAll('.mapboxgl-popup').forEach(p => p.remove())
+    map.getContainer().querySelectorAll('.mapboxgl-popup').forEach((p: any) => p.remove())
   })
 }
 
-// only run in browser
 onMounted(async () => {
-  // dynamically pull in the two packages
   const mapboxVue = await import('@neshan-maps-platform/mapbox-gl-vue')
   MapComponent.value = mapboxVue.MapComponent
   mapTypes.value = mapboxVue.MapTypes

@@ -47,7 +47,7 @@
             "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
             "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
         },
-        "iconUrl": "/icons/ipm.svg"
+        "svg": "/icons/ipm.svg"
     },
     "routes": [
         {
@@ -65,7 +65,7 @@
                 51.4628416581408,
                 35.80095487229376
             ],
-            "destinationIconUrl": "/icons/ipm.svg",
+            "destinationsvg": "/icons/ipm.svg",
             "color": "#6f42c1",
             "description": {
                 "en": "Metro route from Aghdasieh Station to IPM",
@@ -99,7 +99,7 @@
                 51.4628416581408,
                 35.80095487229376
             ],
-            "destinationIconUrl": "/icons/ipm.svg",
+            "destinationsvg": "/icons/ipm.svg",
             "color": "#6f42c1",
             "description": {
                 "en": "Metro route from Nobonyad Station to IPM",
@@ -133,7 +133,7 @@
                 51.4628416581408,
                 35.80095487229376
             ],
-            "destinationIconUrl": "/icons/ipm.svg",
+            "destinationsvg": "/icons/ipm.svg",
             "color": "#6f42c1",
             "description": {
                 "en": "Metro route from Gheitariyeh Station to IPM",
@@ -167,7 +167,7 @@
                 51.4628416581408,
                 35.80095487229376
             ],
-            "destinationIconUrl": "/icons/ipm.svg",
+            "destinationsvg": "/icons/ipm.svg",
             "color": "#6f42c1",
             "description": {
                 "en": "Metro route from Tajrish Station to IPM",
