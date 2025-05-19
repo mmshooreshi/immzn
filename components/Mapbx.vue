@@ -44,67 +44,92 @@ function clearMap() {
     }
 }
 
-/**— render whatever’s in the active tab —**/
 function renderTab() {
-    if (!mapInstance) return
-    clearMap()
-
+    clearMap();
     const tab = props.mapData.tabs.find(t => t.id === activeTab.value)!
-    // — markers only
-    if ('marker' in tab) {
-        const m = tab.marker
-        const el = document.createElement('div')
-        el.className = 'custom-marker'
-        el.setAttribute('role', 'button')
-        el.setAttribute('tabindex', '0')
-        el.setAttribute('aria-label', m.popupHtml[props.lang].replace(/<[^>]+>/g, ''))
-        const marker = new mapboxgl.Marker(el)
+
+    // 1️⃣ Single-marker tab
+    console.log(tab)
+    if (tab.marker) {
+        const m = tab.marker;
+        // create an <img> for the custom icon
+        const img = document.createElement('img');
+        img.src = m.iconUrl;
+        img.alt = m.popupHtml.replace(/<[^>]+>/g, '');
+        img.className = 'marker-img';
+        // place the marker
+        const marker = new mapboxgl.Marker({ element: img })
             .setLngLat(m.coords)
-            .setPopup(new mapboxgl.Popup({ offset: 25 })
-                .setHTML(m.popupHtml[props.lang])
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(m.popupHtml)
             )
-            .addTo(mapInstance)
+            .addTo(mapInstance);
         // keyboard support
-        el.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') marker.togglePopup()
-        })
-        markers.push(marker)
-        mapInstance.flyTo({ center: props.mapData.mapConfig.center, zoom: props.mapData.mapConfig.zoom })
-        return
+        img.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                marker.togglePopup();
+            }
+        });
+        markers.push(marker);
+
+        // reset view
+        mapInstance.flyTo({
+            center: props.mapData.mapConfig.center,
+            zoom: props.mapData.mapConfig.zoom
+        });
+        return;
     }
 
-    // — single route
-    if ('route' in tab) {
-        const r = tab.route
-            // origin & destination markers
-            ;[
-                { coords: r.origin, label: tab.title[props.lang] === props.mapData.tabs[0].title[props.lang] ? '' : mapData.tabs.find(t => t.id === 'location')!.marker.popupHtml[props.lang] }
-            ].forEach(_ => { }) // we only show popup on main marker; skip origin label
+    // 2️⃣ Route tab (driving, walking, metro, wheelchair, etc.)
+    if (tab.route) {
+        const r = tab.route;
 
-            // always add both markers:
-            ;[
-                { coords: r.origin, label: r.description[props.lang] },
-                { coords: r.destination, label: r.description[props.lang] }
-            ].forEach(({ coords, label }) => {
-                const el = document.createElement('div')
-                el.className = 'custom-marker'
-                el.setAttribute('role', 'button')
-                el.setAttribute('tabindex', '0')
-                el.setAttribute('aria-label', label)
-                const popup = new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<strong>${label}</strong>`)
-                const marker = new mapboxgl.Marker(el)
-                    .setLngLat(coords)
-                    .setPopup(popup)
-                    .addTo(mapInstance!)
-                el.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') popup.addTo(mapInstance!)
-                })
-                markers.push(marker)
-            })
+        // — origin marker
+        if (r.originIconUrl) {
+            const originImg = document.createElement('img');
+            originImg.src = r.originIconUrl;
+        } else {
+            const originImg = document.createElement('Icon');
+            originImg.name = "duo-icons:marker"
+        }
+        originImg.alt = r.description;
+        originImg.className = 'marker-img';
+        const originMarker = new mapboxgl.Marker({ element: originImg })
+            .setLngLat(r.origin)
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<strong>${r.originLabel || ''}</strong>`)
+            )
+            .addTo(mapInstance);
+        originImg.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                originMarker.togglePopup();
+            }
+        });
+        markers.push(originMarker);
 
-        // draw the line
-        routeLayerId = `route-${tab.id}`
+        // — destination marker
+        const destImg = document.createElement('img');
+        destImg.src = r.destinationIconUrl || '/icons/default-dest.svg';
+        destImg.alt = r.description;
+        destImg.className = 'marker-img';
+        const destMarker = new mapboxgl.Marker({ element: destImg })
+            .setLngLat(r.destination)
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<strong>${r.destinationLabel || ''}</strong>`)
+            )
+            .addTo(mapInstance);
+        destImg.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                destMarker.togglePopup();
+            }
+        });
+        markers.push(destMarker);
+
+        // — draw the route line
+        routeLayerId = `route-${tab.id}`;
         mapInstance.addSource(routeLayerId, {
             type: 'geojson',
             data: {
@@ -114,39 +139,46 @@ function renderTab() {
                     coordinates: [r.origin, r.destination]
                 }
             }
-        })
+        });
         mapInstance.addLayer({
             id: routeLayerId,
             type: 'line',
             source: routeLayerId,
-            layout: { 'line-cap': 'round', 'line-join': 'round' },
-            paint: { 'line-color': r.color, 'line-width': 4 }
-        })
+            layout: {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            paint: {
+                'line-color': r.color,
+                'line-width': 4
+            }
+        });
 
-        // hover + click
+        // — hover & click interactions
         mapInstance.on('mouseenter', routeLayerId, () => {
-            mapInstance!.setPaintProperty(routeLayerId!, 'line-width', 6)
-            mapInstance!.getCanvas().style.cursor = 'pointer'
-        })
+            mapInstance.setPaintProperty(routeLayerId, 'line-width', 6);
+            mapInstance.getCanvas().style.cursor = 'pointer';
+        });
         mapInstance.on('mouseleave', routeLayerId, () => {
-            mapInstance!.setPaintProperty(routeLayerId!, 'line-width', 4)
-            mapInstance!.getCanvas().style.cursor = ''
-        })
-        mapInstance.on('click', routeLayerId, e => {
+            mapInstance.setPaintProperty(routeLayerId, 'line-width', 4);
+            mapInstance.getCanvas().style.cursor = '';
+        });
+        mapInstance.on('click', routeLayerId, (e) => {
             new mapboxgl.Popup({ offset: 10 })
                 .setLngLat(e.lngLat)
-                .setText(r.description[props.lang])
-                .addTo(mapInstance!)
-        })
+                .setText(r.description)
+                .addTo(mapInstance);
+        });
 
-        // fit bounds
-        const bounds = new mapboxgl.LngLatBounds(r.origin, r.origin)
-        bounds.extend(r.destination)
-        mapInstance.fitBounds(bounds, { padding: 50 })
+        // — fit map to route bounds
+        const bounds = new mapboxgl.LngLatBounds(r.origin, r.origin);
+        bounds.extend(r.destination);
+        mapInstance.fitBounds(bounds, { padding: 50 });
 
-        return
+        return;
     }
 }
+
 
 //— initialise map & controls once ready —//
 useMapbox(mapId, map => {
@@ -170,14 +202,14 @@ watch(activeTab, () => renderTab())
     <section class="space-y-4">
         <!-- headline & address -->
         <div>
-            <h2 class="text-2xl font-bold">{{ mapData.headline[props.lang] }}</h2>
-            <p class="text-gray-700 dark:text-gray-300">{{ mapData.address[props.lang] }}</p>
+            <h2 class="text-2xl font-bold">{{ mapData.headline }}</h2>
+            <p class="text-gray-700 dark:text-gray-300">{{ mapData.address }}</p>
         </div>
 
         <!-- style chooser & tabs -->
         <div class="flex flex-wrap gap-2">
             <select v-model="currentStyle" aria-label="انتخاب سبک نقشه" class="px-3 py-1 border rounded">
-                <option v-for="s in mapData.mapConfig.styles" :key="s.id" :value="s.url">{{ s.title[props.lang] }}
+                <option v-for="s in mapData.mapConfig.styles" :key="s.id" :value="s.url">{{ s.title }}
                 </option>
             </select>
 
@@ -186,7 +218,7 @@ watch(activeTab, () => renderTab())
                     @click="activeTab = t.id" class="px-4 py-2 rounded focus:outline-none focus:ring 
                  " :class="activeTab === t.id
                     ? 'bg-primary text-white'
-                    : 'bg-gray-200 dark:bg-gray-700'">{{ t.title[props.lang] }}</button>
+                    : 'bg-gray-200 dark:bg-gray-700'">{{ t.title }}</button>
             </div>
         </div>
 
@@ -200,10 +232,10 @@ watch(activeTab, () => renderTab())
         <div v-if="mapData.tabs.find(t => t.id === activeTab).route" class="p-4 bg-gray-100 dark:bg-gray-800 rounded"
             role="region" aria-labelledby="directions-heading">
             <h3 id="directions-heading" class="font-semibold mb-2">
-                {{mapData.tabs.find(t => t.id === activeTab).route.description[props.lang]}}
+                {{mapData.tabs.find(t => t.id === activeTab).route.description}}
             </h3>
             <ol class="list-decimal list-inside space-y-1">
-                <li v-for="(step, i) in mapData.tabs.find(t => t.id === activeTab).route.steps[props.lang]" :key="i">{{
+                <li v-for="(step, i) in mapData.tabs.find(t => t.id === activeTab).route.steps" :key="i">{{
                     step }}</li>
             </ol>
         </div>

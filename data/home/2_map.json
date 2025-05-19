@@ -53,7 +53,8 @@
                 "popupHtml": {
                     "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
                     "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
-                }
+                },
+                "iconUrl": "/icons/ipm.svg"
             }
         },
         {
@@ -173,6 +174,7 @@
                     51.426500,
                     35.820500
                 ],
+                "destinationIconUrl": "/icons/metro.svg",
                 "color": "#6f42c1",
                 "description": {
                     "en": "Metro access from IPM",

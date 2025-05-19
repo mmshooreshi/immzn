@@ -75,6 +75,9 @@ importers:
         specifier: ^2.36.0
         version: 2.36.0(three@0.176.0)
     devDependencies:
+      '@mapbox/mapbox-gl-rtl-text':
+        specifier: ^0.3.0
+        version: 0.3.0
       '@nuxt/content':
         specifier: ^2.12.1
         version: 2.13.4(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(nuxt@3.17.3(@parcel/watcher@2.5.1)(@types/node@20.17.48)(db0@0.3.2)(eslint@9.27.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.41.0)(sass@1.89.0)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@20.17.48)(jiti@2.4.2)(sass@1.89.0)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
@@ -916,6 +919,9 @@ packages:
     engines: {node: '>=6'}
     peerDependencies:
       mapbox-gl: '>= 0.47.0 < 3.0.0'
+
+  '@mapbox/mapbox-gl-rtl-text@0.3.0':
+    resolution: {integrity: sha512-OwQplFqAAEYRobrTKm2wiVP+wcpUVlgXXiUMNQ8tcm5gPN5SQRXFADmITdQOaec4LhDhuuFchS7TS8ua8dUl4w==}
 
   '@mapbox/mapbox-gl-supported@3.0.0':
     resolution: {integrity: sha512-2XghOwu16ZwPJLOFVuIOaLbN0iKMn867evzXFyf0P22dqugezfJwLmdanAgU25ITvz1TvOfVP4jsDImlDJzcWg==}
@@ -7949,6 +7955,8 @@ snapshots:
       subtag: 0.5.0
       suggestions: 1.7.1
       xtend: 4.0.2
+
+  '@mapbox/mapbox-gl-rtl-text@0.3.0': {}
 
   '@mapbox/mapbox-gl-supported@3.0.0': {}
 

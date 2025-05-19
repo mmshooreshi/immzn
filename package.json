@@ -38,6 +38,7 @@
     "three-stdlib": "^2.36.0"
   },
   "devDependencies": {
+    "@mapbox/mapbox-gl-rtl-text": "^0.3.0",
     "@nuxt/content": "^2.12.1",
     "@nuxt/devtools": "^1.2.0",
     "@nuxt/eslint": "^0.3.10",
