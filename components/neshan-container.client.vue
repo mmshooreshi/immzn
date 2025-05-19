@@ -1,9 +1,7 @@
+<!-- components/neshan-container.client.vue -->
 <template>
   <div class="w-screen h-screen">
-    <MapComponent
-      :options="mapOptions"
-      :map-setter="handleMap"
-    />
+    <MapComponent :options="mapOptions" :map-setter="handleMap" />
   </div>
 </template>
 
@@ -15,8 +13,8 @@ import nmp_mapboxgl from '@neshan-maps-platform/mapbox-gl'
 
 /* ---------- constants ---------- */
 const OFFICE = [51.392610, 35.699967]                     // دفتر مرکزی
-const PRINT  = [51.30858329680908, 35.67359353958164]     // چاپخانه
-const ALL    = [(OFFICE[0]+PRINT[0])/2, (OFFICE[1]+PRINT[1])/2]  // میانهٔ دو نقطه
+const PRINT = [51.30858329680908, 35.67359353958164]     // چاپخانه
+const ALL = [(OFFICE[0] + PRINT[0]) / 2, (OFFICE[1] + PRINT[1]) / 2]  // میانهٔ دو نقطه
 
 const mapRef = ref(null)
 
@@ -30,14 +28,14 @@ const mapOptions = {
   traffic: false,
 
   /* ✋🏻 قفل کردن تعاملات ـ فقط کلیک مجاز است */
-//   dragPan: false,
-//   scrollZoom: false,
-//   touchZoomRotate: false,
+  //   dragPan: false,
+  //   scrollZoom: false,
+  //   touchZoomRotate: false,
   doubleClickZoom: false,
 
   mapTypeControllerOptions: { show: false },
   isTouchPlatform: true,
-  
+
 }
 //   mapTypeControllerStatus: { show: true, position: 'bottom-left' },
 
@@ -80,60 +78,60 @@ function handleMapOriginal(map) {
   const overview = { center: ALL, zoom: 12, speed: 1.2, curve: 1.4, essential: true };
 
   const officePopup2 = new nmp_mapboxgl.Popup({ offset: 25 })
-  .setHTML(`
+    .setHTML(`
         <strong>دفتر مرکزی</strong><br/>
         میدان انقلاب، کارگر جنوبی، شهدای ژاندارمری، نرسیده به منیری جاوید، پلاک ۱۱۷ طبقه سوم،
         تلفن: 09361415413
       `);
-const officeMarker2 = new nmp_mapboxgl.Marker({
+  const officeMarker2 = new nmp_mapboxgl.Marker({
     element: icon('https://api.iconify.design/mdi:domain.svg?color=white', 'دفتر مرکزی')
   })
-  .setLngLat(OFFICE)
-  .setPopup(officePopup2)
-  .addTo(map);
+    .setLngLat(OFFICE)
+    .setPopup(officePopup2)
+    .addTo(map);
 
-officeMarker2.getElement().addEventListener('click', () => {
-  map.flyTo({ center: OFFICE, zoom: 16, speed: 1.2, curve: 1.4, essential: true });
-//   officePopup2.addTo(map);
-});
-officePopup2.on('close', () => map.flyTo({ center: ALL, zoom: 12, speed: 1.2, curve: 1.4, essential: true }));
+  officeMarker2.getElement().addEventListener('click', () => {
+    map.flyTo({ center: OFFICE, zoom: 16, speed: 1.2, curve: 1.4, essential: true });
+    //   officePopup2.addTo(map);
+  });
+  officePopup2.on('close', () => map.flyTo({ center: ALL, zoom: 12, speed: 1.2, curve: 1.4, essential: true }));
 
-// PRINT
-const printPopup2 = new nmp_mapboxgl.Popup({ offset: 25 })
-.setHTML(`
+  // PRINT
+  const printPopup2 = new nmp_mapboxgl.Popup({ offset: 25 })
+    .setHTML(`
         <strong>چاپخانه</strong><br/>
         بزرگراه فتح، زیر پل شیر پاستوریزه<br/>
         ابتدای ۴۵ متری زرند، کوچه تلفن خانه، پلاک ۱۶۶<br/>
         تلفن: 66797911-3<br/>
         فکس: 66789577
       `);
-const printMarker2 = new nmp_mapboxgl.Marker({
+  const printMarker2 = new nmp_mapboxgl.Marker({
     element: icon('https://api.iconify.design/mdi:warehouse.svg?color=white', 'چاپخانه')
   })
-  .setLngLat(PRINT)
-  .setPopup(printPopup2)
-  .addTo(map);
+    .setLngLat(PRINT)
+    .setPopup(printPopup2)
+    .addTo(map);
 
-printMarker2.getElement().addEventListener('click', () => {
-  map.flyTo({ center: PRINT, zoom: 16, speed: 1.2, curve: 1.4, essential: true });
-//   printPopup2.addTo(map)
-});
-printPopup2.on('close', () => map.flyTo({ center: ALL, zoom: 12, speed: 1.2, curve: 1.4, essential: true }));
-
-const allMarkers = [officeMarker2, printMarker2];
-map.on('zoom', () => {
-  const z = map.getZoom();
-  allMarkers.forEach(marker => {
-    // find the inner .marker-icon wrapper
-    const ico = marker.getElement().querySelector('.marker-icon');
-    if (!ico) return;
-    if (z > 13) {
-      ico.classList.add('compact');
-    } else {
-      ico.classList.remove('compact');
-    }
+  printMarker2.getElement().addEventListener('click', () => {
+    map.flyTo({ center: PRINT, zoom: 16, speed: 1.2, curve: 1.4, essential: true });
+    //   printPopup2.addTo(map)
   });
-});
+  printPopup2.on('close', () => map.flyTo({ center: ALL, zoom: 12, speed: 1.2, curve: 1.4, essential: true }));
+
+  const allMarkers = [officeMarker2, printMarker2];
+  map.on('zoom', () => {
+    const z = map.getZoom();
+    allMarkers.forEach(marker => {
+      // find the inner .marker-icon wrapper
+      const ico = marker.getElement().querySelector('.marker-icon');
+      if (!ico) return;
+      if (z > 13) {
+        ico.classList.add('compact');
+      } else {
+        ico.classList.remove('compact');
+      }
+    });
+  });
 
 
 
@@ -152,9 +150,9 @@ function handleMap(map) {
   /* overview position used by several handlers */
   const overview = {
     center: ALL,
-    zoom:   11,
-    speed:  3,
-    curve:  1.5,
+    zoom: 11,
+    speed: 3,
+    curve: 1.5,
     essential: true
   };
 
@@ -162,8 +160,8 @@ function handleMap(map) {
   const defs = [
     {
       coords: OFFICE,                     // [lng, lat]
-      label:  'دفتر مرکزی',
-      svg:    'mdi:domain',
+      label: 'دفتر مرکزی',
+      svg: 'mdi:domain',
       popup: `
         <strong>دفتر مرکزی</strong><br/>
         میدان انقلاب، کارگر جنوبی، شهدای ژاندارمری، نرسیده به منیری جاوید، پلاک ۱۱۷ طبقه سوم
@@ -172,8 +170,8 @@ function handleMap(map) {
     },
     {
       coords: PRINT,
-      label:  'چاپخانه',
-      svg:    'mdi:warehouse',
+      label: 'چاپخانه',
+      svg: 'mdi:warehouse',
       popup: `
         <strong>چاپخانه</strong><br/>
         بزرگراه فتح، زیر پل شیر پاستوریزه، ابتدای ۴۵ متری زرند، کوچه تلفن خانه، پلاک ۱۶۶
@@ -185,7 +183,7 @@ function handleMap(map) {
 
   /* ---------- build markers & pop‑ups ---------- */
   const markers = defs.map(def => {
-    const originalUrl = `https://api.iconify.design/${def.svg}.svg?color=white`;
+    const originalUrl = def.svg[0] == '/' ? `${def.svg}` : `https://api.iconify.design/${def.svg}.svg?color=white`;
 
     const popup = new nmp_mapboxgl
       .Popup({ offset: 25 })
@@ -199,7 +197,7 @@ function handleMap(map) {
       .setPopup(popup)
       .addTo(map);
 
-      
+
     /* click‑behaviour: popup when normal, Google Maps when compact */
     const iconEl = marker.getElement().querySelector('.marker-icon');
     iconEl.addEventListener('click', ev => {
@@ -217,9 +215,9 @@ function handleMap(map) {
         popup.addTo(map);
         map.flyTo({
           center: def.coords,
-          zoom:   16,
-          speed:  2,
-          curve:  1.5,
+          zoom: 16,
+          speed: 2,
+          curve: 1.5,
           essential: true
         });
       }
@@ -264,7 +262,6 @@ definePageMeta({ name: 'neshan', layout: 'd' })
 </script>
 
 <style>
-
 .marker-wrapper {
   display: flex;
   flex-direction: column;
@@ -290,33 +287,42 @@ definePageMeta({ name: 'neshan', layout: 'd' })
 .marker-icon {
   width: 40px;
   height: 40px;
-  border-radius: 0.75rem;           /* smooth, not a full circle */
+  border-radius: 0.75rem;
+  /* smooth, not a full circle */
   /* background: rgba(255, 255, 255, 0.723);   */
   background-color: #014439;
-  backdrop-filter: blur(8px);       /* frosted-glass blur */
+  backdrop-filter: blur(8px);
+  /* frosted-glass blur */
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  pointer-events: auto;             /* allow clicks here */
+  pointer-events: auto;
+  /* allow clicks here */
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   border: 1px solid transparent;
 }
-.marker-icon:hover{
-    transform: scale(1.2);
-    margin-top: 8px;
-    border: 0.5px solid white;
+
+.marker-icon:hover {
+  transform: scale(1.2);
+  margin-top: 8px;
+  border: 0.5px solid white;
 
 }
 
-.marker-icon img{ width:24px; height:24px; user-select:none }
+.marker-icon img {
+  width: 24px;
+  height: 24px;
+  user-select: none
+}
 
 
 
 /* reset */
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -336,7 +342,7 @@ html, body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   /* color: #111; */
   color: white;
   overflow: hidden;
@@ -354,38 +360,57 @@ html, body {
 
 /* animated keyframes */
 @keyframes popupIn {
-  0%   { opacity: 0; transform: translateY(1rem) scale(0.95); }
-  60%  { opacity: 1; transform: translateY(0) scale(1.02); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes popupOut {
-  to { opacity: 0; transform: translateY(1rem) scale(0.95); }
+  0% {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.mapboxgl-popup-tip{
-    margin: -1px;
+@keyframes popupOut {
+  to {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+  }
 }
-.mapboxgl-popup-anchor-top .mapboxgl-popup-tip{
+
+.mapboxgl-popup-tip {
+  margin: -1px;
+}
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
   /* border-bottom-color: #ffffff61 !important; */
   border-bottom-color: #014439 !important;
-  
+
 }
 
-.mapboxgl-popup-anchor-left .mapboxgl-popup-tip{
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
   /* border-right-color: #ffffff61 !important; */
   border-right-color: #014439 !important;
 
 }
-.mapboxgl-popup-anchor-right .mapboxgl-popup-tip{
+
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
   /* border-left-color: #ffffff61 !important; */
   border-left-color: #014439 !important;
 
 }
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip{
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
   /* border-top-color: #ffffff61 !important; */
   border-top-color: #014439 !important;
 
 }
+
 /* sleek close button */
 .mapboxgl-popup-close-button {
   position: absolute;
@@ -405,18 +430,19 @@ html, body {
   color: #111;
   cursor: pointer;
   transform: scale(1);
-  transition: 
-    transform 200ms cubic-bezier(.4,0,.2,1),
+  transition:
+    transform 200ms cubic-bezier(.4, 0, .2, 1),
     background 200ms ease;
 }
 
-.mapboxgl-popup-anchor-right{
+.mapboxgl-popup-anchor-right {
   flex-direction: row;
 }
 
-.mapboxgl-popup-anchor-left{
+.mapboxgl-popup-anchor-left {
   flex-direction: row-reverse;
 }
+
 .mapboxgl-popup-close-button:hover {
   background: rgba(255 255 255 / 0.3);
   transform: scale(1.15);
@@ -438,23 +464,30 @@ html, body {
 
 
 .marker-icon.compact {
-  width: 12px;           /* tiny dot */
+  width: 12px;
+  /* tiny dot */
   height: 12px;
-  background: #014439;/* or pick your dot color */
+  background: #014439;
+  /* or pick your dot color */
   border-radius: 50%;
-  box-shadow: none;     /* optional: remove shadow */
-  padding: 0;           /* drop any padding */
+  box-shadow: none;
+  /* optional: remove shadow */
+  padding: 0;
+  /* drop any padding */
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
 .marker-icon.compact:hover {
-  width: 40px;           /* tiny dot */
+  width: 40px;
+  /* tiny dot */
   height: 40px;
-  background: #014439;/* or pick your dot color */
+  background: #014439;
+  /* or pick your dot color */
   border-radius: 0.75rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  padding: unset;           /* drop any padding */
+  padding: unset;
+  /* drop any padding */
   margin-top: 10px;
   margin-bottom: unset;
 }
@@ -462,11 +495,12 @@ html, body {
 
 
 .marker-icon.compact img {
-  display: none;        /* hide the SVG icon */
+  display: none;
+  /* hide the SVG icon */
 }
 
 .marker-icon.compact:hover img {
-  display: unset;        /* hide the SVG icon */
+  display: unset;
+  /* hide the SVG icon */
 }
-
 </style>

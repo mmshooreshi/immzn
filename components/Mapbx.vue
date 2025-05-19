@@ -15,6 +15,9 @@ const props = defineProps({
     lang: { type: String, default: 'fa' as 'fa' | 'en' },
     mapData: { type: Object }
 })
+// const markerTpls = ref<InstanceType<typeof Icon>[]>([])
+const markerTpls = ref<(HTMLImageElement | InstanceType<typeof Icon>)[]>([])
+
 
 /**— state —**/
 const mapId = 'mapbx'
@@ -44,90 +47,63 @@ function clearMap() {
     }
 }
 
+const markerTpl = ref()
 function renderTab() {
-    clearMap();
-    const tab = props.mapData.tabs.find(t => t.id === activeTab.value)!
+    clearMap()
+    const tabIndex = props.mapData.tabs.findIndex(t => t.id === activeTab.value)
+    const tab = props.mapData.tabs[tabIndex]!
 
-    // 1️⃣ Single-marker tab
-    console.log(tab)
+    // — pick the pre-rendered Icon component and clone its actual DOM node:
+
+    const tplComp = markerTpls.value[tabIndex]
+    // const el = (tplComp.$el as HTMLElement).cloneNode(true) as HTMLElement
+    // — pick the right element (img or Icon.$el) and clone it
+    let sourceEl: HTMLElement
+    if (tplComp instanceof HTMLImageElement) {
+        sourceEl = tplComp
+    } else {
+        sourceEl = tplComp.$el as HTMLElement
+    }
+    const el = sourceEl.cloneNode(true) as HTMLElement
+
+
+    el.style.display = ''
+
+    // un-hide the clone:
+    el.style.display = ''
+
     if (tab.marker) {
-        const m = tab.marker;
-        // create an <img> for the custom icon
-        const img = document.createElement('img');
-        img.src = m.iconUrl;
-        img.alt = m.popupHtml.replace(/<[^>]+>/g, '');
-        img.className = 'marker-img';
-        // place the marker
-        const marker = new mapboxgl.Marker({ element: img })
-            .setLngLat(m.coords)
+        // position a single marker
+        new mapboxgl.Marker({ element: el })
+            .setLngLat(tab.marker.coords)
             .setPopup(
-                new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(m.popupHtml)
+                new mapboxgl.Popup({
+                    offset: 25, className: 'popup-cont'
+                })
+                    .setHTML(tab.marker.popupHtml)
             )
-            .addTo(mapInstance);
-        // keyboard support
-        img.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                marker.togglePopup();
-            }
-        });
-        markers.push(marker);
-
-        // reset view
-        mapInstance.flyTo({
-            center: props.mapData.mapConfig.center,
-            zoom: props.mapData.mapConfig.zoom
-        });
-        return;
+            .addTo(mapInstance!)
+        return
     }
 
-    // 2️⃣ Route tab (driving, walking, metro, wheelchair, etc.)
+
+
     if (tab.route) {
         const r = tab.route;
 
-        // — origin marker
-        if (r.originIconUrl) {
-            const originImg = document.createElement('img');
-            originImg.src = r.originIconUrl;
-        } else {
-            const originImg = document.createElement('Icon');
-            originImg.name = "duo-icons:marker"
-        }
-        originImg.alt = r.description;
-        originImg.className = 'marker-img';
-        const originMarker = new mapboxgl.Marker({ element: originImg })
-            .setLngLat(r.origin)
-            .setPopup(
-                new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<strong>${r.originLabel || ''}</strong>`)
-            )
-            .addTo(mapInstance);
-        originImg.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                originMarker.togglePopup();
-            }
-        });
-        markers.push(originMarker);
-
-        // — destination marker
-        const destImg = document.createElement('img');
-        destImg.src = r.destinationIconUrl || '/icons/default-dest.svg';
-        destImg.alt = r.description;
-        destImg.className = 'marker-img';
-        const destMarker = new mapboxgl.Marker({ element: destImg })
-            .setLngLat(r.destination)
-            .setPopup(
-                new mapboxgl.Popup({ offset: 25 })
-                    .setHTML(`<strong>${r.destinationLabel || ''}</strong>`)
-            )
-            .addTo(mapInstance);
-        destImg.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                destMarker.togglePopup();
-            }
-        });
-        markers.push(destMarker);
-
+        // origin
+        const originEl = el.cloneNode(true) as HTMLElement
+        originEl.setAttribute('aria-label', tab.route.description)
+        new mapboxgl.Marker({ element: originEl })
+            .setLngLat(tab.route.origin)
+            .addTo(mapInstance!)
+        // dest
+        const destEl = el.cloneNode(true) as HTMLElement
+        destEl.setAttribute('aria-label', tab.route.description)
+        new mapboxgl.Marker({ element: destEl })
+            .setLngLat(tab.route.destination)
+            .addTo(mapInstance!)
+        // …then draw the line as before…
         // — draw the route line
         routeLayerId = `route-${tab.id}`;
         mapInstance.addSource(routeLayerId, {
@@ -176,15 +152,38 @@ function renderTab() {
         mapInstance.fitBounds(bounds, { padding: 50 });
 
         return;
+
     }
+
+
 }
 
 
-//— initialise map & controls once ready —//
+// //— initialise map & controls once ready —//
+// useMapbox(mapId, map => {
+//     mapInstance = map
+//     renderTab()
+// })
+
 useMapbox(mapId, map => {
-    mapInstance = map
-    renderTab()
-})
+    mapInstance = map;
+
+    // enable wheel/pinch zoom as you already do
+    map.scrollZoom.enable();
+
+    // then make sure the page never sees the wheel event:
+    const canvasContainer = map.getCanvasContainer();
+    canvasContainer.addEventListener(
+        'wheel',
+        e => {
+            // prevent the wheel from ever reaching the document
+            e.stopPropagation();
+        },
+        { passive: false }
+    );
+
+    renderTab();
+});
 
 onMounted(() => {
     // style / center / zoom react to currentStyle if you want:
@@ -199,7 +198,21 @@ watch(activeTab, () => renderTab())
 </script>
 
 <template>
-    <section class="space-y-4">
+    <section dir="ltr" class="space-y-4">
+        <template v-for="(tab, i) in mapData.tabs" :key="tab.id">
+            <!-- derive the URL inline -->
+            <template
+                v-if="(tab.marker?.iconUrl || tab.route?.originIconUrl || tab.route?.destinationIconUrl || '/icons/default-dest.svg').startsWith('/')">
+                <img ref="markerTpls"
+                    :src="tab.marker?.iconUrl || tab.route?.originIconUrl || tab.route?.destinationIconUrl || '/icons/default-dest.svg'"
+                    class="marker-svg text-teal-600 shadow-lg w-8 h-8" style="display:none" aria-hidden="true" />
+            </template>
+            <template v-else>
+                <Icon ref="markerTpls"
+                    :name="tab.marker?.iconUrl || tab.route?.originIconUrl || tab.route?.destinationIconUrl || '/icons/default-dest.svg'"
+                    class="marker-svg text-teal-600 shadow-lg w-8 h-8" style="display:none" aria-hidden="true" />
+            </template>
+        </template>
         <!-- headline & address -->
         <div>
             <h2 class="text-2xl font-bold">{{ mapData.headline }}</h2>
@@ -242,7 +255,7 @@ watch(activeTab, () => renderTab())
     </section>
 </template>
 
-<style scoped>
+<style>
 .custom-marker {
     width: 24px;
     height: 24px;
@@ -257,5 +270,33 @@ watch(activeTab, () => renderTab())
 
 .bg-primary {
     background-color: #014439;
+}
+
+#mapbx {
+    /* prevent the map’s scroll (wheel, touch) from ever scrolling the page */
+    overscroll-behavior: contain;
+    touch-action: none;
+
+}
+
+.popup-cont .mapboxgl-popup-content {
+    --at-apply: bg-teal-800 rounded-xl shadow-lg text-teal-200 dark:text-teal-400 dark:text-gray-200 pt-8;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+
+    --at-apply: border-t-teal-800 border-b-none;
+}
+
+.mapboxgl-popup-close-button {
+    margin: 10px;
+}
+
+
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+    align-self: flex-start;
+    border-bottom-color: #fff;
+    border-right: none;
+    border-top: none;
 }
 </style>
