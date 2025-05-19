@@ -107,7 +107,7 @@ onMounted(() => {
   <section id="program" class="py-12 bg-white dark:bg-[#141414]">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-        {{ program.headline.en }}
+        {{ program.headline }}
       </h2>
       <div v-for="day in program.schedule" :key="day.id" class="mb-6">
 
