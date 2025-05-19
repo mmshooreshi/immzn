@@ -1,526 +1,511 @@
 {
-    "headline": {
-        "en": "Program",
-        "fa": "برنامه"
-    },
-    "schedule": [
+  "headline": {
+    "en": "Program",
+    "fa": "برنامه"
+  },
+  "schedule": [
+    {
+      "id": 1,
+      "day": {
+        "en": "Day 1",
+        "fa": "روز اول"
+      },
+      "date": {
+        "en": "9 July 2025",
+        "fa": "۱۸ تیر ۱۴۰۴"
+      },
+      "title": {
+        "en": "Conferences & Discussions",
+        "fa": "کنفرانس‌ها و بحث‌ها"
+      },
+      "venue": {
+        "en": "Main Auditorium, IPM",
+        "fa": "سالن اصلی، پژوهشگاه IPM"
+      },
+      "sessions": [
         {
-            "id": 1,
-            "day": {
-                "en": "Day 1",
-                "fa": "روز اول"
-            },
-            "date": {
-                "en": "9 July 2025",
-                "fa": "۱۸ تیر ۱۴۰۴"
-            },
-            "title": {
-                "en": "Conferences & Discussions",
-                "fa": "کنفرانس‌ها و بحث‌ها"
-            },
-            "venue": {
-                "en": "Main Auditorium, IPM",
-                "fa": "سالن اصلی، پژوهشگاه IPM"
-            },
-            "sessions": [
-                {
-                    "time": {
-                        "start": "10:00",
-                        "end": "10:30"
-                    },
-                    "segments": [
-                        {
-                            "type": "ceremony",
-                            "title": {
-                                "en": "National Anthem of the Islamic Republic of Iran",
-                                "fa": "سرود جمهوری اسلامی ایران"
-                            },
-                            "speaker": null,
-                            "status": "Confirmed",
-                            "description": {
-                                "en": null,
-                                "fa": null
-                            },
-                            "location": null,
-                            "notes": null
-                        },
-                        {
-                            "type": "opening",
-                            "title": {
-                                "en": "Opening Remarks & Welcome",
-                                "fa": "سخنرانی افتتاحیه و خوش‌آمدگویی"
-                            },
-                            "speaker": {
-                                "name": {
-                                    "en": "Prof. Changiz Eslahchi",
-                                    "fa": "دکتر چنگیز اصلاحچی"
-                                },
-                                "affiliation": {
-                                    "en": "Institute for Research in Fundamental Sciences (IPM)",
-                                    "fa": "پژوهشگاه دانش‌های بنیادی"
-                                },
-                                "status": "Confirmed"
-                            },
-                            "description": {
-                                "en": "Introducing the event’s vision, significance, and the role of computational immunology. Why computational immunology, why now?",
-                                "fa": "معرفی چشم‌انداز و اهمیت ایمنی‌شناسی محاسباتی: چرا ایمنی‌شناسی محاسباتی و چرا اکنون؟"
-                            },
-                            "location": {
-                                "en": "Main Auditorium",
-                                "fa": "سالن اصلی"
-                            },
-                            "notes": null
-                        }
-                    ]
+          "time": {
+            "start": "10:00",
+            "end": "10:30"
+          },
+          "segments": [
+            {
+              "type": "opening",
+              "title": {
+                "en": "Opening Remarks & Welcome",
+                "fa": "سخنرانی افتتاحیه و خوش‌آمدگویی"
+              },
+              "speaker": {
+                "name": {
+                  "en": "Prof. Changiz Eslahchi",
+                  "fa": "دکتر چنگیز اصلاحچی"
                 },
-                {
-                    "time": {
-                        "start": "10:30",
-                        "end": "11:10"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "Genetics of the Immune System",
-                        "fa": "ژنتیک سیستم ایمنی"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "Prof. Siamak Bahram",
-                            "fa": "پروفسور سیامک بهرام"
-                        },
-                        "affiliation": {
-                            "en": "Strasbourg University School of Medicine and Teaching Hospitals",
-                            "fa": "دانشکده پزشکی و بیمارستان‌های آموزشی استراسبورگ"
-                        },
-                        "status": "Confirmed"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
+                "affiliation": {
+                  "en": "Institute for Research in Fundamental Sciences (IPM)",
+                  "fa": "پژوهشگاه دانش‌های بنیادی"
                 },
-                {
-                    "time": {
-                        "start": "11:10",
-                        "end": "11:50"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "*Network Approaches in Systems Immunology",
-                        "fa": "*رویکردهای شبکه‌ای در ایمونولوژی سیستمی"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "Dr. Sophia Tsoka",
-                            "fa": "دکتر سوفیا تسوکا"
-                        },
-                        "affiliation": {
-                            "en": "*TBD",
-                            "fa": "*در حال تکمیل"
-                        },
-                        "status": "*Declined"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": {
-                        "en": "Slot declined; alternative speaker to be arranged",
-                        "fa": "سخنران رد شده؛ جایگزین در حال هماهنگی"
-                    }
-                },
-                {
-                    "time": {
-                        "start": "11:50",
-                        "end": "12:30"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "Reproducibility and Machine Learning in Bioinformatics",
-                        "fa": "قابلیت تکرار و یادگیری ماشینی در بیوانفورماتیک"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "Dr. Fotis Psomopoulos",
-                            "fa": "دکتر فوتیس پسوموپولوس"
-                        },
-                        "affiliation": {
-                            "en": "Centre for Research and Technology Hellas, Greece",
-                            "fa": "مرکز پژوهش و فناوری هلناس، یونان"
-                        },
-                        "status": "Confirmed"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "12:30",
-                        "end": "13:30"
-                    },
-                    "type": "break",
-                    "title": {
-                        "en": "Lunch Break & Informal Conversations",
-                        "fa": "ناهار و گفت‌وگوی آزاد"
-                    },
-                    "speaker": null,
-                    "status": null,
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Lobby & Dining Area",
-                        "fa": "لانژ و فضای غذاخوری"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "13:30",
-                        "end": "14:00"
-                    },
-                    "type": "overview",
-                    "title": {
-                        "en": "Hackathon Vision & Overview",
-                        "fa": "چشم‌انداز و معرفی هکاتون"
-                    },
-                    "speaker": null,
-                    "status": "Confirmed",
-                    "description": {
-                        "en": "Themes, tools, and team formation",
-                        "fa": "موضوعات، ابزارها و تشکیل تیم‌ها"
-                    },
-                    "location": {
-                        "en": "Workshop Room A",
-                        "fa": "اتاق کارگاه A"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "14:00",
-                        "end": "14:40"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "*From Standards to Discovery: The Role of IMGT in B/T Cell Repertoire Analysis",
-                        "fa": "*از استانداردها تا کشف: نقش IMGT در تحلیل مجموعه B/T"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "*IMGT Speaker",
-                            "fa": "*سخنران IMGT"
-                        },
-                        "affiliation": {
-                            "en": "*IMGT®",
-                            "fa": "*IMGT®"
-                        },
-                        "status": "*Confirmed slot, TBC speaker"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": {
-                        "en": "Topic & speaker details to be finalized",
-                        "fa": "جزئیات موضوع و سخنران در حال نهایی شدن"
-                    }
-                },
-                {
-                    "time": {
-                        "start": "14:40",
-                        "end": "15:20"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "Creative Horizons in Structural Immunology",
-                        "fa": "افق‌های خلاق در ایمونولوژی ساختاری"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "Dr. Dimitrios Vlachakis",
-                            "fa": "دکتر دیمیتریوس ولاخاکیس"
-                        },
-                        "affiliation": {
-                            "en": "Agricultural University of Athens & University of Athens Medical School",
-                            "fa": "دانشگاه علوم کشاورزی آتن و دانشکده پزشکی دانشگاه آتن"
-                        },
-                        "status": "Confirmed"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "15:20",
-                        "end": "15:40"
-                    },
-                    "type": "break",
-                    "title": {
-                        "en": "Coffee Break & Networking",
-                        "fa": "استراحت قهوه و شبکه‌سازی"
-                    },
-                    "speaker": null,
-                    "status": null,
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Lobby",
-                        "fa": "لانژ"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "15:40",
-                        "end": "16:20"
-                    },
-                    "type": "talk",
-                    "title": {
-                        "en": "Translational Cancer Immunology",
-                        "fa": "ایمنی‌شناسی سرطان انتقالی"
-                    },
-                    "speaker": {
-                        "name": {
-                            "en": "Prof. Sophia Karagiannis",
-                            "fa": "پروفسور سوفیا کاراگیانیس"
-                        },
-                        "affiliation": {
-                            "en": "King's College London & Epsilogen Ltd",
-                            "fa": "کینگز کالج لندن و شرکت اپسیلوژن"
-                        },
-                        "status": "Confirmed"
-                    },
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "16:20",
-                        "end": "17:10"
-                    },
-                    "type": "roundtable",
-                    "title": {
-                        "en": "Roundtable Discussion: Computational Immunology as a Crossroads – Open Questions & New Directions",
-                        "fa": "میزگرد: ایمنی‌شناسی محاسباتی در تقاطع – پرسش‌های باز و مسیرهای جدید"
-                    },
-                    "moderator": {
-                        "name": {
-                            "en": "Scientific Program Chair",
-                            "fa": "رئیس برنامه علمی"
-                        }
-                    },
-                    "status": "Confirmed",
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
-                },
-                {
-                    "time": {
-                        "start": "17:10",
-                        "end": "17:30"
-                    },
-                    "type": "closing",
-                    "title": {
-                        "en": "Closing Reflections & Next Steps",
-                        "fa": "جمع‌بندی پایانی و گام‌های بعدی"
-                    },
-                    "speaker": null,
-                    "status": "Confirmed",
-                    "description": {
-                        "en": null,
-                        "fa": null
-                    },
-                    "location": {
-                        "en": "Main Auditorium",
-                        "fa": "سالن اصلی"
-                    },
-                    "notes": null
-                }
-            ]
+                "status": "Confirmed"
+              },
+              "description": {
+                "en": "Introducing the event’s vision, significance, and the role of computational immunology. Why computational immunology, why now?",
+                "fa": "معرفی چشم‌انداز و اهمیت ایمنی‌شناسی محاسباتی: چرا ایمنی‌شناسی محاسباتی و چرا اکنون؟"
+              },
+              "location": {
+                "en": "Main Auditorium",
+                "fa": "سالن اصلی"
+              },
+              "notes": null
+            }
+          ]
         },
         {
-            "id": 2,
-            "day": {
-                "en": "Day 2",
-                "fa": "روز دوم"
+          "time": {
+            "start": "10:30",
+            "end": "11:10"
+          },
+          "type": "talk",
+          "title": {
+            "en": "Genetics of the Immune System",
+            "fa": "ژنتیک سیستم ایمنی"
+          },
+          "speaker": {
+            "name": {
+              "en": "Prof. Siamak Bahram",
+              "fa": "پروفسور سیامک بهرام"
             },
-            "date": {
-                "en": "10 July 2025",
-                "fa": "۱۹ تیر ۱۴۰۴"
+            "affiliation": {
+              "en": "Strasbourg University School of Medicine and Teaching Hospitals",
+              "fa": "دانشکده پزشکی و بیمارستان‌های آموزشی استراسبورگ"
             },
-            "title": {
-                "en": "Hackathon",
-                "fa": "هکاتون"
-            },
-            "venue": {
-                "en": "*Rooms F1 & F2, IPM",
-                "fa": "*سالن‌های F1 و F2، پژوهشگاه IPM"
-            },
-            "sessions": [
-                {
-                    "time": {
-                        "start": "09:00",
-                        "end": "17:00"
-                    },
-                    "type": "hackathon_full_day",
-                    "title": {
-                        "en": "ImmUnity Hackathon Day 1",
-                        "fa": "هکاتون روز اول ImmUnity"
-                    },
-                    "details": [
-                        {
-                            "en": "Challenge introduction & team formation",
-                            "fa": "معرفی چالش و تشکیل تیم‌ها"
-                        },
-                        {
-                            "en": "Mentored work sessions with Dr. Reza Hassanzadeh, Dr. Nika Abdollahi, Dr. Sara Kaveh",
-                            "fa": "جلسات کاری با راهنمایی دکتر رضا حسن‌زاده، دکتر نیکا عبداللهی، دکتر سارا کاوه"
-                        },
-                        {
-                            "en": "*Sub-challenge topics to be defined",
-                            "fa": "*موضوعات زیرچالش در دست تعریف"
-                        },
-                        {
-                            "en": "Mid-day progress check-ins with mentors",
-                            "fa": "بازبینی پیشرفت میانی با راهنماها"
-                        },
-                        {
-                            "en": "Hands-on genome analysis using provided datasets",
-                            "fa": "تحلیل عملی ژنوم با استفاده از مجموعه داده‌های ارائه‌شده"
-                        },
-                        {
-                            "en": "*Expected number of teams unknown",
-                            "fa": "*تعداد تیم‌های شرکت‌کننده مشخص نیست"
-                        },
-                        {
-                            "en": "Use of AI-augmented research tools and visualization platforms",
-                            "fa": "استفاده از ابزارهای تقویت‌شده با هوش مصنوعی و پلتفرم‌های بصری‌سازی"
-                        },
-                        {
-                            "en": "Networking break with sponsors and partners",
-                            "fa": "استراحت شبکه‌سازی با حامیان و شرکا"
-                        }
-                    ]
-                }
-            ]
+            "status": "Confirmed"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
         },
         {
-            "id": 3,
-            "day": {
-                "en": "Day 3",
-                "fa": "روز سوم"
+          "time": {
+            "start": "11:10",
+            "end": "11:50"
+          },
+          "type": "talk",
+          "title": {
+            "en": "*Network Approaches in Systems Immunology",
+            "fa": "*رویکردهای شبکه‌ای در ایمونولوژی سیستمی"
+          },
+          "speaker": {
+            "name": {
+              "en": "Dr. Sophia Tsoka",
+              "fa": "دکتر سوفیا تسوکا"
             },
-            "date": {
-                "en": "11 July 2025",
-                "fa": "۲۰ تیر ۱۴۰۴"
+            "affiliation": {
+              "en": "*TBD",
+              "fa": "*در حال تکمیل"
             },
-            "title": {
-                "en": "Hackathon & Closing",
-                "fa": "هکاتون و اختتامیه"
+            "status": "*Declined"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": {
+            "en": "Slot declined; alternative speaker to be arranged",
+            "fa": "سخنران رد شده؛ جایگزین در حال هماهنگی"
+          }
+        },
+        {
+          "time": {
+            "start": "11:50",
+            "end": "12:30"
+          },
+          "type": "talk",
+          "title": {
+            "en": "Reproducibility and Machine Learning in Bioinformatics",
+            "fa": "قابلیت تکرار و یادگیری ماشینی در بیوانفورماتیک"
+          },
+          "speaker": {
+            "name": {
+              "en": "Dr. Fotis Psomopoulos",
+              "fa": "دکتر فوتیس پسوموپولوس"
             },
-            "venue": {
-                "en": "*Rooms F1 & F2, IPM",
-                "fa": "*سالن‌های F1 و F2، پژوهشگاه IPM"
+            "affiliation": {
+              "en": "Centre for Research and Technology Hellas, Greece",
+              "fa": "مرکز پژوهش و فناوری هلناس، یونان"
             },
-            "sessions": [
-                {
-                    "time": {
-                        "start": "09:00",
-                        "end": "17:00"
-                    },
-                    "type": "hackathon_final",
-                    "title": {
-                        "en": "ImmUnity Hackathon Day 2",
-                        "fa": "هکاتون روز دوم ImmUnity"
-                    },
-                    "details": [
-                        {
-                            "en": "Finalizing solutions & team presentations",
-                            "fa": "نهایی‌سازی راه‌حل‌ها و ارائه تیم‌ها"
-                        },
-                        {
-                            "en": "Evaluation (14:00–16:00) with judges: Dr. Changiz Eslahchi, Prof. Siamak Bahram, IMGT rep.",
-                            "fa": "ارزیابی (۱۴:۰۰–۱۶:۰۰) با داوران: دکتر چنگیز اصلاحچی، پروفسور سیامک بهرام، نماینده IMGT"
-                        },
-                        {
-                            "en": "Closing Ceremony & Awards",
-                            "fa": "مراسم اختتامیه و اهدای جوایز"
-                        },
-                        {
-                            "en": "Announcement of winning teams and feedback session",
-                            "fa": "اعلام تیم‌های برنده و جلسه بازخورد"
-                        },
-                        {
-                            "en": "Distribution of open-access resources: recorded talks & summaries",
-                            "fa": "توزیع منابع آزاد: سخنرانی‌های ضبط‌شده و خلاصه‌ها"
-                        },
-                        {
-                            "en": "*Post-event mentorship follow-up schedule uncertain",
-                            "fa": "*برنامه پیگیری پس از رویداد برای راهنمایی مشخص نیست"
-                        },
-                        {
-                            "en": "*Publication opportunities for hackathon outputs to be clarified",
-                            "fa": "*فرصت‌های انتشار نتایج هکاتون مشخص نشده‌اند"
-                        },
-                        {
-                            "en": "Networking brunch after the awards ceremony",
-                            "fa": "برنش شبکه‌سازی پس از مراسم اهدای جوایز"
-                        },
-                        {
-                            "en": "*Future editions of ImmUnity Horizons to be planned",
-                            "fa": "*برنامه‌ریزی برای دوره‌های آینده ImmUnity Horizons در دست انجام است"
-                        },
-                        {
-                            "en": "*Post-event survey distribution method to be confirmed",
-                            "fa": "*روش ارسال نظرسنجی پس از رویداد تعیین نشده است"
-                        }
-                    ]
-                }
-            ]
+            "status": "Confirmed"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "12:30",
+            "end": "13:30"
+          },
+          "type": "break",
+          "title": {
+            "en": "Lunch Break & Informal Conversations",
+            "fa": "ناهار و گفت‌وگوی آزاد"
+          },
+          "speaker": null,
+          "status": null,
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Lobby & Dining Area",
+            "fa": "لانژ و فضای غذاخوری"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "13:30",
+            "end": "14:00"
+          },
+          "type": "overview",
+          "title": {
+            "en": "Hackathon Vision & Overview",
+            "fa": "چشم‌انداز و معرفی هکاتون"
+          },
+          "speaker": null,
+          "status": "Confirmed",
+          "description": {
+            "en": "Themes, tools, and team formation",
+            "fa": "موضوعات، ابزارها و تشکیل تیم‌ها"
+          },
+          "location": {
+            "en": "Workshop Room A",
+            "fa": "اتاق کارگاه A"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "14:00",
+            "end": "14:40"
+          },
+          "type": "talk",
+          "title": {
+            "en": "*From Standards to Discovery: The Role of IMGT in B/T Cell Repertoire Analysis",
+            "fa": "*از استانداردها تا کشف: نقش IMGT در تحلیل مجموعه B/T"
+          },
+          "speaker": {
+            "name": {
+              "en": "*IMGT Speaker",
+              "fa": "*سخنران IMGT"
+            },
+            "affiliation": {
+              "en": "*IMGT®",
+              "fa": "*IMGT®"
+            },
+            "status": "*Confirmed slot, TBC speaker"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": {
+            "en": "Topic & speaker details to be finalized",
+            "fa": "جزئیات موضوع و سخنران در حال نهایی شدن"
+          }
+        },
+        {
+          "time": {
+            "start": "14:40",
+            "end": "15:20"
+          },
+          "type": "talk",
+          "title": {
+            "en": "Creative Horizons in Structural Immunology",
+            "fa": "افق‌های خلاق در ایمونولوژی ساختاری"
+          },
+          "speaker": {
+            "name": {
+              "en": "Dr. Dimitrios Vlachakis",
+              "fa": "دکتر دیمیتریوس ولاخاکیس"
+            },
+            "affiliation": {
+              "en": "Agricultural University of Athens & University of Athens Medical School",
+              "fa": "دانشگاه علوم کشاورزی آتن و دانشکده پزشکی دانشگاه آتن"
+            },
+            "status": "Confirmed"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "15:20",
+            "end": "15:40"
+          },
+          "type": "break",
+          "title": {
+            "en": "Coffee Break & Networking",
+            "fa": "استراحت قهوه و شبکه‌سازی"
+          },
+          "speaker": null,
+          "status": null,
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Lobby",
+            "fa": "لانژ"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "15:40",
+            "end": "16:20"
+          },
+          "type": "talk",
+          "title": {
+            "en": "Translational Cancer Immunology",
+            "fa": "ایمنی‌شناسی سرطان انتقالی"
+          },
+          "speaker": {
+            "name": {
+              "en": "Prof. Sophia Karagiannis",
+              "fa": "پروفسور سوفیا کاراگیانیس"
+            },
+            "affiliation": {
+              "en": "King's College London & Epsilogen Ltd",
+              "fa": "کینگز کالج لندن و شرکت اپسیلوژن"
+            },
+            "status": "Confirmed"
+          },
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "16:20",
+            "end": "17:10"
+          },
+          "type": "roundtable",
+          "title": {
+            "en": "Roundtable Discussion: Computational Immunology as a Crossroads – Open Questions & New Directions",
+            "fa": "میزگرد: ایمنی‌شناسی محاسباتی در تقاطع – پرسش‌های باز و مسیرهای جدید"
+          },
+          "moderator": {
+            "name": {
+              "en": "Scientific Program Chair",
+              "fa": "رئیس برنامه علمی"
+            }
+          },
+          "status": "Confirmed",
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
+        },
+        {
+          "time": {
+            "start": "17:10",
+            "end": "17:30"
+          },
+          "type": "closing",
+          "title": {
+            "en": "Closing Reflections & Next Steps",
+            "fa": "جمع‌بندی پایانی و گام‌های بعدی"
+          },
+          "speaker": null,
+          "status": "Confirmed",
+          "description": {
+            "en": null,
+            "fa": null
+          },
+          "location": {
+            "en": "Main Auditorium",
+            "fa": "سالن اصلی"
+          },
+          "notes": null
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "day": {
+        "en": "Day 2",
+        "fa": "روز دوم"
+      },
+      "date": {
+        "en": "10 July 2025",
+        "fa": "۱۹ تیر ۱۴۰۴"
+      },
+      "title": {
+        "en": "Hackathon",
+        "fa": "هکاتون"
+      },
+      "venue": {
+        "en": "*Rooms F1 & F2, IPM",
+        "fa": "*سالن‌های F1 و F2، پژوهشگاه IPM"
+      },
+      "sessions": [
+        {
+          "time": {
+            "start": "09:00",
+            "end": "17:00"
+          },
+          "type": "hackathon_full_day",
+          "title": {
+            "en": "ImmUnity Hackathon Day 1",
+            "fa": "هکاتون روز اول ImmUnity"
+          },
+          "details": [
+            {
+              "en": "Challenge introduction & team formation",
+              "fa": "معرفی چالش و تشکیل تیم‌ها"
+            },
+            {
+              "en": "Mentored work sessions with Dr. Reza Hassanzadeh, Dr. Nika Abdollahi, Dr. Sara Kaveh",
+              "fa": "جلسات کاری با راهنمایی دکتر رضا حسن‌زاده، دکتر نیکا عبداللهی، دکتر سارا کاوه"
+            },
+            {
+              "en": "*Sub-challenge topics to be defined",
+              "fa": "*موضوعات زیرچالش در دست تعریف"
+            },
+            {
+              "en": "Mid-day progress check-ins with mentors",
+              "fa": "بازبینی پیشرفت میانی با راهنماها"
+            },
+            {
+              "en": "Hands-on genome analysis using provided datasets",
+              "fa": "تحلیل عملی ژنوم با استفاده از مجموعه داده‌های ارائه‌شده"
+            },
+            {
+              "en": "*Expected number of teams unknown",
+              "fa": "*تعداد تیم‌های شرکت‌کننده مشخص نیست"
+            },
+            {
+              "en": "Use of AI-augmented research tools and visualization platforms",
+              "fa": "استفاده از ابزارهای تقویت‌شده با هوش مصنوعی و پلتفرم‌های بصری‌سازی"
+            },
+            {
+              "en": "Networking break with sponsors and partners",
+              "fa": "استراحت شبکه‌سازی با حامیان و شرکا"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "day": {
+        "en": "Day 3",
+        "fa": "روز سوم"
+      },
+      "date": {
+        "en": "11 July 2025",
+        "fa": "۲۰ تیر ۱۴۰۴"
+      },
+      "title": {
+        "en": "Hackathon & Closing",
+        "fa": "هکاتون و اختتامیه"
+      },
+      "venue": {
+        "en": "*Rooms F1 & F2, IPM",
+        "fa": "*سالن‌های F1 و F2، پژوهشگاه IPM"
+      },
+      "sessions": [
+        {
+          "time": {
+            "start": "09:00",
+            "end": "17:00"
+          },
+          "type": "hackathon_final",
+          "title": {
+            "en": "ImmUnity Hackathon Day 2",
+            "fa": "هکاتون روز دوم ImmUnity"
+          },
+          "details": [
+            {
+              "en": "Finalizing solutions & team presentations",
+              "fa": "نهایی‌سازی راه‌حل‌ها و ارائه تیم‌ها"
+            },
+            {
+              "en": "Evaluation (14:00–16:00) with judges: Dr. Changiz Eslahchi, Prof. Siamak Bahram, IMGT rep.",
+              "fa": "ارزیابی (۱۴:۰۰–۱۶:۰۰) با داوران: دکتر چنگیز اصلاحچی، پروفسور سیامک بهرام، نماینده IMGT"
+            },
+            {
+              "en": "Closing Ceremony & Awards",
+              "fa": "مراسم اختتامیه و اهدای جوایز"
+            },
+            {
+              "en": "Announcement of winning teams and feedback session",
+              "fa": "اعلام تیم‌های برنده و جلسه بازخورد"
+            },
+            {
+              "en": "Distribution of open-access resources: recorded talks & summaries",
+              "fa": "توزیع منابع آزاد: سخنرانی‌های ضبط‌شده و خلاصه‌ها"
+            },
+            {
+              "en": "*Post-event mentorship follow-up schedule uncertain",
+              "fa": "*برنامه پیگیری پس از رویداد برای راهنمایی مشخص نیست"
+            },
+            {
+              "en": "*Publication opportunities for hackathon outputs to be clarified",
+              "fa": "*فرصت‌های انتشار نتایج هکاتون مشخص نشده‌اند"
+            },
+            {
+              "en": "Networking brunch after the awards ceremony",
+              "fa": "برنش شبکه‌سازی پس از مراسم اهدای جوایز"
+            },
+            {
+              "en": "*Future editions of ImmUnity Horizons to be planned",
+              "fa": "*برنامه‌ریزی برای دوره‌های آینده ImmUnity Horizons در دست انجام است"
+            },
+            {
+              "en": "*Post-event survey distribution method to be confirmed",
+              "fa": "*روش ارسال نظرسنجی پس از رویداد تعیین نشده است"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
