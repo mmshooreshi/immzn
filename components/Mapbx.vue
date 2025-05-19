@@ -1,253 +1,226 @@
-<template>
-    <div class="map-wrapper">
-        <!-- style switcher & tabs -->
-        <div class="flex flex-wrap mb-2 gap-2">
-            <label>
-                <span class="sr-only">انتخاب سبک نقشه</span>
-                <select v-model="currentStyle" @change="changeStyle" class="px-3 py-1 border rounded text-sm"
-                    aria-label="انتخاب سبک نقشه">
-                    <option v-for="style in data.styles" :key="style.id" :value="style.url">
-                        {{ style.title }}
-                    </option>
-                </select>
-            </label>
+<script setup lang="ts">
+// mapbx.vue
 
-            <div role="tablist" aria-label="انتخاب نوع نمایش روی نقشه" class="flex gap-1">
-                <button v-for="tab in data.tabs" :key="tab.id" @click="setActive(tab.id)" :class="[
-                    'px-4 py-2 rounded focus:outline-none focus:ring',
-                    activeTab === tab.id
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-200 dark:bg-gray-700'
-                ]" role="tab" :aria-selected="activeTab === tab.id" :tabindex="activeTab === tab.id ? 0 : -1">
-                    {{ tab.title }}
-                </button>
-            </div>
-        </div>
-
-        <!-- map -->
-        <div ref="mapContainer" class="w-full h-96 rounded-lg overflow-hidden" role="application" aria-label="نقشه"
-            tabindex="0"></div>
-
-        <!-- textual directions for screen readers & sighted -->
-        <div v-if="currentRoute?.steps" class="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded" role="region"
-            aria-labelledby="directions-heading">
-            <h2 id="directions-heading" class="text-lg font-semibold mb-2">
-                {{ currentRoute.description }}
-            </h2>
-            <ol class="list-decimal list-inside space-y-1">
-                <li v-for="(step, i) in currentRoute.steps" :key="i">
-                    {{ step }}
-                </li>
-            </ol>
-        </div>
-    </div>
-</template>
-
-<script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import mapboxgl from 'mapbox-gl'
+// import {
+//     MapboxMap,
+//     MapboxNavigationControl,
+//     MapboxGeolocateControl,
+//     useMapbox
+// } from 'nuxt-mapbox'
 
+// props: allow switching language if you want
 const props = defineProps({
-    data: { type: Object, required: true }
+    lang: { type: String, default: 'fa' as 'fa' | 'en' },
+    mapData: { type: Object }
 })
 
-const mapContainer = ref(null)
-let map
-let currentMarkers = []
-let currentRouteLayerId = null
-
-const activeTab = ref(props.data.tabs[0].id)
+/**— state —**/
+const mapId = 'mapbx'
+const activeTab = ref(props.mapData.tabs[0].id)
 const currentStyle = ref(
-    props.data.styles.find(s => s.id === props.data.defaultStyle)?.url ||
-    props.data.styles[0].url
+    props.mapData.mapConfig.styles.find(s => s.id === props.mapData.mapConfig.defaultStyle)!.url
 )
+const options = ref({
+    style: currentStyle.value,
+    center: props.mapData.mapConfig.center,
+    zoom: props.mapData.mapConfig.zoom
+})
 
+// refs for cleanup
+let mapInstance: mapboxgl.Map | null = null
+let markers: mapboxgl.Marker[] = []
+let routeLayerId: string | null = null
+
+/**— helper: clear old markers & route —**/
 function clearMap() {
-    currentMarkers.forEach(m => m.remove())
-    currentMarkers = []
-    if (currentRouteLayerId && map.getLayer(currentRouteLayerId)) {
-        map.removeLayer(currentRouteLayerId)
-        map.removeSource(currentRouteLayerId)
-        currentRouteLayerId = null
+    markers.forEach(m => m.remove())
+    markers = []
+    if (routeLayerId && mapInstance?.getLayer(routeLayerId)) {
+        mapInstance.removeLayer(routeLayerId)
+        mapInstance.removeSource(routeLayerId)
+        routeLayerId = null
     }
 }
 
-function renderTab(tab) {
+/**— render whatever’s in the active tab —**/
+function renderTab() {
+    if (!mapInstance) return
     clearMap()
 
-    // —— markers only
-    if (tab.markers) {
-        tab.markers.forEach(m => {
-            const el = document.createElement('div')
-            el.className = 'marker'
-            el.setAttribute('role', 'button')
-            el.setAttribute('tabindex', '0')
-            el.setAttribute('aria-label', m.ariaLabel)
-            const marker = new mapboxgl.Marker(el)
-                .setLngLat(m.coords)
-                .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(m.html))
-                .addTo(map)
-            // keyboard support: open popup on Enter
-            el.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    marker.togglePopup()
-                }
-            })
-            currentMarkers.push(marker)
+    const tab = props.mapData.tabs.find(t => t.id === activeTab.value)!
+    // — markers only
+    if ('marker' in tab) {
+        const m = tab.marker
+        const el = document.createElement('div')
+        el.className = 'custom-marker'
+        el.setAttribute('role', 'button')
+        el.setAttribute('tabindex', '0')
+        el.setAttribute('aria-label', m.popupHtml[props.lang].replace(/<[^>]+>/g, ''))
+        const marker = new mapboxgl.Marker(el)
+            .setLngLat(m.coords)
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+                .setHTML(m.popupHtml[props.lang])
+            )
+            .addTo(mapInstance)
+        // keyboard support
+        el.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') marker.togglePopup()
         })
-        map.flyTo({ center: props.data.center, zoom: props.data.zoom })
+        markers.push(marker)
+        mapInstance.flyTo({ center: props.mapData.mapConfig.center, zoom: props.mapData.mapConfig.zoom })
         return
     }
 
-    // —— single route (including wheelchair)
-    if (tab.route) {
-        const {
-            origin,
-            destination,
-            originLabel,
-            destinationLabel,
-            destinationHtml,
-            color,
-            steps,
-            description
-        } = tab.route
+    // — single route
+    if ('route' in tab) {
+        const r = tab.route
+            // origin & destination markers
+            ;[
+                { coords: r.origin, label: tab.title[props.lang] === props.mapData.tabs[0].title[props.lang] ? '' : mapData.tabs.find(t => t.id === 'location')!.marker.popupHtml[props.lang] }
+            ].forEach(_ => { }) // we only show popup on main marker; skip origin label
 
-        // origin & destination markers
-        [
-            { coords: origin, label: originLabel, html: null },
-            { coords: destination, label: destinationLabel, html: destinationHtml || null }
-        ].forEach(({ coords, label, html }) => {
-            const el = document.createElement('div')
-            el.className = 'marker'
-            el.setAttribute('role', 'button')
-            el.setAttribute('tabindex', '0')
-            el.setAttribute('aria-label', label)
-            const popup = new mapboxgl.Popup({ offset: 25 })
-                .setHTML(html || `<strong>${label}</strong>`)
-            const marker = new mapboxgl.Marker(el)
-                .setLngLat(coords)
-                .setPopup(popup)
-                .addTo(map)
-            el.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') popup.addTo(map)
+            // always add both markers:
+            ;[
+                { coords: r.origin, label: r.description[props.lang] },
+                { coords: r.destination, label: r.description[props.lang] }
+            ].forEach(({ coords, label }) => {
+                const el = document.createElement('div')
+                el.className = 'custom-marker'
+                el.setAttribute('role', 'button')
+                el.setAttribute('tabindex', '0')
+                el.setAttribute('aria-label', label)
+                const popup = new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`<strong>${label}</strong>`)
+                const marker = new mapboxgl.Marker(el)
+                    .setLngLat(coords)
+                    .setPopup(popup)
+                    .addTo(mapInstance!)
+                el.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') popup.addTo(mapInstance!)
+                })
+                markers.push(marker)
             })
-            currentMarkers.push(marker)
-        })
 
-        // draw line
-        const layerId = `route-${tab.id}`
-        map.addSource(layerId, {
+        // draw the line
+        routeLayerId = `route-${tab.id}`
+        mapInstance.addSource(routeLayerId, {
             type: 'geojson',
             data: {
                 type: 'Feature',
-                geometry: { type: 'LineString', coordinates: [origin, destination] }
+                geometry: {
+                    type: 'LineString',
+                    coordinates: [r.origin, r.destination]
+                }
             }
         })
-        map.addLayer({
-            id: layerId,
+        mapInstance.addLayer({
+            id: routeLayerId,
             type: 'line',
-            source: layerId,
+            source: routeLayerId,
             layout: { 'line-cap': 'round', 'line-join': 'round' },
-            paint: { 'line-width': 4, 'line-color': color }
+            paint: { 'line-color': r.color, 'line-width': 4 }
         })
-        currentRouteLayerId = layerId
 
-        // hover & click
-        map.on('mouseenter', layerId, () => {
-            map.setPaintProperty(layerId, 'line-width', 6)
-            map.getCanvas().style.cursor = 'pointer'
+        // hover + click
+        mapInstance.on('mouseenter', routeLayerId, () => {
+            mapInstance!.setPaintProperty(routeLayerId!, 'line-width', 6)
+            mapInstance!.getCanvas().style.cursor = 'pointer'
         })
-        map.on('mouseleave', layerId, () => {
-            map.setPaintProperty(layerId, 'line-width', 4)
-            map.getCanvas().style.cursor = ''
+        mapInstance.on('mouseleave', routeLayerId, () => {
+            mapInstance!.setPaintProperty(routeLayerId!, 'line-width', 4)
+            mapInstance!.getCanvas().style.cursor = ''
         })
-        map.on('click', layerId, e => {
+        mapInstance.on('click', routeLayerId, e => {
             new mapboxgl.Popup({ offset: 10 })
                 .setLngLat(e.lngLat)
-                .setText(description)
-                .addTo(map)
+                .setText(r.description[props.lang])
+                .addTo(mapInstance!)
         })
 
-        // fit to bounds
-        const bounds = new mapboxgl.LngLatBounds(origin, origin)
-        bounds.extend(destination)
-        map.fitBounds(bounds, { padding: 50 })
+        // fit bounds
+        const bounds = new mapboxgl.LngLatBounds(r.origin, r.origin)
+        bounds.extend(r.destination)
+        mapInstance.fitBounds(bounds, { padding: 50 })
 
         return
     }
 }
 
-function setActive(id) {
-    activeTab.value = id
-}
-
-function changeStyle() {
-    map.setStyle(currentStyle.value)
-    map.once('styledata', () => {
-        renderTab(props.data.tabs.find(t => t.id === activeTab.value))
-    })
-}
+//— initialise map & controls once ready —//
+useMapbox(mapId, map => {
+    mapInstance = map
+    renderTab()
+})
 
 onMounted(() => {
-    map = new mapboxgl.Map({
-        container: mapContainer.value,
-        style: currentStyle.value,
-        center: props.data.center,
-        zoom: props.data.zoom
-    })
-
-    // built-in controls
-    if (props.data.controls.navigation) {
-        map.addControl(new mapboxgl.NavigationControl(), 'top-right')
-    }
-    if (props.data.controls.scale) {
-        map.addControl(new mapboxgl.ScaleControl({ maxWidth: 80, unit: 'metric' }), 'bottom-left')
-    }
-    if (props.data.controls.geolocate) {
-        map.addControl(
-            new mapboxgl.GeolocateControl({
-                positionOptions: { enableHighAccuracy: true },
-                trackUserLocation: true
-            }),
-            'top-right'
-        )
-    }
-
-    map.on('load', () => {
-        renderTab(props.data.tabs.find(t => t.id === activeTab.value))
-    })
-
-    // double-click to reset
-    map.on('dblclick', () => {
-        clearMap()
-        map.flyTo({ center: props.data.center, zoom: props.data.zoom })
+    // style / center / zoom react to currentStyle if you want:
+    watch(currentStyle, s => {
+        options.value.style = s
+        mapInstance?.setStyle(s)
     })
 })
 
-watch(activeTab, id => {
-    const tab = props.data.tabs.find(t => t.id === id)
-    if (map && map.isStyleLoaded()) {
-        renderTab(tab)
-    } else {
-        map.once('load', () => renderTab(tab))
-    }
-})
+// when tab changes
+watch(activeTab, () => renderTab())
 </script>
 
-<style scoped>
-.map-wrapper {
-    width: 100%;
-}
+<template>
+    <section class="space-y-4">
+        <!-- headline & address -->
+        <div>
+            <h2 class="text-2xl font-bold">{{ mapData.headline[props.lang] }}</h2>
+            <p class="text-gray-700 dark:text-gray-300">{{ mapData.address[props.lang] }}</p>
+        </div>
 
-.marker {
+        <!-- style chooser & tabs -->
+        <div class="flex flex-wrap gap-2">
+            <select v-model="currentStyle" aria-label="انتخاب سبک نقشه" class="px-3 py-1 border rounded">
+                <option v-for="s in mapData.mapConfig.styles" :key="s.id" :value="s.url">{{ s.title[props.lang] }}
+                </option>
+            </select>
+
+            <div role="tablist" class="flex gap-1">
+                <button v-for="t in mapData.tabs" :key="t.id" role="tab" :aria-selected="activeTab === t.id"
+                    @click="activeTab = t.id" class="px-4 py-2 rounded focus:outline-none focus:ring 
+                 " :class="activeTab === t.id
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-200 dark:bg-gray-700'">{{ t.title[props.lang] }}</button>
+            </div>
+        </div>
+
+        <!-- the map -->
+        <MapboxMap :map-id="mapId" style="width:100%; height:500px" :options="options">
+            <MapboxNavigationControl v-if="mapData.mapConfig.controls.navigation" position="top-right" />
+            <MapboxGeolocateControl v-if="mapData.mapConfig.controls.geolocate" position="top-right" />
+        </MapboxMap>
+
+        <!-- textual directions -->
+        <div v-if="mapData.tabs.find(t => t.id === activeTab).route" class="p-4 bg-gray-100 dark:bg-gray-800 rounded"
+            role="region" aria-labelledby="directions-heading">
+            <h3 id="directions-heading" class="font-semibold mb-2">
+                {{mapData.tabs.find(t => t.id === activeTab).route.description[props.lang]}}
+            </h3>
+            <ol class="list-decimal list-inside space-y-1">
+                <li v-for="(step, i) in mapData.tabs.find(t => t.id === activeTab).route.steps[props.lang]" :key="i">{{
+                    step }}</li>
+            </ol>
+        </div>
+    </section>
+</template>
+
+<style scoped>
+.custom-marker {
     width: 24px;
     height: 24px;
     background-color: #014439;
     border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 .bg-primary {

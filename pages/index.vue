@@ -144,8 +144,10 @@ useHead({
         zoom: 5 // starting zoom
       }" />
     </div> -->
-
-    <Mapbx />
+    {{ localizedData.map }}
+    <ClientOnly>
+      <Mapbx :mapData="localizedData.map" lang="fa" />
+    </ClientOnly>
 
     <RegisterSection :data="{
       headline: localizedData.register.headline,
