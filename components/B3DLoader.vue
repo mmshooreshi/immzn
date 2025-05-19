@@ -1,120 +1,99 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from 'vue'
 import { OrbitControls } from '@tresjs/cientos'
-import {
-  TresCanvas,
-} from '@tresjs/core'
-import uglyBunny from '@/components/uglyBunny.vue'
-import { GUI } from 'lil-gui'
+import { TresCanvas } from '@tresjs/core'
+import UglyBunny from '@/components/uglyBunny.vue'
 import { Box3, Vector3 } from 'three'
-const isMobile = useIsMobile();
 
-// Refs for three objects
+/* -------------------------------------------------------------------------- */
+/* 1. Refs                                                                   */
+/* -------------------------------------------------------------------------- */
 const cameraRef = ref<any>(null)
 const controlsRef = ref<any>(null)
 const bunnyGroupRef = ref<any>(null)
 
-// Center and size computed once
-let boxCenter: Vector3 | null = null
-let boxSize: Vector3 | null = null
+/* -------------------------------------------------------------------------- */
+/* 2. Device check                                                           */
+/* -------------------------------------------------------------------------- */
+const isMobile = useIsMobile()
 
-// Reactive GUI parameters
+/* -------------------------------------------------------------------------- */
+/* 3. Reactive parameters                                                    */
+/* -------------------------------------------------------------------------- */
 interface Params {
-  cameraX: number; cameraY: number; cameraZ: number;
-  enablePan: boolean; enableRotate: boolean; enableZoom: boolean;
-  autoRotate: boolean; autoRotateSpeed: number;
-  bunnyScale: number;
-  groupPosX: number; groupPosY: number; groupPosZ: number;
-  groupRotX: number; groupRotY: number; groupRotZ: number;
+  camera: { x: number; y: number; z: number }
+  enablePan: boolean
+  enableRotate: boolean
+  enableZoom: boolean
+  autoRotate: boolean
+  autoRotateSpeed: number
+  bunnyScale: number
+  groupPos: { x: number; y: number; z: number }
+  groupRot: { x: number; y: number; z: number }
 }
 
 const params = reactive<Params>({
-  cameraX: 0, cameraY: 0, cameraZ: 500,
-  enablePan: false, enableRotate: true, enableZoom: false,
-  autoRotate: false, autoRotateSpeed: 2,
+  camera: { x: 0, y: 0, z: 500 },
+  enablePan: false,
+  enableRotate: true,
+  enableZoom: false,
+  autoRotate: false,
+  autoRotateSpeed: 2,
   bunnyScale: 1,
-  groupPosX: 0, groupPosY: 0, groupPosZ: 0,
-  groupRotX: 0, groupRotY: 0, groupRotZ: 0,
+  groupPos: { x: 0, y: 0, z: 0 },
+  groupRot: { x: 0, y: 0, z: 0 },
 })
 
-// Apply group transform around computed center
+/* -------------------------------------------------------------------------- */
+/* 4. Group placement helpers                                                */
+/* -------------------------------------------------------------------------- */
+let boxCenter: Vector3 | null = null
+
 function updateGroup() {
-  if (!bunnyGroupRef.value || !boxCenter) return
-  const gp = params
-  const { x: cx, y: cy, z: cz } = boxCenter
-  // position = offset from center plus manual position
-  bunnyGroupRef.value.position.set(
-    -cx + gp.groupPosX,
-    -cy + gp.groupPosY,
-    -cz + gp.groupPosZ
+  const g = bunnyGroupRef.value
+  if (!g || !boxCenter) return
+
+  // position around pivot
+  g.position.set(
+    -boxCenter.x + params.groupPos.x,
+    -boxCenter.y + params.groupPos.y,
+    -boxCenter.z + params.groupPos.z,
   )
-  // rotation in radians
-  bunnyGroupRef.value.rotation.set(
-    (gp.groupRotX * Math.PI) / 180,
-    (gp.groupRotY * Math.PI) / 180,
-    (gp.groupRotZ * Math.PI) / 180
+
+  // rotation (deg ➜ rad)
+  g.rotation.set(
+    (params.groupRot.x * Math.PI) / 180,
+    (params.groupRot.y * Math.PI) / 180,
+    (params.groupRot.z * Math.PI) / 180,
   )
+
   // scale
-  bunnyGroupRef.value.scale.set(gp.bunnyScale, gp.bunnyScale, gp.bunnyScale)
-  // ensure orbit target at origin
-  controlsRef.value.target.set(0, 0, 0)
-  controlsRef.value.update()
+  g.scale.setScalar(params.bunnyScale)
 }
 
-
+/* -------------------------------------------------------------------------- */
+/* 5. Initialisation                                                         */
+/* -------------------------------------------------------------------------- */
 onMounted(() => {
-  console.log("isMobile: ", isMobile.value)
+  // Mobile tweaks
+  if (isMobile.value) params.bunnyScale *= 0.9
 
-  if (isMobile.value) {
-    bunnyGroupRef?.value?.scale.set(0.9, 0.9, 0.9)
-
+  // OrbitControls polish
+  const c = controlsRef.value
+  if (c) {
+    c.enableDamping = true
+    c.dampingFactor = 0.07
+    c.rotateSpeed = 400000          // drag orbit ×4
   }
 
-
-
-  // const gui = new GUI()
-
-  // // Camera folder
-  // const camF = gui.addFolder('Camera')
-  // camF.add(params, 'cameraX', -1000, 1000).onChange(v => cameraRef.value.position.x = v)
-  // camF.add(params, 'cameraY', -1000, 1000).onChange(v => cameraRef.value.position.y = v)
-  // camF.add(params, 'cameraZ', 0, 2000).onChange(v => cameraRef.value.position.z = v)
-  // camF.open()
-
-  // // Controls folder
-  // const ctlF = gui.addFolder('Controls')
-  // ctlF.add(params, 'enablePan').onChange(v => controlsRef.value.enablePan = v)
-  // ctlF.add(params, 'enableRotate').onChange(v => controlsRef.value.enableRotate = v)
-  // ctlF.add(params, 'enableZoom').onChange(v => controlsRef.value.enableZoom = v)
-  // ctlF.add(params, 'autoRotate').name('Auto Rotate').onChange(v => controlsRef.value.autoRotate = v)
-  // ctlF.add(params, 'autoRotateSpeed', 0.1, 10).name('Rotate Speed').onChange(v => controlsRef.value.autoRotateSpeed = v)
-  // ctlF.open()
-
-  // // Bunny folder (scale only)
-  // const bunF = gui.addFolder('Bunny Scale')
-  // bunF.add(params, 'bunnyScale', 0.1, 10).onChange(updateGroup)
-  // bunF.open()
-
-  // // Scene transform
-  // const grpF = gui.addFolder('Scene')
-  // grpF.add(params, 'groupPosX', -500, 500).name('Pos X').onChange(updateGroup)
-  // grpF.add(params, 'groupPosY', -500, 500).name('Pos Y').onChange(updateGroup)
-  // grpF.add(params, 'groupPosZ', -500, 500).name('Pos Z').onChange(updateGroup)
-  // grpF.add(params, 'groupRotX', -180, 180).name('Rot X°').onChange(updateGroup)
-  // grpF.add(params, 'groupRotY', -180, 180).name('Rot Y°').onChange(updateGroup)
-  // grpF.add(params, 'groupRotZ', -180, 180).name('Rot Z°').onChange(updateGroup)
-  // grpF.open()
-
-  // Wait for model load then compute box and initial placement
-  const interval = setInterval(() => {
+  // Wait until model is loaded then compute its bounding box
+  const timer = setInterval(() => {
     const obj = bunnyGroupRef.value?.object3d
     if (obj) {
-      clearInterval(interval)
+      clearInterval(timer)
       const box = new Box3().setFromObject(obj)
       boxCenter = new Vector3()
-      boxSize = new Vector3()
       box.getCenter(boxCenter)
-      box.getSize(boxSize)
       updateGroup()
     }
   }, 100)
@@ -123,47 +102,31 @@ onMounted(() => {
 
 <template>
   <TresCanvas clear-color="#141414" window-size preset="realistic" class="myTresCanvas">
-    <TresPerspectiveCamera ref="cameraRef" :position="[params.cameraX, params.cameraY, params.cameraZ]" />
+    <TresPerspectiveCamera ref="cameraRef" :position="[params.camera.x, params.camera.y, params.camera.z]" />
 
-    <OrbitControls ref="controlsRef" :enablePan="params.enablePan" :enableRotate="params.enableRotate"
-      :enableZoom="params.enableZoom" :autoRotate="params.autoRotate" :autoRotateSpeed="params.autoRotateSpeed" />
+    <OrbitControls ref="controlsRef" :enable-pan="params.enablePan" :enable-rotate="params.enableRotate"
+      :enable-zoom="params.enableZoom" :auto-rotate="params.autoRotate" :auto-rotate-speed="params.autoRotateSpeed"
+      :enable-damping="true" />
 
-    <!-- World axes helper -->
-    <!-- <TresAxesHelper :args="[200]" /> -->
-
-    <!-- Bunny group with centered pivot -->
+    <!-- Pivot group that holds the model; we pass controls to child so it can boost spin -->
     <TresGroup ref="bunnyGroupRef">
       <Suspense>
-        <uglyBunny />
+        <UglyBunny :controls="controlsRef" />
       </Suspense>
     </TresGroup>
 
-
-    <!-- Red pivot at origin -->
-    <TresMesh>
-      <!-- <TresSphereGeometry :args="[5, 16, 16]" /> -->
-      <!-- <TresMeshBasicMaterial color="red" /> -->
-    </TresMesh>
-
-    <!-- Bounding box wireframe at origin -->
-    <!-- <TresMesh v-if="boxSize" :position="[0, 0, 0]">
-      <TresBoxGeometry :args="[boxSize.x, boxSize.y, boxSize.z]" />
-      <TresMeshBasicMaterial color="white" wireframe />
-    </TresMesh> -->
+    <!-- Invisible origin marker -->
+    <TresMesh />
   </TresCanvas>
 </template>
 
-<style>
+<style scoped>
 .myTresCanvas {
-  position: absolute !important;
+  position: absolute;
   opacity: 0;
   animation: fadeIn 3s ease-out forwards;
   animation-delay: 1.5s;
   touch-action: pan-y !important;
-  /* width: 110vw !important; */
-  /* height: 150vh !important; */
-  /* left: 0 !important; */
-  /* right: 0 !important; */
 }
 
 @keyframes fadeIn {

@@ -23,12 +23,44 @@ function onLangRequest(wanted: Lang) {
   pendingLang.value = wanted
   viewLang.value = wanted                    // 1️⃣ trigger fade-out
 
+  resetScroll()
 
-  scroll.value.scrollTo(parseFloat(0), {
-    duration: 1,
-    disableLerp: true,
-  })
 }
+
+
+/**
+ * Jump to Y = 0 no matter which scroller is in play.
+ */
+function resetScroll() {
+  const y = 0
+
+  /* Desktop – LocomotiveScroll instance present */
+  if (scroll.value) {
+    scroll.value.scrollTo(y, { duration: 0, disableLerp: true })
+    return
+  }
+
+  /* Mobile – native scrolling */
+  const main = mainRef.value          // your <main id="main">
+  const doc = document.documentElement
+  const win = window
+
+  // 1️⃣ try window (typical mobile Safari / Chrome)
+  win.scrollTo({ top: y, behavior: 'auto' })
+
+  // 2️⃣ try the main container in case the page scrolls inside it
+  if (main) {
+    if ('scrollTo' in main) {
+      main.scrollTo({ top: y, behavior: 'auto' })
+    } else {
+      main.scrollTop = y                // old Android WebViews
+    }
+  }
+
+  // 3️⃣ last-ditch fallback for rare browsers that scroll <html>
+  doc.scrollTop = y
+}
+
 
 function onAfterLeave() {
   if (pendingLang.value) {
@@ -39,9 +71,11 @@ function onAfterLeave() {
 function onLangEnter() {
   // Wait for Vue to finish inserting the new DOM, then tell loco:
   nextTick(() => {
+    resetScroll()
     scroll.value?.start()
     scroll.value?.update()
   })
+
 }
 
 
@@ -57,9 +91,8 @@ onMounted(async () => {
 
   await nextTick()
   if (isMobile.value) {
-    console.log(isMobile)
     /* make sure the container is scrollable */
-    mainRef.value?.style.setProperty('overflow', 'auto')
+    mainRef.value?.style.setProperty('overflow-y', 'auto')
     return
   }
 
@@ -73,11 +106,10 @@ onMounted(async () => {
   scroll.value = new LocomotiveScroll({
     el: mainRef.value!,
     smooth: true,
-    multiplier: 0.8,
+    multiplier: 0.9,
     smartphone: { smooth: true, breakpoint: 0 },
     tablet: { smooth: true, breakpoint: 1024 },
     scrollbarContainer: document.body,
-
     reloadOnContextChange: true,
   });
   // More robust: wait until fonts & images are loaded
@@ -94,8 +126,6 @@ onMounted(async () => {
 
   await waitForReady()
   scroll.value.update()
-
-
 
 });
 
@@ -143,8 +173,9 @@ onUnmounted(() => {
   background-color: #141414;
   will-change: transform;
 
+  overflow-x: hidden;
   // Prevent broken mobile experience
-  overflow: auto; // default fallback
+  overflow-y: auto; // default fallback
   // height: 100svh;
 
   // When LocoScroll is enabled

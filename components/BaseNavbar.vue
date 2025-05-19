@@ -42,13 +42,37 @@ function getItemName(item: any) {
     return item.name[props.lang] ?? item.name.en ?? ''
   return item.name
 }
-
 function handleScrollTo(target: string) {
-  if (route.path === '/') scrollTo(target)
-  else Emitter.emit('route-change', `/${target}`)
-  menuOpen.value = false
-}
+  const OFFSET = -30            // ← +100 = stop below, –100 = stop above
+  if (route.path === '/') {
+    /* 1️⃣ Locomotive active → use its native offset option */
+    if (scroll.value) {
+      scroll.value.scrollTo(target, {
+        duration: 800,
+        offset: OFFSET,
+      })
+    }
+    /* 2️⃣ Native fallback → manual math */
+    else {
+      const el = document.querySelector<HTMLElement>(target)
+      if (!el) return
 
+      const top =
+        el.getBoundingClientRect().top +
+        window.scrollY +                // current scroll
+        OFFSET
+
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
+  /* 3️⃣ Different page: fire the event as before */
+  else {
+    Emitter.emit('route-change', `/${target}`)
+  }
+
+  menuOpen.value = false
+
+}
 
 
 const emit = defineEmits<{ (e: 'request-lang', lang: Lang): void }>()

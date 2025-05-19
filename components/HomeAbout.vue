@@ -1,8 +1,10 @@
 <!-- components/HomeAbout.vue -->
 <script setup lang="ts">
-const isMobile = useIsMobile();
+import { useIntersectionObserver } from '@vueuse/core'
+
 // import { useData } from '@/composables/useData'
 // const data = useData()
+const isMobile = useIsMobile()
 
 const props = defineProps<{
   data: {
@@ -21,6 +23,48 @@ const descriptionHtmlKey = ref()
 descriptionHtmlKey.value = descriptionHtml.value[0]
 // console.log("aaaaa", props.data)
 // const scheduleDays = computed(() => data['3_scheduleTeaser'].days || [])
+
+
+const scheduleRef = ref<HTMLElement | null>(null)
+function dbg(label: string, value?: any) {
+  console.log(
+    `%c[Schedule] ${label}`,
+    'color:#2196f3;font-weight:bold;',
+    value ?? '',
+  )
+}
+
+watchEffect(() => {
+  if (!isMobile.value) return  // let Locomotive handle desktop
+  dbg('Mobile detected – setting up IntersectionObserver')
+
+  /* VueUse keeps the observer up-to-date if scheduleRef changes */
+  const { stop } = useIntersectionObserver(
+    scheduleRef,
+    ([entry]) => {
+      dbg('intersection callback', {
+        isIntersecting: entry.isIntersecting,
+        intersectionRatio: entry.intersectionRatio.toFixed(2),
+      })
+
+      const el = entry.target as HTMLElement
+      if (entry.isIntersecting) {
+        el.classList.add('visible')
+      } else {
+        el.classList.remove('visible') // repeat animation if you scroll away
+      }
+    },
+    {
+      /*  DEBUG: change these live in DevTools if needed  */
+      threshold: 0.1,           // fire when 10 % is in view
+      rootMargin: '0px 0px -20% 0px',
+    },
+  )
+
+  /* clean up when we leave this component */
+  onUnmounted(stop)
+})
+
 </script>
 
 
@@ -48,7 +92,7 @@ descriptionHtmlKey.value = descriptionHtml.value[0]
       </figcaption>
     </figure>
 
-    <ul v-if="data?.scheduleDays?.length" class="list md:w-max  lg:-translate-y-12 -z-5" data-scroll
+    <ul ref="scheduleRef" v-if="data?.scheduleDays?.length" class="list md:w-max  lg:-translate-y-12 -z-5" data-scroll
       data-scroll-class="visible" data-scroll-repeat="true" :data-scroll-offset="isMobile ? '0' : '25%'">
       <li class="timeline " />
       <li v-for="(day, index) in data?.scheduleDays" :key="index" class="list-item">

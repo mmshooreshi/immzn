@@ -1,155 +1,163 @@
 <script setup lang="ts">
-import { reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, watch } from 'vue'
 import * as THREE from 'three'
 import { useGLTF } from '@tresjs/cientos'
-import { useLoop, useTresContext } from '@tresjs/core'
+import { useLoop, useTres } from '@tresjs/core'
 import { RGBELoader } from 'three-stdlib'
-import GUI from 'lil-gui'
 
-// ────────────────────────────────────────────────────────────────────────────────
-// 1.  LOAD MODEL INSIDE A PIVOT
-// ────────────────────────────────────────────────────────────────────────────────
+/**
+ * Props – OrbitControls instance can be a ref or raw
+ */
+const props = defineProps<{ controls?: any }>()
+const unwrap = (c: any) => (c && c.value ? c.value : c)
+
+/* -------------------------------------------------------------------------- */
+/* 1. SCENE & MODEL                                                           */
+/* -------------------------------------------------------------------------- */
 const pivot = new THREE.Group()
 const { scene: model } = await useGLTF('/spline/scene.gltf', { draco: true })
 pivot.add(model)
 
-const { scene: threeScene } = useTresContext()
-threeScene.value.add(pivot)
+const { scene: tresScene } = useTres()
+onMounted(() => tresScene.value.add(pivot))
 
-// ────────────────────────────────────────────────────────────────────────────────
-// 2.  ENVIRONMENT MAP FOR GLASS MATERIAL
-// ────────────────────────────────────────────────────────────────────────────────
-
+/* HDRI glass material ------------------------------------------------------ */
 onMounted(async () => {
-  // Centre model so its local origin sits at pivot (0,0,0)
-  const bbox = new THREE.Box3().setFromObject(model)
+  // centre model
+  const box = new THREE.Box3().setFromObject(model)
   const center = new THREE.Vector3()
-  bbox.getCenter(center)
+  box.getCenter(center)
   model.position.sub(center)
 
-  // HDRI reflections
+  // hdri
   const hdr = await new RGBELoader().setPath('/spline/').loadAsync('s.hdr')
   hdr.mapping = THREE.EquirectangularReflectionMapping
-  threeScene.value.environment = hdr
+  tresScene.value.environment = hdr
 
-  // Swap every mesh material for transmissive glass
-  model.traverse((o) => {
+  model.traverse(o => {
     if ((o as THREE.Mesh).isMesh) {
-      const mesh = o as THREE.Mesh
-      const old = mesh.material as THREE.MeshStandardMaterial
-      mesh.material = new THREE.MeshPhysicalMaterial({
-        map: old.map, normalMap: old.normalMap, roughnessMap: old.roughnessMap, metalnessMap: old.metalnessMap,
-        transparent: true, transmission: 1, roughness: 0, metalness: 0, ior: 0.9,
-        thickness: 0.25, envMapIntensity: 1.1,
+      const m = o as THREE.Mesh
+      const old = m.material as THREE.MeshStandardMaterial
+      m.material = new THREE.MeshPhysicalMaterial({
+        map: old.map,
+        normalMap: old.normalMap,
+        roughnessMap: old.roughnessMap,
+        metalnessMap: old.metalnessMap,
+        transparent: true,
+        transmission: 1,
+        roughness: 0,
+        metalness: 0,
+        ior: 0.9,
+        thickness: 0.25,
+        envMapIntensity: 1.1,
       })
-      mesh.material.needsUpdate = true
+      m.material.needsUpdate = true
     }
   })
 })
 
-// ────────────────────────────────────────────────────────────────────────────────
-// 3.  SPRING‑BACK LOGIC
-// ────────────────────────────────────────────────────────────────────────────────
-
-/**
- * Home pose: position (0,0,0), rotation (0,0,0), scale (1,1,1)
- * We store linear Euler angles for simplicity.
- */
+/* -------------------------------------------------------------------------- */
+/* 2. SPRING‑BACK (bouncy)                                                    */
+/* -------------------------------------------------------------------------- */
 const HOME = {
   pos: new THREE.Vector3(10, 50, 0),
   rot: new THREE.Euler(0, 0, 0, 'YXZ'),
   scl: new THREE.Vector3(1, 1, 1),
 }
 
-const spring = reactive({
-  stiffness: 3.0,   // higher = faster snap
-  damping: 0.9,   // <1, closer to 1 = less bounce
-})
-
-// Velocity holders (not reactive)
+const spring = reactive({ stiffness: 8, damping: 0.6 })
 const vPos = new THREE.Vector3()
 const vRot = new THREE.Euler()
 const vScl = new THREE.Vector3()
 
-function dampScalar(current: number, target: number, vel: { value: number }, k: number, d: number, dt: number) {
-  const force = (target - current) * k
-  vel.value += force * dt
-  vel.value *= d
-  return current + vel.value * dt
+function dampV3(cur: THREE.Vector3, tgt: THREE.Vector3, vel: THREE.Vector3, k: number, d: number, dt: number) {
+  vel.x = (vel.x + (tgt.x - cur.x) * k * dt) * d
+  vel.y = (vel.y + (tgt.y - cur.y) * k * dt) * d
+  vel.z = (vel.z + (tgt.z - cur.z) * k * dt) * d
+  cur.addScaledVector(vel, dt)
 }
 
-function dampVector3(current: THREE.Vector3, target: THREE.Vector3, vel: THREE.Vector3, k: number, d: number, dt: number) {
-  const fx = (target.x - current.x) * k
-  const fy = (target.y - current.y) * k
-  const fz = (target.z - current.z) * k
-  vel.x = (vel.x + fx * dt) * d
-  vel.y = (vel.y + fy * dt) * d
-  vel.z = (vel.z + fz * dt) * d
-  current.x += vel.x * dt
-  current.y += vel.y * dt
-  current.z += vel.z * dt
+function dampEuler(cur: THREE.Euler, tgt: THREE.Euler, vel: THREE.Euler, k: number, d: number, dt: number) {
+  const wrap = (a: number) => THREE.MathUtils.euclideanModulo(a + Math.PI, Math.PI * 2) - Math.PI
+  const diffY = wrap(tgt.y - cur.y)
+  vel.x = (vel.x + (tgt.x - cur.x) * k * dt) * d
+  vel.y = (vel.y + diffY * k * dt) * d
+  vel.z = (vel.z + (tgt.z - cur.z) * k * dt) * d
+  cur.x += vel.x * dt
+  cur.y += vel.y * dt
+  cur.z += vel.z * dt
 }
 
-function dampEuler(current: THREE.Euler, target: THREE.Euler, vel: THREE.Euler, k: number, d: number, dt: number) {
-  // Dampen each component but handle wraparound nicely for yaw (y)
-  const wrap = (angle: number) => THREE.MathUtils.euclideanModulo(angle + Math.PI, Math.PI * 2) - Math.PI
-  const diffY = wrap(target.y - current.y)
-  const fx = (target.x - current.x) * k
-  const fy = diffY * k
-  const fz = (target.z - current.z) * k
-  vel.x = (vel.x + fx * dt) * d
-  vel.y = (vel.y + fy * dt) * d
-  vel.z = (vel.z + fz * dt) * d
-  current.x += vel.x * dt
-  current.y += vel.y * dt
-  current.z += vel.z * dt
+/* -------------------------------------------------------------------------- */
+/* 3. Y‑AXIS BOOSTED SPIN                                                     */
+/* -------------------------------------------------------------------------- */
+const BASE_SPIN_Y = 1.5           // idle speed about Y
+const DRAG_MULT_Y = 10_000        // huge boost while dragging
+const spinSpeedY = ref(BASE_SPIN_Y)
+function boostSpin() { spinSpeedY.value = BASE_SPIN_Y * DRAG_MULT_Y }
+function resetSpin(ctrl: any) {
+  spinSpeedY.value = BASE_SPIN_Y
+  // smoothly reset camera back to its stored state
+  ctrl?.reset?.()
 }
 
-// ────────────────────────────────────────────────────────────────────────────────
-// 4.  DEV GUI FOR SPRING TUNING
-// ────────────────────────────────────────────────────────────────────────────────
-let gui: GUI | undefined
-onMounted(() => {
-  // gui = new GUI({ width: 200 })
-  // gui.add(spring, 'stiffness', 1, 20, 0.1)
-  // gui.add(spring, 'damping', 0.5, 0.99, 0.01)
-  // gui.add({ poke() { vPos.set(THREE.MathUtils.randFloatSpread(800), 400, THREE.MathUtils.randFloatSpread(800)) } }, 'poke').name('⚡ poke')
-})
+/* attach / detach orbit‑control listeners */
+function hook(ctrlMaybe: any) {
+  const ctrl = unwrap(ctrlMaybe)
+  if (!ctrl || !ctrl.addEventListener) return
+  // make sure initial state is recorded so reset() works
+  ctrl.saveState?.()
+  ctrl.addEventListener('start', boostSpin)
+  ctrl.addEventListener('end', () => resetSpin(ctrl))
+}
+function unhook(ctrlMaybe: any) {
+  const ctrl = unwrap(ctrlMaybe)
+  if (!ctrl || !ctrl.removeEventListener) return
+  ctrl.removeEventListener('start', boostSpin)
+  ctrl.removeEventListener('end', () => resetSpin(ctrl))
+}
 
-onUnmounted(() => gui?.destroy())
+onMounted(() => hook(props.controls))
+onUnmounted(() => unhook(props.controls))
+watch(() => unwrap(props.controls), (n, o) => { unhook(o); hook(n) })
 
-// ────────────────────────────────────────────────────────────────────────────────
-// 5.  SPIN + FRAME LOOP
-// ────────────────────────────────────────────────────────────────────────────────
+/* -------------------------------------------------------------------------- */
+/* 4. HOVER / TAP IMPULSES (now smoother)                                     */
+/* -------------------------------------------------------------------------- */
+function rand(amp: number) { return THREE.MathUtils.randFloatSpread(amp) }
+
+function hoverJump() {
+  vPos.add(new THREE.Vector3(rand(40), rand(40), rand(40)))
+  vRot.y += THREE.MathUtils.degToRad(6)
+}
+
+function tapJump() {
+  vPos.add(new THREE.Vector3(rand(500), rand(500), rand(500)))
+  vRot.y += THREE.MathUtils.degToRad(90 * (Math.random() - 0.5))
+  vScl.set(rand(4), rand(4), rand(4))
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. FRAME LOOP                                                              */
+/* -------------------------------------------------------------------------- */
 const { onBeforeRender } = useLoop()
-let spin = 0 // keeps track of absolute spin so spring operates on offsets only
+let spinY = 0
 
 onBeforeRender(({ delta }) => {
   const dt = delta
+  spinY += dt * spinSpeedY.value
 
-  // Continuous spin
-  spin += dt * 0.5
-  pivot.rotation.y = spin + vRot.y // vRot.y is the springy offset
+  // rotation: boosted yaw + springy offsets
+  pivot.rotation.set(vRot.x, spinY + vRot.y, vRot.z)
 
-  // Spring position, rotation (offsets), scale
-  dampVector3(pivot.position, HOME.pos, vPos, spring.stiffness, spring.damping, dt)
-
-  // Rotation: we damp offset Euler (vRot) toward zero, then add to spin later
-  const offsetEuler = new THREE.Euler(vRot.x, vRot.y, vRot.z, 'YXZ')
-  dampEuler(offsetEuler, HOME.rot, vRot, spring.stiffness, spring.damping, dt)
-  vRot.set(offsetEuler.x, offsetEuler.y, offsetEuler.z)
-
-  // Apply updated offsets on top of base spin
-  pivot.rotation.x = vRot.x
-  pivot.rotation.y = vRot.y + spin
-  pivot.rotation.z = vRot.z
-
-  // Scale (rarely used but nice to have)
-  dampVector3(pivot.scale, HOME.scl, vScl, spring.stiffness, spring.damping, dt)
+  // spring‑back for pos / rot / scale
+  dampV3(pivot.position, HOME.pos, vPos, spring.stiffness, spring.damping, dt)
+  dampEuler(vRot, HOME.rot, vRot, spring.stiffness, spring.damping, dt)
+  dampV3(pivot.scale, HOME.scl, vScl, spring.stiffness, spring.damping, dt)
 })
 </script>
 
 <template>
-  <!-- Always centred in scene; any external forces will settle back smoothly -->
-  <primitive :object="pivot" />
+  <!-- pointerenter / pointerdown for hover & tap -->
+  <primitive :object="pivot" @pointerenter="hoverJump" @pointerdown="tapJump" />
 </template>

@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;   // smooth native scrolling fallback
+}
 
 html.has-scroll-smooth,
 html.has-scroll-smooth body {
