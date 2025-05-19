@@ -1,232 +1,232 @@
 {
-    "headline": {
-        "en": "Venue & Access (Essentials previous version)",
-        "fa": "محل و دسترسی (نسخه‌ی قبل Essentials)"
-    },
-    "address": {
-        "en": "Institute for Research in Fundamental Sciences (IPM), No. 70, Corner of Shahid Farbin Alley, Shahid Lavasani St, Tehran, Iran",
-        "fa": "ایران، تهران، خیابان شهید لواسانی (فرمانیه)، نبش کوچه فربین، پلاک ۷۰، پژوهشگاه دانش‌های بنیادی (IPM)"
-    },
-    "mapConfig": {
-        "styles": [
-            {
-                "id": "streets",
-                "title": {
-                    "en": "Streets",
-                    "fa": "نقشه Streets"
-                },
-                "url": "mapbox://styles/mapbox/streets-v11"
-            },
-            {
-                "id": "satellite",
-                "title": {
-                    "en": "Satellite Streets",
-                    "fa": "ماهواره"
-                },
-                "url": "mapbox://styles/mapbox/satellite-streets-v11"
-            }
+  "headline": {
+    "en": "Venue & Access (Essentials previous version)",
+    "fa": "محل و دسترسی (نسخه‌ی قبل Essentials)"
+  },
+  "address": {
+    "en": "Institute for Research in Fundamental Sciences (IPM), No. 70, Corner of Shahid Farbin Alley, Shahid Lavasani St, Tehran, Iran",
+    "fa": "ایران، تهران، خیابان شهید لواسانی (فرمانیه)، نبش کوچه فربین، پلاک ۷۰، پژوهشگاه دانش‌های بنیادی (IPM)"
+  },
+  "mapConfig": {
+    "styles": [
+      {
+        "id": "streets",
+        "title": {
+          "en": "Streets",
+          "fa": "نقشه Streets"
+        },
+        "url": "mapbox://styles/mapbox/streets-v11"
+      },
+      {
+        "id": "satellite",
+        "title": {
+          "en": "Satellite Streets",
+          "fa": "ماهواره"
+        },
+        "url": "mapbox://styles/mapbox/satellite-streets-v11"
+      }
+    ],
+    "defaultStyle": "streets",
+    "center": [
+      51.460884,
+      35.800449
+    ],
+    "zoom": 13,
+    "controls": {
+      "navigation": true,
+      "scale": true,
+      "geolocate": true
+    }
+  },
+  "tabs": [
+    {
+      "id": "location",
+      "title": {
+        "en": "IPM Location",
+        "fa": "مکان IPM"
+      },
+      "marker": {
+        "coords": [
+          51.460884,
+          35.800449
         ],
-        "defaultStyle": "streets",
-        "center": [
-            51.460884,
-            35.800449
-        ],
-        "zoom": 13,
-        "controls": {
-            "navigation": true,
-            "scale": true,
-            "geolocate": true
-        }
+        "popupHtml": {
+          "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
+          "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
+        },
+        "iconUrl": "oi:map-marker"
+      }
     },
-    "tabs": [
-        {
-            "id": "location",
-            "title": {
-                "en": "IPM Location",
-                "fa": "مکان IPM"
-            },
-            "marker": {
-                "coords": [
-                    51.460884,
-                    35.800449
-                ],
-                "popupHtml": {
-                    "en": "<strong>Institute for Research in Fundamental Sciences (IPM)</strong><br>No. 70, Shahid Farbin Alley, Tehran",
-                    "fa": "<strong>پژوهشگاه دانش‌های بنیادی (IPM)</strong><br>خیابان شهید لواسانی، نبش کوچه فربین، پلاک ۷۰"
-                },
-                "iconUrl": "/icons/ipm.svg"
-            }
+    {
+      "id": "drive",
+      "title": {
+        "en": "Driving",
+        "fa": "رانندگی"
+      },
+      "route": {
+        "origin": [
+          51.39261,
+          35.699967
+        ],
+        "destination": [
+          51.460884,
+          35.800449
+        ],
+        "color": "#007cbf",
+        "description": {
+          "en": "Driving route from Head Office to IPM",
+          "fa": "مسیر رانندگی از دفتر مرکزی تا IPM"
         },
-        {
-            "id": "drive",
-            "title": {
-                "en": "Driving",
-                "fa": "رانندگی"
-            },
-            "route": {
-                "origin": [
-                    51.392610,
-                    35.699967
-                ],
-                "destination": [
-                    51.460884,
-                    35.800449
-                ],
-                "color": "#007cbf",
-                "description": {
-                    "en": "Driving route from Head Office to IPM",
-                    "fa": "مسیر رانندگی از دفتر مرکزی تا IPM"
-                },
-                "steps": {
-                    "en": [
-                        "Head southeast on South Karegar St.",
-                        "Merge onto Fath Highway to Shahid Lavasani exit.",
-                        "Continue to IPM main entrance."
-                    ],
-                    "fa": [
-                        "از دفتر مرکزی به سمت جنوب‌شرق خیابان کارگر جنوبی بروید.",
-                        "ورود به بزرگراه فتح تا خروجی شهید لواسانی.",
-                        "ادامه مسیر تا ورودی اصلی IPM."
-                    ]
-                }
-            }
-        },
-        {
-            "id": "walk",
-            "title": {
-                "en": "Walking",
-                "fa": "پیاده‌روی"
-            },
-            "route": {
-                "origin": [
-                    51.392610,
-                    35.699967
-                ],
-                "destination": [
-                    51.460884,
-                    35.800449
-                ],
-                "color": "#28a745",
-                "description": {
-                    "en": "Walking route from Head Office to IPM",
-                    "fa": "مسیر پیاده‌روی از دفتر مرکزی تا IPM"
-                },
-                "steps": {
-                    "en": [
-                        "Follow Enghelab pedestrian path.",
-                        "Pass under Shahid Lavasani underpass.",
-                        "Arrive at IPM main gate."
-                    ],
-                    "fa": [
-                        "از مسیر پیاده‌رو انقلاب بروید.",
-                        "از زیرگذر شهید لواسانی عبور کنید.",
-                        "به دروازه اصلی IPM برسید."
-                    ]
-                }
-            }
-        },
-        {
-            "id": "bike",
-            "title": {
-                "en": "Cycling",
-                "fa": "دوچرخه"
-            },
-            "route": {
-                "origin": [
-                    51.392610,
-                    35.699967
-                ],
-                "destination": [
-                    51.460884,
-                    35.800449
-                ],
-                "color": "#ffc107",
-                "description": {
-                    "en": "Cycling route from Head Office to IPM",
-                    "fa": "مسیر دوچرخه‌سواری از دفتر مرکزی تا IPM"
-                },
-                "steps": {
-                    "en": [
-                        "Cycle to dedicated bike lane on Fath St.",
-                        "Enter Shahid Lavasani bike path.",
-                        "Park at IPM bike racks."
-                    ],
-                    "fa": [
-                        "دوچرخه‌سواری به مسیر دوچرخه خیابان فتح.",
-                        "ورود به مسیر دوچرخه شهید لواسانی.",
-                        "پارک در جایگاه دوچرخه IPM."
-                    ]
-                }
-            }
-        },
-        {
-            "id": "metro",
-            "title": {
-                "en": "Metro",
-                "fa": "مترو"
-            },
-            "route": {
-                "origin": [
-                    51.460884,
-                    35.800449
-                ],
-                "destination": [
-                    51.426500,
-                    35.820500
-                ],
-                "destinationIconUrl": "/icons/metro.svg",
-                "color": "#6f42c1",
-                "description": {
-                    "en": "Metro access from IPM",
-                    "fa": "مسیر دسترسی مترو از IPM"
-                },
-                "steps": {
-                    "en": [
-                        "Walk 500 m to Tajrish Metro Station.",
-                        "Board Line 1 train northbound.",
-                        "Exit via north ramp."
-                    ],
-                    "fa": [
-                        "۵۰۰ متر پیاده تا ایستگاه مترو تجریش.",
-                        "سوار قطار خط ۱ شوید.",
-                        "خروج از رمپ شمالی."
-                    ]
-                }
-            }
-        },
-        {
-            "id": "wheelchair",
-            "title": {
-                "en": "Wheelchair Access",
-                "fa": "دسترسی ویلچر"
-            },
-            "route": {
-                "origin": [
-                    51.392610,
-                    35.699967
-                ],
-                "destination": [
-                    51.460884,
-                    35.800449
-                ],
-                "color": "#e83e8c",
-                "description": {
-                    "en": "Fully accessible wheelchair route",
-                    "fa": "مسیر بدون مانع مناسب ویلچر"
-                },
-                "steps": {
-                    "en": [
-                        "Use Enghelab ramp from Head Office.",
-                        "Take underpass ramp beneath Shahid Lavasani.",
-                        "Enter IPM via south ramp."
-                    ],
-                    "fa": [
-                        "استفاده از رمپ انقلاب از دفتر مرکزی.",
-                        "رمپ زیرگذر زیر شهید لواسانی.",
-                        "ورود به IPM از رمپ جنوبی."
-                    ]
-                }
-            }
+        "steps": {
+          "en": [
+            "Head southeast on South Karegar St.",
+            "Merge onto Fath Highway to Shahid Lavasani exit.",
+            "Continue to IPM main entrance."
+          ],
+          "fa": [
+            "از دفتر مرکزی به سمت جنوب‌شرق خیابان کارگر جنوبی بروید.",
+            "ورود به بزرگراه فتح تا خروجی شهید لواسانی.",
+            "ادامه مسیر تا ورودی اصلی IPM."
+          ]
         }
-    ]
+      }
+    },
+    {
+      "id": "walk",
+      "title": {
+        "en": "Walking",
+        "fa": "پیاده‌روی"
+      },
+      "route": {
+        "origin": [
+          51.39261,
+          35.699967
+        ],
+        "destination": [
+          51.460884,
+          35.800449
+        ],
+        "color": "#28a745",
+        "description": {
+          "en": "Walking route from Head Office to IPM",
+          "fa": "مسیر پیاده‌روی از دفتر مرکزی تا IPM"
+        },
+        "steps": {
+          "en": [
+            "Follow Enghelab pedestrian path.",
+            "Pass under Shahid Lavasani underpass.",
+            "Arrive at IPM main gate."
+          ],
+          "fa": [
+            "از مسیر پیاده‌رو انقلاب بروید.",
+            "از زیرگذر شهید لواسانی عبور کنید.",
+            "به دروازه اصلی IPM برسید."
+          ]
+        }
+      }
+    },
+    {
+      "id": "bike",
+      "title": {
+        "en": "Cycling",
+        "fa": "دوچرخه"
+      },
+      "route": {
+        "origin": [
+          51.39261,
+          35.699967
+        ],
+        "destination": [
+          51.460884,
+          35.800449
+        ],
+        "color": "#ffc107",
+        "description": {
+          "en": "Cycling route from Head Office to IPM",
+          "fa": "مسیر دوچرخه‌سواری از دفتر مرکزی تا IPM"
+        },
+        "steps": {
+          "en": [
+            "Cycle to dedicated bike lane on Fath St.",
+            "Enter Shahid Lavasani bike path.",
+            "Park at IPM bike racks."
+          ],
+          "fa": [
+            "دوچرخه‌سواری به مسیر دوچرخه خیابان فتح.",
+            "ورود به مسیر دوچرخه شهید لواسانی.",
+            "پارک در جایگاه دوچرخه IPM."
+          ]
+        }
+      }
+    },
+    {
+      "id": "metro",
+      "title": {
+        "en": "Metro",
+        "fa": "مترو"
+      },
+      "route": {
+        "origin": [
+          51.460884,
+          35.800449
+        ],
+        "destination": [
+          51.4265,
+          35.8205
+        ],
+        "destinationIconUrl": "oi:map-marker",
+        "color": "#6f42c1",
+        "description": {
+          "en": "Metro access from IPM",
+          "fa": "مسیر دسترسی مترو از IPM"
+        },
+        "steps": {
+          "en": [
+            "Walk 500 m to Tajrish Metro Station.",
+            "Board Line 1 train northbound.",
+            "Exit via north ramp."
+          ],
+          "fa": [
+            "۵۰۰ متر پیاده تا ایستگاه مترو تجریش.",
+            "سوار قطار خط ۱ شوید.",
+            "خروج از رمپ شمالی."
+          ]
+        }
+      }
+    },
+    {
+      "id": "wheelchair",
+      "title": {
+        "en": "Wheelchair Access",
+        "fa": "دسترسی ویلچر"
+      },
+      "route": {
+        "origin": [
+          51.39261,
+          35.699967
+        ],
+        "destination": [
+          51.460884,
+          35.800449
+        ],
+        "color": "#e83e8c",
+        "description": {
+          "en": "Fully accessible wheelchair route",
+          "fa": "مسیر بدون مانع مناسب ویلچر"
+        },
+        "steps": {
+          "en": [
+            "Use Enghelab ramp from Head Office.",
+            "Take underpass ramp beneath Shahid Lavasani.",
+            "Enter IPM via south ramp."
+          ],
+          "fa": [
+            "استفاده از رمپ انقلاب از دفتر مرکزی.",
+            "رمپ زیرگذر زیر شهید لواسانی.",
+            "ورود به IPM از رمپ جنوبی."
+          ]
+        }
+      }
+    }
+  ]
 }
