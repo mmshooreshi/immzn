@@ -6,6 +6,9 @@ const currentOpenDay = ref<number | null>(null)
 let scrollTimeout: ReturnType<typeof setTimeout> | null = null
 const toggleButtonRefs = ref<Record<number, HTMLElement | null>>({})
 const isMobile = useIsMobile()
+import { useSettings } from '~/composables/useSettings'
+
+const { language } = useSettings()
 
 function expandEnter(el: HTMLElement) {
   el.style.height = '0'
@@ -145,8 +148,8 @@ onMounted(() => {
 
                       <!-- {{ getClockIconName(session) }} -->
 
-                      {{ toPersianDigits(session.time.start) }} - {{
-                        toPersianDigits(session.time.end) }}
+                      {{ language == 'fa' ? toPersianDigits(session.time.start) : session.time.start }} - {{
+                        language == 'fa' ? toPersianDigits(session.time.end) : session.time.end }}
                       <strong v-if="session.location" class="text-blue mx-1 -mt-1 text-xs">
                         <Icon class="w-4 translate-y-1 -mx-0.5 h-4" name="ep:location-filled" />
                         {{ session.location }}
@@ -164,18 +167,20 @@ onMounted(() => {
                   </h4>
                   <div class="h-2"></div>
                   <p class="text-xs mx-4 my-2" :class="{ 'opacity-30': det[0] == '*' }" v-for="det in session.details">
-                    {{ det }}
+                    - {{ det }}
                   </p>
                   <div v-if="session.speaker"
-                    class="text-xs mx-auto  md:scale-80 w-max transform-origin-left text-gray-700 dark:text-gray-300 mb-1 -mt-4  border border-white/40 border-solid rounded-2xl w-max px-2 shadow-lg">
-                    <div class="-mt-1 mb-2  w-max">
-                      <Icon class="w-6 h-6 translate-y-2 mt-1 mx-1" name="mingcute:user-star-fill" />
+                    class="text-xs mx-auto  md:scale-80 w-max transform-origin-center hover:bg-gray-800 text-gray-700 dark:text-gray-300 mb-1 -mt-4  border border-white/40 border-solid rounded-2xl w-max px-2 shadow-lg cursor-pointer md:hover:scale-85 transition-all">
+                    <div class="-mt-3 mb-2  w-max">
+                      <Icon class="w-8 h-8 translate-y-4 mt-1 mx-1" name="mingcute:user-star-fill" />
 
                       {{ session.speaker.name }}
 
                       <span v-if="session.speaker.affiliation">
-                        <br v-if="isMobile" /><span v-else>—</span>
-                        <small class="text-[8px]  opacity-50 mr-9">{{ session.speaker.affiliation
+                        <br />
+                        <small class="text-[8px] md:text-[12px]  opacity-50"
+                          :class="{ 'ml-10.5': language == 'en', 'mr-10.5': language == 'fa' }">{{
+                            session.speaker.affiliation
                           }}</small></span>
                     </div>
                   </div>
@@ -198,13 +203,17 @@ onMounted(() => {
                       </span> -->
                     </div>
 
-                    <h4 class="font-medium dark:text-teal-300 text-teal-800 mb-1 ">
-                      {{ segment.title }}
-                      <strong v-if="segment.location" class="text-blue mx-1 text-xs">
-                        <Icon class="w-4 translate-y-1 -mx-0.5 h-4" name="ep:location-filled" />
-                        {{ segment.location }}
-                      </strong>
+                    <h4 class="font-medium dark:text-teal-300 text-teal-800 mb-1 flex flex-row items-center">
+                      <Icon class="w-5 text-teal-300 h-5  mx-1" name="fluent:slide-text-title-20-regular" />
+
+                      {{ segment.title }} <div v-if="segment.location"
+                        class="mx-1 text-xs bg-blue-800 text-white transition-all hover:-translate-y-0.5 hover:shadow-md cursor-pointer rounded-md px-1 flex flex-row h-min w-min pt-1">
+                        <Icon class="w-4 -translate-y-0.5 -mx-0.5 h-4" name="ep:location-filled" />
+                        <div class="w-max -translate-y-0.5 my-0 mx-1">{{ segment.location }}</div>
+                      </div>
+
                     </h4>
+
                     <div v-if="segment.details" class="h-4"></div>
                     <p class="text-xs mx-4 my-2" :class="{ 'opacity-30': det[0] == '*' }"
                       v-for="det in segment.details">
@@ -218,7 +227,7 @@ onMounted(() => {
                         <span v-if="segment.speaker.affiliation">
                           <span v-if="!isMobile">—</span><small class="text-[9px] opacity-50">{{
                             segment.speaker.affiliation
-                            }}</small></span>
+                          }}</small></span>
                       </p>
                       <p v-if="segment.description" class="text-sm text-gray-700 dark:text-gray-400">
                         {{ segment.description }}
