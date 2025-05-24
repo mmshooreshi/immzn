@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@vueuse/motion/nuxt',
     'nuxt-mapbox',
+    '@nuxt/image',
   ],
   mapbox: {
     accessToken: process.env.MAPBOX_TOKEN,

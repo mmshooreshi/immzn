@@ -3,6 +3,8 @@
 import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
 import { useThrottleFn } from '@vueuse/core'    // just to avoid spamming sessionStorage
+import BaseNavbar from '~/components/BaseNavbar.vue'
+
 // const isTouch = matchMedia('(pointer:coarse)').matches   // TRUE on iOS/Android
 
 const isMobile = useIsMobile()
