@@ -15,6 +15,12 @@ declare module 'nuxt/schema' {
       driveFolderId: string;
     };
 
+    telegram: {
+      botToken: string;
+      chatIdAdmin:  string;
+      chatIdGroup: string;
+    };
+
   }
 
   interface PublicRuntimeConfig {

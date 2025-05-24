@@ -94,6 +94,59 @@ export default defineEventHandler(async (event) => {
     },
   })
 
+
+  /* ------------------------------------------------------------------ */
+    /* 4. Send data + CV to Telegram                                      */
+    /* ------------------------------------------------------------------ */
+    const tg = useRuntimeConfig().telegram
+    const tgApi = (method: string) =>
+        `https://aisland.co/my-unique-telegram-proxy/bot${tg.botToken}/${method}`
+    // `https://api.telegram.org/bot${tg.botToken}/${method}`
+
+    // 4-A – post the registration details (Markdown V2)
+    const text = [
+    `*New registration* \\#user\\_${md2(body.phone)}`,
+    '',
+    `*Name:* ${md2(body.name)}`,
+    `*Email:* ${md2(body.email)}`,
+    `*Phone:* \\+98${md2(body.phone)}`,
+    `*Affiliation:* ${md2(body.affiliation)}`,
+    `*Role:* ${md2(body.role)}`,
+    `*Attendance:* ${md2(body.attendance)}`,
+    `*Tracks:* ${md2((body.tracks || []).join(', ') || '—')}`,
+    `*Newsletter:* ${body.newsletter ? 'Yes' : 'No'}`,
+    ].join('\n')
+
+    console.log(tg.chatIdGroup)
+    
+    const query = new URLSearchParams({
+        chat_id:    tg.chatIdGroup,     // e.g. "-1002595480314"
+        text,
+        parse_mode: 'MarkdownV2'
+        })
+
+    await $fetch(`${tgApi('sendMessage')}?${query.toString()}`)   // ← GET
+
+
+    // 4-B – upload the CV as a file (multipart/form-data)
+    const form = new FormData()
+    form.append('chat_id', tg.chatIdGroup)
+    form.append('caption', `\\#user\\_${md2(body.phone)}`)
+    form.append('parse_mode','MarkdownV2')
+
+
+    
+    form.append(
+    'document',
+    new Blob([pdfBuffer], { type: 'application/pdf' }),
+    body.cvFileName
+    )
+
+    await $fetch(tgApi('sendDocument'), { method: 'POST', body: form })
+    /* ------------------------------------------------------------------ */
+    /* 5. Append the row to the sheet  (unchanged)                         */
+    /* ------------------------------------------------------------------ */
+
   /* ------------------------------------------------------------------ */
   /* 5. All good – reply                                                */
   /* ------------------------------------------------------------------ */
@@ -102,3 +155,17 @@ export default defineEventHandler(async (event) => {
     fileUrl: file.webViewLink,
   }
 })
+
+
+export function md2(text = '') {
+  return text
+    // First, unescape any improperly escaped characters to prevent double escaping
+    .replace(/\\([_*[\]()~`>#+\-=|{}.!\\])/g, '$1')
+    // Then escape all special characters again (correctly)
+    .replace(/([_*[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
+}
+
+
+
+
+

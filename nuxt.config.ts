@@ -81,6 +81,12 @@ export default defineNuxtConfig({
       spreadsheetId:  process.env.GOOGLE_SPREADSHEET_ID || '',
       driveFolderId:  process.env.GOOGLE_DRIVE_FOLDER_ID || '',
     },
+    telegram: {
+      botToken: process.env.TELEGRAM_BOT_TOKEN || '',
+      chatIdAdmin:  process.env.TELEGRAM_CHAT_ID_ADMIN || '',
+      chatIdGroup: process.env.TELEGRAM_CHAT_ID_GROUP || ''
+    },
+
 
     githubToken: process.env.GITHUB_TOKEN,
 
