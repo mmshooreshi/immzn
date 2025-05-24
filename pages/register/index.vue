@@ -174,7 +174,7 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -318,18 +318,33 @@ function t(path) {
 
 const isRtl = computed(() => language.value === 'fa')
 
+// const form = reactive({
+//   name: '',
+//   email: '',
+//   phone: '',
+//   affiliation: '',
+//   role: '',
+//   attendance: '',
+//   tracks: [],
+//   newsletter: true,
+//   terms: false,
+//   cv: null,
+// })
+
 const form = reactive({
-  name: '',
-  email: '',
-  phone: '',
-  affiliation: '',
-  role: '',
-  attendance: '',
-  tracks: [],
+  name: 'محمدمهدی',
+  email: 'mmshooreshi@gmail.com',
+  phone: '9128462648',
+  affiliation: 'دانشگاه علوم پزشکی تهران',
+  role: 'دانشجو',
+  attendance: 'In-person',
+  tracks: ["Keynotes"],
   newsletter: true,
   terms: false,
   cv: null,
 })
+
+
 
 const tracks = ['Keynotes', 'Workshops', 'Hackathon', 'Lightning Talks']
 
@@ -351,16 +366,76 @@ function fakeApiRequest(payload) {
   return new Promise((resolve) => setTimeout(() => resolve(payload), 1200))
 }
 
-async function submit() {
-  if (!form.terms || !form.cv) return
+// async function submit() {
+//   if (!form.terms || !form.cv) return
+//   submitting.value = true
+//   try {
+//     await fakeApiRequest(form)
+//     router.push('/thanks')
+//   } finally {
+//     submitting.value = false
+//   }
+// }
+
+/**
+ * Convert a File → base-64 data-URI
+ */
+const toBase64 = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result as string)
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
+
+/**
+ * Submit the registration form
+ */
+const submit = async () => {
+  // guard rails ─────────────────────────────────────────────────────────
+  if (submitting.value) return            // double-click protection
+  if (!form.terms) { alert(t('form.termsAgree')); return }
+  if (!form.cv) { alert(t('form.cvHint')); return }
+
   submitting.value = true
   try {
-    await fakeApiRequest(form)
-    router.push('/thanks')
+    // 1) file → base64
+    const cvBase64 = await toBase64(form.cv)
+
+    // 2) POST to the server route
+
+    const { fileUrl, status } = await useFetch('/api/submit', {
+      method: 'POST',
+      body: {
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        phone: form.phone.trim(),
+        affiliation: form.affiliation.trim(),
+        role: form.role,
+        attendance: form.attendance,
+        tracks: [...form.tracks],           // copy, not ref
+        newsletter: form.newsletter,
+        cvFileName: form.cv.name,
+        cvBase64
+      }
+    })
+
+    // 3) Success → thanks page
+    if (status.value === 'success') {
+      router.push('/register/success')
+    } else {
+      throw new Error('Server returned “' + status + '”')
+      router.push('/register/failure')
+    }
+  } catch (err: any) {
+    console.error(err)
+    router.push('/register/failure')
+    // alert('Registration failed: ' + (err.message || err))
   } finally {
     submitting.value = false
   }
 }
+
 
 // definePageMeta({ name: 'register', layout: 'Page' })
 

@@ -2,13 +2,6 @@
     <NuxtLayout name="page">
 
         <div :class="['min-h-screen flex flex-col items-center justify-center p-8 dark:bg-gray-900 bg-white',]">
-            <!-- Language Switch -->
-            <div class="absolute top-4 right-4">
-                <select v-model="language" class="input" :dir="isRtl ? 'rtl' : 'ltr'">
-                    <option value="en">English</option>
-                    <option value="fa">فارسی</option>
-                </select>
-            </div>
 
             <div class="text-center">
                 <!-- <h1 class="text-2xl font-bold mb-4">{{ message.title }}.</h1> -->

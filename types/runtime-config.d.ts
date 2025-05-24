@@ -6,6 +6,15 @@ declare module 'nuxt/schema' {
     spotifyClientId: string;
     spotifyClientSecret: string;
     spotifyRefreshToken: string;
+
+    google: {
+      clientId: string;
+      clientSecret: string;
+      refreshToken: string;
+      spreadsheetId: string;
+      driveFolderId: string;
+    };
+
   }
 
   interface PublicRuntimeConfig {

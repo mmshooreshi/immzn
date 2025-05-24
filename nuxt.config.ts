@@ -73,6 +73,15 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     // server-only values
+
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret:  process.env.GOOGLE_CLIENT_SECRET || '',
+      refreshToken:  process.env.GOOGLE_REFRESH_TOKEN || '',
+      spreadsheetId:  process.env.GOOGLE_SPREADSHEET_ID || '',
+      driveFolderId:  process.env.GOOGLE_DRIVE_FOLDER_ID || '',
+    },
+
     githubToken: process.env.GITHUB_TOKEN,
 
     spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
