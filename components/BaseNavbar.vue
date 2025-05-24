@@ -90,7 +90,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 
 <template>
   <header v-motion-fade-visible-once
-    class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header dark:bg-white/5 bg-black/50 backdrop-blur-2xl  rounded-2xl"
+    class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header bg-black/50 dark:bg-white/5  backdrop-blur-2xl  rounded-2xl"
     data-scroll data-scroll-sticky data-scroll-target="main">
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
@@ -144,15 +144,15 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
       <div class="flex flex-row-reverse items-center  w-full md:w-min justify-between gap-2">
         <!-- Language Switcher -->
         <button @click="askForNextLang"
-          class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white dark:bg-white/20 bg-black/50 flex items-center justify-center hover:bg-gray-200 hover:text-black"
+          class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-black/50 dark:bg-white/20  flex items-center justify-center hover:bg-gray-200 hover:text-black"
           :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
           <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
-          }}</span>
+            }}</span>
         </button>
 
         <!-- Theme Toggle -->
         <button @click="toggleTheme"
-          class="group w-8 h-8 hover:scale-105 scale-90 transition-all rounded-xl  text-white dark:bg-white/20 bg-black/50 flex items-center justify-center text-gray-700 hover:bg-gray-200"
+          class="group w-8 h-8 hover:scale-105 scale-90 transition-all rounded-xl  text-white bg-black/50 dark:bg-white/20  flex items-center justify-center text-gray-700 hover:bg-gray-200"
           :aria-label="`Switch theme (current: ${theme})`">
           <span v-if="theme === 'light'" class="my-auto ">
             <Icon class="w-6 h-6 group-hover:scale-105 scale-90 transition-all mt-1 text-yellow-500"
