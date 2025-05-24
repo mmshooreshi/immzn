@@ -318,31 +318,31 @@ function t(path) {
 
 const isRtl = computed(() => language.value === 'fa')
 
-// const form = reactive({
-//   name: '',
-//   email: '',
-//   phone: '',
-//   affiliation: '',
-//   role: '',
-//   attendance: '',
-//   tracks: [],
-//   newsletter: true,
-//   terms: false,
-//   cv: null,
-// })
-
 const form = reactive({
-  name: 'محمدمهدی',
-  email: 'mmshooreshi@gmail.com',
-  phone: '9128462648',
-  affiliation: 'دانشگاه علوم پزشکی تهران',
-  role: 'دانشجو',
-  attendance: 'In-person',
-  tracks: ["Keynotes"],
+  name: '',
+  email: '',
+  phone: '',
+  affiliation: '',
+  role: '',
+  attendance: '',
+  tracks: [],
   newsletter: true,
   terms: false,
   cv: null,
 })
+
+// const form = reactive({
+//   name: 'محمدمهدی',
+//   email: 'mmshooreshi@gmail.com',
+//   phone: '9128462648',
+//   affiliation: 'دانشگاه علوم پزشکی تهران',
+//   role: 'دانشجو',
+//   attendance: 'In-person',
+//   tracks: ["Keynotes"],
+//   newsletter: true,
+//   terms: false,
+//   cv: null,
+// })
 
 
 

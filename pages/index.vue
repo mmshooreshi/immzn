@@ -22,12 +22,12 @@ const config = useRuntimeConfig();
 const apiKey = config.public.neshanPublicToken
 
 
-import { useSettings } from '~/composables/useSettings'
 import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
-const { localizedData, loading } = storeToRefs(useDataStore())
+import { useSettings } from '~/composables/useSettings'
 const { language } = useSettings()
 
+const { localizedData, loading } = storeToRefs(useDataStore())
 
 const initialCenter = computed(() => localizedData.value.map.mapConfig.center as [number, number])
 const initialZoom = computed(() => localizedData.value.map.mapConfig.zoom)

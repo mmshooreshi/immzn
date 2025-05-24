@@ -69,6 +69,8 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/'],
+      ignore: ['/i', '/j']
+
     },
   },
   runtimeConfig: {
