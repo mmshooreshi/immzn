@@ -2,8 +2,7 @@
   <div class="min-h-screen flex flex-col md:flex-row dark:bg-gray-900 font-sans">
     <!-- Left hero panel -->
     <section
-      class="hidden md:flex md:w-1/2 items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-500 to-blue-500 p-12 text-center text-white"
-    >
+      class="hidden md:flex md:w-1/2 items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-500 to-blue-500 p-12 text-center text-white">
       <div class="space-y-4 animate-fade-in-down">
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
           ImmUnity Horizons
@@ -15,41 +14,21 @@
 
     <!-- Login form -->
     <section class="bg-white flex w-full md:w-1/2 items-center justify-center p-8 h-screen">
-      <form
-        @submit.prevent="submit"
-        class="w-full max-w-md space-y-6"
-        novalidate
-      >
-        <h2
-          class="text-3xl font-semibold text-gray-800 dark:text-gray-100 text-center"
-        >
+      <form @submit.prevent="submit" class="w-full max-w-md space-y-6" novalidate>
+        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 text-center">
           Sign in
         </h2>
 
         <!-- Email -->
         <div>
           <label for="email" class="label">Email</label>
-          <input
-            v-model="form.email"
-            id="email"
-            type="email"
-            required
-            class="input"
-            placeholder="you@example.com"
-          />
+          <input v-model="form.email" id="email" type="email" required class="input" placeholder="you@example.com" />
         </div>
 
         <!-- Password -->
         <div>
           <label for="password" class="label">Password</label>
-          <input
-            v-model="form.password"
-            id="password"
-            type="password"
-            required
-            class="input"
-            placeholder="••••••••"
-          />
+          <input v-model="form.password" id="password" type="password" required class="input" placeholder="••••••••" />
         </div>
 
         <!-- Remember / forgot -->
@@ -88,9 +67,7 @@
         <!-- Register link -->
         <p class="text-center text-sm text-gray-600 dark:text-gray-300">
           First time here?
-          <router-link to="/register" class="text-indigo-600 underline"
-            >Register</router-link
-          >
+          <router-link to="/register" class="text-indigo-600 underline">Register</router-link>
         </p>
       </form>
     </section>
@@ -135,28 +112,35 @@ function social(provider) {
 .label {
   @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
 }
+
 .input {
   @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
 }
+
 .checkbox {
   @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
 }
+
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-md bg-indigo-600 py-2 px-4 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 transition;
 }
+
 .btn-secondary {
   @apply inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-4 font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition;
 }
+
 @keyframes fade-in-down {
   from {
     opacity: 0;
     transform: translateY(-1rem);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .animate-fade-in-down {
   animation: fade-in-down 0.8s ease-out both;
 }

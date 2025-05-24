@@ -13,14 +13,7 @@ const { data } = await useAsyncData(path, () =>
 <template>
   <figure class="figure">
     <div class="image-container">
-      <img
-        class="image"
-        :src="`/images/projects/${source}`"
-        alt=""
-        width="1024"
-        height="576"
-        loading="lazy"
-      />
+      <img class="image" :src="`/images/projects/${source}`" alt="" width="1024" height="576" loading="lazy" />
       <span :style="`background-color: #${data ? data[0].color : '000'}`" />
     </div>
     <figcaption class="figcaption">

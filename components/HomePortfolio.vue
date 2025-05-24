@@ -12,18 +12,10 @@ const hovered = ref<null | number>(null);
       <strong>Portfolio</strong> <span class="empty">2023</span>
     </h2>
     <ul class="list">
-      <PortfolioItem
-        v-for="(project, index) in data"
-        :key="index"
-        :index="index"
-        :title="project.title as string"
-        :description="project.description"
-        :image="project.image"
-        :link="project._path as string"
-        :transparent="hovered === null ? false : hovered !== index"
-        @mouseenter="hovered = index"
-        @mouseleave="hovered = null"
-      />
+      <PortfolioItem v-for="(project, index) in data" :key="index" :index="index" :title="project.title as string"
+        :description="project.description" :image="project.image" :link="project._path as string"
+        :transparent="hovered === null ? false : hovered !== index" @mouseenter="hovered = index"
+        @mouseleave="hovered = null" />
     </ul>
   </NuxtLayout>
 </template>

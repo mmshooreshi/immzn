@@ -14,23 +14,10 @@ const cursorContent = inject<Ref<string | null>>('cursor');
 </script>
 
 <template>
-  <li
-    :class="['item', { transparent }]"
-    data-scroll
-    :data-scroll-speed="index % 2 === 0 ? 1 : -1"
-    data-scroll-direction="horizontal"
-    @mouseenter="cursorContent = 'See'"
-    @mouseleave="cursorContent = null"
-  >
+  <li :class="['item', { transparent }]" data-scroll :data-scroll-speed="index % 2 === 0 ? 1 : -1"
+    data-scroll-direction="horizontal" @mouseenter="cursorContent = 'See'" @mouseleave="cursorContent = null">
     <PageLink :to="props.link" class="portfolio-item-link">
-      <img
-        class="image"
-        :src="`/images/projects/${props.image}`"
-        alt=""
-        width="488"
-        height="488"
-        loading="lazy"
-      />
+      <img class="image" :src="`/images/projects/${props.image}`" alt="" width="488" height="488" loading="lazy" />
       <h3 class="title">{{ props.title }}</h3>
       <p class="description">{{ props.description }}</p>
     </PageLink>

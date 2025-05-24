@@ -30,6 +30,7 @@
     "@vueuse/motion": "^3.0.3",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-vue": "^8.6.0",
+    "encoding": "^0.1.13",
     "generate-schema": "^2.6.0",
     "googleapis": "^149.0.0",
     "lil-gui": "^0.20.0",

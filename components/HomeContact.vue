@@ -10,87 +10,26 @@ const config = useRuntimeConfig();
     <div class="galaxy">
       <div class="orbit orbit-1">
         <span class="circle" />
-        <a
-          class="icon icon-1"
-          :href="config.public.githubLink"
-          target="_blank"
-          rel="norefferer"
-          title="GitHub"
-        >
-          <img
-            src="/icons/github.svg"
-            alt=""
-            width="64"
-            height="64"
-            loading="lazy"
-          />
+        <a class="icon icon-1" :href="config.public.githubLink" target="_blank" rel="norefferer" title="GitHub">
+          <img src="/icons/github.svg" alt="" width="64" height="64" loading="lazy" />
         </a>
-        <a
-          class="icon icon-2"
-          :href="config.public.twitterLink"
-          target="_blank"
-          rel="norefferer"
-          title="Malt"
-        >
-          <img
-            src="/icons/twitter.svg"
-            alt=""
-            width="64"
-            height="64"
-            loading="lazy"
-          />
+        <a class="icon icon-2" :href="config.public.twitterLink" target="_blank" rel="norefferer" title="Malt">
+          <img src="/icons/twitter.svg" alt="" width="64" height="64" loading="lazy" />
         </a>
         <CopyButton class="icon icon-3" :to-copy="config.public.email">
-          <img
-            src="/icons/email.svg"
-            alt=""
-            width="64"
-            height="64"
-            loading="lazy"
-          />
+          <img src="/icons/email.svg" alt="" width="64" height="64" loading="lazy" />
         </CopyButton>
       </div>
       <div class="orbit orbit-2">
         <span class="circle" />
-        <a
-          class="icon icon-1"
-          :href="config.public.linkedinLink"
-          target="_blank"
-          rel="norefferer"
-          title="LinkedIn"
-        >
-          <img
-            src="/icons/linkedin.svg"
-            alt=""
-            width="64"
-            height="64"
-            loading="lazy"
-          />
+        <a class="icon icon-1" :href="config.public.linkedinLink" target="_blank" rel="norefferer" title="LinkedIn">
+          <img src="/icons/linkedin.svg" alt="" width="64" height="64" loading="lazy" />
         </a>
-        <a
-          class="icon icon-2"
-          :href="config.public.redditLink"
-          target="_blank"
-          rel="norefferer"
-          title="Reddit"
-        >
-          <img
-            src="/icons/reddit.svg"
-            alt=""
-            width="64"
-            height="64"
-            loading="lazy"
-          />
+        <a class="icon icon-2" :href="config.public.redditLink" target="_blank" rel="norefferer" title="Reddit">
+          <img src="/icons/reddit.svg" alt="" width="64" height="64" loading="lazy" />
         </a>
       </div>
-      <img
-        class="image object-contain"
-        src="/images/event-small.webp"
-        alt=""
-        width="128"
-        height="128"
-        loading="lazy"
-      />
+      <img class="image object-contain" src="/images/event-small.webp" alt="" width="128" height="128" loading="lazy" />
     </div>
   </NuxtLayout>
 </template>
@@ -185,18 +124,14 @@ const config = useRuntimeConfig();
   }
 
   .circle {
-    @include mixins.dashed-circle(
-      conic-gradient(
-        variables.$blue,
+    @include mixins.dashed-circle(conic-gradient(variables.$blue,
         transparent,
         transparent,
         variables.$green,
         transparent,
         color.mix(variables.$blue, variables.$green, 50%),
         transparent,
-        variables.$blue
-      )
-    );
+        variables.$blue ));
   }
 
   .icon-1 {
@@ -228,18 +163,14 @@ const config = useRuntimeConfig();
   }
 
   .circle {
-    @include mixins.dashed-circle(
-      conic-gradient(
-        variables.$blue,
+    @include mixins.dashed-circle(conic-gradient(variables.$blue,
         transparent,
         variables.$green,
         variables.$green,
         transparent,
         transparent,
         color.mix(variables.$blue, variables.$green, 50%),
-        variables.$blue
-      )
-    );
+        variables.$blue ));
   }
 
   .icon-1 {

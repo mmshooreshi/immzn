@@ -33,11 +33,9 @@ defineProps<{
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(
-      to right,
-      variables.$blue,
-      variables.$green
-    );
+    background-image: linear-gradient(to right,
+        variables.$blue,
+        variables.$green );
     border-radius: 99rem;
     z-index: -1;
   }

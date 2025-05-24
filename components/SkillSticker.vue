@@ -11,13 +11,8 @@ const isMobile = useIsMobile();
 </script>
 
 <template>
-  <img
-    class="skill"
-    :src="`/images/skills/${source}`"
-    alt=""
-    :width="isMobile ? 64 : 100"
-    :height="isMobile ? 64 : 100"
-  />
+  <img class="skill" :src="`/images/skills/${source}`" alt="" :width="isMobile ? 64 : 100"
+    :height="isMobile ? 64 : 100" />
 </template>
 
 <style scoped lang="scss">

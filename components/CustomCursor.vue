@@ -55,19 +55,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <span
-    :class="['follower', { hovering }, { big: cursorContent }]"
-    data-scroll
-    data-scroll-sticky
-    data-scroll-target="main"
-  />
+  <span :class="['follower', { hovering }, { big: cursorContent }]" data-scroll data-scroll-sticky
+    data-scroll-target="main" />
   <!-- eslint-disable-next-line vue/no-multiple-template-root -->
-  <span
-    :class="['text-container', { visible: cursorContent }]"
-    data-scroll
-    data-scroll-sticky
-    data-scroll-target="main"
-  >
+  <span :class="['text-container', { visible: cursorContent }]" data-scroll data-scroll-sticky
+    data-scroll-target="main">
     <Transition mode="out-in">
       <p v-if="cursorContent" class="text">
         {{ cursorContent }}
@@ -78,6 +70,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @keyframes appear {
+
   0%,
   75% {
     width: 0;

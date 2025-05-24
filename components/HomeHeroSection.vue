@@ -51,7 +51,7 @@ onBeforeUnmount(cleanup)
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
       <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
         data?.tagline?.first
-        }}</span>
+      }}</span>
 
       <span class="">{{ data?.tagline?.second }}</span>
       <span class="">{{ data?.tagline?.third }}</span>

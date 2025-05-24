@@ -17,22 +17,9 @@ onUnmounted(() => {
 
 <template>
   <aside :class="['spotify', { disabled: music === null }]">
-    <img
-      src="/icons/spotify.svg"
-      alt=""
-      class="icon"
-      width="24"
-      height="24"
-      loading="lazy"
-    />
-    <a
-      v-if="music"
-      class="text"
-      :href="music.link"
-      target="_blank"
-      rel="noreferrer"
-      >{{ music.track }} • {{ music.artist }}</a
-    >
+    <img src="/icons/spotify.svg" alt="" class="icon" width="24" height="24" loading="lazy" />
+    <a v-if="music" class="text" :href="music.link" target="_blank" rel="noreferrer">{{ music.track }} • {{ music.artist
+      }}</a>
     <!-- <p v-else class="text">Not playing • Spotify</p> -->
     <div v-if="music" class="music">
       <span />

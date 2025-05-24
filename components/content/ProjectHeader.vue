@@ -13,18 +13,9 @@ const { data } = await useAsyncData(path, () =>
 <template>
   <header class="header-container">
     <div class="image-container">
-      <span
-        class="background"
-        :style="`background-color: #${data && data[0].color};`"
-      />
+      <span class="background" :style="`background-color: #${data && data[0].color};`" />
       <div class="image-wrapper">
-        <img
-          class="image"
-          :src="`/images/projects/${image}`"
-          alt=""
-          width="1024"
-          height="576"
-        />
+        <img class="image" :src="`/images/projects/${image}`" alt="" width="1024" height="576" />
       </div>
       <PageLink class="back" to="/">
         <img class="icon" src="/icons/arrow.svg" alt="" />

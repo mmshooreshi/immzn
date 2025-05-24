@@ -8,7 +8,7 @@ const isMobile = useIsMobile();
 
 onMounted(async () => {
   // if (window.innerWidth > 480 && canvas.value) {
-    if (window.innerWidth > 180 && canvas.value) {
+  if (window.innerWidth > 180 && canvas.value) {
     const { Application } = await import('@splinetool/runtime');
     spline.value = new Application(canvas.value);
     await spline.value?.load('/spline/cube.splinecode');
@@ -17,12 +17,12 @@ onMounted(async () => {
     console.log(spline.value.getSplineEvents().start['b0527698-26a5-4abf-83c4-6d066821070d']);
 
     return;
-    
+
   }
 
   setTimeout(() => {
     visible.value = true;
-    
+
   }, 1000);
 });
 
