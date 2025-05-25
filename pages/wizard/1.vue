@@ -1,5 +1,5 @@
 <script setup>
-import { useWizardStore } from '~/stores/wizard'
+import { useWizardStore } from '~/stores/wizard.ts'
 const { profile, next } = useWizardStore()
 
 definePageMeta({ middleware: ['auth'] })

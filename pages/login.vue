@@ -50,7 +50,7 @@ const verify = async () => {
   if (!isValidCode.value) return
   isLoading.value = true
   try {
-    router.push({ name: 'home' })
+    router.push('/')
   } catch {
     errorMessage.value = t.value.otpIncorrect
   } finally {
@@ -92,14 +92,14 @@ const handleSocialLogin = (provider: string) => {
               :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
 
             <BaseInput v-else class="ltr" v-model="code" numberOnly persian :placeholder="t.codePlaceholder"
-              :floatinglabel="t.codeLabel"
+              :floatinglabel="t.codeLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
               :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
 
             <BaseButton type="submit" :loading="isLoading" :disabled="mode === 'send' ? !isValidPhone : !isValidCode"
-              :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
-                ? 'bg-[#EBEBEB] text-gray-400 cursor-not-allowed'
-                : 'bg-primary-600 text-white'">
+              class="text-center" :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
+                ? 'bg-cyan-800/50 text-gray-400 cursor-not-allowed'
+                : 'bg-cyan-600 text-cyan-100 dark:bg-cyan-800 dark:text-white'">
               {{ mode === 'send' ? t.sendCode : t.verifyAndLogin }}
             </BaseButton>
 
