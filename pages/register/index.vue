@@ -43,21 +43,26 @@
                             :placeholder="formLabels.emailPlaceholder" />
                     </div>
 
-                    <!-- Phone -->
+
                     <div>
                         <label for="phone" class="label">{{ formLabels.phone }}</label>
-                        <div class="flex items-center gap-2">
-                            <div class="h-8 flex items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-md px-2 bg-gray-100 dark:bg-gray-800 select-none"
+                        <div :class="isRtl ? 'ltr' : 'ltr'" class="flex items-center gap-2  ">
+                            <div :class="isRtl ? 'ltr' : 'ltr'"
+                                class="h-8 flex  items-center gap-1 border border-gray-300 dark:border-gray-600 rounded-md px-2 bg-gray-100 dark:bg-gray-800 select-none"
                                 style="min-width: 70px;">
                                 <NuxtImg src="/images/ir.png" alt="Iran Flag" width="20" height="15"
                                     class="inline-block" />
                                 <span class="ltr text-gray-700 dark:text-gray-300">+98</span>
                             </div>
                             <input v-model="form.phone" id="phone" type="tel" pattern="[0-9]{10}" maxlength="10"
-                                required class="input text-left rounded-l-none flex-grow"
-                                :placeholder="formLabels.phoneHint" :dir="'ltr'" />
+                                required class="input text-left rounded-l-none flex-grow" placeholder="9123456789"
+                                :dir="'ltr'" />
                         </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            {{ formLabels.phoneHint }}
+                        </p>
                     </div>
+
 
                     <!-- Affiliation -->
                     <div>
@@ -101,17 +106,19 @@
                     </div>
 
                     <!-- CV Upload -->
+
                     <div>
                         <label for="cv" class="label">{{ formLabels.cvUpload }}</label>
                         <input id="cv" type="file" accept=".pdf,.doc,.docx" @change="onFileChange" required
-                            class="custom-file-input input" />
+                            class="custom-file-input input" :class="isRtl ? 'ltr ' : 'ltr '" />
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ formLabels.cvHint }}</p>
                     </div>
+
 
                     <!-- Newsletter -->
                     <div class="flex items-center">
                         <input v-model="form.newsletter" id="newsletter" type="checkbox" class="checkbox" />
-                        <label for="newsletter" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                        <label for="newsletter" class="mx-2 text-sm text-gray-700 dark:text-gray-300">
                             {{ formLabels.newsletter }}
                         </label>
                     </div>
@@ -119,14 +126,16 @@
                     <!-- Terms -->
                     <div class="flex items-center">
                         <input v-model="form.terms" id="terms" type="checkbox" required class="checkbox" />
-                        <label for="terms" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                        <label for="terms" class="mx-2 text-sm text-gray-700 dark:text-gray-300">
                             {{ formLabels.termsAgree }} <a href="/terms" target="_blank"
                                 class="text-indigo-600 underline">{{ formLabels.termsLink }}</a>
                         </label>
                     </div>
 
                     <!-- Pricing -->
-                    <div class="p-4 rounded-md border bg-gray-50 dark:bg-gray-800 text-sm">
+                    <div
+                        class="p-4 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
+
                         <p>{{ pricing.info1 }}</p>
                         <ul class="list-disc list-inside">
                             <li>{{ pricing.student }}</li>
@@ -164,13 +173,13 @@ const router = useRouter()
 const submitting = ref(false)
 const { language } = useSettings()
 const { localizedData } = storeToRefs(useDataStore())
-
-const hero = computed(() => localizedData.value.registerPage.hero)
-const formLabels = computed(() => localizedData.value.registerPage.form)
-const roles = computed(() => localizedData.value.registerPage.roles)
-const attendanceOptions = computed(() => localizedData.value.registerPage.attendance)
-const tracksOptions = computed(() => localizedData.value.registerPage.tracks)
-const pricing = computed(() => localizedData.value.registerPage.pricing)
+console.log(localizedData.value.register_page)
+const hero = computed(() => localizedData.value.register_page.hero)
+const formLabels = computed(() => localizedData.value.register_page.form)
+const roles = computed(() => localizedData.value.register_page.roles)
+const attendanceOptions = computed(() => localizedData.value.register_page.attendance)
+const tracksOptions = computed(() => localizedData.value.register_page.tracks)
+const pricing = computed(() => localizedData.value.register_page.pricing)
 const isRtl = computed(() => language.value === 'fa')
 
 const form = reactive({
@@ -229,3 +238,86 @@ const submit = async () => {
     }
 }
 </script>
+
+
+
+<style scoped lang="scss">
+.label {
+    --at-apply: block text-sm font-medium text-gray-700 dark:text-gray-300;
+}
+
+.input {
+    --at-apply: w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
+}
+
+.radio,
+.checkbox {
+    --at-apply: h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
+}
+
+.btn-primary {
+    --at-apply: inline-flex items-center justify-center rounded-md bg-indigo-600 py-2 px-4 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 transition;
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fade-in-down 0.8s ease-out both;
+}
+
+/* RTL support */
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+
+.custom-file-input {
+    /* remove default padding/cursor so our styles apply cleanly */
+    font: 100% sans-serif;
+    cursor: pointer;
+}
+
+.custom-file-input::file-selector-button {
+    /* Standard */
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin-right: 0.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    /* WebKit/Blink */
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin-right: 0.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.custom-file-input::file-selector-button:hover {
+    background: #0056b3;
+}
+</style>
