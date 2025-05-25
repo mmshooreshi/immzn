@@ -1,147 +1,126 @@
-<template>
-  <div class="min-h-screen flex flex-col md:flex-row dark:bg-gray-900 font-sans">
-    <!-- Left hero panel -->
-    <section
-      class="hidden md:flex md:w-1/2 items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-500 to-blue-500 p-12 text-center text-white">
-      <div class="space-y-4 animate-fade-in-down">
-        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-          ImmUnity Horizons
-        </h1>
-        <p class="text-lg md:text-xl">Decode · Build · Launch</p>
-        <p class="opacity-90 text-sm">See you 9&nbsp;&ndash;&nbsp;11&nbsp;July&nbsp;2025</p>
-      </div>
-    </section>
-
-    <!-- Login form -->
-    <section class="bg-white flex w-full md:w-1/2 items-center justify-center p-8 h-screen">
-      <form @submit.prevent="submit" class="w-full max-w-md space-y-6" novalidate>
-        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 text-center">
-          Sign in
-        </h2>
-
-        <!-- Email -->
-        <div>
-          <label for="email" class="label">Email</label>
-          <input v-model="form.email" id="email" type="email" required class="input" placeholder="you@example.com" />
-        </div>
-
-        <!-- Password -->
-        <div>
-          <label for="password" class="label">Password</label>
-          <input v-model="form.password" id="password" type="password" required class="input" placeholder="••••••••" />
-        </div>
-
-        <!-- Remember / forgot -->
-        <div class="flex items-center justify-between">
-          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-            <input v-model="form.remember" type="checkbox" class="checkbox" /> Remember me
-          </label>
-          <router-link to="/forgot" class="text-sm text-indigo-600 underline">
-            Forgot password?
-          </router-link>
-        </div>
-
-        <!-- Submit button -->
-        <button :disabled="submitting" type="submit" class="btn-primary w-full">
-          <span v-if="!submitting">Log in</span>
-          <span v-else>Signing in…</span>
-        </button>
-
-        <!-- Divider -->
-        <div class="flex items-center gap-3">
-          <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600"></div>
-          <span class="text-xs uppercase text-gray-500 dark:text-gray-400">OR</span>
-          <div class="flex-grow h-px bg-gray-300 dark:bg-gray-600"></div>
-        </div>
-
-        <!-- Social buttons -->
-        <div class="flex flex-col space-y-4">
-          <button type="button" @click="social('google')" class="btn-secondary">
-            Continue with Google
-          </button>
-          <button type="button" @click="social('github')" class="btn-secondary">
-            Continue with GitHub
-          </button>
-        </div>
-
-        <!-- Register link -->
-        <p class="text-center text-sm text-gray-600 dark:text-gray-300">
-          First time here?
-          <router-link to="/register" class="text-indigo-600 underline">Register</router-link>
-        </p>
-      </form>
-    </section>
-  </div>
-</template>
-
-<script setup>
-import { reactive, ref } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import GoogleSignInButton from '~/components/GoogleSignInButton.vue'
+import BaseInput from '~/components/BaseInput.vue'
+import BaseButton from '~/components/BaseButton.vue'
+
+// Persian/English digit utils
+const toEnglishDigits = (str: string) => str.replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+const toPersianDigits = (str: string) => str.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
 
 const router = useRouter()
-const submitting = ref(false)
 
-const form = reactive({
-  email: '',
-  password: '',
-  remember: true,
-})
+const phoneModel = ref('')
+const code = ref('')
+const isLoading = ref(false)
+const mode = ref<'send' | 'verify'>('send')
+const errorMessage = ref('')
 
-function fakeLogin(payload) {
-  // Simulate sign‑in (replace with real API)
-  return new Promise((resolve) => setTimeout(() => resolve(payload), 900))
-}
+const phoneEn = computed(() => toEnglishDigits(phoneModel.value))
+const isValidPhone = computed(() => /^09\d{9}$/.test(phoneEn.value))
+const isValidCode = computed(() => /^\d{6}$/.test(code.value))
 
-async function submit() {
-  submitting.value = true
+const otpId = ref('')
+
+// Simulate sending OTP
+const requestOTP = async () => {
+  errorMessage.value = ''
+  if (!isValidPhone.value) return
+  isLoading.value = true
   try {
-    await fakeLogin(form)
-    router.push('/dashboard')
+    otpId.value = crypto.randomUUID()
+    mode.value = 'verify'
+  } catch (err: any) {
+    errorMessage.value = 'خطا در ارسال کد. لطفا دوباره تلاش کنید.'
   } finally {
-    submitting.value = false
+    isLoading.value = false
   }
 }
 
-function social(provider) {
-  // TODO: Replace with real social sign‑in
-  alert(`Social sign‑in with ${provider} coming soon!`)
+// Simulate verifying OTP
+const verify = async () => {
+  errorMessage.value = ''
+  if (!isValidCode.value) return
+  isLoading.value = true
+  try {
+    // Simulated successful login
+    router.push({ name: 'home' }) // or 'dashboard'
+  } catch (err: any) {
+    errorMessage.value = 'کد وارد شده اشتباه است.'
+  } finally {
+    isLoading.value = false
+  }
+}
+
+// Social login
+const handleSocialLogin = (provider: string) => {
+  console.log(`Signing in with ${provider}`)
 }
 </script>
 
-<style scoped>
-.label {
-  @apply block text-sm font-medium text-gray-700 dark:text-gray-300;
-}
+<template>
+  <NuxtLayout name="page">
+    <div class="min-h-screen flex flex-col lg:flex-row bg-light dark:bg-dark transition-colors duration-300">
+      <!-- Left Image (Desktop Only) -->
+      <div class="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
+        style="background-image: url('/login-side-image.jpg')">
+        <!-- Optional overlay or branding -->
+        <div class="bg-black/40 w-full h-full flex items-center justify-center">
+          <h2 class="text-3xl font-bold text-white text-center">به دنیای ما خوش آمدید</h2>
+        </div>
+      </div>
 
-.input {
-  @apply w-full rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition;
-}
+      <!-- Right Login Panel -->
+      <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10">
+        <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
+          <!-- Title -->
+          <div class="text-center space-y-1">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">ورود یا ثبت‌نام</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">برای ادامه شماره موبایل خود را وارد کنید</p>
+          </div>
 
-.checkbox {
-  @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
-}
+          <!-- Form -->
+          <form @submit.prevent="mode === 'send' ? requestOTP() : verify()" class="space-y-6">
+            <BaseInput v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly persian
+              :placeholder="'مثلاً ۰۹۱۲۱۲۳۴۵۶۷'" :floatinglabel="'شماره موبایل'"
+              floatingLabelClass="bg-white dark:bg-zinc-800"
+              placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
+              :iconName="phoneModel ? (isValidPhone ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
+              :error="phoneModel && !isValidPhone ? 'شماره‌ی موبایل باید با ۰۹ شروع شود.' : ''" dir="ltr" />
 
-.btn-primary {
-  @apply inline-flex items-center justify-center rounded-md bg-indigo-600 py-2 px-4 font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 transition;
-}
+            <BaseInput v-else class="ltr" v-model="code" numberOnly persian :placeholder="'کد ۶ رقمی ارسال شده'"
+              :floatinglabel="'کد تایید'"
+              :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
+              :error="code && !isValidCode ? 'کد باید ۶ رقم باشد.' : ''" dir="ltr" />
 
-.btn-secondary {
-  @apply inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 py-2 px-4 font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition;
-}
+            <BaseButton type="submit" :loading="isLoading" :disabled="mode === 'send' ? !isValidPhone : !isValidCode"
+              :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
+                ? 'bg-[#EBEBEB] text-gray-400 cursor-not-allowed'
+                : 'bg-primary-600 text-white'">
+              {{ mode === 'send' ? 'ارسال کد تایید' : 'تایید و ورود' }}
+            </BaseButton>
 
-@keyframes fade-in-down {
-  from {
-    opacity: 0;
-    transform: translateY(-1rem);
-  }
+            <!-- Error Message -->
+            <p v-if="errorMessage" class="text-center text-sm text-red-600">{{ errorMessage }}</p>
+          </form>
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+          <!-- Divider -->
+          <div class="flex items-center gap-2">
+            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+            <span class="text-xs text-gray-400 dark:text-gray-500">یا ورود با</span>
+            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+          </div>
 
-.animate-fade-in-down {
-  animation: fade-in-down 0.8s ease-out both;
-}
-</style>
+          <!-- Google Sign In -->
+          <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
+
+          <!-- Legal Text -->
+          <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
+            با ورود، شما شرایط استفاده و سیاست حفظ حریم خصوصی را می‌پذیرید.
+          </p>
+        </div>
+      </div>
+    </div>
+  </NuxtLayout>
+</template>

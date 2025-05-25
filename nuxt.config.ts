@@ -1,5 +1,8 @@
-import { defineNuxtConfig } from 'nuxt/config';
+import { defineNuxtConfig } from 'nuxt/config'
+
 import { fontPreloadLinks } from './utils/font-preload';
+// import GoogleProvider      from 'next-auth/providers/google'
+// import CredentialsProvider from 'next-auth/providers/credentials'
 
 // nuxt.config.ts
 import yaml from '@rollup/plugin-yaml';
@@ -37,6 +40,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@sidebase/nuxt-auth',
     '@tresjs/nuxt',
     '@unocss/nuxt',
     '@nuxtjs/i18n',
@@ -47,6 +51,21 @@ export default defineNuxtConfig({
     'nuxt-mapbox',
     '@nuxt/image',
   ],
+  /* ——— NEW AUTH BLOCK ——————————————————————————————— */
+    /** Sidebase / Auth.js */
+  auth: {
+    provider: {
+      type: 'authjs',           // tell the module we’ll use AuthJS
+      defaultProvider: undefined,
+      addDefaultCallbackUrl: true,
+      trustHost: false
+    }
+  },
+
+
+  /* optional global defaults for persistedstate (not required) */
+  // piniaPersistedstate: { storage: 'localStorage' },
+  
   mapbox: {
     accessToken: process.env.MAPBOX_TOKEN,
     
