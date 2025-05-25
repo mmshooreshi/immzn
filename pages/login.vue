@@ -71,7 +71,7 @@ const handleSocialLogin = (provider: string) => {
       <div class="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
         style="background-image: url('/login-side-image.jpg')">
         <div class="bg-black/40 w-full h-full flex items-center justify-center">
-          <h2 class="text-3xl font-bold text-white text-center">به دنیای ما خوش آمدید</h2>
+          <h2 class="text-3xl font-bold text-white text-center">{{ t.heroTitle }}</h2>
         </div>
       </div>
 
