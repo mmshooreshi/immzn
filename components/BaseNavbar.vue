@@ -7,6 +7,9 @@ import { useSettings } from '~/composables/useSettings'
 // import { useLocalizedData } from '~/composables/useLocalizedData'
 // const localized = useLocalizedData();
 // const data = computed(() => localized.value || {}); // fallback to empty object
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 export type Lang = 'en' | 'fa'
 
@@ -93,7 +96,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
     class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header bg-black/50 dark:bg-white/5  backdrop-blur-2xl  rounded-2xl"
     data-scroll data-scroll-sticky data-scroll-target="main">
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
-      <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="handleScrollTo('#hero')">
+      <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="router.push('/')">
         <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
         <span v-if="lang == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
       </button>
