@@ -46,7 +46,8 @@ function getItemName(item: any) {
   return item.name
 }
 function handleScrollTo(target: string) {
-  const OFFSET = -30            // ← +100 = stop below, –100 = stop above
+  // const OFFSET = -30            // ← +100 = stop below, –100 = stop above
+  const OFFSET = -100
   if (route.path === '/') {
     /* 1️⃣ Locomotive active → use its native offset option */
     if (scroll.value) {

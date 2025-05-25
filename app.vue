@@ -19,7 +19,7 @@ watchEffect(() => {
 
 <template>
   <Html lang="en">
-  <TransitionOverlay />
+  <!-- <TransitionOverlay /> -->
   <NuxtPage />
 
   </Html>
