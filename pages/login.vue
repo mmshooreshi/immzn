@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useDataStore } from '~/stores/dataStore'
+import { useSettings } from '~/composables/useSettings'
+
 import GoogleSignInButton from '~/components/GoogleSignInButton.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import BaseButton from '~/components/BaseButton.vue'
 
-// Persian/English digit utils
+const router = useRouter()
+const { localizedData } = storeToRefs(useDataStore())
+const { language } = useSettings()
+
+// Get localized login page content
+const t = computed(() => localizedData.value.login_page)
+
 const toEnglishDigits = (str: string) => str.replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
 const toPersianDigits = (str: string) => str.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
-
-const router = useRouter()
 
 const phoneModel = ref('')
 const code = ref('')
@@ -23,7 +31,6 @@ const isValidCode = computed(() => /^\d{6}$/.test(code.value))
 
 const otpId = ref('')
 
-// Simulate sending OTP
 const requestOTP = async () => {
   errorMessage.value = ''
   if (!isValidPhone.value) return
@@ -31,93 +38,84 @@ const requestOTP = async () => {
   try {
     otpId.value = crypto.randomUUID()
     mode.value = 'verify'
-  } catch (err: any) {
-    errorMessage.value = 'خطا در ارسال کد. لطفا دوباره تلاش کنید.'
+  } catch {
+    errorMessage.value = t.value.otpError
   } finally {
     isLoading.value = false
   }
 }
 
-// Simulate verifying OTP
 const verify = async () => {
   errorMessage.value = ''
   if (!isValidCode.value) return
   isLoading.value = true
   try {
-    // Simulated successful login
-    router.push({ name: 'home' }) // or 'dashboard'
-  } catch (err: any) {
-    errorMessage.value = 'کد وارد شده اشتباه است.'
+    router.push({ name: 'home' })
+  } catch {
+    errorMessage.value = t.value.otpIncorrect
   } finally {
     isLoading.value = false
   }
 }
 
-// Social login
 const handleSocialLogin = (provider: string) => {
   console.log(`Signing in with ${provider}`)
 }
 </script>
 
 <template>
+
   <NuxtLayout name="page">
     <div class="min-h-screen flex flex-col lg:flex-row bg-light dark:bg-dark transition-colors duration-300">
-      <!-- Left Image (Desktop Only) -->
+      <!-- Left Image -->
       <div class="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
         style="background-image: url('/login-side-image.jpg')">
-        <!-- Optional overlay or branding -->
         <div class="bg-black/40 w-full h-full flex items-center justify-center">
           <h2 class="text-3xl font-bold text-white text-center">به دنیای ما خوش آمدید</h2>
         </div>
       </div>
 
-      <!-- Right Login Panel -->
+      <!-- Login Panel -->
       <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10">
         <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
-          <!-- Title -->
           <div class="text-center space-y-1">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">ورود یا ثبت‌نام</h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400">برای ادامه شماره موبایل خود را وارد کنید</p>
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.subtitle }}</p>
           </div>
 
-          <!-- Form -->
           <form @submit.prevent="mode === 'send' ? requestOTP() : verify()" class="space-y-6">
             <BaseInput v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly persian
-              :placeholder="'مثلاً ۰۹۱۲۱۲۳۴۵۶۷'" :floatinglabel="'شماره موبایل'"
+              :placeholder="t.phonePlaceholder" :floatinglabel="t.phoneLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="phoneModel ? (isValidPhone ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
-              :error="phoneModel && !isValidPhone ? 'شماره‌ی موبایل باید با ۰۹ شروع شود.' : ''" dir="ltr" />
+              :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
 
-            <BaseInput v-else class="ltr" v-model="code" numberOnly persian :placeholder="'کد ۶ رقمی ارسال شده'"
-              :floatinglabel="'کد تایید'"
+            <BaseInput v-else class="ltr" v-model="code" numberOnly persian :placeholder="t.codePlaceholder"
+              :floatinglabel="t.codeLabel"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
-              :error="code && !isValidCode ? 'کد باید ۶ رقم باشد.' : ''" dir="ltr" />
+              :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
 
             <BaseButton type="submit" :loading="isLoading" :disabled="mode === 'send' ? !isValidPhone : !isValidCode"
               :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
                 ? 'bg-[#EBEBEB] text-gray-400 cursor-not-allowed'
                 : 'bg-primary-600 text-white'">
-              {{ mode === 'send' ? 'ارسال کد تایید' : 'تایید و ورود' }}
+              {{ mode === 'send' ? t.sendCode : t.verifyAndLogin }}
             </BaseButton>
 
-            <!-- Error Message -->
             <p v-if="errorMessage" class="text-center text-sm text-red-600">{{ errorMessage }}</p>
           </form>
 
-          <!-- Divider -->
           <div class="flex items-center gap-2">
             <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
-            <span class="text-xs text-gray-400 dark:text-gray-500">یا ورود با</span>
+            <span class="text-xs text-gray-400 dark:text-gray-500">{{ t.orLoginWith }}</span>
             <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
           </div>
 
-          <!-- Google Sign In -->
           <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
 
-          <!-- Legal Text -->
           <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
-            با ورود، شما شرایط استفاده و سیاست حفظ حریم خصوصی را می‌پذیرید.
+            {{ t.legalText }}
           </p>
         </div>
       </div>
