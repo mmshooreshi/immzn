@@ -39,8 +39,29 @@
                 </div>
 
                 <!-- JSON VIEW -->
-                <pre v-else-if="currentTab === 'JSON'"
-                    class="max-w-2xl bg-white p-6 text-gray-900 border border-gray-200 rounded shadow-md overflow-auto max-h-[70vh]">{{ JSON.stringify(formData, null, 2) }}</pre>
+                <!-- <pre v-else-if="currentTab === 'JSON'"
+                    class="max-w-2xl bg-white p-6 text-gray-900 border border-gray-200 rounded shadow-md overflow-auto max-h-[70vh]">{{ JSON.stringify(formData, null, 2) }}</pre> -->
+
+                <!-- <div v-else-if="currentTab === 'JSON'"
+                    class="max-w-2xl bg-white p-4 text-gray-900 border border-gray-200 rounded-2xl shadow-md overflow-auto max-h-[70vh]">
+                    <JsonTree :node="formData" :depth="0" isCollapsed="true" />
+                </div> -->
+
+                <div v-else-if="currentTab === 'JSON'"
+                    class="max-w-2xl bg-white p-6 border border-gray-200 rounded-2xl shadow-md">
+                    <JsonEditor v-model="formData" />
+                    <div class="mt-4 flex space-x-3">
+                        <button @click="save" :disabled="saving"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
+                            {{ saving ? 'Saving…' : 'Save' }}
+                        </button>
+                        <button @click="reset" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+
 
                 <!-- VERSIONS VIEW -->
                 <div v-else class="max-w-2xl bg-white p-6 text-gray-900 border border-gray-200 rounded shadow-md">
@@ -70,6 +91,8 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Form from '@lljj/vue3-form-element'
 import DynamicForm from '~/components/DynamicForm0.vue'
+import JsonTree from '~/components/JsonTree.vue'
+import JsonEditor from '~/components/JsonEditor.vue'
 
 const route = useRoute()
 const router = useRouter()
