@@ -1,0 +1,182 @@
+{
+  "hero": {
+    "title": {
+      "en": "ImmUnity Horizons",
+      "fa": "افق‌های ایمیونیتی"
+    },
+    "subtitle": {
+      "en": "Bridging Computation & Immunology",
+      "fa": "پل زدن میان محاسبات و ایمنی‌شناسی"
+    },
+    "date": {
+      "en": "9 – 11 July 2025",
+      "fa": "۹ تا ۱۱ تیر ۱۴۰۴"
+    },
+    "location": {
+      "en": "Tehran & online",
+      "fa": "تهران و آنلاین"
+    }
+  },
+  "form": {
+    "register": {
+      "en": "Register",
+      "fa": "ثبت نام"
+    },
+    "fullName": {
+      "en": "Full name",
+      "fa": "نام کامل"
+    },
+    "fullNamePlaceholder": {
+      "en": "Ada Lovelace",
+      "fa": "آدا لاولیس"
+    },
+    "email": {
+      "en": "Email",
+      "fa": "ایمیل"
+    },
+    "emailPlaceholder": {
+      "en": "ada@example.com",
+      "fa": "ada@example.com"
+    },
+    "phone": {
+      "en": "Phone Number",
+      "fa": "شماره تلفن"
+    },
+    "phoneHint": {
+      "en": "Enter your 10-digit phone number after +98 (e.g., 9123456789)",
+      "fa": "شماره ۱۰ رقمی خود را بعد از +۹۸ وارد کنید (مثلاً ۹۱۲۳۴۵۶۷۸۹)"
+    },
+    "affiliation": {
+      "en": "Affiliation / Institution",
+      "fa": "وابستگی / موسسه"
+    },
+    "affiliationPlaceholder": {
+      "en": "University of Tehran",
+      "fa": "دانشگاه تهران"
+    },
+    "role": {
+      "en": "Role",
+      "fa": "نقش"
+    },
+    "selectRole": {
+      "en": "Select role",
+      "fa": "نقش را انتخاب کنید"
+    },
+    "attendanceLegend": {
+      "en": "How will you attend?",
+      "fa": "چگونه شرکت خواهید کرد؟"
+    },
+    "tracksLabel": {
+      "en": "Tracks of interest",
+      "fa": "دسته‌های علاقه‌مندی"
+    },
+    "cvUpload": {
+      "en": "Upload your CV",
+      "fa": "رزومه خود را آپلود کنید"
+    },
+    "cvHint": {
+      "en": "Accepted formats: PDF, DOC, DOCX. Required for selection.",
+      "fa": "فرمت‌های مجاز: PDF، DOC، DOCX. برای انتخاب الزامی است."
+    },
+    "newsletter": {
+      "en": "Send me occasional updates about ImmUnity Horizons",
+      "fa": "مایلم به‌روزرسانی‌های ایمیونیتی را دریافت کنم"
+    },
+    "termsAgree": {
+      "en": "I agree to the",
+      "fa": "موافقم با"
+    },
+    "termsLink": {
+      "en": "terms & conditions",
+      "fa": "شرایط و ضوابط"
+    },
+    "submit": {
+      "en": "Complete registration",
+      "fa": "ثبت نام نهایی"
+    },
+    "submitting": {
+      "en": "Registering…",
+      "fa": "در حال ثبت…"
+    },
+    "alreadyRegistered": {
+      "en": "Already registered?",
+      "fa": "قبلاً ثبت نام کرده‌اید؟"
+    },
+    "login": {
+      "en": "Log in",
+      "fa": "ورود"
+    }
+  },
+  "roles": {
+    "researcher": {
+      "en": "Researcher",
+      "fa": "پژوهشگر"
+    },
+    "engineer": {
+      "en": "Engineer",
+      "fa": "مهندس"
+    },
+    "designer": {
+      "en": "Designer",
+      "fa": "طراح"
+    },
+    "student": {
+      "en": "Student",
+      "fa": "دانشجو"
+    },
+    "other": {
+      "en": "Other",
+      "fa": "سایر"
+    }
+  },
+  "attendance": {
+    "inPerson": {
+      "en": "In-person",
+      "fa": "حضوری"
+    },
+    "remote": {
+      "en": "Remote",
+      "fa": "راه دور"
+    }
+  },
+  "tracks": {
+    "Keynotes": {
+      "en": "Keynotes",
+      "fa": "سخنرانی‌های کلیدی"
+    },
+    "Workshops": {
+      "en": "Workshops",
+      "fa": "کارگاه‌ها"
+    },
+    "Hackathon": {
+      "en": "Hackathon",
+      "fa": "هکتون"
+    },
+    "Lightning Talks": {
+      "en": "Lightning Talks",
+      "fa": "سخنرانی‌های کوتاه"
+    }
+  },
+  "pricing": {
+    "info1": {
+      "en": "Registration fees for first-day conferences:",
+      "fa": "هزینه ثبت‌نام برای کنفرانس‌های روز اول:"
+    },
+    "student": {
+      "en": "Students: 700,000 Toman",
+      "fa": "دانشجویان: ۷۰۰ هزار تومان"
+    },
+    "nonStudent": {
+      "en": "Non-students: 1,000,000 Toman",
+      "fa": "غیر دانشجوها: ۱ میلیون تومان"
+    },
+    "hackathonFree": {
+      "en": "Hackathon participation is free",
+      "fa": "شرکت در هکتون رایگان است"
+    },
+    "selectionNote": {
+      "en": "Participant selection is based on CV evaluation.",
+      "fa": "انتخاب شرکت‌کنندگان بر اساس بررسی رزومه است."
+    }
+  }
+}
