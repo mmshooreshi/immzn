@@ -59,7 +59,11 @@ export default defineNuxtConfig({
       defaultProvider: undefined,
       addDefaultCallbackUrl: true,
       trustHost: false
-    }
+    },
+    baseURL: process.env.AUTH_BASE_URL,
+    origin:  process.env.AUTH_ORIGIN,
+    debug: true,
+
   },
 
 
@@ -94,7 +98,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     // server-only values
-
+    authSecret: process.env.NUXT_AUTH_SECRET,
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret:  process.env.GOOGLE_CLIENT_SECRET || '',
