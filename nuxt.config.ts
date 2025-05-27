@@ -60,9 +60,8 @@ export default defineNuxtConfig({
       addDefaultCallbackUrl: true,
       trustHost: false
     },
-    baseURL: process.env.AUTH_BASE_URL,
-    origin:  process.env.AUTH_ORIGIN,
-    debug: true,
+    originEnvKey: 'http://localhost:3000',
+    baseURL: 'http://localhost:3000/api/auth',
 
   },
 
