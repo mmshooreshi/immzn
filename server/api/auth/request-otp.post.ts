@@ -34,7 +34,6 @@ export default defineEventHandler(async (event) => {
   const options = {
     hostname: 'console.melipayamak.com',
     port: 443,
-    path: '/api/send/otp/8c6828cf2b58480e8477cff37f41e96e',
     path: `/api/send/otp/${config.melipayamakApiKey}`,
     method: 'POST',
     headers: {
