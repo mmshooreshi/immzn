@@ -1,8 +1,9 @@
-// server/api/auth/request-otp.post.ts
 import { randomInt } from 'crypto'
 import { assertGuest } from '~/server/utils/auth-helpers'
 import { assertRateLimit } from '~/server/utils/rate-limit'
-import { getRequestIP }      from 'h3'
+import { getRequestIP } from 'h3'
+import https from 'https'
+const config = useRuntimeConfig();
 
 export default defineEventHandler(async (event) => {
   assertGuest(event)
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   const { phone } = await readBody<{ phone: string }>(event)
 
-    // max 3 OTPs per phone every 10 minutes
+  // max 3 OTPs per phone every 10 minutes
   await assertRateLimit(event, {
     key   : `otp:${phone}`,
     max   : 3,
@@ -27,10 +28,48 @@ export default defineEventHandler(async (event) => {
     window: 60 * 60
   })
 
-  const otp       = randomInt(100_000, 999_999).toString()
+  // Send request to Melipayamak API
+  const data = JSON.stringify({ to: phone })
 
-  await useStorage('redis').setItem(`otp:${phone}`, otp, { ttl: 300 })
-  $log.info('📨 OTP generated', { phone, otp })
+  const options = {
+    hostname: 'console.melipayamak.com',
+    port: 443,
+    path: '/api/send/otp/8c6828cf2b58480e8477cff37f41e96e',
+    path: `/api/send/otp/${config.melipayamakApiKey}`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(data),
+    },
+  }
+
+  const otp = await new Promise<string>((resolve, reject) => {
+    const req = https.request(options, res => {
+      let body = ''
+      res.on('data', chunk => {
+        body += chunk
+      })
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(body)
+          if (parsed?.code) {
+            resolve(parsed.code.toString())
+          } else {
+            reject(new Error(parsed?.status || 'OTP send failed'))
+          }
+        } catch (err) {
+          reject(err)
+        }
+      })
+    })
+
+    req.on('error', reject)
+    req.write(data)
+    req.end()
+  })
+
+  await useStorage('redis').setItem(`otp:${phone}`, otp, { ttl: 300 }) // 5 minutes
+  $log.info('📨 OTP generated and sent', { phone, otp })
 
   return { ok: true }
 })

@@ -154,7 +154,7 @@ export default defineNuxtConfig({
     spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
     spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
-
+    melipayamakApiKey: process.env.MELIPAYAMAK_API_KEY,
     public: {
       dataMode: process.env.DATA_MODE || 'github',
       neshanPublicToken: process.env.NESHAN_PUBLIC_API_KEY,
