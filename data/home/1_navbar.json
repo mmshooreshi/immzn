@@ -43,9 +43,9 @@
   },
   {
     "name": {
-      "en": "Register",
+      "en": "Login/Register",
       "fa": "ثبت‌نام"
     },
-    "slug": "register"
+    "slug": "login"
   }
 ]
