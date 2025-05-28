@@ -2,7 +2,7 @@
   <div class="relative">
     <input v-bind="forward" v-model="display" :type="numberOnly ? 'tel' : 'text'" :placeholder="forward.placeholder"
       @focus="onFocus" @blur="onBlur" @input="handleInput" :class="[
-        'rtl w-full rounded-2xl  text-gray-900 dark:text-white/50 text-left bg-transparent px-6 py-5 text-md tracking-normal hover:tracking-widest transition-all duration-300 font-semibold outline-none ring-0 focus:ring-1 border ',
+        'rtl w-full border-solid border-white/10 rounded-2xl  text-gray-900 dark:text-white/50 text-left bg-transparent px-6 py-5 text-md tracking-normal hover:tracking-widest transition-all duration-300 font-semibold outline-none ring-0 focus:ring-1 border ',
         borderClass,
         placeholderClass,
         forward.class,
@@ -15,7 +15,7 @@
       floatingLabelClass,
       // <-- use a real ternary here
       props.persian ? 'labelFa' : 'labelEn'
-    ]" class="absolute top-4 -mt-3 text-gray-500 pointer-events-none z-10 will-change-transform px-2">
+    ]" class="absolute top-4 -mt-3  text-gray-500 pointer-events-none z-10 will-change-transform px-2">
       {{ forward.floatinglabel }}
     </label>
 

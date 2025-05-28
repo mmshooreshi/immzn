@@ -1,108 +1,196 @@
-<!-- pages/login.vue -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useDataStore } from '~/stores/dataStore'
+import { useSettings } from '~/composables/useSettings'
+
+import GoogleSignInButton from '~/components/GoogleSignInButton.vue'
+import BaseInput from '~/components/BaseInput.vue'
+import BaseButton from '~/components/BaseButton.vue'
 import { useAuth } from '~/stores/auth'
 
-// pages/login.vue – at top of <script setup>
-const auth = useAuth()
-if (auth.user) await navigateTo('/')   // SSR-compatible early exit
-
-const phone = ref('')
-const otp = ref('')
-const step = ref<'phone' | 'otp'>('phone')
-const busy = ref(false)
 const router = useRouter()
-const statusMessage = ref('Enter your phone number.')
-const isPhoneValid = computed(() => phone.value.match(/^\+98\d{10}$/))
-const isOtpValid = computed(() => otp.value.length === 6)
+const auth = useAuth()
 
-async function sendOtp() {
-    busy.value = true
-    try {
-        await $fetch('/api/auth/request-otp', { method: 'POST', body: { phone: phone.value } })
-        step.value = 'otp'
-        $log.info('➡️  OTP requested', phone.value)
-        statusMessage.value = '➡️  OTP requested, enter the code.'
-    } catch (err) {
-        $log.error('sendOtp failed', err)
-        statusMessage.value = '❌  sendOtp failed'
-    } finally {
-        busy.value = false
-    }
+const { localizedData } = storeToRefs(useDataStore())
+const { language } = useSettings()
+
+// Localized login content
+const t = computed(() => localizedData.value.login_page)
+
+// Utilities to convert digits
+const toEnglishDigits = (str: string) =>
+  str.replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+const toPersianDigits = (str: string) =>
+  str.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
+
+// Form state
+const phoneModel = ref('')
+const code = ref('')
+const mode = ref<'send' | 'verify'>('send')
+const isLoading = ref(false)
+const errorMessage = ref('')
+const otpId = ref<string | null>(null)
+
+// Validation
+const phoneEn = computed(() => toEnglishDigits(phoneModel.value))
+const isValidPhone = computed(() => /^09\d{9}$/.test(phoneEn.value))
+const isValidCode = computed(() => /^\d{6}$/.test(code.value))
+
+// Redirect if user already has a session
+const session = useCookie('session')
+onMounted(async () => {
+  if (session.value) {
+    await router.push('/profile')
+  }
+})
+
+// 1️⃣ Request OTP
+const requestOTP = async () => {
+  errorMessage.value = ''
+  if (!isValidPhone.value) return
+  isLoading.value = true
+  try {
+    // const response = await $fetch<{ status: string; otpId?: string }>('/api/otp', {
+    //   method: 'POST',
+    //   body: { phone: phoneEn.value }
+    // })
+    // if (response.status === 'sent' && response.otpId) {
+    //   otpId.value = response.otpId
+    //   mode.value = 'verify'
+    // } else {
+    //   errorMessage.value = t.value.otpError
+    // }
+
+    // ✚ just call the same endpoint as before
+    await $fetch('/api/auth/request-otp', {
+      method: 'POST',
+      body: { phone: phoneEn.value }
+    })
+    // ✚ move to “verify” step
+    mode.value = 'verify'
+
+  } catch {
+    errorMessage.value = t.value.otpError
+  } finally {
+    isLoading.value = false
+  }
 }
 
+// 2️⃣ Verify OTP
+const verifyOTP = async () => {
+  errorMessage.value = ''
+  // if (!otpId.value || !isValidCode.value) return
+  if (!isValidCode.value) return
 
-async function verify() {
-    busy.value = true
-    try {
-        // await $fetch('/api/auth/verify-otp', { method: 'POST', body: { phone: phone.value, otp: otp.value } })
-        const { data } = await useFetch('/api/auth/verify-otp', {
-            method: 'POST',
-            body: { phone: phone.value, otp: otp.value }
-        })
-        $log.debug('Verified response:', data.value)
+  isLoading.value = true
+  try {
+    // const response = await $fetch<{ status: string }>('/api/otp', {
+    //   method: 'POST',
+    //   body: { otpId: otpId.value, code: code.value }
+    // })
+    // if (response.status === 'ok') {
+    //   router.push('/profile')
+    // } else if (response.status === 'invalid') {
+    //   errorMessage.value = t.value.otpIncorrect
+    // } else {
+    //   errorMessage.value = t.value.otpError
+    // }
 
-        if (data.value?.ok) {
-            $log.info('➡️ OTP verified, redirecting after cookie is stored')
-            auth.set({ id: data.value.userId, phone: phone.value }) // ← hydrate *now*
-            statusMessage.value = '✅ correct, redirecting you to profile.'
-            await navigateTo('/profile')
-            statusMessage.value = 'Enter your phone number.'
-            step.value = 'phone'
-            otp.value = ''
-            // phone.value = ''
-        } else {
-            $log.info('❌ OTP WRONG')
-            statusMessage.value = '❌ wrong, try again'
-            otp.value = ''
-
-        }
-        // router.push('/profile')
-    } catch (err) {
-        $log.error('verify failed', err)
-        alert('OTP incorrect')
-    } finally {
-        busy.value = false
+    // ✚ use the same verify-OTP endpoint
+    const { data } = await useFetch<{ ok: boolean; userId: string }>('/api/auth/verify-otp', {
+      method: 'POST',
+      body: { phone: phoneEn.value, otp: code.value }
+    })
+    if (data.value?.ok) {
+      // ✚ hydrate the auth store exactly like before
+      auth.set({ id: data.value.userId, phone: phoneEn.value })
+      await router.push('/profile')
+      // ✚ reset form if you come back
+      mode.value = 'send'
+      phoneModel.value = ''
+      code.value = ''
+    } else {
+      errorMessage.value = data.value === null
+        ? t.value.otpError
+        : t.value.otpIncorrect
     }
+
+  } catch {
+    errorMessage.value = t.value.otpError
+  } finally {
+    isLoading.value = false
+  }
 }
 
-definePageMeta({ guestOnly: true })
+// Social login fallback
+const handleSocialLogin = (provider: string) => {
+  console.log(`Signing in with ${provider}`)
+}
+
 
 </script>
 
 <template>
-    <div class="flex flex-col  items-center justify-center min-h-screen gap-4 w-max mx-auto">
-        <h1 class="text-2xl font-bold">OTP Login</h1>
+  <NuxtLayout name="page">
+    <div class="min-h-screen flex flex-col lg:flex-row bg-light dark:bg-dark transition-colors duration-300">
+      <!-- Left Image -->
+      <div class="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
+        style="background-image: url('/login-side-image.jpg')">
+        <div class="bg-black/40 w-full h-full flex items-center justify-center">
+          <h2 class="text-3xl font-bold text-white text-center">{{ t.heroTitle }}</h2>
+        </div>
+      </div>
 
-        <form v-if="step === 'phone'" @submit.prevent="sendOtp" class="space-x-2">
-            <input v-model="phone" placeholder="Phone" class="p-2 border border-white/10 border-solid rounded"
-                required />
-            <button :disabled="!isPhoneValid || busy"
-                class="px-5 py-2 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed ">
-                <div class="flex items-center gap-2">
-                    <svg v-if="busy" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                    </svg>
-                    <span>Send</span>
-                </div>
-            </button>
-        </form>
+      <!-- Login Panel -->
+      <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10  h-screen">
+        <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
+          <div class="text-center space-y-1">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.subtitle }}</p>
+          </div>
 
-        <form v-else @submit.prevent="verify" class="space-x-2">
-            <input v-model="otp" placeholder="123456" class="p-2 border border-white/10  border-solid rounded"
-                required />
-            <button :disabled="!isOtpValid || busy"
-                class="px-5 py-2 rounded-xl font-semibold text-white bg-green-600 hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed ">
-                <div class="flex items-center gap-2">
-                    <svg v-if="busy" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                    </svg>
-                    <span>Verify</span>
-                </div>
-            </button>
-        </form>
-        <div class="self-start px-0 text-sm text-gray-700 -mt-4">{{ statusMessage }}</div>
+          <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6">
+            <!-- Phone Input -->
+            <BaseInput v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly :persian="language === 'fa'"
+              :placeholder="t.phonePlaceholder" :floatinglabel="t.phoneLabel"
+              floatingLabelClass="bg-white dark:bg-zinc-800"
+              placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
+              :iconName="phoneModel ? (isValidPhone ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
+              :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
+
+            <!-- OTP Code Input -->
+            <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
+              :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
+              floatingLabelClass="bg-white dark:bg-zinc-800"
+              placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
+              :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
+              :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
+
+            <BaseButton type="submit" :loading="isLoading" :disabled="mode === 'send' ? !isValidPhone : !isValidCode"
+              class="text-center" :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
+                ? 'bg-cyan-800/50 text-gray-400 cursor-not-allowed'
+                : 'bg-cyan-600 text-cyan-100 dark:bg-cyan-800 dark:text-white'">
+              {{ mode === 'send' ? t.sendCode : t.verifyAndLogin }}
+            </BaseButton>
+
+            <p v-if="errorMessage" class="text-center text-sm text-red-600">{{ errorMessage }}</p>
+          </form>
+
+          <div class="flex items-center gap-2">
+            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+            <span class="text-xs text-gray-400 dark:text-gray-500">{{ t.orLoginWith }}</span>
+            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+          </div>
+
+          <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
+
+          <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
+            {{ t.legalText }}
+          </p>
+        </div>
+      </div>
     </div>
+  </NuxtLayout>
 </template>

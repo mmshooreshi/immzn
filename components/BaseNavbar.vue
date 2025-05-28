@@ -8,6 +8,10 @@ import { useSettings } from '~/composables/useSettings'
 // const localized = useLocalizedData();
 // const data = computed(() => localized.value || {}); // fallback to empty object
 import { useRouter } from 'vue-router'
+import { useAuth } from '~/stores/auth'
+
+const auth = useAuth()
+
 
 const router = useRouter()
 
@@ -38,7 +42,7 @@ const scrollTo = useScrollTo()
 
 // const open = ref(!isMobile.value);
 
-function isButton(item: any) { return item.slug !== 'register' }
+function isButton(item: any) { return item.slug !== 'login' }
 
 function getItemName(item: any) {
   if (typeof item.name === 'object')
@@ -119,10 +123,14 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
               {{ getItemName(item) }}
 
             </button>
-            <NuxtLink v-else :href="`/${item.slug}`" @click="menuOpen = false">
-              {{ getItemName(item) }}
+            <div v-else>
+              <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
+                {{ props.lang }}
 
-            </NuxtLink>
+              </NuxtLink>
+              <NuxtLink v-else to="/profile" @click="menuOpen = false"> {{ props.lang == "fa" ? 'پروفایل' : 'profile' }}
+              </NuxtLink>
+            </div>
           </li>
         </ul>
 
@@ -139,9 +147,14 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
           <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
             {{ getItemName(item) }}
           </div>
-          <NuxtLink v-else :href="`/${item.slug}`">
-            {{ getItemName(item) }}
-          </NuxtLink>
+          <div v-else>
+            <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
+              {{ getItemName(item) }}
+
+            </NuxtLink>
+            <NuxtLink v-else to="/profile" @click="menuOpen = false"> {{ props.lang == "fa" ? 'پروفایل' : 'profile' }}
+            </NuxtLink>
+          </div>
         </li>
       </ul>
 

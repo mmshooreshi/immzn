@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', {
       
       if (!error.value) {
         this.profile = data.value
-        useNuxtApp().$log.success('user hydrated', data)
+        // useNuxtApp().$log.success('user hydrated', data)
       } else {
         useNuxtApp().$log.warn('hydrate failed', error.value)
       }
