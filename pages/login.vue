@@ -46,6 +46,30 @@ onMounted(async () => {
   }
 })
 
+let abortController: AbortController
+watch(mode, async (m) => {
+  if (m === 'verify' && 'OTPCredential' in window) {
+    // if we were already listening, cancel the previous one
+    abortController?.abort()
+    abortController = new AbortController()
+
+    try {
+      const otp = await (navigator as any).credentials.get({
+        otp: { transport: ['sms'] },
+        signal: abortController.signal
+      }) as OTPCredential
+
+      // otp.code contains the 6-digit code
+      code.value = otp.code
+      // optionally, auto-submit
+      verifyOTP()
+    } catch (err) {
+      // user may cancel or it may time out — just ignore
+      console.debug('Web OTP API failed or timed out', err)
+    }
+  }
+})
+
 // 1️⃣ Request OTP
 const requestOTP = async () => {
   errorMessage.value = ''
@@ -162,8 +186,8 @@ const handleSocialLogin = (provider: string) => {
 
             <!-- OTP Code Input -->
             <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
-              :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
-              floatingLabelClass="bg-white dark:bg-zinc-800"
+              autocomplete="one-time-code" inputmode="numeric" :placeholder="t.codePlaceholder"
+              :floatinglabel="t.codeLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
               :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />

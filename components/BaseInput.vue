@@ -1,3 +1,4 @@
+<!-- components/BaseInput.vue -->
 <template>
   <div class="relative">
     <input v-bind="forward" v-model="display" :type="numberOnly ? 'tel' : 'text'" :placeholder="forward.placeholder"
@@ -15,7 +16,7 @@
       floatingLabelClass,
       // <-- use a real ternary here
       props.persian ? 'labelFa' : 'labelEn'
-    ]" class="absolute top-4 -mt-3  text-gray-500 pointer-events-none z-10 will-change-transform px-2">
+    ]" class="absolute top-4 -mt-3 text-gray-500 pointer-events-none z-10 will-change-transform px-2">
       {{ forward.floatinglabel }}
     </label>
 
