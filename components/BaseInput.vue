@@ -11,15 +11,21 @@
 
 
     <!-- floating label using VueUse Motion -->
-    <label ref="labelRef" :class="floatingLabelClass"
-      class="absolute right-5 top-4 -mt-3  text-gray-500 pointer-events-none z-10 will-change-transform px-2">
+    <label ref="labelRef" :class="[
+      floatingLabelClass,
+      // <-- use a real ternary here
+      props.persian ? 'labelFa' : 'labelEn'
+    ]" class="absolute top-4 -mt-3 text-gray-500 pointer-events-none z-10 will-change-transform px-2">
       {{ forward.floatinglabel }}
     </label>
+
+
+
 
     <div class="h-full absolute w-1 bg-transparent right-0 top-0">
       <!-- clear icon -->
       <div v-if="(display && state !== 'success') || iconName" @click="display && state !== 'success' && (display = '')"
-        :class="['absolute left-6 right-6 inset-y-0 flex items-center h-full w-5 group', position + '-3', iconColor]">
+        :class="['absolute -left-8 right-6 inset-y-0 flex items-center h-full w-5 group', position + '-3', iconColor]">
         <span v-if="display && state !== 'success'" class="relative w-5 h-5 cursor-pointer group">
           <span
             class="absolute inset-0 rounded-full bg-gray-300 transform transition duration-200 scale-75 group-hover:scale-150 group-hover:opacity-100" />
@@ -123,9 +129,21 @@ watch(isFloating, f => {
 <style scoped>
 label {
   position: absolute;
-  right: 1.25rem;
   top: 50%;
+  /* background-color: #F9FBFA; */
+  /* padding: 0; */
+}
+
+.labelFa {
+  right: 1.25rem;
   transform-origin: right center;
+  /* background-color: #F9FBFA; */
+  /* padding: 0; */
+}
+
+.labelEn {
+  left: 1.25rem;
+  transform-origin: left center;
   /* background-color: #F9FBFA; */
   /* padding: 0; */
 }

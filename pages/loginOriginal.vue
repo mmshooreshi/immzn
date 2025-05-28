@@ -8,8 +8,11 @@ import { useSettings } from '~/composables/useSettings'
 import GoogleSignInButton from '~/components/GoogleSignInButton.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import BaseButton from '~/components/BaseButton.vue'
+import { useAuth } from '~/stores/auth'
 
 const router = useRouter()
+const auth = useAuth()
+
 const { localizedData } = storeToRefs(useDataStore())
 const { language } = useSettings()
 
@@ -49,16 +52,25 @@ const requestOTP = async () => {
   if (!isValidPhone.value) return
   isLoading.value = true
   try {
-    const response = await $fetch<{ status: string; otpId?: string }>('/api/otp', {
+    // const response = await $fetch<{ status: string; otpId?: string }>('/api/otp', {
+    //   method: 'POST',
+    //   body: { phone: phoneEn.value }
+    // })
+    // if (response.status === 'sent' && response.otpId) {
+    //   otpId.value = response.otpId
+    //   mode.value = 'verify'
+    // } else {
+    //   errorMessage.value = t.value.otpError
+    // }
+
+    // ✚ just call the same endpoint as before
+    await $fetch('/api/auth/request-otp', {
       method: 'POST',
       body: { phone: phoneEn.value }
     })
-    if (response.status === 'sent' && response.otpId) {
-      otpId.value = response.otpId
-      mode.value = 'verify'
-    } else {
-      errorMessage.value = t.value.otpError
-    }
+    // ✚ move to “verify” step
+    mode.value = 'verify'
+
   } catch {
     errorMessage.value = t.value.otpError
   } finally {
@@ -69,20 +81,42 @@ const requestOTP = async () => {
 // 2️⃣ Verify OTP
 const verifyOTP = async () => {
   errorMessage.value = ''
-  if (!otpId.value || !isValidCode.value) return
+  // if (!otpId.value || !isValidCode.value) return
+  if (!isValidCode.value) return
+
   isLoading.value = true
   try {
-    const response = await $fetch<{ status: string }>('/api/otp', {
+    // const response = await $fetch<{ status: string }>('/api/otp', {
+    //   method: 'POST',
+    //   body: { otpId: otpId.value, code: code.value }
+    // })
+    // if (response.status === 'ok') {
+    //   router.push('/profile')
+    // } else if (response.status === 'invalid') {
+    //   errorMessage.value = t.value.otpIncorrect
+    // } else {
+    //   errorMessage.value = t.value.otpError
+    // }
+
+    // ✚ use the same verify-OTP endpoint
+    const { data } = await useFetch<{ ok: boolean; userId: string }>('/api/auth/verify-otp', {
       method: 'POST',
-      body: { otpId: otpId.value, code: code.value }
+      body: { phone: phoneEn.value, otp: code.value }
     })
-    if (response.status === 'ok') {
-      router.push('/profile')
-    } else if (response.status === 'invalid') {
-      errorMessage.value = t.value.otpIncorrect
+    if (data.value?.ok) {
+      // ✚ hydrate the auth store exactly like before
+      auth.set({ id: data.value.userId, phone: phoneEn.value })
+      await router.push('/profile')
+      // ✚ reset form if you come back
+      mode.value = 'send'
+      phoneModel.value = ''
+      code.value = ''
     } else {
-      errorMessage.value = t.value.otpError
+      errorMessage.value = data.value === null
+        ? t.value.otpError
+        : t.value.otpIncorrect
     }
+
   } catch {
     errorMessage.value = t.value.otpError
   } finally {
@@ -110,7 +144,7 @@ const handleSocialLogin = (provider: string) => {
       </div>
 
       <!-- Login Panel -->
-      <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10">
+      <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10  h-screen">
         <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
           <div class="text-center space-y-1">
             <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.title }}</h1>
@@ -130,6 +164,7 @@ const handleSocialLogin = (provider: string) => {
             <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
               :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"
+              placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
               :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
 
