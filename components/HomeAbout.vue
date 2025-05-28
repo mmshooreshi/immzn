@@ -75,7 +75,8 @@ watchEffect(() => {
   <!-- {{ data }} -->
   <NuxtLayout name="section">
 
-    <SkillsContainer />
+
+    <!-- <SkillsContainer /> -->
     <figure id="about" class="figure">
       <figcaption v-if="isMobile">
         <h2 class="hero">{{ data?.headline }} <span class="empty"></span></h2>

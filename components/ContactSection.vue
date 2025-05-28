@@ -34,6 +34,12 @@ const props = defineProps({ data: Object });
             </div>
             <p class="text-lg text-gray-800 dark:text-gray-200 max-w-xl mx-auto w-max">{{ data.outro.sub }}</p>
         </div>
+
+        <a referrerpolicy='origin' target='_blank'
+            href='https://trustseal.enamad.ir/?id=615729&Code=o73a92Jywa7Q7eL8cP7f0KuhXIiskSBr'><img
+                referrerpolicy='origin'
+                src='https://trustseal.enamad.ir/logo.aspx?id=615729&Code=o73a92Jywa7Q7eL8cP7f0KuhXIiskSBr' alt=''
+                style='cursor:pointer' code='o73a92Jywa7Q7eL8cP7f0KuhXIiskSBr'></a>
     </section>
 </template>
 
