@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     '@tresjs/nuxt',
     '@unocss/nuxt',
     // '@nuxtjs/i18n',
-    // '@nuxt/content',
+    '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
     '@vueuse/motion/nuxt',
