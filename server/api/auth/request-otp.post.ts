@@ -35,7 +35,8 @@ export default defineEventHandler(async (event) => {
   const data = JSON.stringify({ to: phone })
 
   const options = {
-    hostname: 'console.melipayamak.com',
+    // hostname: 'console.melipayamak.com',
+    hostname: 'https://aisland.co/melipayamak',
     port: 443,
     path: `/api/send/otp/${config.melipayamakApiKey}`,
     method: 'POST',
