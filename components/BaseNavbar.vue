@@ -125,7 +125,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
             </button>
             <div v-else>
               <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
-                {{ props.lang }}
+                {{ getItemName(item) }}
 
               </NuxtLink>
               <NuxtLink v-else to="/profile" @click="menuOpen = false"> {{ props.lang == "fa" ? 'پروفایل' : 'profile' }}
@@ -164,7 +164,7 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
           class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-black/50 dark:bg-white/20  flex items-center justify-center hover:bg-gray-200 hover:text-black"
           :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
           <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
-            }}</span>
+          }}</span>
         </button>
 
         <!-- Theme Toggle -->
