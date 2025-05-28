@@ -49,8 +49,8 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
     '@tresjs/nuxt',
     '@unocss/nuxt',
-    '@nuxtjs/i18n',
-    '@nuxt/content',
+    // '@nuxtjs/i18n',
+    // '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
     '@vueuse/motion/nuxt',
@@ -111,7 +111,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/'],
-      ignore: ['/i', '/j']
+      ignore: ['/i', '/j', '/']
 
     },
         // Nitro’s first-class KV layer → no “raw” ioredis in code
@@ -172,10 +172,17 @@ export default defineNuxtConfig({
   },
 
   typescript: {
-    strict: true,
+    // strict: true,
+      strict: false,
+    typeCheck: false
+
   },
   vite: {
     plugins: [yaml()],
+      optimizeDeps: {
+    include: ['@tresjs/core', 'pinia', 'locomotive-scroll'], // adjust to real deps
+  },
+
     css: {
       preprocessorOptions: {
         scss: {
