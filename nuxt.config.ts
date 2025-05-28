@@ -27,6 +27,12 @@ export default defineNuxtConfig({
       ],
     },
   },
+  //   routeRules: {
+  //   '/profile/**': { middleware: 'auth' },
+  //   '/team/**'   : { middleware: 'auth' }
+  // },
+
+
   css: [
     '~/styles/fontiran.css',
     '~/styles/_reset.scss',
@@ -58,17 +64,30 @@ export default defineNuxtConfig({
       type: 'authjs',           // tell the module we’ll use AuthJS
       defaultProvider: undefined,
       addDefaultCallbackUrl: true,
-      trustHost: false
+      // trustHost: false
+      trustHost: true,  // ✅ Very important in dev
     },
     originEnvKey: 'http://localhost:3000',
     baseURL: 'http://localhost:3000/api/auth',
 
   },
+    piniaPluginPersistedstate: {
+    storage: 'cookies',
+    cookieOptions: {
+      // sameSite: 'strict',
+      sameSite: 'lax',
+      secure: false,        // ✅ only works over HTTPS if true — NOT good for localhost
+      // secure  : true,
+      maxAge  : 60 * 60 * 24 * 30 // 30 days
+    }
+  },
+
 
 
   /* optional global defaults for persistedstate (not required) */
   // piniaPersistedstate: { storage: 'localStorage' },
-  
+
+
   mapbox: {
     accessToken: process.env.MAPBOX_TOKEN,
     
@@ -88,37 +107,56 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    trustProxy: true,
     prerender: {
       crawlLinks: true,
       routes: ['/'],
       ignore: ['/i', '/j']
 
     },
+        // Nitro’s first-class KV layer → no “raw” ioredis in code
+    storage: {
+      redis: {
+        driver: 'redis',
+        url: process.env.REDIS_URL
+      }
+      
+    }
+
   },
   runtimeConfig: {
+    jwtSecret        : process.env.JWT_SECRET,
+    smsIrApiKey      : '',
+    smsIrSecretKey   : '',
+    smsIrTemplateId  : '',
+    smsMock          : true,
+    redisUrl: process.env.REDIS_URL,
+    databaseUrl: process.env.DATABASE_URL,
+
     // server-only values
     authSecret: process.env.NUXT_AUTH_SECRET,
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret:  process.env.GOOGLE_CLIENT_SECRET || '',
-      refreshToken:  process.env.GOOGLE_REFRESH_TOKEN || '',
-      spreadsheetId:  process.env.GOOGLE_SPREADSHEET_ID || '',
-      driveFolderId:  process.env.GOOGLE_DRIVE_FOLDER_ID || '',
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
+      refreshToken:  process.env.GOOGLE_REFRESH_TOKEN,
+      spreadsheetId:  process.env.GOOGLE_SPREADSHEET_ID,
+      driveFolderId:  process.env.GOOGLE_DRIVE_FOLDER_ID,
     },
     telegram: {
-      botToken: process.env.TELEGRAM_BOT_TOKEN || '',
-      chatIdAdmin:  process.env.TELEGRAM_CHAT_ID_ADMIN || '',
-      chatIdGroup: process.env.TELEGRAM_CHAT_ID_GROUP || ''
+      botToken: process.env.TELEGRAM_BOT_TOKEN,
+      chatIdAdmin:  process.env.TELEGRAM_CHAT_ID_ADMIN,
+      chatIdGroup: process.env.TELEGRAM_CHAT_ID_GROUP
     },
 
 
     githubToken: process.env.GITHUB_TOKEN,
 
-    spotifyClientId: process.env.SPOTIFY_CLIENT_ID || '',
-    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
-    spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN || '',
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
 
     public: {
+      dataMode: process.env.DATA_MODE || 'github',
       neshanPublicToken: process.env.NESHAN_PUBLIC_API_KEY,
       // exposed to both server & client
       githubOwner: process.env.GITHUB_OWNER,
@@ -153,4 +191,5 @@ export default defineNuxtConfig({
       },
     },
   },
+  compatibilityDate: '2025-05-28' 
 });

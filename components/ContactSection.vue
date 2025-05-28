@@ -2,6 +2,7 @@
 <script setup>
 const props = defineProps({ data: Object });
 </script>
+
 <template>
     <section id="contact" class="py-12 dark:bg-gray-900 bg-[#eef2ff]">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">

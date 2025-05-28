@@ -1,8 +1,7 @@
 <template>
     <NuxtLayout name="page">
         <div :class="[
-            'min-h-screen flex flex-col md:flex-row font-sans z-10',
-            darkMode ? 'dark bg-gray-900' : 'bg-white',
+            'min-h-screen flex flex-col md:flex-row font-sans z-10 bg-white dark:bg-gray-900',
             isRtl ? 'rtl' : 'ltr'
         ]">
 

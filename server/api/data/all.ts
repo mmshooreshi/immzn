@@ -1,84 +1,82 @@
 // server/api/data/all.ts
-import { defineEventHandler } from 'h3';
-import { getOctokit } from '~/server/utils/octokit';
+import { defineEventHandler, sendError } from 'h3'
+import { getOctokit } from '~/server/utils/octokit'
+import { useRuntimeConfig } from '#imports'
+import fs from 'fs/promises'
+import path from 'path'
 
-export default defineEventHandler(async () => {
-  const githubRepo = 'mmshooreshi/immzn';
-  const [owner, repo] = githubRepo.split('/');
+export default defineEventHandler(async (event) => {
+  const config   = useRuntimeConfig()
+  const dataMode = config.public.dataMode as 'local' | 'github'
+  console.log("dataMode is:", dataMode)
+  const result: Record<string, any> = {}
 
-  const octokit = getOctokit();
+  // utility to transform "01-foo-bar.json" → "fooBar"
+  const makeKey = (filename: string) =>
+    filename
+      .replace(/\.json$/, '')
+      .replace(/^\d+[_-]?/, '')
+      .replace(/-([a-z])/g, (_, c) => c.toUpperCase())
 
   try {
-    // Step 1: List all files in data/home folder
-    const filesResponse = await octokit.request(
-      'GET /repos/{owner}/{repo}/contents/{path}',
-      {
-        owner,
-        repo,
-        path: 'data/home',
-      },
-    );
+    if (dataMode === 'local') {
+      // ─── LOCAL: read from disk ────────────────────────────────────────────
+      const dataDir = path.resolve(process.cwd(), 'data/home')
+      const entries = await fs.readdir(dataDir)
 
+      const jsonFiles = entries.filter((f) => f.endsWith('.json'))
+      await Promise.all(
+        jsonFiles.map(async (file) => {
+          const fullPath = path.join(dataDir, file)
+          const raw      = await fs.readFile(fullPath, 'utf-8')
+          result[makeKey(file)] = JSON.parse(raw)
+        })
+      )
+    } else {
+      // ─── GITHUB: use your existing Octokit logic ─────────────────────────
+      const githubRepo = 'mmshooreshi/immzn'
+      const [owner, repo] = githubRepo.split('/')
+      const octokit = getOctokit()
 
-    const filesData = filesResponse.data;
+      // list files
+      const { data: filesData } = await octokit.request(
+        'GET /repos/{owner}/{repo}/contents/{path}',
+        { owner, repo, path: 'data/home' }
+      )
+      if (!Array.isArray(filesData)) {
+        throw new Error('Expected data/home to be a folder')
+      }
 
-    if (!Array.isArray(filesData)) {
-    throw new Error('Expected an array of files');
-    }
+      const jsonFiles = filesData
+        .filter((f) => f.type === 'file' && f.name.endsWith('.json'))
+        .map((f) => f.name)
 
-    const files = filesData
-    .filter((file) => file.type === 'file' && file.name.endsWith('.json'))
-    .map((file) => file.name);
-
-
-    // Step 2: Fetch all files content in parallel
-    const fileContents = await Promise.all(
-        
-      files.map(async (filename: string) => {
-        try {
-          const response = await octokit.request(
+      // fetch content in parallel
+      await Promise.all(
+        jsonFiles.map(async (filename) => {
+          const { data: raw } = await octokit.request(
             'GET /repos/{owner}/{repo}/contents/{path}',
             {
               owner,
               repo,
               path: `data/home/${filename}`,
-              headers: {
-                Accept: 'application/vnd.github.v3.raw', // raw content (JSON)
-              },
-            },
-          );
-          return { filename, content: response.data };
-        } catch (error) {
-          // Return error info per file if needed
-          return { filename, error: `Failed to fetch ${filename}` };
-        }
-      }),
-    );
-
-    // Step 3: Aggregate data with your key convention
-    const result: Record<string, any> = {};
-    for (const file of fileContents) {
-      if (file.error) {
-        // Could log or skip or add error key
-        console.warn(file.error);
-        continue;
-      }
-      const key = file.filename
-        .replace(/\.json$/, '')
-        .replace(/^\d+[_-]?/, '')
-        .replace(/-([a-z])/g, (_: string, c: string) => c.toUpperCase());
-
-
-      result[key] = JSON.parse(file.content?.toString() || '')
+              headers: { Accept: 'application/vnd.github.v3.raw' }
+            }
+          )
+          result[makeKey(filename)] = JSON.parse(raw as string)
+        })
+      )
     }
 
-    // Step 4: Return aggregated data
-    return result;
-  } catch (error: any) {
-    console.error('Failed to fetch all files:', error);
-    return {
-      error: `Failed to fetch all files: ${error.message}`,
-      status: error.status || 500,
-    };
+    return result
+  } catch (err: any) {
+    // automatic 500
+    return sendError(
+      event,
+      createError({
+        statusCode: err.status || 500,
+        statusMessage: `Failed to load data: ${err.message}`
+      })
+    )
   }
-});
+})
