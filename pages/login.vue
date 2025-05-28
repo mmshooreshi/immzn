@@ -88,7 +88,7 @@ const requestOTP = async () => {
     // }
 
     // ✚ just call the same endpoint as before
-    await $fetch('/api/auth/request-otp', {
+    await $fetch('/api/auth/request-custom-otp', {
       method: 'POST',
       body: { phone: phoneEn.value }
     })
@@ -185,7 +185,7 @@ const handleSocialLogin = (provider: string) => {
               :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
 
             <!-- OTP Code Input -->
-            <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
+            <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'" name="otp" id="otp"
               autocomplete="one-time-code" inputmode="numeric" :placeholder="t.codePlaceholder"
               :floatinglabel="t.codeLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
