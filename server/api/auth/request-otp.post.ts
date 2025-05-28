@@ -17,16 +17,19 @@ export default defineEventHandler(async (event) => {
   // max 3 OTPs per phone every 10 minutes
   await assertRateLimit(event, {
     key   : `otp:${phone}`,
-    max   : 3,
-    window: 60 * 10
+    // max   : 3,
+    // window: 60 * 10
+    max: 10000000000,
+    window: 60 * 1000000000000000
+    // i wanna have alll logins of a person thats the reason of this bullshit
   })
 
-  // max 10 OTP requests per IP per hour
-  await assertRateLimit(event, {
-    key   : `ip:${ip}`,
-    max   : 10,
-    window: 60 * 60
-  })
+  // // max 10 OTP requests per IP per hour
+  // await assertRateLimit(event, {
+  //   key   : `ip:${ip}`,
+  //   max   : 10,
+  //   window: 60 * 60
+  // })
 
   // Send request to Melipayamak API
   const data = JSON.stringify({ to: phone })
