@@ -90,7 +90,7 @@ onMounted(async () => {
       }).then((otp: OTPCredential) => {
         console.log('[WebOTP] OTP received:', otp.code)
         toast.success({ title: 'yo0ho0', message: `Received OTP: ${otp.code}` })
-        inputOTP.value = otp.code
+        code.value = otp.code
         // Auto-submit
         if (form) {
           console.log('[WebOTP] Auto-submitting form with OTP')
@@ -275,9 +275,10 @@ const handleSocialLogin = (provider: string) => {
               :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
 
             <!-- OTP Code Input -->
-            <BaseInput v-else class="ltr" v-model="code" numberOnly :persian="language === 'fa'" ref="inputOTP"
-              name="otp" id="otp" autocomplete="one-time-code" inputmode="numeric" :placeholder="t.codePlaceholder"
-              :floatinglabel="t.codeLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
+            <BaseInput v-show="mode === 'verify'" class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
+              ref="inputOTP" name="otp" id="otp" autocomplete="one-time-code" inputmode="numeric"
+              :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
+              floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
               :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
