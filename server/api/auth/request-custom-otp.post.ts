@@ -38,7 +38,8 @@ export default defineEventHandler(async (event) => {
   await useStorage('redis').setItem(`otp:${phone}`, otp, { ttl: 300 })
 
   // if mocking is enabled, log and skip actual send
-  if (config.smsMock) {
+  if (config.smsMock == "true") {
+    console.log(config.smsMock)
     console.log(`🔒 [MOCK SMS] To=${phone}, Text="${text}"`)
     return { ok: true, mock: true }
   }
