@@ -9,6 +9,8 @@ import BaseInput from '~/components/BaseInput.vue'
 import BaseButton from '~/components/BaseButton.vue'
 import { useAuth } from '~/stores/auth'
 
+const toast = useToast()
+
 const router = useRouter()
 const auth = useAuth()
 
@@ -39,41 +41,71 @@ const isValidCode = computed(() => /^\d{6}$/.test(code.value))
 
 // Redirect if user already has a session
 // const session = useCookie('auth_token')
-// onMounted(async () => {
-//   console.log(session)
-//   if (session.value) {
-//     await router.push('/profile')
-//   }
-// })
+onMounted(async () => {
+  console.log("testing toast")
+  toast.info({ title: 'yo0ho0', message: 'testing ...' })
+})
 
 if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
 
 
 
-let abortController: AbortController
-watch(mode, async (m) => {
-  if (m === 'verify' && 'OTPCredential' in window) {
-    // if we were already listening, cancel the previous one
-    abortController?.abort()
-    abortController = new AbortController()
+// ──────────────────────────────
+// WebOTP API Integration
+// ──────────────────────────────
 
-    try {
-      const otp = await (navigator as any).credentials.get({
+if (process.client) {
+
+
+  if ('OTPCredential' in window) {
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('[WebOTP] DOMContentLoaded — setting up OTP listener')
+      const input = document.querySelector<HTMLInputElement>('input[autocomplete="one-time-code"]')
+      if (!input) {
+        console.log('[WebOTP] No one-time-code input found, skipping.')
+        toast.info({ title: 'yo0ho0', message: 'WebOTP: no OTP field detected' })
+        return
+      }
+
+      // AbortController to cancel WebOTP if the user submits manually
+      const ac = new AbortController()
+      const form = input.closest('form')
+      if (form) {
+        form.addEventListener('submit', () => {
+          console.log('[WebOTP] Form submitted manually — aborting WebOTP')
+          toast.warning({ title: 'yo0ho0', message: 'WebOTP: aborted due to manual submit' })
+          ac.abort()
+        })
+      }
+
+      // Kick off the WebOTP flow
+      console.log('[WebOTP] Calling navigator.credentials.get()')
+      toast.info({ title: 'yo0ho0', message: 'WebOTP: waiting for SMS…' })
+
+      navigator.credentials.get({
         otp: { transport: ['sms'] },
-        signal: abortController.signal
-      }) as OTPCredential
-
-      // otp.code contains the 6-digit code
-      code.value = otp.code
-      // optionally, auto-submit
-      verifyOTP()
-    } catch (err) {
-      // user may cancel or it may time out — just ignore
-      console.debug('Web OTP API failed or timed out', err)
-    }
+        signal: ac.signal
+      }).then((otp: OTPCredential) => {
+        console.log('[WebOTP] OTP received:', otp.code)
+        toast.success({ title: 'yo0ho0', message: `Received OTP: ${otp.code}` })
+        input.value = otp.code
+        // Auto-submit
+        if (form) {
+          console.log('[WebOTP] Auto-submitting form with OTP')
+          toast.info({ title: 'yo0ho0', message: 'WebOTP: auto-submitting form' })
+          form.submit()
+        }
+      }).catch(err => {
+        console.error('[WebOTP] Error or timeout:', err)
+        toast.error({ title: 'yo0ho0', message: `WebOTP failed: ${err.message || err}` })
+      })
+    })
+  } else {
+    console.log('[WebOTP] OTPCredential API not supported in this browser.')
+    toast.info({ title: 'yo0ho0', message: 'WebOTP not supported' })
   }
-})
 
+}
 // 1️⃣ Request OTP
 const requestOTP = async () => {
   errorMessage.value = ''

@@ -56,6 +56,7 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt',
     'nuxt-mapbox',
     '@nuxt/image',
+    'nuxt-toast'
   ],
   /* ——— NEW AUTH BLOCK ——————————————————————————————— */
     /** Sidebase / Auth.js */
