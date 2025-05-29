@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
       // max 5 OTP‐verify attempts per phone every 10 minutes
     await assertRateLimit(event, {
       key   : `otp-verify:${phone}`,
-      max   : 5,
+      max   : 50,
       window: 60 * 10
     })
 

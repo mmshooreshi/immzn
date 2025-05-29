@@ -5,7 +5,7 @@ import { useAuth } from '~/stores/auth'
 
 // pages/login.vue – at top of <script setup>
 const auth = useAuth()
-if (auth.user) await navigateTo('/')   // SSR-compatible early exit
+if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
 
 const phone = ref('')
 const otp = ref('')

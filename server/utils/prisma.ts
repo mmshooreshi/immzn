@@ -10,3 +10,4 @@ export const prisma: InstanceType<typeof PrismaClient> = g.prisma || new PrismaC
 if (process.env.NODE_ENV !== 'production') g.prisma = prisma
 
 log.info('🗄️  Prisma client ready')
+

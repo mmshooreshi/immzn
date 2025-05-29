@@ -23,21 +23,22 @@ export default defineEventHandler(async (event) => {
   // rate-limit: max 3 OTPs per phone every 10 minutes
   await assertRateLimit(event, {
     key: `otp:${phone}`,
-    max: 3,
+    max: 30,
     window: 60 * 10,
   })
 
   // generate a secure 6-digit OTP
   const otp = crypto.randomInt(100000, 999999).toString()
 
-  // Persian + fallback English message
-  const text = `برای رویداد گستره‌ی ایمنی، پژوهشگاه دانش‌های بنیادی:\nکد تأیید شما: ${otp}\nاین کد تا 5 دقیقه معتبر است.`
+  // OTP message formatted for automatic detection (iOS & Android)
+  // '<#>' prefix enables Android SMS Retriever, single-line pattern for iOS
+  const text = `<#> کد تأیید شما: ${otp}`
 
   // store OTP in Redis for 5 minutes
   await useStorage('redis').setItem(`otp:${phone}`, otp, { ttl: 300 })
 
   // if mocking is enabled, log and skip actual send
-  if (config.SMS_MOCK) {
+  if (process.env.SMS_MOCK) {
     console.log(`🔒 [MOCK SMS] To=${phone}, Text="${text}"`)
     return { ok: true, mock: true }
   }

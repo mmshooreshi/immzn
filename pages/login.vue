@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useDataStore } from '~/stores/dataStore'
@@ -39,12 +38,17 @@ const isValidPhone = computed(() => /^09\d{9}$/.test(phoneEn.value))
 const isValidCode = computed(() => /^\d{6}$/.test(code.value))
 
 // Redirect if user already has a session
-const session = useCookie('session')
-onMounted(async () => {
-  if (session.value) {
-    await router.push('/profile')
-  }
-})
+// const session = useCookie('auth_token')
+// onMounted(async () => {
+//   console.log(session)
+//   if (session.value) {
+//     await router.push('/profile')
+//   }
+// })
+
+if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
+
+
 
 let abortController: AbortController
 watch(mode, async (m) => {
@@ -130,6 +134,15 @@ const verifyOTP = async () => {
     if (data.value?.ok) {
       // ✚ hydrate the auth store exactly like before
       auth.set({ id: data.value.userId, phone: phoneEn.value })
+
+      // const { data: me } = await useFetch<User>('/api/me')
+      const me = auth.user
+      // fresh user:
+      console.log(me)
+      if (!me.fullName || !me.affiliation || me.role === 'OTHER') {
+        return router.push('/onboarding')
+      }
+
       await router.push('/profile')
       // ✚ reset form if you come back
       mode.value = 'send'
