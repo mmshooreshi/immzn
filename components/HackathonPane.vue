@@ -3,8 +3,12 @@
   <Card class="space-y-4 p-6">
     <h3 class="text-xl font-semibold">Hackathon</h3>
     <div v-if="!team">
-      <BaseInput v-model="teamName" label="Team Name" />
-      <BaseSelect v-model="track" :options="tracksList" label="Track" />
+      <BaseInput placeholder="Team name" v-model="teamName" label="Team Name" />
+      <select v-model="track" label="Track">
+        <option v-for="trackOption in tracksList" :key="trackOption" :value="trackOption">
+          {{ trackOption }}
+        </option>
+      </select>
       <BaseButton @click="createTeam" :disabled="!teamName || !track">
         <Icon name="mdi:account-group-plus" /> Create Team
       </BaseButton>
@@ -13,7 +17,7 @@
       <p>
         <Icon name="mdi:check-circle" /> Team: {{ team.name }}
       </p>
-      <BaseInput v-model="invitePhone" label="Invite Phone (+98...)" />
+      <BaseInput placeholder="Invite Phone (+98...)" v-model="invitePhone" label="Invite Phone (+98...)" />
       <BaseButton @click="invite" :loading="sending" :disabled="!invitePhone">
         <Icon name="mdi:message-text" /> Send SMS Invite
       </BaseButton>
@@ -74,7 +78,7 @@ async function invite() {
   sending.value = true
   await $fetch('/api/team/invite', {
     method: 'POST',
-    body: { phone: invitePhone.value }
+    body: { phone: invitePhone.value, teamId: team.value?.id }
   })
   invites.value = await $fetch('/api/team/invites')
   sending.value = false

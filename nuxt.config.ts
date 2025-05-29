@@ -129,7 +129,7 @@ export default defineNuxtConfig({
     smsIrApiKey      : '',
     smsIrSecretKey   : '',
     smsIrTemplateId  : '',
-    smsMock          : true,
+    smsMock          : process.env.SMS_MOCK,
     redisUrl: process.env.REDIS_URL,
     databaseUrl: process.env.DATABASE_URL,
 

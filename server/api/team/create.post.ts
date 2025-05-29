@@ -34,9 +34,6 @@ export default defineEventHandler(async (event) => {
     }
   })
 
-  return {
-    name: team.name,
-    track: team.hackathonTrack,
-    token: team.id.toString() // or generate a token for invite URL
-  }
+  return team
+
 })

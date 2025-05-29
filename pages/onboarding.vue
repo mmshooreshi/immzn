@@ -3,15 +3,13 @@
   <NuxtLayout name="page">
 
     <div class="min-h-screen p-8 mt-20">
-      <NuxtLayout>
-        <div class="flex gap-6">
-          <ProfileCompletionPane />
-          <div class="flex-1 grid grid-cols-2 gap-6">
-            <HackathonPane />
-            <ConferencePane />
-          </div>
+      <div class="flex gap-6">
+        <ProfileCompletionPane />
+        <div class="flex-1 grid grid-cols-2 gap-6">
+          <HackathonPane />
+          <ConferencePane />
         </div>
-      </NuxtLayout>
+      </div>
     </div>
   </NuxtLayout>
 </template>

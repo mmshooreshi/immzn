@@ -13,9 +13,5 @@ export default defineEventHandler(async (event) => {
 
   if (!teamMember) return null
 
-  return {
-    name: teamMember.team.name,
-    track: teamMember.team.hackathonTrack,
-    token: teamMember.team.id.toString() // or use invite token logic if stored separately
-  }
+  return teamMember.team
 })

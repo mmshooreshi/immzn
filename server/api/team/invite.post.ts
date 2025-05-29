@@ -15,12 +15,6 @@ export default defineEventHandler(async event => {
   const user = event.context.user
   if (!user) throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
 
-    // server/api/team/invite.post.ts
-  await assertRateLimit(event, {
-    key   : `team:${user.teamId}:invite:${event.context.user.id}`,
-    max   : 20,          // 20 invites
-    window: 24 * 60 * 60 // per day
-  })
 
   // server/api/team/create.post.ts
   await assertRateLimit(event, {
@@ -32,9 +26,9 @@ export default defineEventHandler(async event => {
 
   // await rateLimit(event, { max: 3, window: 60 })
 
-  const { phone: invitedPhone } = await readValidatedBodyCustom(
+  const { phone: invitedPhone, teamId } = await readValidatedBodyCustom(
     event,
-    z.object({ phone: z.string().regex(/^\+98\d{10}$/) })
+    z.object({ phone: z.string().regex(/^\+98\d{10}$/), teamId: z.number() })
   )
 
   const token = nanoid(12)
@@ -42,7 +36,7 @@ export default defineEventHandler(async event => {
   // store inviter, teamId, AND invitedPhone as JSON
   const payload = JSON.stringify({
     inviterPhone: user.phone,
-    teamId:      user.teamId,
+    teamId:      teamId,
     invitedPhone
   })
   // await redis.set(`invite:${token}`, payload, { EX: 60 * 60 * 24 * 7 })
@@ -56,6 +50,8 @@ export default defineEventHandler(async event => {
   await sendSms(invitedPhone, Number(cfg.smsIrTemplateId), [
     { Name: 'link', Value: link }
   ])
+
+  await useStorage('redis').setItem(`invite:${user.phone}`, payload.toString(), { ttl: 300 })
 
   logger.success(`invitation sent → ${invitedPhone}`)
   return { ok: true }

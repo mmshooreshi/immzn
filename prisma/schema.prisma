@@ -10,10 +10,12 @@ datasource db {
 model User {
   id               Int            @id @default(autoincrement())
   phone            String         @unique
-  email            String         @unique    @default("")
+  email            String         @default("")
+  avatar           String?
   fullName         String                    @default("")
   affiliation      String?
   role             Role                      @default(OTHER)
+  field            String? 
   attendance       Attendance                @default(REMOTE)
   tracks           Json                      @default("[]")
   cvUrl            String?
@@ -25,7 +27,7 @@ model User {
   teamMembers      TeamMember[]
   teamsLed         Team[]         @relation("TeamLeader")
 
-  @@index([email])
+  @@index([phone])
 }
 
 model Payment {
@@ -47,6 +49,7 @@ model Payment {
 model Team {
   id             Int            @id @default(autoincrement())
   name           String         @unique
+  avatar         String?
   leaderId       Int
   leader         User           @relation("TeamLeader", fields: [leaderId], references: [id])
   hackathonTrack String
