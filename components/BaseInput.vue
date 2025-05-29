@@ -1,8 +1,8 @@
 <!-- components/BaseInput.vue -->
 <template>
   <div class="relative">
-    <input v-bind="forward" v-model="display" :type="numberOnly ? 'tel' : 'text'" :placeholder="forward.placeholder"
-      @focus="onFocus" @blur="onBlur" @input="handleInput" :class="[
+    <input ref="inputRef" v-bind="forward" v-model="display" :type="numberOnly ? 'tel' : 'text'"
+      :placeholder="forward.placeholder" @focus="onFocus" @blur="onBlur" @input="handleInput" :class="[
         'rtl w-full border-solid border-white/10 rounded-2xl  text-gray-900 dark:text-white/50 text-left bg-transparent px-6 py-5 text-md tracking-normal hover:tracking-widest transition-all duration-300 font-semibold outline-none ring-0 focus:ring-1 border ',
         borderClass,
         placeholderClass,
@@ -55,6 +55,8 @@
 import { computed, ref, watch, useAttrs, withDefaults } from 'vue'
 import { toPersianDigits, toEnglishDigits } from '~/utils/digits'
 import { useMotionProperties, useSpring } from '@vueuse/motion'
+const inputRef = ref<HTMLInputElement>()
+defineExpose({ inputRef })
 
 // Props
 const props = withDefaults(defineProps<{ persian?: boolean; iconName?: string | null; position?: 'right' | 'left'; tooltip?: string; numberOnly?: boolean; error?: string; floatingLabelClass?: string; placeholderClass?: string; }>(), {

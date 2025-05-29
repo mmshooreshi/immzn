@@ -41,35 +41,37 @@ const isValidCode = computed(() => /^\d{6}$/.test(code.value))
 
 // Redirect if user already has a session
 // const session = useCookie('auth_token')
+const inputOTP = ref<HTMLInputElement>()
+
 onMounted(async () => {
   console.log("testing toast")
   toast.info({ title: 'yo0ho0', message: 'testing ...' })
-})
-
-if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
 
 
 
-// ──────────────────────────────
-// WebOTP API Integration
-// ──────────────────────────────
-
-if (process.client) {
+  if (process.client) {
 
 
-  if ('OTPCredential' in window) {
-    window.addEventListener('DOMContentLoaded', () => {
+    if ('OTPCredential' in window) {
+      console.log('[WebOTP] ✅ WebOTP API is supported in this browser.')
+
+      toast.info({ title: 'WebOTP', message: 'WebOTP API is supported.' })
+
       console.log('[WebOTP] DOMContentLoaded — setting up OTP listener')
-      const input = document.querySelector<HTMLInputElement>('input[autocomplete="one-time-code"]')
-      if (!input) {
+      // const input = document.querySelector<HTMLInputElement>('input[autocomplete="one-time-code"]')
+
+      if (!inputOTP.value?.inputRef) {
         console.log('[WebOTP] No one-time-code input found, skipping.')
-        toast.info({ title: 'yo0ho0', message: 'WebOTP: no OTP field detected' })
+        toast.warning({ title: 'yo0ho0', message: 'WebOTP: no OTP field detected' })
         return
+      } else {
+        toast.success({ title: 'yo0ho0', message: 'WebOTP: OTP field detected' })
       }
+
 
       // AbortController to cancel WebOTP if the user submits manually
       const ac = new AbortController()
-      const form = input.closest('form')
+      const form = inputOTP.value?.inputRef?.closest('form')
       if (form) {
         form.addEventListener('submit', () => {
           console.log('[WebOTP] Form submitted manually — aborting WebOTP')
@@ -88,7 +90,7 @@ if (process.client) {
       }).then((otp: OTPCredential) => {
         console.log('[WebOTP] OTP received:', otp.code)
         toast.success({ title: 'yo0ho0', message: `Received OTP: ${otp.code}` })
-        input.value = otp.code
+        inputOTP.value = otp.code
         // Auto-submit
         if (form) {
           console.log('[WebOTP] Auto-submitting form with OTP')
@@ -99,13 +101,56 @@ if (process.client) {
         console.error('[WebOTP] Error or timeout:', err)
         toast.error({ title: 'yo0ho0', message: `WebOTP failed: ${err.message || err}` })
       })
-    })
-  } else {
-    console.log('[WebOTP] OTPCredential API not supported in this browser.')
-    toast.info({ title: 'yo0ho0', message: 'WebOTP not supported' })
+
+    } else {
+      console.warn('[WebOTP] ❌ WebOTP API not supported. Diagnosing why…')
+      toast.warning({ title: 'WebOTP', message: 'Not supported. Checking why…' })
+
+      const isSecure = window.isSecureContext
+      const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+      const isAndroid = /Android/.test(navigator.userAgent)
+      const isSupportedVersion = (() => {
+        const match = navigator.userAgent.match(/Chrome\/(\d+)/)
+        return match ? parseInt(match[1]) >= 84 : false
+      })()
+
+      console.log('[WebOTP] Secure context:', isSecure)
+      console.log('[WebOTP] Browser is Chrome:', isChrome)
+      console.log('[WebOTP] Device is Android:', isAndroid)
+      console.log('[WebOTP] Chrome version >= 84:', isSupportedVersion)
+
+      if (!isSecure) {
+        console.warn('[WebOTP] 🔐 Not HTTPS.')
+        toast.warning({ title: 'WebOTP', message: 'Requires HTTPS.' })
+      }
+      if (!isChrome) {
+        console.warn('[WebOTP] 🌐 Not Chrome.')
+        toast.warning({ title: 'WebOTP', message: 'Only Chrome supports WebOTP.' })
+      }
+      if (!isAndroid) {
+        console.warn('[WebOTP] 📱 Not Android.')
+        toast.warning({ title: 'WebOTP', message: 'Only works on Android.' })
+      }
+      if (!isSupportedVersion) {
+        console.warn('[WebOTP] 🚫 Chrome version too old.')
+        toast.warning({ title: 'WebOTP', message: 'Requires Chrome 84+.' })
+      }
+
+      toast.info({ title: 'WebOTP', message: 'Try https://web-otp.glitch.me on a supported device.' })
+    }
+
   }
 
-}
+})
+
+if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
+
+
+
+// ──────────────────────────────
+// WebOTP API Integration
+// ──────────────────────────────
+
 // 1️⃣ Request OTP
 const requestOTP = async () => {
   errorMessage.value = ''
@@ -222,8 +267,8 @@ const handleSocialLogin = (provider: string) => {
 
           <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6">
             <!-- Phone Input -->
-            <BaseInput v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly :persian="language === 'fa'"
-              :placeholder="t.phonePlaceholder" :floatinglabel="t.phoneLabel"
+            <BaseInput ref="inputOTP" v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly
+              :persian="language === 'fa'" :placeholder="t.phonePlaceholder" :floatinglabel="t.phoneLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="phoneModel ? (isValidPhone ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
