@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
   // generate a 6-digit code
   const otp = crypto.randomInt(100000, 999999).toString()
 
-  if (config.SMS_MOCK) {
+  if (config.smsMock) {
     // in mock mode, just log and return
     console.log(`🔒 [MOCK SMS] OTP for ${phone}: ${otp}`)
     // store it so later validation still works
