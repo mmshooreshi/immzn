@@ -68,7 +68,7 @@
               <Icon name="mdi:calendar-range" class="w-full h-full text-gray-500" />
             </div>
             <p class="text-gray-600 dark:text-gray-300 text-xs md:text-sm">
-              {{ data.meta.description }}
+              {{ data.message.eventOverview }}
             </p>
           </div>
 
@@ -78,7 +78,7 @@
             </div>
             <p class="text-teal-800 dark:text-teal-200">
 
-              {{ data.message.eventOverview }}
+              {{ data.meta.description }}
             </p>
           </div>
 
