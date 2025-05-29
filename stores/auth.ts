@@ -4,6 +4,7 @@ import type { Prisma } from '@prisma/client'
 
 export type Role       = Prisma.Role
 export type Attendance = Prisma.Attendance
+export type Field = Prisma.Field
 
 export interface AuthUser {
   id: number
@@ -12,6 +13,7 @@ export interface AuthUser {
   fullName: string
   affiliation: string | null
   role: Role
+  field: Field
   attendance: Attendance
   tracks: string[]
   cvUrl: string | null

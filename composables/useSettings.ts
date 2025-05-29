@@ -4,13 +4,15 @@ import { useSettingsStore } from '~/stores/settings'
 
 export function useSettings() {
   const store = useSettingsStore()
-  const { language, theme } = storeToRefs(store)
+  const { language, theme, toastShow } = storeToRefs(store)  // ✅ include toastShow
 
   return {
-    language,                       // refs – not plain values
+    language,
     theme,
+    toastShow,                         // ✅ expose
     nextLanguage: store.nextLanguage,
     setLanguage: store.setLanguage,
-    toggleTheme:  store.toggleTheme,
+    toggleToast: store.toggleToast,
+    toggleTheme: store.toggleTheme,
   }
 }

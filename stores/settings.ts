@@ -34,13 +34,20 @@ export const useSettingsStore = defineStore('settings', () => {
   // run once on load to init from saved/OS
   if (import.meta.client) toggleTheme()
 
+      // ✅ new setting: toastShow
+  const toastShow = ref(true)
+  function toggleToast() {
+    toastShow.value = !toastShow.value
+  }
 
-  return { language, theme, setLanguage, nextLanguage, toggleTheme }
+
+
+  return { language, theme, toastShow, setLanguage, nextLanguage, toggleTheme, toggleToast }
 }, {
   /* Pinia persistence config */
   persist: {
     key: 'settings',          // <localStorage key>
-    storage: piniaPluginPersistedstate.localStorage(),    // <-- NOT a function, just the object
-    pick: ['theme'],         // only keep this field
+    storage: piniaPluginPersistedstate.cookies(), 
+    pick: ['theme', 'toastShow'],         // only keep this field
   },
 })

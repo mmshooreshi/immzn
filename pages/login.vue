@@ -1,250 +1,210 @@
 <script setup lang="ts">
+import { onMounted, ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useDataStore } from '~/stores/dataStore'
 import { useSettings } from '~/composables/useSettings'
-
 import GoogleSignInButton from '~/components/GoogleSignInButton.vue'
 import BaseInput from '~/components/BaseInput.vue'
 import BaseButton from '~/components/BaseButton.vue'
 import { useAuth } from '~/stores/auth'
 
-const toast = useToast()
+/** add WebOTP types if you haven’t already: */
+declare global {
+  interface CredentialRequestOptions { otp?: { transport: string[] } }
+  interface OTPCredential extends Credential { code: string }
+}
 
+const toast = useToast()
 const router = useRouter()
 const auth = useAuth()
 
+// now also pull in toastShow:
 const { localizedData } = storeToRefs(useDataStore())
-const { language } = useSettings()
+const { language, toastShow } = useSettings()
 
-// Localized login content
 const t = computed(() => localizedData.value.login_page)
 
-// Utilities to convert digits
-const toEnglishDigits = (str: string) =>
-  str.replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
-const toPersianDigits = (str: string) =>
-  str.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
+const toEnglishDigits = (s: string) =>
+  s.replace(/[۰-۹]/g, d => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+const toPersianDigits = (s: string) =>
+  s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
 
-// Form state
-const phoneModel = ref('')
-const code = ref('')
-const mode = ref<'send' | 'verify'>('send')
+type Mode = 'send' | 'verify' | 'info'
+const mode = ref<Mode>('send')
 const isLoading = ref(false)
 const errorMessage = ref('')
-const otpId = ref<string | null>(null)
 
-// Validation
+// phone step
+const phoneModel = ref('')
 const phoneEn = computed(() => toEnglishDigits(phoneModel.value))
 const isValidPhone = computed(() => /^09\d{9}$/.test(phoneEn.value))
+
+// otp step
+const code = ref('')
 const isValidCode = computed(() => /^\d{6}$/.test(code.value))
+const otpId = ref<string | null>(null)
 
-// Redirect if user already has a session
-// const session = useCookie('auth_token')
-const inputOTP = ref<HTMLInputElement>()
+// info step
+const fullName = ref('')
+const affiliation = ref('')
+const role = ref('')
+const field = ref('')
 
-onMounted(async () => {
-  console.log("testing toast")
-  toast.info({ title: 'yo0ho0', message: 'testing ...' })
+if (auth.user) router.replace('/profile')
 
-
-
-  if (process.client) {
-
-
-    if ('OTPCredential' in window) {
-      console.log('[WebOTP] ✅ WebOTP API is supported in this browser.')
-
-      toast.info({ title: 'WebOTP', message: 'WebOTP API is supported.' })
-
-      console.log('[WebOTP] DOMContentLoaded — setting up OTP listener')
-      // const input = document.querySelector<HTMLInputElement>('input[autocomplete="one-time-code"]')
-
-      if (!inputOTP.value?.inputRef) {
-        console.log('[WebOTP] No one-time-code input found, skipping.')
-        toast.warning({ title: 'yo0ho0', message: 'WebOTP: no OTP field detected' })
-        return
-      } else {
-        toast.success({ title: 'yo0ho0', message: 'WebOTP: OTP field detected' })
-      }
-
-
-      // AbortController to cancel WebOTP if the user submits manually
-      const ac = new AbortController()
-      const form = inputOTP.value?.inputRef?.closest('form')
-      if (form) {
-        form.addEventListener('submit', () => {
-          console.log('[WebOTP] Form submitted manually — aborting WebOTP')
-          toast.warning({ title: 'yo0ho0', message: 'WebOTP: aborted due to manual submit' })
-          ac.abort()
-        })
-      }
-
-      // Kick off the WebOTP flow
-      console.log('[WebOTP] Calling navigator.credentials.get()')
-      toast.info({ title: 'yo0ho0', message: 'WebOTP: waiting for SMS…' })
-
-      navigator.credentials.get({
-        otp: { transport: ['sms'] },
-        signal: ac.signal
-      }).then((otp: OTPCredential) => {
-        console.log('[WebOTP] OTP received:', otp.code)
-        toast.success({ title: 'yo0ho0', message: `Received OTP: ${otp.code}` })
-        code.value = otp.code
-        // Auto-submit
-        if (form) {
-          console.log('[WebOTP] Auto-submitting form with OTP')
-          toast.info({ title: 'yo0ho0', message: 'WebOTP: auto-submitting form' })
-          form.submit()
-        }
-      }).catch(err => {
-        console.error('[WebOTP] Error or timeout:', err)
-        toast.error({ title: 'yo0ho0', message: `WebOTP failed: ${err.message || err}` })
-      })
-
-    } else {
-      console.warn('[WebOTP] ❌ WebOTP API not supported. Diagnosing why…')
-      toast.warning({ title: 'WebOTP', message: 'Not supported. Checking why…' })
-
-      const isSecure = window.isSecureContext
-      const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
-      const isAndroid = /Android/.test(navigator.userAgent)
-      const isSupportedVersion = (() => {
-        const match = navigator.userAgent.match(/Chrome\/(\d+)/)
-        return match ? parseInt(match[1]) >= 84 : false
-      })()
-
-      console.log('[WebOTP] Secure context:', isSecure)
-      console.log('[WebOTP] Browser is Chrome:', isChrome)
-      console.log('[WebOTP] Device is Android:', isAndroid)
-      console.log('[WebOTP] Chrome version >= 84:', isSupportedVersion)
-
-      if (!isSecure) {
-        console.warn('[WebOTP] 🔐 Not HTTPS.')
-        toast.warning({ title: 'WebOTP', message: 'Requires HTTPS.' })
-      }
-      if (!isChrome) {
-        console.warn('[WebOTP] 🌐 Not Chrome.')
-        toast.warning({ title: 'WebOTP', message: 'Only Chrome supports WebOTP.' })
-      }
-      if (!isAndroid) {
-        console.warn('[WebOTP] 📱 Not Android.')
-        toast.warning({ title: 'WebOTP', message: 'Only works on Android.' })
-      }
-      if (!isSupportedVersion) {
-        console.warn('[WebOTP] 🚫 Chrome version too old.')
-        toast.warning({ title: 'WebOTP', message: 'Requires Chrome 84+.' })
-      }
-
-      toast.info({ title: 'WebOTP', message: 'Try https://web-otp.glitch.me on a supported device.' })
-    }
-
-  }
-
+// run WebOTP only when entering verify
+watch(mode, newMode => {
+  if (newMode === 'verify') setupWebOTP()
 })
 
-if (auth.user) await navigateTo('/profile')   // SSR-compatible early exit
+async function setupWebOTP() {
+  if (!toastShow.value) return
+  if (!window.isSecureContext) {
+    toast.warning({ title: 'WebOTP', message: 'Requires HTTPS.' })
+    return
+  }
+  const ua = navigator.userAgent
+  const isChrome = /Chrome/.test(ua) && /Google Inc/.test(navigator.vendor)
+  const isAndroid = /Android/.test(ua)
+  const isSupportedVersion = (() => {
+    const m = ua.match(/Chrome\/(\d+)/)
+    return m ? parseInt(m[1]) >= 84 : false
+  })()
 
+  if (toastShow.value) {
+    toast.info({ title: 'WebOTP', message: 'WebOTP API support check...' })
+    toast.info({ title: 'Secure context', message: String(window.isSecureContext) })
+    toast.info({ title: 'Chrome', message: String(isChrome) })
+    toast.info({ title: 'Android', message: String(isAndroid) })
+    toast.info({ title: 'Chrome ≥84', message: String(isSupportedVersion) })
+  }
 
+  if (!(isChrome && isAndroid && isSupportedVersion)) return
 
-// ──────────────────────────────
-// WebOTP API Integration
-// ──────────────────────────────
+  const ac = new AbortController()
+  const form = document.querySelector('form')
+  form?.addEventListener('submit', () => {
+    if (toastShow.value)
+      toast.warning({ title: 'WebOTP', message: 'Aborting WebOTP due to manual submit' })
+    ac.abort()
+  })
 
-// 1️⃣ Request OTP
+  try {
+    if (toastShow.value)
+      toast.info({ title: 'WebOTP', message: 'Waiting for SMS…' })
+    const otp: OTPCredential = await navigator.credentials.get({
+      otp: { transport: ['sms'] },
+      signal: ac.signal
+    })
+    code.value = otp.code
+    if (toastShow.value)
+      toast.success({ title: 'WebOTP', message: `Received OTP: ${otp.code}` })
+    form?.submit()
+  } catch (e: any) {
+    if (toastShow.value)
+      toast.error({ title: 'WebOTP', message: `Failed: ${e.message || e}` })
+  }
+}
+
 const requestOTP = async () => {
   errorMessage.value = ''
   if (!isValidPhone.value) return
   isLoading.value = true
   try {
-    // const response = await $fetch<{ status: string; otpId?: string }>('/api/otp', {
-    //   method: 'POST',
-    //   body: { phone: phoneEn.value }
-    // })
-    // if (response.status === 'sent' && response.otpId) {
-    //   otpId.value = response.otpId
-    //   mode.value = 'verify'
-    // } else {
-    //   errorMessage.value = t.value.otpError
-    // }
-
-    // ✚ just call the same endpoint as before
     await $fetch('/api/auth/request-custom-otp', {
       method: 'POST',
       body: { phone: phoneEn.value }
     })
-    // ✚ move to “verify” step
+    if (toastShow.value)
+      toast.info({ title: 'OTP', message: 'Code sent' })
     mode.value = 'verify'
-
   } catch {
     errorMessage.value = t.value.otpError
+    if (toastShow.value)
+      toast.error({ title: 'OTP', message: 'Send failed' })
   } finally {
     isLoading.value = false
   }
 }
 
-// 2️⃣ Verify OTP
 const verifyOTP = async () => {
   errorMessage.value = ''
-  // if (!otpId.value || !isValidCode.value) return
   if (!isValidCode.value) return
-
   isLoading.value = true
   try {
-    // const response = await $fetch<{ status: string }>('/api/otp', {
-    //   method: 'POST',
-    //   body: { otpId: otpId.value, code: code.value }
-    // })
-    // if (response.status === 'ok') {
-    //   router.push('/profile')
-    // } else if (response.status === 'invalid') {
-    //   errorMessage.value = t.value.otpIncorrect
-    // } else {
-    //   errorMessage.value = t.value.otpError
-    // }
-
-    // ✚ use the same verify-OTP endpoint
     const { data } = await useFetch<{ ok: boolean; userId: string }>('/api/auth/verify-otp', {
       method: 'POST',
       body: { phone: phoneEn.value, otp: code.value }
     })
     if (data.value?.ok) {
-      // ✚ hydrate the auth store exactly like before
-      auth.set({ id: data.value.userId, phone: phoneEn.value })
-
-      // const { data: me } = await useFetch<User>('/api/me')
-      const me = auth.user
-      // fresh user:
-      console.log(me)
-      if (!me.fullName || !me.affiliation || me.role === 'OTHER') {
-        return router.push('/onboarding')
-      }
-
-      await router.push('/profile')
-      // ✚ reset form if you come back
-      mode.value = 'send'
-      phoneModel.value = ''
-      code.value = ''
+      if (toastShow.value)
+        toast.success({ title: 'OTP', message: 'Verified' })
+      otpId.value = data.value.userId
+      mode.value = 'info'
     } else {
       errorMessage.value = data.value === null
         ? t.value.otpError
         : t.value.otpIncorrect
+      if (toastShow.value)
+        toast.error({ title: 'OTP', message: errorMessage.value })
     }
-
   } catch {
     errorMessage.value = t.value.otpError
+    if (toastShow.value)
+      toast.error({ title: 'OTP', message: 'Verify failed' })
   } finally {
     isLoading.value = false
   }
 }
 
-// Social login fallback
-const handleSocialLogin = (provider: string) => {
-  console.log(`Signing in with ${provider}`)
+const submitInfo = async () => {
+  errorMessage.value = ''
+  if (!fullName.value || !affiliation.value || !role.value || !field.value) {
+    errorMessage.value = t.value.infoError
+    if (toastShow.value)
+      toast.warning({ title: 'Info', message: 'Please fill all fields' })
+    return
+  }
+  isLoading.value = true
+  try {
+    await $fetch('/api/auth/complete-onboarding', {
+      method: 'POST',
+      body: {
+        userId: otpId.value,
+        fullName: fullName.value,
+        affiliation: affiliation.value,
+        role: role.value,
+        field: field.value
+      }
+    })
+    auth.set({
+      id: Number(otpId.value),
+      phone: phoneEn.value,
+      fullName: fullName.value,
+      affiliation: affiliation.value,
+      role: role.value,
+      field: field.value
+    })
+    if (toastShow.value)
+      toast.success({ title: 'Success', message: 'Profile complete' })
+    router.push('/profile')
+  } catch {
+    errorMessage.value = t.value.infoError
+    if (toastShow.value)
+      toast.error({ title: 'Info', message: 'Submit failed' })
+  } finally {
+    isLoading.value = false
+  }
 }
 
-
+const handleSocialLogin = (provider: string) => {
+  if (toastShow.value)
+    toast.info({ title: 'Social Login', message: `Signing in with ${provider}` })
+  console.log(`Signing in with ${provider}`)
+}
 </script>
+
 
 <template>
   <NuxtLayout name="page">
@@ -275,7 +235,8 @@ const handleSocialLogin = (provider: string) => {
               :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
 
             <!-- OTP Code Input -->
-            <BaseInput v-show="mode === 'verify'" class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
+            <!-- {{ mode }} -->
+            <BaseInput v-if="mode === 'verify'" class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
               ref="inputOTP" name="otp" id="otp" autocomplete="one-time-code" inputmode="numeric"
               :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"

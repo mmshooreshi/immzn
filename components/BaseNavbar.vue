@@ -32,7 +32,7 @@ const props = defineProps({
 
 
 /* actions we still need (but NOT the reactive `language`) */
-const { nextLanguage, theme, toggleTheme } = useSettings()
+const { nextLanguage, theme, toggleTheme, toastShow, toggleToast } = useSettings()
 const isMobile = useIsMobile()
 const menuOpen = ref(false)
 const route = useRoute()
@@ -97,9 +97,20 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 </script>
 
 <template>
+  <div class="fixed z-10 bottom-2 left-2 overflow-hidden w-28">
+    <BaseButton @click="toggleToast" class="text-xs text-nowrap !px-0 !py-0"
+      :class="[toastShow ? 'bg-teal-300/50 text-black' : 'bg-gray-400/20 text-black']">
+      {{ toastShow ? 'Disable Toasts' : 'Enable Toasts' }}
+    </BaseButton>
+
+    <LogoutButton />
+
+  </div>
   <header v-motion-fade-visible-once
     class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header bg-black/50 dark:bg-white/5  backdrop-blur-2xl  rounded-2xl"
     data-scroll data-scroll-sticky data-scroll-target="main">
+
+
     <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
       <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="router.push('/')">
         <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
