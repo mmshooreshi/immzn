@@ -12,6 +12,7 @@ export default defineEventHandler(async event => {
     fullName: z.string().min(1).optional(),
     affiliation: z.string().min(1).optional(),
     role: z.nativeEnum(Role).optional(),
+    field: z.string().min(1).optional(),
     attendance: z.nativeEnum(Attendance).optional(),
     tracks: z.array(z.string()).optional(),
     wantsNewsletter: z.boolean().optional()

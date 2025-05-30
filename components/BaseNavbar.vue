@@ -97,43 +97,69 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
 </script>
 
 <template>
-  <div class="fixed z-10 bottom-2 left-2 overflow-hidden w-28">
-    <BaseButton @click="toggleToast" class="text-xs text-nowrap !px-0 !py-0"
-      :class="[toastShow ? 'bg-teal-300/50 text-black' : 'bg-gray-400/20 text-black']">
-      {{ toastShow ? 'Disable Toasts' : 'Enable Toasts' }}
-    </BaseButton>
+  <div>
+    <div class="fixed z-10 bottom-2 left-2 overflow-hidden w-28">
+      <BaseButton @click="toggleToast" class="text-xs h-8 text-center text-nowrap !px-0 !py-0"
+        :class="[toastShow ? 'bg-teal-300/50 text-black' : 'bg-gray-400/20 text-black']">
+        {{ toastShow ? 'Disable Toasts' : 'Enable Toasts' }}
+      </BaseButton>
 
-    <LogoutButton />
+      <LogoutButton class="text-center h-6 mt-1" />
 
-  </div>
-  <header v-motion-fade-visible-once
-    class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header bg-black/50 dark:bg-white/5  backdrop-blur-2xl  rounded-2xl"
-    data-scroll data-scroll-sticky data-scroll-target="main">
-
-
-    <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
-      <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="router.push('/')">
-        <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
-        <span v-if="lang == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
-      </button>
+    </div>
+    <header v-motion-fade-visible-once
+      class=" mx-[2.5%] overflow-hidden w-[95%] z-50 header bg-black/50 dark:bg-white/5  backdrop-blur-2xl  rounded-2xl"
+      data-scroll data-scroll-sticky data-scroll-target="main">
 
 
+      <nav class="nav px-4 py-3 pb-3 flex items-center justify-between">
+        <button v-if="!isMobile" class="text-nowrap home-link h-6 px-2" @click="router.push('/')">
+          <span v-if="lang == 'en'"> Imm<span class="text-purple-200">Unity</span> Horizons</span>
+          <span v-if="lang == 'fa'"> گستره‌ی<span class="text-purple-200"> ایمنی</span></span>
+        </button>
 
 
 
-      <!-- Mobile Menu -->
 
-      <!-- BaseNavbar.vue -->
-      <!-- Mobile Menu -->
-      <teleport to="body">
-        <ul v-if="menuOpen && isMobile" :key="props.lang"
-          class="menno fixed top-26 min-w-[150px] z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2  text-white">
-          <li :key="lang + '-' + item.slug" v-for="item in props.items"
-            class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
-            <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
+
+        <!-- Mobile Menu -->
+
+        <!-- BaseNavbar.vue -->
+        <!-- Mobile Menu -->
+        <teleport to="body">
+          <ul v-if="menuOpen && isMobile" :key="props.lang"
+            class="menno fixed top-26 min-w-[150px] z-[1000] bg-black/30 backdrop-blur-md rounded-3xl p-4 w-max h-max flex flex-col gap-2  text-white">
+            <li :key="lang + '-' + item.slug" v-for="item in props.items"
+              class="text-lg font-bold hover:bg-gray/10 w-max active:scale-90 transition-all transform-center rounded-xl px-3 py-1 hover:text-purple-300">
+              <button v-if="isButton(item)" @click="handleScrollTo(`#${item.slug}`)">
+                {{ getItemName(item) }}
+
+              </button>
+              <div v-else>
+                <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
+                  {{ getItemName(item) }}
+
+                </NuxtLink>
+                <NuxtLink v-else to="/profile" @click="menuOpen = false"> {{ props.lang == "fa" ? 'پروفایل' : 'profile'
+                  }}
+                </NuxtLink>
+              </div>
+            </li>
+          </ul>
+
+        </teleport>
+
+
+
+
+        <!-- Desktop Menu -->
+        <ul class="text-nowrap h-6 list mt-2" v-if="!isMobile">
+          <li v-for="item in props.items" :key="item.slug"
+            class="text-xs hover:scale-100 scale-90 hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link"
+            :class="{ 'w-full bg-gray-200/30 hover:bg-pink-800 flex-grow': !isButton(item) }">
+            <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
               {{ getItemName(item) }}
-
-            </button>
+            </div>
             <div v-else>
               <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
                 {{ getItemName(item) }}
@@ -145,66 +171,43 @@ onBeforeUnmount(() => { menuOpen.value = false })   // keep this
           </li>
         </ul>
 
-      </teleport>
+        <div class="flex flex-row-reverse items-center  w-full md:w-min justify-between gap-2">
+          <!-- Language Switcher -->
+          <button @click="askForNextLang"
+            class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-black/50 dark:bg-white/20  flex items-center justify-center hover:bg-gray-200 hover:text-black"
+            :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
+            <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
+              }}</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button @click="toggleTheme"
+            class="group w-8 h-8 hover:scale-105 scale-90 transition-all rounded-xl  text-white bg-black/50 dark:bg-white/20  flex items-center justify-center text-gray-700 hover:bg-gray-200"
+            :aria-label="`Switch theme (current: ${theme})`">
+            <span v-if="theme === 'light'" class="my-auto ">
+              <Icon class="w-6 h-6 group-hover:scale-105 scale-90 transition-all mt-1 text-yellow-500"
+                name="material-symbols:light-mode" />
+            </span>
+            <span v-else class="my-auto">
+              <Icon class="w-6 h-6  group-hover:scale-105 scale-90 transition-all mt-1 text-blue-500"
+                name="material-symbols:dark-mode" />
+            </span>
+          </button>
+          <div class="flex-grow"></div>
 
 
+          <!-- Hamburger button -->
+          <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
+            <span :class="{ open: menuOpen }"></span>
+            <span :class="{ open: menuOpen }"></span>
+            <span :class="{ open: menuOpen }"></span>
+          </button>
 
 
-      <!-- Desktop Menu -->
-      <ul class="text-nowrap h-6 list mt-2" v-if="!isMobile">
-        <li v-for="item in props.items" :key="item.slug"
-          class="text-xs hover:scale-100 scale-90 hover:bg-gray-200/30 !cursor-pointer transition-all duration-200 px-2 py-2 rounded-xl  link"
-          :class="{ 'w-full bg-gray-200/30 hover:bg-pink-800 flex-grow': !isButton(item) }">
-          <div v-if="isButton(item)" class="" @click="handleScrollTo(`#${item.slug}`)">
-            {{ getItemName(item) }}
-          </div>
-          <div v-else>
-            <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
-              {{ getItemName(item) }}
-
-            </NuxtLink>
-            <NuxtLink v-else to="/profile" @click="menuOpen = false"> {{ props.lang == "fa" ? 'پروفایل' : 'profile' }}
-            </NuxtLink>
-          </div>
-        </li>
-      </ul>
-
-      <div class="flex flex-row-reverse items-center  w-full md:w-min justify-between gap-2">
-        <!-- Language Switcher -->
-        <button @click="askForNextLang"
-          class="w-8 h-8 group hover:scale-105 scale-90 transition-all rounded-xl text-white bg-black/50 dark:bg-white/20  flex items-center justify-center hover:bg-gray-200 hover:text-black"
-          :aria-label="`Switch language (current: ${lang.toUpperCase()})`">
-          <span class="group-hover:scale-105 scale-90 transition-all">{{ lang == "fa" ? 'فا' : lang.toUpperCase()
-          }}</span>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button @click="toggleTheme"
-          class="group w-8 h-8 hover:scale-105 scale-90 transition-all rounded-xl  text-white bg-black/50 dark:bg-white/20  flex items-center justify-center text-gray-700 hover:bg-gray-200"
-          :aria-label="`Switch theme (current: ${theme})`">
-          <span v-if="theme === 'light'" class="my-auto ">
-            <Icon class="w-6 h-6 group-hover:scale-105 scale-90 transition-all mt-1 text-yellow-500"
-              name="material-symbols:light-mode" />
-          </span>
-          <span v-else class="my-auto">
-            <Icon class="w-6 h-6  group-hover:scale-105 scale-90 transition-all mt-1 text-blue-500"
-              name="material-symbols:dark-mode" />
-          </span>
-        </button>
-        <div class="flex-grow"></div>
-
-
-        <!-- Hamburger button -->
-        <button class="hamburger" @click="menuOpen = !menuOpen" v-if="isMobile">
-          <span :class="{ open: menuOpen }"></span>
-          <span :class="{ open: menuOpen }"></span>
-          <span :class="{ open: menuOpen }"></span>
-        </button>
-
-
-      </div>
-    </nav>
-  </header>
+        </div>
+      </nav>
+    </header>
+  </div>
 </template>
 
 <style scoped lang="scss">

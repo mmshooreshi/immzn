@@ -32,7 +32,7 @@ const toPersianDigits = (s: string) =>
   s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
 
 type Mode = 'send' | 'verify' | 'info'
-const mode = ref<Mode>('send')
+const mode = ref<Mode>('info')
 const isLoading = ref(false)
 const errorMessage = ref('')
 
@@ -175,7 +175,7 @@ const submitInfo = async () => {
   }
   isLoading.value = true
   try {
-    await $fetch('/api/auth/complete-onboarding', {
+    await $fetch('/api/user/update', {
       method: 'POST',
       body: {
         userId: otpId.value,
@@ -228,9 +228,13 @@ const handleSocialLogin = (provider: string) => {
       <!-- Login Panel -->
       <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10  h-screen">
         <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
-          <div class="text-center space-y-1">
+          <div v-if="mode === 'send'" class="text-center space-y-1">
             <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.verify.title }}</h1>
             <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.verify.subtitle }}</p>
+          </div>
+          <div v-if="mode === 'info'" class="text-center space-y-1">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.info.title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.info.subtitle }}</p>
           </div>
 
           <!-- <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6"> -->
@@ -256,23 +260,26 @@ const handleSocialLogin = (provider: string) => {
               :error="code && !isValidCode ? t.verify.codeError : ''" dir="ltr" />
 
             <!-- Info Inputs -->
-            <div v-if="mode === 'info'" class="space-y-4 text-left">
+            <div :class="[language === 'fa' ? 'rtl text-right' : 'ltr text-left']" v-if="mode === 'info'"
+              class="space-y-4 ">
               <!-- Full Name -->
-              <BaseInput v-model="fullName" :placeholder="t.fullNamePlaceholder" :floatinglabel="t.info.fullNameLabel"
+              <BaseInput position="left" :persian="language === 'fa'" v-model="fullName"
+                :placeholder="t.fullNamePlaceholder" :floatinglabel="t.info.fullNameLabel"
                 floatingLabelClass="bg-white dark:bg-zinc-800"
                 placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
 
               <!-- Affiliation -->
-              <BaseInput v-model="affiliation" :placeholder="t.info.affiliationPlaceholder"
-                :floatinglabel="t.info.affiliationLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
+              <BaseInput position="left" :persian="language === 'fa'" v-model="affiliation"
+                :placeholder="t.info.affiliationPlaceholder" :floatinglabel="t.info.affiliationLabel"
+                floatingLabelClass="bg-white dark:bg-zinc-800"
                 placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
 
               <!-- Role -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {{ t.info.roleLabel }}
+                  <!-- {{ t.info.roleLabel }} -->
                 </label>
-                <select v-model="role"
+                <select :persian="language === 'fa'" v-model="role"
                   class="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white rounded-lg px-3 py-2">
                   <option disabled value="">{{ t.info.rolePlaceholder }}</option>
                   <option value="RESEARCHER">Researcher</option>
@@ -283,7 +290,8 @@ const handleSocialLogin = (provider: string) => {
               </div>
 
               <!-- Field -->
-              <BaseInput v-model="field" :placeholder="t.info.fieldPlaceholder" :floatinglabel="t.info.fieldLabel"
+              <BaseInput position="left" :persian="language === 'fa'" v-model="field"
+                :placeholder="t.info.fieldPlaceholder" :floatinglabel="t.info.fieldLabel"
                 floatingLabelClass="bg-white dark:bg-zinc-800"
                 placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
             </div>
@@ -296,8 +304,8 @@ const handleSocialLogin = (provider: string) => {
                 ? 'bg-cyan-800/50 text-gray-400 cursor-not-allowed'
                 : 'bg-cyan-600 text-cyan-100 dark:bg-cyan-800 dark:text-white'">
               {{
-                mode === 'send' ? t.sendCode :
-                  mode === 'verify' ? t.verifyAndLogin :
+                mode === 'send' ? t.verify.sendCode :
+                  mode === 'verify' ? t.verify.verifyAndLogin :
                     t.info.submitInfo
               }}
             </BaseButton>
@@ -307,17 +315,19 @@ const handleSocialLogin = (provider: string) => {
             <p v-if="errorMessage" class="text-center text-sm text-red-600">{{ errorMessage }}</p>
           </form>
 
-          <div class="flex items-center gap-2">
-            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
-            <span class="text-xs text-gray-400 dark:text-gray-500">{{ t.shared.orLoginWith }}</span>
-            <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
+          <div v-if="mode === 'send'" class="flex flex-col items-center gap-6">
+            <div class="flex w-full flex-row items-center gap-2">
+              <div class="h-px  w-full bg-gray-200 dark:bg-gray-600"> </div>
+              <span class="text-xs text-nowrap text-gray-400 dark:text-gray-500">{{ t.shared.orLoginWith }}</span>
+              <div class="h-px w-full bg-gray-200 dark:bg-gray-600"></div>
+            </div>
+
+            <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
+
+            <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
+              {{ t.shared.legalText }}
+            </p>
           </div>
-
-          <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
-
-          <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
-            {{ t.shared.legalText }}
-          </p>
         </div>
       </div>
     </div>

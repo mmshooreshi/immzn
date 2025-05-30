@@ -3,7 +3,8 @@
   <div class="relative">
     <input ref="inputRef" v-bind="forward" v-model="display" :type="numberOnly ? 'tel' : 'text'"
       :placeholder="forward.placeholder" @focus="onFocus" @blur="onBlur" @input="handleInput" :class="[
-        'rtl w-full border-solid border-white/10 rounded-2xl  text-gray-900 dark:text-white/50 text-left bg-transparent px-6 py-5 text-md tracking-normal hover:tracking-widest transition-all duration-300 font-semibold outline-none ring-0 focus:ring-1 border ',
+        'rtl w-full border-solid border-white/10 rounded-2xl  text-gray-900 dark:text-white/50  bg-transparent px-6 py-5 text-md tracking-normal hover:tracking-widest transition-all duration-300 font-semibold outline-none ring-0 focus:ring-1 border ',
+        position == 'right' ? 'text-left' : 'text-right',
         borderClass,
         placeholderClass,
         forward.class,
@@ -23,26 +24,36 @@
 
 
 
-    <div class="h-full absolute w-1 bg-transparent right-0 top-0">
-      <!-- clear icon -->
-      <div v-if="(display && state !== 'success') || iconName" @click="display && state !== 'success' && (display = '')"
-        :class="['absolute -left-8 right-6 inset-y-0 flex items-center h-full w-5 group', position + '-3', iconColor]">
-        <span v-if="display && state !== 'success'" class="relative w-5 h-5 cursor-pointer group">
-          <span
-            class="absolute inset-0 rounded-full bg-gray-300 transform transition duration-200 scale-75 group-hover:scale-150 group-hover:opacity-100" />
-          <Icon name="mdi:close-circle" class="w-5 h-5  text-black/40 dark:text-gray-700" />
-        </span>
-        <span v-else class="relative w-5 h-5 flex flex-row">
-          <div
-            class="rtl absolute z-10 w-max max-w-xs px-3 -mt-2 pt-1.5 pb-1.5 flex items-center text-xs text-white/100 bg-black/80 rounded-xl shadow-sm opacity-0 leading-6 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-            :class="[position === 'right' ? 'left-full ml-2' : 'right-full mr-2']">
-            {{ tooltipText }}
-          </div>
+    <div class="absolute top-0 right-0 left-0 h-full pointer-events-none">
+      <div class="relative h-full w-full">
+        <!-- icon container with pointer-events only on icon -->
+        <div v-if="(display && state !== 'success') || iconName" :class="[
+          'absolute top-1/2 transform -translate-y-1/2 flex items-center w-5 group pointer-events-none',
+          { 'left-6': position === 'left', 'right-6': position === 'right' },
+          iconColor
+        ]">
+          <!-- Clear icon -->
+          <span v-if="display && state !== 'success'" class="relative w-5 h-5 cursor-pointer group pointer-events-auto"
+            @click="display = ''">
+            <span
+              class="absolute inset-0 rounded-full bg-gray-300 transform transition duration-200 scale-75 group-hover:scale-150 group-hover:opacity-100" />
+            <Icon name="mdi:close-circle" class="w-5 h-5 text-black/40 dark:text-gray-700" />
+          </span>
 
-          <Icon v-if="iconName !== 'mdi:alert-circle'" :name="iconName" class="w-5 h-5" />
-        </span>
+          <!-- Tooltip icon -->
+          <span v-else class="relative w-5 h-5 flex flex-row pointer-events-auto">
+            <div :class="[
+              'rtl absolute z-10 w-max max-w-xs px-3 -mt-2 pt-1.5 pb-1.5 flex items-center text-xs text-white/100 bg-black/80 rounded-xl shadow-sm opacity-0 leading-6 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none',
+              { 'left-full ml-2': position === 'right', 'right-full mr-2': position === 'left' }
+            ]">
+              {{ tooltipText }}
+            </div>
+            <Icon v-if="iconName !== 'mdi:alert-circle'" :name="iconName" class="w-5 h-5" />
+          </span>
+        </div>
       </div>
     </div>
+
     <!-- <p v-if="props.error" class="-mt-2 border-red border rounded-xl  text-center left-[20%] right-[20%]  absolutebg-[#F9FBFA]/100 text-xs rtl text-xs scale-90 text-red-600">{{ props.error }}</p> -->
     <!-- class="absolute right-5 top-4  bg-[#F9FBFA]/100  text-gray-500 pointer-events-none z-10 will-change-transform px-2" -->
 

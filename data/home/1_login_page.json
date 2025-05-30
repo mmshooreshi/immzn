@@ -54,6 +54,14 @@
         }
     },
     "info": {
+        "infoTitle": {
+            "en": "Complete Your Profile",
+            "fa": "تکمیل پروفایل"
+        },
+        "infoSubtitle": {
+            "en": "Please provide your full name, affiliation, and role to proceed",
+            "fa": "لطفاً برای ادامه، نام کامل، و سایر اطلاعات خود را وارد کنید"
+        },
         "fullNameLabel": {
             "en": "Full Name",
             "fa": "نام کامل"
