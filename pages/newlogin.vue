@@ -21,16 +21,16 @@ const code = ref('')
 const step = ref(0)
 const api = useApi()
 const router = useRouter()
-const log = useNuxtApp().$log.withTag('login')
+// const log = useNuxtApp().$log.withTag('login')
 
 const sendOtp = async () => {
-    log.info('request OTP', phone.value)
+    // log.info('request OTP', phone.value)
     await api('/api/auth/send-otp', { method: 'POST', body: { phone: phone.value } })
     step.value = 1
 }
 
 const verifyOtp = async () => {
-    log.info('verify OTP')
+    // log.info('verify OTP')
     await api('/api/auth/verify-otp', {
         method: 'POST',
         body: { phone: phone.value, code: code.value }

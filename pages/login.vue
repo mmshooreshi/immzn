@@ -32,7 +32,7 @@ const toPersianDigits = (s: string) =>
   s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[+d])
 
 type Mode = 'send' | 'verify' | 'info'
-const mode = ref<Mode>('info')
+const mode = ref<Mode>('send')
 const isLoading = ref(false)
 const errorMessage = ref('')
 
@@ -139,16 +139,47 @@ const verifyOTP = async () => {
   errorMessage.value = ''
   if (!isValidCode.value) return
   isLoading.value = true
+
   try {
     const { data } = await useFetch<{ ok: boolean; userId: string }>('/api/auth/verify-otp', {
       method: 'POST',
       body: { phone: phoneEn.value, otp: code.value }
     })
+
     if (data.value?.ok) {
-      if (toastShow.value)
-        toast.success({ title: 'OTP', message: 'Verified' })
-      otpId.value = data.value.userId
-      mode.value = 'info'
+      if (toastShow.value) toast.success({ title: 'OTP', message: 'Verified' })
+
+      // Set minimal auth state first
+      auth.set({ id: parseInt(data.value.userId), phone: phoneEn.value })
+
+      // ✅ Wait for fetch to finish
+      await auth.fetch()
+      const u = auth.user
+
+      // Check for profile completeness
+      const isProfileComplete = u?.fullName && u.affiliation && u.role && u.field
+
+      if (isProfileComplete) {
+        auth.set({
+          id: u.id,
+          phone: phoneEn.value,
+          fullName: u.fullName,
+          affiliation: u.affiliation,
+          role: u.role,
+          field: u.field,
+          email: u.email || '',
+          attendance: u.attendance || 'IN_PERSON',
+          tracks: u.tracks || [''],
+          cvUrl: u.cvUrl || '',
+          wantsNewsletter: u.wantsNewsletter ?? false
+        })
+        phoneModel.value = ''
+        code.value = ''
+        router.push('/profile')
+      } else {
+        mode.value = 'info'
+      }
+
     } else {
       errorMessage.value = data.value === null
         ? t.value.verify.otpError
@@ -164,6 +195,7 @@ const verifyOTP = async () => {
     isLoading.value = false
   }
 }
+
 
 const submitInfo = async () => {
   errorMessage.value = ''
@@ -233,8 +265,8 @@ const handleSocialLogin = (provider: string) => {
             <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.verify.subtitle }}</p>
           </div>
           <div v-if="mode === 'info'" class="text-center space-y-1">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.info.title }}</h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.info.subtitle }}</p>
+            <h1 class="text-xl font-bold text-gray-800 dark:text-white">{{ t.info.infoTitle }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.info.infoSubtitle }}</p>
           </div>
 
           <!-- <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6"> -->

@@ -51,6 +51,7 @@
     "pinia-plugin-persistedstate": "^4.3.0",
     "pino": "^9.7.0",
     "prisma": "^6.8.2",
+    "qrcode": "^1",
     "redis": "^5.1.0",
     "three": "^0.176.0",
     "three-stdlib": "^2.36.0",

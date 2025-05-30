@@ -38,12 +38,12 @@ if (error.value) {
 const user = computed(() => userStore.profile)
 const invitePhone = ref('')
 const api = useApi()
-const log = useNuxtApp().$log.withTag('profile')
+// const log = useNuxtApp().$log.withTag('profile')
 
 // 5) Actions
 async function invite() {
   if (!invitePhone.value) return
-  log.info('invite →', invitePhone.value)
+  // log.info('invite →', invitePhone.value)
   await api('/api/team/invite', {
     method: 'POST',
     body: { phone: invitePhone.value }

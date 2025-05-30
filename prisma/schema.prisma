@@ -55,7 +55,7 @@ model Team {
   hackathonTrack String
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @default(now()) @updatedAt
-
+  token          String?
   members        TeamMember[]
 }
 

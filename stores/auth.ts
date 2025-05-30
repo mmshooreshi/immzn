@@ -13,10 +13,14 @@ export interface AuthUser {
   affiliation: string | null
   role: Role
   field: string
+  avatar?: string | null         // add this if applicable
   attendance: Attendance
   tracks: string[]
   cvUrl: string | null
   wantsNewsletter: boolean
+  createdAt?: string             // ISO timestamp, usually
+  updatedAt?: string
+
 }
 
 export const useAuth = defineStore('auth', {
@@ -25,13 +29,18 @@ export const useAuth = defineStore('auth', {
   }),
 
   actions: {
-    set(u: AuthUser) {
-      this.user = u
+
+
+    set(u: Partial<AuthUser>) {
+      this.user = {
+        ...this.user,
+        ...u
+      } as AuthUser
     },
 
     async fetch() {
       try {
-        const me = await $fetch<AuthUser>('/api/user/me')
+        const me = await $fetch<AuthUser>('/api/me')
         this.user = me
       } catch {
         this.user = null

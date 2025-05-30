@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const user = await prisma.user.findUnique({ where: { id: userId } })
+    // console.log("yoooooooooooo", user)
 
     if (user) {
       event.context.user = user

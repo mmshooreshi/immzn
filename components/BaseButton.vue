@@ -7,7 +7,7 @@
       v-bind="$attrs"
       :disabled="loading || $attrs.disabled"
     >
-    <span v-if="loading" class="flex justify-center">
+    <span v-if="loading" class="flex justify-center items-center">
       <!-- Minimal spinner: a single circle rotating -->
       <svg class="w-5 h-5 animate-spin" viewBox="0 0 50 50">
         <circle
@@ -22,7 +22,7 @@
         />
       </svg>
     </span>
-      <span v-else><slot/></span>
+      <span class="flex justify-center items-center" v-else><slot/></span>
     </button>
   </template>
   

@@ -4,7 +4,7 @@
 
     <div class="min-h-screen p-8 mt-20">
       <div class="flex gap-6">
-        <ProfileCompletionPane />
+        <!-- <ProfileCompletionPane /> -->
         <div class="flex-1 grid grid-cols-2 gap-6">
           <HackathonPane />
           <ConferencePane />
