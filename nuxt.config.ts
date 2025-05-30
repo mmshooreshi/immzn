@@ -157,7 +157,8 @@ export default defineNuxtConfig({
     spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
     melipayamakApiKey: process.env.MELIPAYAMAK_API_KEY,
     melipayamakSenderId: process.env.MELIPAYAMAK_SENDER_ID,
-    melipayamakOTPmsgId: process.env.MELIPAYAMAK_OTP_MSG_ID,
+    melipayamakOTPMsgId: process.env.MELIPAYAMAK_OTP_MSG_ID,
+    melipayamakInviteMsgId: process.env.MELIPAYAMAK_INVITE_MSG_ID,
     public: {
       dataMode: process.env.DATA_MODE || 'github',
       neshanPublicToken: process.env.NESHAN_PUBLIC_API_KEY,

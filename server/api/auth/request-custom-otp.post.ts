@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     window: 60 * 10,
   })
 
-  // generate a secure 6-digit OTP
+  // generate a secure 5-digit OTP
   const otp = crypto.randomInt(10000, 99999).toString()
 
   // OTP message formatted for automatic detection (iOS & Android)
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
   // }
 
   const payload = {
-    bodyId: config.melipayamakOTPmsgId,
+    bodyId: config.melipayamakOTPMsgId,
     to: phone,
     args: [otp],
   }

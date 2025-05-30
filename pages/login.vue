@@ -43,7 +43,7 @@ const isValidPhone = computed(() => /^09\d{9}$/.test(phoneEn.value))
 
 // otp step
 const code = ref('')
-const isValidCode = computed(() => /^\d{6}$/.test(code.value))
+const isValidCode = computed(() => /^\d{5}$/.test(code.value))
 const otpId = ref<string | null>(null)
 
 // info step
@@ -127,7 +127,7 @@ const requestOTP = async () => {
       toast.info({ title: 'OTP', message: 'Code sent' })
     mode.value = 'verify'
   } catch {
-    errorMessage.value = t.value.otpError
+    errorMessage.value = t.value.verify.otpError
     if (toastShow.value)
       toast.error({ title: 'OTP', message: 'Send failed' })
   } finally {
@@ -151,13 +151,13 @@ const verifyOTP = async () => {
       mode.value = 'info'
     } else {
       errorMessage.value = data.value === null
-        ? t.value.otpError
-        : t.value.otpIncorrect
+        ? t.value.verify.otpError
+        : t.value.verify.otpIncorrect
       if (toastShow.value)
         toast.error({ title: 'OTP', message: errorMessage.value })
     }
   } catch {
-    errorMessage.value = t.value.otpError
+    errorMessage.value = t.value.verify.otpError
     if (toastShow.value)
       toast.error({ title: 'OTP', message: 'Verify failed' })
   } finally {
@@ -168,7 +168,7 @@ const verifyOTP = async () => {
 const submitInfo = async () => {
   errorMessage.value = ''
   if (!fullName.value || !affiliation.value || !role.value || !field.value) {
-    errorMessage.value = t.value.infoError
+    errorMessage.value = t.value.info.infoError
     if (toastShow.value)
       toast.warning({ title: 'Info', message: 'Please fill all fields' })
     return
@@ -198,7 +198,7 @@ const submitInfo = async () => {
       toast.success({ title: 'Success', message: 'Profile complete' })
     router.push('/profile')
   } catch {
-    errorMessage.value = t.value.infoError
+    errorMessage.value = t.value.info.infoError
     if (toastShow.value)
       toast.error({ title: 'Info', message: 'Submit failed' })
   } finally {
@@ -221,7 +221,7 @@ const handleSocialLogin = (provider: string) => {
       <div class="hidden lg:flex w-1/2 items-center justify-center bg-cover bg-center"
         style="background-image: url('/login-side-image.jpg')">
         <div class="bg-black/40 w-full h-full flex items-center justify-center">
-          <h2 class="text-3xl font-bold text-white text-center">{{ t.heroTitle }}</h2>
+          <h2 class="text-3xl font-bold text-white text-center">{{ t.verify.heroTitle }}</h2>
         </div>
       </div>
 
@@ -229,49 +229,94 @@ const handleSocialLogin = (provider: string) => {
       <div class="w-full lg:w-1/2 flex items-center justify-center px-4 py-10  h-screen">
         <div class="max-w-md w-full space-y-8 bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-xl">
           <div class="text-center space-y-1">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.title }}</h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.subtitle }}</p>
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ t.verify.title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{{ t.verify.subtitle }}</p>
           </div>
 
-          <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6">
+          <!-- <form @submit.prevent="mode === 'send' ? requestOTP() : verifyOTP()" class="space-y-6"> -->
+          <form @submit.prevent="mode === 'send' ? requestOTP() : mode === 'verify' ? verifyOTP() : submitInfo()"
+            class="space-y-6">
+
             <!-- Phone Input -->
             <BaseInput v-if="mode === 'send'" class="ltr" v-model="phoneModel" numberOnly :persian="language === 'fa'"
-              :placeholder="t.phonePlaceholder" :floatinglabel="t.phoneLabel"
+              :placeholder="t.verify.phonePlaceholder" :floatinglabel="t.verify.phoneLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="phoneModel ? (isValidPhone ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
-              :error="phoneModel && !isValidPhone ? t.phoneError : ''" dir="ltr" />
+              :error="phoneModel && !isValidPhone ? t.verify.phoneError : ''" dir="ltr" />
 
             <!-- OTP Code Input -->
             <!-- {{ mode }} -->
             <BaseInput v-if="mode === 'verify'" class="ltr" v-model="code" numberOnly :persian="language === 'fa'"
               ref="inputOTP" name="otp" id="otp" autocomplete="one-time-code" inputmode="numeric"
-              :placeholder="t.codePlaceholder" :floatinglabel="t.codeLabel"
+              :placeholder="t.verify.codePlaceholder" :floatinglabel="t.verify.codeLabel"
               floatingLabelClass="bg-white dark:bg-zinc-800"
               placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30"
               :iconName="code ? (isValidCode ? 'mdi:check-circle' : 'mdi:alert-circle') : null"
-              :error="code && !isValidCode ? t.codeError : ''" dir="ltr" />
+              :error="code && !isValidCode ? t.verify.codeError : ''" dir="ltr" />
 
-            <BaseButton type="submit" :loading="isLoading" :disabled="mode === 'send' ? !isValidPhone : !isValidCode"
-              class="text-center" :class="(mode === 'send' && !isValidPhone) || (mode === 'verify' && !isValidCode)
+            <!-- Info Inputs -->
+            <div v-if="mode === 'info'" class="space-y-4 text-left">
+              <!-- Full Name -->
+              <BaseInput v-model="fullName" :placeholder="t.fullNamePlaceholder" :floatinglabel="t.info.fullNameLabel"
+                floatingLabelClass="bg-white dark:bg-zinc-800"
+                placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
+
+              <!-- Affiliation -->
+              <BaseInput v-model="affiliation" :placeholder="t.info.affiliationPlaceholder"
+                :floatinglabel="t.info.affiliationLabel" floatingLabelClass="bg-white dark:bg-zinc-800"
+                placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
+
+              <!-- Role -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  {{ t.info.roleLabel }}
+                </label>
+                <select v-model="role"
+                  class="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white rounded-lg px-3 py-2">
+                  <option disabled value="">{{ t.info.rolePlaceholder }}</option>
+                  <option value="RESEARCHER">Researcher</option>
+                  <option value="ENGINEER">Engineer</option>
+                  <option value="DESIGNER">Designer</option>
+                  <option value="STUDENT">Student</option>
+                </select>
+              </div>
+
+              <!-- Field -->
+              <BaseInput v-model="field" :placeholder="t.info.fieldPlaceholder" :floatinglabel="t.info.fieldLabel"
+                floatingLabelClass="bg-white dark:bg-zinc-800"
+                placeholderClass="placeholder-transparent focus:placeholder-black/30 dark:focus:placeholder-white/30" />
+            </div>
+
+            <BaseButton type="submit" :loading="isLoading" :disabled="(mode === 'send' && !isValidPhone) ||
+              (mode === 'verify' && !isValidCode) ||
+              (mode === 'info' && (!fullName || !affiliation || !role || !field))" class="text-center" :class="((mode === 'send' && !isValidPhone) ||
+                (mode === 'verify' && !isValidCode) ||
+                (mode === 'info' && (!fullName || !affiliation || !role || !field)))
                 ? 'bg-cyan-800/50 text-gray-400 cursor-not-allowed'
                 : 'bg-cyan-600 text-cyan-100 dark:bg-cyan-800 dark:text-white'">
-              {{ mode === 'send' ? t.sendCode : t.verifyAndLogin }}
+              {{
+                mode === 'send' ? t.sendCode :
+                  mode === 'verify' ? t.verifyAndLogin :
+                    t.info.submitInfo
+              }}
             </BaseButton>
+
+
 
             <p v-if="errorMessage" class="text-center text-sm text-red-600">{{ errorMessage }}</p>
           </form>
 
           <div class="flex items-center gap-2">
             <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
-            <span class="text-xs text-gray-400 dark:text-gray-500">{{ t.orLoginWith }}</span>
+            <span class="text-xs text-gray-400 dark:text-gray-500">{{ t.shared.orLoginWith }}</span>
             <div class="flex-1 h-px bg-gray-200 dark:bg-gray-600" />
           </div>
 
           <GoogleSignInButton :onClick="() => handleSocialLogin('google')" />
 
           <p class="text-[10px] leading-5 text-[#797B7D] text-right dark:text-gray-500">
-            {{ t.legalText }}
+            {{ t.shared.legalText }}
           </p>
         </div>
       </div>

@@ -78,7 +78,7 @@ async function invite() {
   sending.value = true
   await $fetch('/api/team/invite', {
     method: 'POST',
-    body: { phone: invitePhone.value, teamId: team.value?.id }
+    body: { phone: invitePhone.value, teamId: team.value?.id, teamName: team.value?.name }
   })
   invites.value = await $fetch('/api/team/invites')
   sending.value = false

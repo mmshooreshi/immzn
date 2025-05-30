@@ -1,62 +1,108 @@
 {
-    "title": {
-        "en": "Login or Sign Up",
-        "fa": "ورود یا ثبت‌نام"
+    "verify": {
+        "title": {
+            "en": "Login or Sign Up",
+            "fa": "ورود یا ثبت‌نام"
+        },
+        "subtitle": {
+            "en": "Enter your mobile number to continue",
+            "fa": "برای ادامه شماره موبایل خود را وارد کنید"
+        },
+        "heroTitle": {
+            "en": "Let's break the immunity code together!",
+            "fa": "ایمنی ایمنی ایمنی"
+        },
+        "phonePlaceholder": {
+            "en": "e.g., 09121234567",
+            "fa": "مثلاً ۰۹۱۲۱۲۳۴۵۶۷"
+        },
+        "phoneLabel": {
+            "en": "Mobile Number",
+            "fa": "شماره موبایل"
+        },
+        "phoneError": {
+            "en": "Phone number must start with 09",
+            "fa": "شماره‌ی موبایل باید با ۰۹ شروع شود."
+        },
+        "codePlaceholder": {
+            "en": "Enter the 5-digit code",
+            "fa": "کد ۵ رقمی ارسال شده"
+        },
+        "codeLabel": {
+            "en": "Verification Code",
+            "fa": "کد تایید"
+        },
+        "codeError": {
+            "en": "Code must be 5 digits",
+            "fa": "کد باید ۵ رقم باشد."
+        },
+        "sendCode": {
+            "en": "Send Code",
+            "fa": "ارسال کد تایید"
+        },
+        "verifyAndLogin": {
+            "en": "Verify and Login",
+            "fa": "تایید و ورود"
+        },
+        "otpError": {
+            "en": "Error sending code. Please try again.",
+            "fa": "خطا در ارسال کد. لطفا دوباره تلاش کنید."
+        },
+        "otpIncorrect": {
+            "en": "Incorrect verification code.",
+            "fa": "کد وارد شده اشتباه است."
+        }
     },
-    "subtitle": {
-        "en": "Enter your mobile number to continue",
-        "fa": "برای ادامه شماره موبایل خود را وارد کنید"
+    "info": {
+        "fullNameLabel": {
+            "en": "Full Name",
+            "fa": "نام کامل"
+        },
+        "fullNamePlaceholder": {
+            "en": "Enter your full name",
+            "fa": "نام کامل خود را وارد کنید"
+        },
+        "affiliationLabel": {
+            "en": "Affiliation / Institution",
+            "fa": "سازمان / نهاد"
+        },
+        "affiliationPlaceholder": {
+            "en": "Enter your institution or affiliation",
+            "fa": "سازمان یا محل کار خود را وارد کنید"
+        },
+        "roleLabel": {
+            "en": "Role",
+            "fa": "نقش"
+        },
+        "rolePlaceholder": {
+            "en": "Please select a role",
+            "fa": "لطفاً یک نقش انتخاب کنید"
+        },
+        "fieldLabel": {
+            "en": "Field of Expertise",
+            "fa": "زمینه تخصص"
+        },
+        "fieldPlaceholder": {
+            "en": "e.g. AI, Robotics, BioTech",
+            "fa": "مثلاً هوش مصنوعی، رباتیک، بیوتکنولوژی"
+        },
+        "submitInfo": {
+            "en": "Submit Info",
+            "fa": "ارسال اطلاعات"
+        },
+        "infoError": {
+            "en": "Please complete all fields.",
+            "fa": "لطفاً همه‌ی فیلدها را تکمیل کنید."
+        }
     },
-    "heroTitle": {
-        "en": "Lets break the immunity code together!",
-        "fa": "ایمنی ایمنی ایمنی"
-    },
-    "phonePlaceholder": {
-        "en": "e.g., 09121234567",
-        "fa": "مثلاً ۰۹۱۲۱۲۳۴۵۶۷"
-    },
-    "phoneLabel": {
-        "en": "Mobile Number",
-        "fa": "شماره موبایل"
-    },
-    "phoneError": {
-        "en": "Phone number must start with 09",
-        "fa": "شماره‌ی موبایل باید با ۰۹ شروع شود."
-    },
-    "codePlaceholder": {
-        "en": "Enter the 6-digit code",
-        "fa": "کد ۶ رقمی ارسال شده"
-    },
-    "codeLabel": {
-        "en": "Verification Code",
-        "fa": "کد تایید"
-    },
-    "codeError": {
-        "en": "Code must be 6 digits",
-        "fa": "کد باید ۶ رقم باشد."
-    },
-    "sendCode": {
-        "en": "Send Code",
-        "fa": "ارسال کد تایید"
-    },
-    "verifyAndLogin": {
-        "en": "Verify and Login",
-        "fa": "تایید و ورود"
-    },
-    "orLoginWith": {
-        "en": "or log in with",
-        "fa": "یا ورود با"
-    },
-    "legalText": {
-        "en": "By logging in, you accept the terms of use and privacy policy.",
-        "fa": "با ورود، شما شرایط استفاده و سیاست حفظ حریم خصوصی را می‌پذیرید."
-    },
-    "otpError": {
-        "en": "Error sending code. Please try again.",
-        "fa": "خطا در ارسال کد. لطفا دوباره تلاش کنید."
-    },
-    "otpIncorrect": {
-        "en": "Incorrect verification code.",
-        "fa": "کد وارد شده اشتباه است."
+    "shared": {
+        "orLoginWith": {
+            "en": "or log in with",
+            "fa": "یا ورود با"
+        },
+        "legalText": {
+            "en": "By logging in, you accept the terms of use and privacy policy.",
+            "fa": "با ورود، شما شرایط استفاده و سیاست حفظ حریم خصوصی را می‌پذیرید."
+        }
     }
 }

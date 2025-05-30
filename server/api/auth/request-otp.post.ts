@@ -22,8 +22,8 @@ export default defineEventHandler(async (event) => {
     window: 60 * 10,
   })
 
-  // generate a 6-digit code
-  const otp = crypto.randomInt(100000, 999999).toString()
+  // generate a 5-digit code
+  const otp = crypto.randomInt(10000, 99999).toString()
 
   if (config.smsMock == "true") {
     // in mock mode, just log and return
