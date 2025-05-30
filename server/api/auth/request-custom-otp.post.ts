@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   })
 
   // generate a secure 6-digit OTP
-  const otp = crypto.randomInt(100000, 999999).toString()
+  const otp = crypto.randomInt(10000, 99999).toString()
 
   // OTP message formatted for automatic detection (iOS & Android)
   // '<#>' prefix enables Android SMS Retriever, single-line pattern for iOS
@@ -45,15 +45,37 @@ export default defineEventHandler(async (event) => {
   }
 
   // prepare payload for Melipayamak simple send endpoint
+  // simple number (ads number): melipayamakSenderAId
+  // service number (we can send links yo0ho0): melipayamakSenderSId
+  // const from = config.melipayamakSenderId
+
+  // const payloadDeprecated = {
+  //   from: from,
+  //   to: phone,
+  //   text,
+  // }
+
   const payload = {
-    from: config.melipayamakSenderId,
+    bodyId: config.melipayamakOTPmsgId,
     to: phone,
-    text,
+    args: [otp],
   }
 
+
+  // ####################  
+  // Code: {0}
+  // کد ورود به رویداد ایمنی‌شناسی محاسباتی برگزارشده توسط پژوهشگاه دانش‌های بنیادی (IPM) 
+
+  // @immzn.vercel.app #{0}
+  // ####################
+
+
   // direct Melipayamak API URL
-  const url =
-    `https://console.melipayamak.com/api/send/simple/${config.melipayamakApiKey}`
+  
+  // const url =  `https://console.melipayamak.com/api/send/simple/${config.melipayamakApiKey}`
+  
+  
+  const url = `https://aisland.co/melipayamak/api/send/share/${config.melipayamakApiKey}`
 
   // helper: fetch with timeout
   async function fetchWithTimeout(
