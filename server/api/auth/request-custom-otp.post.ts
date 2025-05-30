@@ -1,3 +1,4 @@
+// server/api/auth/request-custom-otp.post.ts
 import { defineEventHandler, readBody, createError } from 'h3'
 import { assertGuest } from '~/server/utils/auth-helpers'
 import { assertRateLimit } from '~/server/utils/rate-limit'
@@ -75,8 +76,9 @@ export default defineEventHandler(async (event) => {
   // const url =  `https://console.melipayamak.com/api/send/simple/${config.melipayamakApiKey}`
   
   
-  const url = `https://aisland.co/melipayamak/api/send/share/${config.melipayamakApiKey}`
-
+  const url = `https://aisland.co/melipayamak/api/send/shared/${config.melipayamakApiKey}`
+              // `https://console.melipayamak.com/api/send/shared/${config.melipayamakApiKey}`
+              
   // helper: fetch with timeout
   async function fetchWithTimeout(
     input: string,

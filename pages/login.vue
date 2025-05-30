@@ -1,3 +1,4 @@
+<!-- pages/login.vue -->
 <script setup lang="ts">
 import { onMounted, ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
@@ -93,18 +94,24 @@ async function setupWebOTP() {
   try {
     if (toastShow.value)
       toast.info({ title: 'WebOTP', message: 'Waiting for SMS…' })
-    const otp: OTPCredential = await navigator.credentials.get({
+    const otpCredential = await navigator.credentials.get({
       otp: { transport: ['sms'] },
       signal: ac.signal
-    })
-    code.value = otp.code
-    if (toastShow.value)
-      toast.success({ title: 'WebOTP', message: `Received OTP: ${otp.code}` })
-    form?.submit()
+    }) as OTPCredential | null
+
+    if (otpCredential?.code) {
+      code.value = otpCredential.code
+      if (toastShow.value)
+        toast.success({ title: 'WebOTP', message: `Received OTP: ${otpCredential.code}` })
+      form?.submit()
+    } else {
+      throw new Error('OTP credential not received or missing code')
+    }
   } catch (e: any) {
     if (toastShow.value)
       toast.error({ title: 'WebOTP', message: `Failed: ${e.message || e}` })
   }
+
 }
 
 const requestOTP = async () => {
@@ -184,7 +191,8 @@ const submitInfo = async () => {
       fullName: fullName.value,
       affiliation: affiliation.value,
       role: role.value,
-      field: field.value
+      field: field.value,
+      email: '', attendance: 'IN_PERSON', tracks: [''], cvUrl: '', wantsNewsletter: false
     })
     if (toastShow.value)
       toast.success({ title: 'Success', message: 'Profile complete' })
