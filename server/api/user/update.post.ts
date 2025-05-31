@@ -15,7 +15,8 @@ export default defineEventHandler(async event => {
     field: z.string().min(1).optional(),
     attendance: z.nativeEnum(Attendance).optional(),
     tracks: z.array(z.string()).optional(),
-    wantsNewsletter: z.boolean().optional()
+    wantsNewsletter: z.boolean().optional(),
+    cvUrl: z.string().min(0).nullable().optional()
   })
 
   const body = await readValidatedBodyCustom(event, schema)

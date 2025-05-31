@@ -11,9 +11,14 @@ const { language, nextLanguage, theme, toggleTheme } = useSettings()
 // });
 
 
-watchEffect(() => {
-  useHead({ htmlAttrs: { 'data-lang': language.value === 'fa' ? 'fa' : 'en' } })
-})
+// watchEffect(() => {
+//   useHead({ htmlAttrs: { 'data-lang': language.value === 'fa' ? 'fa' : 'en' } })
+// })
+
+useHead(() => ({
+  htmlAttrs: { 'data-lang': language.value === 'fa' ? 'fa' : 'en' }
+}))
+
 
 </script>
 

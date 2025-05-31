@@ -3,11 +3,12 @@
 import { useDataStore } from '~/stores/dataStore'
 import { storeToRefs } from 'pinia'
 import { useThrottleFn } from '@vueuse/core'    // just to avoid spamming sessionStorage
-import BaseNavbar from '~/components/BaseNavbar.vue'
+import BaseNavbar from '~/components/BaseNavbarBetter.vue'
 
 // const isTouch = matchMedia('(pointer:coarse)').matches   // TRUE on iOS/Android
 
 const isMobile = useIsMobile()
+const route = useRoute()
 
 /* purely *reading* from the store—no fetching logic here */
 const store = useDataStore()
@@ -22,10 +23,12 @@ watch(language, val => { viewLang.value = val })
 
 function onLangRequest(wanted: Lang) {
   if (viewLang.value === wanted) return         // same → nothing to do
+  scroll.value?.stop()
   pendingLang.value = wanted
-  viewLang.value = wanted                    // 1️⃣ trigger fade-out
+  viewLang.value = wanted
+  scroll.value.scrollTo(0, { duration: 400, disableLerp: true })
 
-  resetScroll()
+
 
 }
 
@@ -71,15 +74,17 @@ function onAfterLeave() {
   }
 }
 function onLangEnter() {
-  // Wait for Vue to finish inserting the new DOM, then tell loco:
-  nextTick(() => {
-    resetScroll()
-    scroll.value?.start()
-    scroll.value?.update()
+
+
+  // resetScroll()                     // jump to the top (or wherever you need)
+  scroll.value?.start()             // ▶️ resume locomotive’s loop
+  requestAnimationFrame(() => {
+    // give the browser one frame to paint, then ask Loco to recalc
+    try { scroll.value?.update() } catch { }   // ignore if still not ready
   })
 
-}
 
+}
 
 const scroll = ref<LocomotiveScroll | null>(null)
 const mainRef = ref<HTMLElement | null>(null)
@@ -127,16 +132,43 @@ onMounted(async () => {
   // })
 
   await waitForReady()
-  scroll.value.update()
+  scroll.value?.update()
+  // await nextTick()               // DOM rendered
+  handleHash(route.hash)
+
+
 
 });
 
-watch(viewLang, () => {
+watch(() => route.hash, handleHash)
+
+function handleHash(hash: string | null) {
+  if (!hash) return;
+
+  const target = hash.startsWith('#') ? hash : `#${hash}`;
+
   nextTick(() => {
-    scroll.value?.start()
-    scroll.value?.update()
-  })
-})
+    // ✅ Case 1: LocomotiveScroll is active (desktop)
+    if (scroll.value) {
+      scroll.value.scrollTo(target, { duration: 800 });
+      return;
+    }
+
+    // ✅ Case 2: Native scrolling fallback (mobile)
+    const el = document.querySelector(target);
+    if (!el) return;
+
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+
+// watch(viewLang, () => {
+//   nextTick(() => {
+//     scroll.value?.start()
+//     scroll.value?.update()
+//   })
+// })
 
 
 onUnmounted(() => {

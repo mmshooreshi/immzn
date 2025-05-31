@@ -9,6 +9,7 @@ declare module 'nuxt/schema' {
 
     google: {
       clientId: string;
+      clientEmail: string;
       clientSecret: string;
       refreshToken: string;
       spreadsheetId: string;
@@ -17,7 +18,7 @@ declare module 'nuxt/schema' {
 
     telegram: {
       botToken: string;
-      chatIdAdmin:  string;
+      chatIdAdmin: string;
       chatIdGroup: string;
     };
 
@@ -35,4 +36,4 @@ declare module 'nuxt/schema' {
   }
 }
 
-export {};
+export { };

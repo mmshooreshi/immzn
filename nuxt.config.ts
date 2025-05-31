@@ -11,8 +11,9 @@ import { resolve } from 'path';
 import fs from 'fs';
 
 // SAFETY: nuke all leftover cached plugins
-const pluginPath = resolve('.nuxt/plugins/server.mjs');
-if (fs.existsSync(pluginPath)) fs.rmSync(pluginPath, { force: true });
+// sadly i commented out this because gpt said so, while i love this code:
+// const pluginPath = resolve('.nuxt/plugins/server.mjs');
+// if (fs.existsSync(pluginPath)) fs.rmSync(pluginPath, { force: true });
 
 export default defineNuxtConfig({
   app: {
@@ -25,7 +26,9 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/x-icon',
-          href: `/favicon.ico?v=${Date.now()}`,
+          // href: `/favicon.ico?v=${Date.now()}`,
+          href: `/favicon.ico?v=${process.env.GIT_COMMIT_SHA || 'dev'}`
+
         },
         ...fontPreloadLinks,
       ],
@@ -63,7 +66,7 @@ export default defineNuxtConfig({
     'nuxt-toast'
   ],
   /* ——— NEW AUTH BLOCK ——————————————————————————————— */
-    /** Sidebase / Auth.js */
+  /** Sidebase / Auth.js */
   auth: {
     provider: {
       type: 'authjs',           // tell the module we’ll use AuthJS
@@ -76,14 +79,14 @@ export default defineNuxtConfig({
     baseURL: 'http://localhost:3000/api/auth',
 
   },
-    piniaPluginPersistedstate: {
+  piniaPluginPersistedstate: {
     storage: 'cookies',
     cookieOptions: {
       // sameSite: 'strict',
       sameSite: 'lax',
       secure: false,        // ✅ only works over HTTPS if true — NOT good for localhost
       // secure  : true,
-      maxAge  : 60 * 60 * 24 * 30 // 30 days
+      maxAge: 60 * 60 * 24 * 30 // 30 days
     }
   },
 
@@ -95,7 +98,7 @@ export default defineNuxtConfig({
 
   mapbox: {
     accessToken: process.env.MAPBOX_TOKEN,
-    
+
   },
 
   // i18n: {
@@ -119,22 +122,22 @@ export default defineNuxtConfig({
       ignore: ['/i', '/j', '/']
 
     },
-        // Nitro’s first-class KV layer → no “raw” ioredis in code
+    // Nitro’s first-class KV layer → no “raw” ioredis in code
     storage: {
       redis: {
         driver: 'redis',
         url: process.env.REDIS_URL
       }
-      
+
     }
 
   },
   runtimeConfig: {
-    jwtSecret        : process.env.JWT_SECRET,
-    smsIrApiKey      : '',
-    smsIrSecretKey   : '',
-    smsIrTemplateId  : '',
-    smsMock          : process.env.SMS_MOCK,
+    jwtSecret: process.env.JWT_SECRET,
+    smsIrApiKey: '',
+    smsIrSecretKey: '',
+    smsIrTemplateId: '',
+    smsMock: process.env.SMS_MOCK,
     redisUrl: process.env.REDIS_URL,
     databaseUrl: process.env.DATABASE_URL,
 
@@ -142,14 +145,15 @@ export default defineNuxtConfig({
     authSecret: process.env.NUXT_AUTH_SECRET,
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken:  process.env.GOOGLE_REFRESH_TOKEN,
-      spreadsheetId:  process.env.GOOGLE_SPREADSHEET_ID,
-      driveFolderId:  process.env.GOOGLE_DRIVE_FOLDER_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+      refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+      spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
+      driveFolderId: process.env.GOOGLE_DRIVE_FOLDER_ID,
     },
     telegram: {
       botToken: process.env.TELEGRAM_BOT_TOKEN,
-      chatIdAdmin:  process.env.TELEGRAM_CHAT_ID_ADMIN,
+      chatIdAdmin: process.env.TELEGRAM_CHAT_ID_ADMIN,
       chatIdGroup: process.env.TELEGRAM_CHAT_ID_GROUP
     },
 
@@ -181,15 +185,15 @@ export default defineNuxtConfig({
 
   typescript: {
     // strict: true,
-      strict: false,
+    strict: false,
     typeCheck: false
 
   },
   vite: {
     plugins: [yaml()],
-      optimizeDeps: {
-    include: ['@tresjs/core', 'pinia', 'locomotive-scroll'], // adjust to real deps
-  },
+    optimizeDeps: {
+      include: ['@tresjs/core', 'pinia', 'locomotive-scroll'], // adjust to real deps
+    },
 
     css: {
       preprocessorOptions: {
@@ -206,5 +210,5 @@ export default defineNuxtConfig({
       },
     },
   },
-  compatibilityDate: '2025-05-28' 
+  compatibilityDate: '2025-05-28'
 });

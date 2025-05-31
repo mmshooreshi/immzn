@@ -10,6 +10,7 @@ import BaseInput from '~/components/BaseInput.vue'
 import BaseButton from '~/components/BaseButton.vue'
 import { useAuth } from '~/stores/auth'
 
+// useNuxtApp().$debug('userLat', userLocationRef)
 /** add WebOTP types if you haven’t already: */
 declare global {
   interface CredentialRequestOptions { otp?: { transport: string[] } }
@@ -160,7 +161,7 @@ const verifyOTP = async () => {
       const isProfileComplete = u?.fullName && u.affiliation && u.role && u.field
 
       if (isProfileComplete) {
-        auth.set({
+        await auth.set({
           id: u.id,
           phone: phoneEn.value,
           fullName: u.fullName,
@@ -175,6 +176,8 @@ const verifyOTP = async () => {
         })
         phoneModel.value = ''
         code.value = ''
+        mode.value = 'send'
+
         router.push('/profile')
       } else {
         mode.value = 'info'

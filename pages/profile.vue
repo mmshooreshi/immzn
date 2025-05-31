@@ -1,3 +1,4 @@
+<!-- pages/profile.vue -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useAuth } from '~/stores/auth'
@@ -8,6 +9,13 @@ import ConferencePane from '~/components/ConferencePane.vue'
 const auth = useAuth()
 const router = useRouter()
 const user = auth.user
+const { data: team, refresh: refreshTeam } = await useFetch('/api/team/my')
+const { data: invites, refresh: refreshInvites } = await useFetch('/api/team/invites')
+
+/* convenience: refresh everything after a mutation */
+function refetchHackathon() {
+    return Promise.all([refreshTeam(), refreshInvites()])
+}
 
 const loggingOut = ref(false)
 
@@ -25,6 +33,7 @@ async function logout() {
 }
 
 definePageMeta({ requiresAuth: true })
+
 </script>
 
 <template>
@@ -33,13 +42,13 @@ definePageMeta({ requiresAuth: true })
             <div class="grid grid-cols-1 md:grid-cols-6 gap-2 sm:gap-8">
                 <!-- Profile Info Card -->
                 <!-- Action Panes -->
-                <div class="md:col-span-3 bg-white dark:bg-zinc-800 shadow-xl rounded-2xl p-6 space-y-6 ">
+                <div class="md:col-span-3 bg-white/70 dark:bg-zinc-800 shadow-xl rounded-2xl p-6 space-y-6 ">
 
-                    <HackathonPane />
+                    <HackathonPane :team="team" :invites="invites" @updated="refetchHackathon" />
                     <!-- <ConferencePane /> -->
                 </div>
 
-                <div class="md:col-span-3 bg-white dark:bg-zinc-800 shadow-xl rounded-2xl p-6 space-y-6">
+                <div class="md:col-span-3 bg-white/70 dark:bg-zinc-800 shadow-xl rounded-2xl p-6 space-y-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Profile</h2>
                         <button @click="logout" :disabled="loggingOut"
@@ -59,7 +68,8 @@ definePageMeta({ requiresAuth: true })
                         <InfoItem label="Field" :value="user?.field" />
                         <InfoItem label="Attendance" :value="user?.attendance" />
                         <InfoItem label="Tracks" :value="user?.tracks?.join(', ') || '—'" />
-                        <InfoItem label="CV URL" :value="user?.cvUrl || '—'" />
+                        <InfoItem class="overflow-scroll" label="CV URL"
+                            :value="user?.cvUrl?.slice(0, 28) + '..' || '—'" />
                         <InfoItem label="Wants Newsletter" :value="user?.wantsNewsletter ? 'Yes' : 'No'" />
                     </div>
                 </div>
