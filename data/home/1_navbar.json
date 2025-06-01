@@ -2,35 +2,35 @@
   {
     "name": {
       "en": "About",
-      "fa": "درباره"
+      "fa": "درباره رویداد"
     },
     "slug": "about"
   },
   {
     "name": {
       "en": "Featured Voices",
-      "fa": "صداهای رویداد"
+      "fa": "چهره های برجسته"
     },
     "slug": "voices"
   },
   {
     "name": {
       "en": "Program",
-      "fa": "برنامه"
+      "fa": "زمانبندی"
     },
     "slug": "program"
   },
   {
     "name": {
       "en": "Essentials",
-      "fa": "ضروریات"
+      "fa": "اطلاعات"
     },
     "slug": "essentials"
   },
   {
     "name": {
       "en": "Team & Partners",
-      "fa": "تیم و شرکا"
+      "fa": "تیم همکاری"
     },
     "slug": "team-partners"
   },
