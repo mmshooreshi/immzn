@@ -80,7 +80,7 @@
     },
     "newsletter": {
       "en": "Send me occasional updates about ImmUnity Horizons",
-      "fa": "مایلم به‌روزرسانی‌های ایمیونیتی را دریافت کنم"
+      "fa": "مایلم به‌روزرسانی‌های گستره ایمنی را دریافت کنم"
     },
     "termsAgree": {
       "en": "I agree to the",
@@ -145,16 +145,16 @@
       "fa": "سخنرانی‌های کلیدی"
     },
     "Workshops": {
-      "en": "Workshops",
-      "fa": "کارگاه‌ها"
+      "en": "",
+      "fa": ""
     },
     "Hackathon": {
       "en": "Hackathon",
       "fa": "هکتون"
     },
     "Lightning Talks": {
-      "en": "Lightning Talks",
-      "fa": "سخنرانی‌های کوتاه"
+      "en": "",
+      "fa": ""
     }
   },
   "pricing": {
@@ -176,7 +176,7 @@
     },
     "selectionNote": {
       "en": "Participant selection is based on CV evaluation.",
-      "fa": "انتخاب شرکت‌کنندگان بر اساس بررسی رزومه است."
+      "fa": "انتخاب شرکت‌کنندگان هکتون بر اساس بررسی رزومه است."
     }
   }
 }
