@@ -1,201 +1,201 @@
-  {
-    "headline": {
-      "en": "Featured Voices",
-      "fa": "صداهای رویداد"
+{
+  "headline": {
+    "en": "Featured Voices",
+    "fa": "چهره های برجسته"
+  },
+  "people": [
+    {
+      "id": "eslahchi",
+      "name": {
+        "en": "Prof. Changiz Eslahchi",
+        "fa": "پروفسور چنگیز اصلاحچی"
+      },
+      "role": {
+        "en": "Chair & Host",
+        "fa": "رئیس رویداد و مجری افتتاحیه"
+      },
+      "title": {
+        "en": "Professor of Bioinformatics and Computational Biology",
+        "fa": "استاد بیوانفورماتیک و زیست‌شناسی محاسباتی"
+      },
+      "affiliation": {
+        "en": "Shahid Beheshti University, Tehran, Iran\n",
+        "fa": "دانشگاه شهید بهشتی، تهران، ایران"
+      },
+      "brief": {
+        "en": "Prof. Eslahchi is a distinguished figure in the field of bioinformatics, specializing in the integration of computational techniques for understanding biological systems. His work has contributed significantly to the development of computational tools and models for genomic data analysis.",
+        "fa": "پروفسور اصلاحچی از چهره‌های برجسته در حوزه بیوانفورماتیک است و در زمینه به‌کارگیری تکنیک‌های محاسباتی برای درک سیستم‌های زیستی تخصص دارد. فعالیت‌های علمی ایشان نقش مهمی در توسعه ابزارها و مدل‌های محاسباتی برای تحلیل داده‌های ژنومی ایفا کرده است."
+      },
+      "scholar": "https://scholar.google.com/citations?hl=en&user=Dr4pU2MAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": true
     },
-    "people": [
-      {
-        "id": "eslahchi",
-        "name": {
-          "en": "Prof. Changiz Eslahchi",
-          "fa": "پروفسور چنگیز اصلاحچی"
-        },
-        "role": {
-          "en": "Chair & Host",
-          "fa": "رئیس رویداد و مجری افتتاحیه"
-        },
-        "title": {
-          "en": "Professor of Bioinformatics and Computational Biology",
-          "fa": "استاد بیوانفورماتیک و زیست‌شناسی محاسباتی"
-        },
-        "affiliation": {
-          "en": "Shahid Beheshti University, Tehran, Iran\n",
-          "fa": "دانشگاه شهید بهشتی، تهران، ایران"
-        },
-        "brief": {
-          "en": "Prof. Eslahchi is a distinguished figure in the field of bioinformatics, specializing in the integration of computational techniques for understanding biological systems. His work has contributed significantly to the development of computational tools and models for genomic data analysis.",
-          "fa": "پروفسور اصلاحچی از چهره‌های برجسته در حوزه بیوانفورماتیک است و در زمینه به‌کارگیری تکنیک‌های محاسباتی برای درک سیستم‌های زیستی تخصص دارد. فعالیت‌های علمی ایشان نقش مهمی در توسعه ابزارها و مدل‌های محاسباتی برای تحلیل داده‌های ژنومی ایفا کرده است."
-        },
-        "scholar": "https://scholar.google.com/citations?hl=en&user=Dr4pU2MAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": true
+    {
+      "id": "bahram",
+      "name": {
+        "en": "Prof. Siamak Bahram, MD, PhD",
+        "fa": "پروفسور سیامک بهرام"
       },
-      {
-        "id": "bahram",
-        "name": {
-          "en": "Prof. Siamak Bahram, MD, PhD",
-          "fa": "پروفسور سیامک بهرام"
-        },
-        "title": {
-          "en": "Professor of Medicine, Strasbourg University – Dean of Research",
-          "fa": "استاد پزشکی در دانشگاه استراسبورگ و رئیس بخش پژوهش"
-        },
-        "affiliation": {
-          "en": "Strasbourg University School of Medicine, France\n",
-          "fa": "دانشکده پزشکی دانشگاه استراسبورگ، فرانسه"
-        },
-        "brief": {
-          "en": "A leading figure in immunogenetics, Prof. Bahram’s research has profoundly advanced our understanding of the immune system’s complexity. As a senior member of the Institut universitaire de France (IUF), his work continues to shape immunology and genetics research globally.",
-          "fa": "پروفسور بهرام از پیشگامان برجسته در حوزه ایمنوژنتیک است و پژوهش‌های او به‌طور عمیقی به درک بهتر از پیچیدگی‌های سیستم ایمنی کمک کرده‌اند. وی به‌عنوان یکی از اعضای ارشد «مؤسسه دانشگاهی فرانسه» (IUF)، نقشی کلیدی در پیشبرد پژوهش‌های جهانی در زمینه‌های ایمنی‌شناسی و ژنتیک ایفا می‌کند."
-        },
-        "scholar": "https://scholar.google.com/citations?hl=en&user=etGWQ7sAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": true
+      "title": {
+        "en": "Professor of Medicine, Strasbourg University – Dean of Research",
+        "fa": "استاد پزشکی در دانشگاه استراسبورگ و رئیس بخش پژوهش"
       },
-      {
-        "id": "psomopoulos",
-        "name": {
-          "en": "Dr. Fotis Psomopoulos",
-          "fa": "دکتر فوتیس سموپولوس"
-        },
-        "title": {
-          "en": "Senior Researcher, Centre for Research and Technology Hellas (CERTH)",
-          "fa": "پژوهشگر ارشد در مرکز تحقیقات و فناوری یونان"
-        },
-        "affiliation": {
-          "en": "CERTH, Thessaloniki, Greece",
-          "fa": "مرکز پژوهش و فناوری یونان (CERTH)، تسالونیکی، یونان"
-        },
-        "brief": {
-          "en": "Dr. Psomopoulos is at the forefront of bioinformatics and machine learning in life sciences. He co-leads the ELIXIR Machine Learning Focus Group and has been pivotal in advancing the role of AI in biological discovery, particularly through his work on the DOME recommendations.",
-          "fa": "دکتر سموپولوس در خط مقدم پژوهش‌های بیوانفورماتیک و یادگیری ماشین در علوم زیستی قرار دارد. او به‌عنوان یکی از رهبران گروه تمرکز یادگیری ماشین در ELIXIR، نقش مهمی در ارتقای کاربرد هوش مصنوعی در کشفیات زیستی ایفا کرده و به‌ویژه در تهیه توصیه‌نامه‌های DOME نقش کلیدی داشته است."
-        },
-        "scholar": "https://scholar.google.gr/citations?hl=en&user=Fp0LAqsAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": true
+      "affiliation": {
+        "en": "Strasbourg University School of Medicine, France\n",
+        "fa": "دانشکده پزشکی دانشگاه استراسبورگ، فرانسه"
       },
-      {
-        "id": "vlachakis",
-        "name": {
-          "en": "Prof. Dimitrios Vlachakis",
-          "fa": "پروفسور دیمیتریوس ولاخاکیس"
-        },
-        "title": {
-          "en": "Head of DarkDNA Group, Agricultural University of Athens",
-          "fa": "رئیس گروه DarkDNA در دانشگاه کشاورزی آتن"
-        },
-        "affiliation": {
-          "en": "Agricultural University of Athens, Greece\n",
-          "fa": "دانشگاه کشاورزی آتن، یونان"
-        },
-        "brief": {
-          "en": "Prof. Vlachakis is a pioneer in drug discovery and genomics, focusing on structural bioinformatics and pharmaceutical innovation. As Research Director in Translational Precision Medicine at the University of Athens Medical School, he leads international initiatives to advance personalized medicine.",
-          "fa": "پروفسور ولاخاکیس از پیشگامان در کشف دارو و ژنومیکس است و تمرکز ویژه‌ای بر بیوانفورماتیک ساختاری و نوآوری‌های دارویی دارد. او به‌عنوان مدیر پژوهشی در پزشکی دقیق انتقالی در دانشکده پزشکی دانشگاه آتن، ابتکارات بین‌المللی برای پیشبرد پزشکی شخصی را رهبری می‌کند."
-        },
-        "scholar": "https://scholar.google.gr/citations?hl=el&user=oS5lO90AAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": true
+      "brief": {
+        "en": "A leading figure in immunogenetics, Prof. Bahram’s research has profoundly advanced our understanding of the immune system’s complexity. As a senior member of the Institut universitaire de France (IUF), his work continues to shape immunology and genetics research globally.",
+        "fa": "پروفسور بهرام از پیشگامان برجسته در حوزه ایمنوژنتیک است و پژوهش‌های او به‌طور عمیقی به درک بهتر از پیچیدگی‌های سیستم ایمنی کمک کرده‌اند. وی به‌عنوان یکی از اعضای ارشد «مؤسسه دانشگاهی فرانسه» (IUF)، نقشی کلیدی در پیشبرد پژوهش‌های جهانی در زمینه‌های ایمنی‌شناسی و ژنتیک ایفا می‌کند."
       },
-      {
-        "id": "karagiannis",
-        "name": {
-          "en": "Prof. Sophia Karagiannis",
-          "fa": "پروفسور سوفیا کاراگیانیس"
-        },
-        "title": {
-          "en": "Professor of Translational Cancer Immunology, King’s College London",
-          "fa": "استاد ایمنی‌درمانی انتقالی سرطان در کالج سلطنتی لندن"
-        },
-        "affiliation": {
-          "en": "King’s College London, England",
-          "fa": "کالج سلطنتی لندن، انگلستان"
-        },
-        "brief": {
-          "en": "Prof. Karagiannis is a visionary leader in cancer immunology, known for engineering the first IgE antibodies for cancer therapy. Her groundbreaking work bridges immunology, oncology, and biotechnology, profoundly impacting the development of new cancer therapies.",
-          "fa": "پروفسور کاراگیانیس از رهبران نوآور در حوزه ایمنی‌درمانی سرطان است و به‌واسطه مهندسی نخستین آنتی‌بادی‌های IgE برای درمان سرطان شهرت دارد. پژوهش‌های پیشگامانه او پیوندی میان ایمنی‌شناسی، انکولوژی و زیست‌فناوری برقرار کرده و تأثیر چشم‌گیری بر توسعه درمان‌های نوین سرطان گذاشته است."
-        },
-        "scholar": "https://scholar.google.co.uk/citations?hl=en&user=WwgIT9sAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": true
+      "scholar": "https://scholar.google.com/citations?hl=en&user=etGWQ7sAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": true
+    },
+    {
+      "id": "psomopoulos",
+      "name": {
+        "en": "Dr. Fotis Psomopoulos",
+        "fa": "دکتر فوتیس سموپولوس"
       },
-      {
-        "id": "david",
-        "name": {
-          "en": "Dr. Laurent David",
-          "fa": "دکتر لوران داوید"
-        },
-        "title": {
-          "en": "Co-Founder & Chief Scientist at LabSae",
-          "fa": "هم‌بنیان‌گذار و دانشمند ارشد در LabSae"
-        },
-        "affiliation": {
-          "en": " LabSae, Paris, France",
-          "fa": "LabSae، پاریس، فرانسه"
-        },
-        "brief": {
-          "en": "Dr. Laurent David works at the intersection of computational biology, network science, and machine learning, accelerating in-silico drug design by simulating real cellular environments through protein-interaction networks.",
-          "fa": "دکتر لوران داوید در تلاقی زیست‌شناسی محاسباتی، علم شبکه و یادگیری ماشین فعالیت دارد و با شبیه‌سازی محیط‌های سلولی واقعی از طریق شبکه‌های برهم‌کنش پروتئینی، به تسریع طراحی داروهای درون‌سیلیکویی کمک می‌کند."
-        },
-        "scholar": "",
-        "confirmed": false
+      "title": {
+        "en": "Senior Researcher, Centre for Research and Technology Hellas (CERTH)",
+        "fa": "پژوهشگر ارشد در مرکز تحقیقات و فناوری یونان"
       },
-      {
-        "id": "abdollahi",
-        "name": {
-          "en": "Dr. Nika Abdollahi",
-          "fa": "دکتر نیکا عبداللهی"
-        },
-        "title": {
-          "en": "Postdoctoral Researcher in Computational Immunology",
-          "fa": "پژوهشگر پسادکترا در ایمنی‌شناسی محاسباتی"
-        },
-        "affiliation": {
-          "en": "The Institute for Research in Fundamental Sciences (IPM), Tehran, Iran",
-          "fa": "پژوهشگاه دانش‌های بنیادی، تهران، ایران"
-        },
-        "brief": {
-          "en": "Dr. Abdollahi explores B- and T-cell receptor analysis and integrates diverse biological data to advance our understanding of the immune system, fostering cross-disciplinary collaboration and accessible science communication.",
-          "fa": "دکتر عبداللهی با تحلیل گیرنده‌های سلول‌های B و T و ادغام داده‌های زیستی متنوع، درک ما از سیستم ایمنی را ارتقا داده و با ساده‌سازی مفاهیم پیچیده، ارتباطات علمی را تسهیل می‌کند."
-        },
-        "scholar": "https://scholar.google.com/citations?hl=en&user=twtJv1YAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": false
+      "affiliation": {
+        "en": "CERTH, Thessaloniki, Greece",
+        "fa": "مرکز پژوهش و فناوری یونان (CERTH)، تسالونیکی، یونان"
       },
-      {
-        "id": "hassanzadeh",
-        "name": {
-          "en": "Dr. Reza Hassanzadeh",
-          "fa": "دکتر رضا حسن‌زاده"
-        },
-        "title": {
-          "en": "Assistant Professor of Bioinformatics, University of Mohaghegh Ardabili",
-          "fa": "استادیار بیوانفورماتیک در دانشگاه محقق اردبیلی"
-        },
-        "affiliation": {
-          "en": "University of Mohaghegh Ardabili, Ardabil, Iran\n",
-          "fa": "دانشگاه محقق اردبیلی، اردبیل، ایران"
-        },
-        "brief": {
-          "en": "Dr. Hassanzadeh combines combinatorial algorithms with computational biology to uncover patterns in biological data and evolutionary systems, contributing algorithmic approaches to biological complexity.",
-          "fa": "دکتر حسن‌زاده با بهره‌گیری از الگوریتم‌های ترکیبیاتی، الگوها را در داده‌های زیستی و سیستم‌های فرگشتی کشف کرده و سهم مهمی در توسعه رویکردهای الگوریتمی برای تحلیل پیچیدگی زیستی داشته است."
-        },
-        "scholar": "https://scholar.google.com/citations?hl=en&user=P88xk3MAAAAJ&view_op=list_works&sortby=pubdate",
-        "confirmed": false
+      "brief": {
+        "en": "Dr. Psomopoulos is at the forefront of bioinformatics and machine learning in life sciences. He co-leads the ELIXIR Machine Learning Focus Group and has been pivotal in advancing the role of AI in biological discovery, particularly through his work on the DOME recommendations.",
+        "fa": "دکتر سموپولوس در خط مقدم پژوهش‌های بیوانفورماتیک و یادگیری ماشین در علوم زیستی قرار دارد. او به‌عنوان یکی از رهبران گروه تمرکز یادگیری ماشین در ELIXIR، نقش مهمی در ارتقای کاربرد هوش مصنوعی در کشفیات زیستی ایفا کرده و به‌ویژه در تهیه توصیه‌نامه‌های DOME نقش کلیدی داشته است."
       },
-      {
-        "id": "imgt",
-        "name": {
-          "en": "IMGT®",
-          "fa": "IMGT®"
-        },
-        "title": {
-          "en": "The Pioneering International Reference in Immunogenetics",
-          "fa": "مرجع بین‌المللی پیشگام در ایمنوژنتیک"
-        },
-        "affiliation": {
-          "en": "International ImMunoGeneTics System, Montpellier, France",
-          "fa": "سامانه بین‌المللی ایمونوژنتیک (IMGT)، مون‌پلیه، فرانسه"
-        },
-        "brief": {
-          "en": "IMGT® is the first integrated knowledge platform in immunogenetics, empowering researchers worldwide with comprehensive resources to explore the adaptive immune response.",
-          "fa": "پلتفرم IMGT® نخستین پایگاه دانش یکپارچه در حوزه ایمنوژنتیک است که به پژوهشگران در سراسر جهان منابع جامعی را برای بررسی پاسخ ایمنی تطبیقی ارائه می‌دهد."
-        },
-        "website": "https://www.imgt.org/",
-        "confirmed": true
-      }
-    ]
-  }
+      "scholar": "https://scholar.google.gr/citations?hl=en&user=Fp0LAqsAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": true
+    },
+    {
+      "id": "vlachakis",
+      "name": {
+        "en": "Prof. Dimitrios Vlachakis",
+        "fa": "پروفسور دیمیتریوس ولاخاکیس"
+      },
+      "title": {
+        "en": "Head of DarkDNA Group, Agricultural University of Athens",
+        "fa": "رئیس گروه DarkDNA در دانشگاه کشاورزی آتن"
+      },
+      "affiliation": {
+        "en": "Agricultural University of Athens, Greece\n",
+        "fa": "دانشگاه کشاورزی آتن، یونان"
+      },
+      "brief": {
+        "en": "Prof. Vlachakis is a pioneer in drug discovery and genomics, focusing on structural bioinformatics and pharmaceutical innovation. As Research Director in Translational Precision Medicine at the University of Athens Medical School, he leads international initiatives to advance personalized medicine.",
+        "fa": "پروفسور ولاخاکیس از پیشگامان در کشف دارو و ژنومیکس است و تمرکز ویژه‌ای بر بیوانفورماتیک ساختاری و نوآوری‌های دارویی دارد. او به‌عنوان مدیر پژوهشی در پزشکی دقیق انتقالی در دانشکده پزشکی دانشگاه آتن، ابتکارات بین‌المللی برای پیشبرد پزشکی شخصی را رهبری می‌کند."
+      },
+      "scholar": "https://scholar.google.gr/citations?hl=el&user=oS5lO90AAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": true
+    },
+    {
+      "id": "karagiannis",
+      "name": {
+        "en": "Prof. Sophia Karagiannis",
+        "fa": "پروفسور سوفیا کاراگیانیس"
+      },
+      "title": {
+        "en": "Professor of Translational Cancer Immunology, King’s College London",
+        "fa": "استاد ایمنی‌درمانی انتقالی سرطان در کالج سلطنتی لندن"
+      },
+      "affiliation": {
+        "en": "King’s College London, England",
+        "fa": "کالج سلطنتی لندن، انگلستان"
+      },
+      "brief": {
+        "en": "Prof. Karagiannis is a visionary leader in cancer immunology, known for engineering the first IgE antibodies for cancer therapy. Her groundbreaking work bridges immunology, oncology, and biotechnology, profoundly impacting the development of new cancer therapies.",
+        "fa": "پروفسور کاراگیانیس از رهبران نوآور در حوزه ایمنی‌درمانی سرطان است و به‌واسطه مهندسی نخستین آنتی‌بادی‌های IgE برای درمان سرطان شهرت دارد. پژوهش‌های پیشگامانه او پیوندی میان ایمنی‌شناسی، انکولوژی و زیست‌فناوری برقرار کرده و تأثیر چشم‌گیری بر توسعه درمان‌های نوین سرطان گذاشته است."
+      },
+      "scholar": "https://scholar.google.co.uk/citations?hl=en&user=WwgIT9sAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": true
+    },
+    {
+      "id": "david",
+      "name": {
+        "en": "Dr. Laurent David",
+        "fa": "دکتر لوران داوید"
+      },
+      "title": {
+        "en": "Co-Founder & Chief Scientist at LabSae",
+        "fa": "هم‌بنیان‌گذار و دانشمند ارشد در LabSae"
+      },
+      "affiliation": {
+        "en": " LabSae, Paris, France",
+        "fa": "LabSae، پاریس، فرانسه"
+      },
+      "brief": {
+        "en": "Dr. Laurent David works at the intersection of computational biology, network science, and machine learning, accelerating in-silico drug design by simulating real cellular environments through protein-interaction networks.",
+        "fa": "دکتر لوران داوید در تلاقی زیست‌شناسی محاسباتی، علم شبکه و یادگیری ماشین فعالیت دارد و با شبیه‌سازی محیط‌های سلولی واقعی از طریق شبکه‌های برهم‌کنش پروتئینی، به تسریع طراحی داروهای درون‌سیلیکویی کمک می‌کند."
+      },
+      "scholar": "",
+      "confirmed": false
+    },
+    {
+      "id": "abdollahi",
+      "name": {
+        "en": "Dr. Nika Abdollahi",
+        "fa": "دکتر نیکا عبداللهی"
+      },
+      "title": {
+        "en": "Postdoctoral Researcher in Computational Immunology",
+        "fa": "پژوهشگر پسادکترا در ایمنی‌شناسی محاسباتی"
+      },
+      "affiliation": {
+        "en": "The Institute for Research in Fundamental Sciences (IPM), Tehran, Iran",
+        "fa": "پژوهشگاه دانش‌های بنیادی، تهران، ایران"
+      },
+      "brief": {
+        "en": "Dr. Abdollahi explores B- and T-cell receptor analysis and integrates diverse biological data to advance our understanding of the immune system, fostering cross-disciplinary collaboration and accessible science communication.",
+        "fa": "دکتر عبداللهی با تحلیل گیرنده‌های سلول‌های B و T و ادغام داده‌های زیستی متنوع، درک ما از سیستم ایمنی را ارتقا داده و با ساده‌سازی مفاهیم پیچیده، ارتباطات علمی را تسهیل می‌کند."
+      },
+      "scholar": "https://scholar.google.com/citations?hl=en&user=twtJv1YAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": false
+    },
+    {
+      "id": "hassanzadeh",
+      "name": {
+        "en": "Dr. Reza Hassanzadeh",
+        "fa": "دکتر رضا حسن‌زاده"
+      },
+      "title": {
+        "en": "Assistant Professor of Bioinformatics, University of Mohaghegh Ardabili",
+        "fa": "استادیار بیوانفورماتیک در دانشگاه محقق اردبیلی"
+      },
+      "affiliation": {
+        "en": "University of Mohaghegh Ardabili, Ardabil, Iran\n",
+        "fa": "دانشگاه محقق اردبیلی، اردبیل، ایران"
+      },
+      "brief": {
+        "en": "Dr. Hassanzadeh combines combinatorial algorithms with computational biology to uncover patterns in biological data and evolutionary systems, contributing algorithmic approaches to biological complexity.",
+        "fa": "دکتر حسن‌زاده با بهره‌گیری از الگوریتم‌های ترکیبیاتی، الگوها را در داده‌های زیستی و سیستم‌های فرگشتی کشف کرده و سهم مهمی در توسعه رویکردهای الگوریتمی برای تحلیل پیچیدگی زیستی داشته است."
+      },
+      "scholar": "https://scholar.google.com/citations?hl=en&user=P88xk3MAAAAJ&view_op=list_works&sortby=pubdate",
+      "confirmed": false
+    },
+    {
+      "id": "imgt",
+      "name": {
+        "en": "IMGT®",
+        "fa": "IMGT®"
+      },
+      "title": {
+        "en": "The Pioneering International Reference in Immunogenetics",
+        "fa": "مرجع بین‌المللی پیشگام در ایمنوژنتیک"
+      },
+      "affiliation": {
+        "en": "International ImMunoGeneTics System, Montpellier, France",
+        "fa": "سامانه بین‌المللی ایمونوژنتیک (IMGT)، مون‌پلیه، فرانسه"
+      },
+      "brief": {
+        "en": "IMGT® is the first integrated knowledge platform in immunogenetics, empowering researchers worldwide with comprehensive resources to explore the adaptive immune response.",
+        "fa": "پلتفرم IMGT® نخستین پایگاه دانش یکپارچه در حوزه ایمنوژنتیک است که به پژوهشگران در سراسر جهان منابع جامعی را برای بررسی پاسخ ایمنی تطبیقی ارائه می‌دهد."
+      },
+      "website": "https://www.imgt.org/",
+      "confirmed": true
+    }
+  ]
+}
