@@ -27,11 +27,11 @@
     {
       "q": {
         "en": "How much does it cost?",
-        "fa": "هزینه چقدر است؟"
+        "fa": "شرکت در رویداد چقدر هزینه دارد؟"
       },
       "a": {
-        "en": "Conference only €XXX · Hackathon only €XXX · Combo €XXX (student discounts TBA).",
-        "fa": "فقط کنفرانس €XXX · فقط هکاتون €XXX · بسته ترکیبی €XXX (تخفیف دانشجویی اعلام خواهد شد)."
+        "en": "Fees for the conferences and final presentation:\nOnline participation: 300,000 IRR\nStudents (in-person): 600,000 IRR\nOther participants (in-person): 800,000 IRR\nHackathon fees will be announced soon.",
+        "fa": "هزینه شرکت در کنفرانس‌ها و ارائه نهایی:\nشرکت آنلاین: ۳۰۰ هزار تومان\nدانشجویان (حضوری): ۶۰۰ هزار تومان\nسایر شرکت‌کنندگان (حضوری): ۸۰۰ هزار تومان\nهزینه‌های مربوط به هکاتون به‌زودی اعلام خواهد شد."
       }
     },
     {
@@ -40,8 +40,8 @@
         "fa": "سیاست بازپرداخت؟"
       },
       "a": {
-        "en": "100 % refund until 30 days out · 50 % until 7 days out · no refund thereafter. Substitutions allowed until 48 h before the event.",
-        "fa": "۱۰۰٪ تا ۳۰ روز قبل · ۵۰٪ تا ۷ روز قبل · پس از آن بازپرداختی ندارد. جایگزینی تا ۴۸ ساعت پیش از رویداد امکان‌پذیر است."
+        "en": "Refund requests must be submitted at least 10 days before the event start date. Cancellations made before this deadline will receive a full refund minus a processing fee of 50,000 IRR. No refunds will be issued for cancellations made after the deadline or for no-shows. If the event is canceled by the organizers, full refunds will be provided. For any questions regarding refunds, please contact us at: immunity-horizons@ipm.ir",
+        "fa": "درخواست بازپرداخت باید حداقل ۱۰ روز قبل از شروع رویداد ارسال شود.\nلغو ثبت‌نام‌های انجام شده قبل از این مهلت، با کسر هزینه‌ی پردازش به مبلغ ۵۰,۰۰۰ تومان، بازپرداخت کامل خواهند داشت.\nپس از پایان این مهلت یا در صورت عدم حضور، بازپرداختی انجام نخواهد شد.\nدر صورت لغو رویداد توسط برگزارکنندگان، بازپرداخت کامل به شرکت‌کنندگان ارائه خواهد شد.\nبرای هرگونه سوال در خصوص بازپرداخت، لطفاً با ما تماس بگیرید:\nimmunity-horizons@ipm.ir"
       }
     }
   ],
