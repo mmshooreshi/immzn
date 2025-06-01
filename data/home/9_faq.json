@@ -1,7 +1,7 @@
 {
   "headline": {
-    "en": "Quick answers",
-    "fa": "پاسخ‌های سریع"
+    "en": "FAQ",
+    "fa": "سؤالات متداول"
   },
   "entries": [
     {
@@ -10,18 +10,18 @@
         "fa": "چه کسانی می‌توانند شرکت کنند؟"
       },
       "a": {
-        "en": "Students, researchers, coders, clinicians, and anyone curious about code or cells.",
-        "fa": "دانشجویان، پژوهشگران، برنامه‌نویسان، پزشکان و هر کسی که درباره کد یا سلول‌ها کنجکاو است."
+        "en": "Students, researchers, coders, clinicians, and anyone curious about code and immunity.",
+        "fa": "دانشجویان، پژوهشگران، برنامه‌نویسان، پزشکان و هر کسی که به کد و ایمنی علاقه‌مند است.\n"
       }
     },
     {
       "q": {
         "en": "Is this hybrid?",
-        "fa": "آیا این ترکیبی است؟"
+        "fa": "آیا این رویداد به صورت ترکیبی (حضوری و آنلاین) برگزار می‌شود؟"
       },
       "a": {
-        "en": "Yes — fully livestreamed with interactive chat and captioning.",
-        "fa": "بله — پخش زنده کامل با چت تعاملی و زیرنویس."
+        "en": "Yes! fully livestreamed with interactive chat and captioning.",
+        "fa": "بله! از هر کجا که هستید، می‌توانید شرکت کنید."
       }
     },
     {
