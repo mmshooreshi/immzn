@@ -1,85 +1,85 @@
 {
-    "inviter": {
-        "name": {
-            "en": "",
-            "fa": ""
-        }
-    },
-    "event": {
-        "name": {
-            "en": "ImmUnity Horizons",
-            "fa": "گستره‌ی ایمنی"
-        },
-        "dates": {
-            "en": "9–11 July 2025",
-            "fa": "۱۸ تا ۲۰ تیر ۱۴۰۴"
-        },
-        "location": "Tehran",
-        "organiser": {
-            "name": "Institute for Research in Fundamental Sciences",
-            "abbreviation": "IPM"
-        }
-    },
-    "message": {
-        "intro": {
-            "en": "You've been invited to join a team for the hackathon at ImmUnity Horizons.",
-            "fa": "شما برای پیوستن به تیمی در بخش هکاتون از رویداد گستره‌ی ایمنی دعوت شده‌اید."
-        },
-        "eventOverview": {
-            "en": "ImmUnity Horizons is a three-day event in Tehran (9–11 July 2025), beginning with a scientific conference and followed by a two-day hackathon. The program is hosted by the Institute for Research in Fundamental Sciences (IPM).",
-            "fa": "گستره‌ی ایمنی یک رویداد سه‌روزه در تهران است (۱۸ تا ۲۰ تیر ۱۴۰۴) که با یک کنفرانس علمی آغاز می‌شود و سپس در دو روز پایانی، هکاتونی تخصصی برگزار خواهد شد. این برنامه به‌میزبانی پژوهشگاه دانش‌های بنیادی (IPM) برگزار می‌شود."
-        },
-        "hackathonPitch": {
-            "en": "Join the two-day hackathon to explore real challenges in computational immunology, work in interdisciplinary teams, and propose creative, data-driven solutions. Participation is free, but spots are limited—submit a CV now.",
-            "fa": "در هکاتون دو روزه‌ی گستره‌ی ایمنی شرکت کنید تا به پرسش‌هایی واقعی، در حوزه‌ی ایمنی‌شناسی محاسباتی بپردازید، در تیم‌های میان‌رشته‌ای همکاری کنید و راه‌حل‌هایی خلاقانه و داده‌محور ارائه دهید. شرکت در این برنامه رایگان است، اما ظرفیت محدود است—پس رزومه‌ی خود را همین‌حالا ارسال کنید."
-        },
-        "organisedBy": {
-            "en": "Hosted by the Institute for Research in Fundamental Sciences (IPM).",
-            "fa": "به‌میزبانی پژوهشگاه دانش‌های بنیادی (IPM)."
-        },
-        "highlights": [
-            {
-                "en": "Work in interdisciplinary teams with mentorship from leading researchers",
-                "fa": "کار در تیم‌های میان‌رشته‌ای با راهنمایی پژوهشگران برجسته"
-            },
-            {
-                "en": "Access structured datasets and analytical tools",
-                "fa": "دسترسی به داده‌های ساختاریافته و ابزارهای تحلیلی"
-            },
-            {
-                "en": "Receive feedback, compete for awards, and connect with a professional community",
-                "fa": "دریافت بازخورد، رقابت برای جوایز، و ارتباط با جامعه‌ای حرفه‌ای"
-            }
-        ],
-        "ctaPrompt": {
-            "en": "Interested?",
-            "fa": "علاقه‌مندید؟"
-        },
-        "buttons": {
-            "accept": {
-                "label": {
-                    "en": "Accept",
-                    "fa": "می‌پذیرم"
-                },
-                "link": "/onboarding"
-            },
-            "reject": {
-                "label": {
-                    "en": "Not now",
-                    "fa": "فعلاً نه"
-                },
-                "action": "window.history.back()"
-            }
-        }
-    },
-    "meta": {
-        "title": {
-            "en": "Hackathon Invitation – ImmUnity Horizons",
-            "fa": "دعوت به هکاتون گستره‌ی ایمنی"
-        },
-        "description": {
-            "en": "Apply to join a team for the two-day hackathon at ImmUnity Horizons—an intensive, collaborative experience tackling questions in computational immunology.",
-            "fa": "برای پیوستن به تیمی در هکاتون دو روزه‌ی گستره‌ی ایمنی ثبت‌نام کنید—تجربه‌ای فشرده و تعاملی برای پرداختن به پرسش‌های حوزه‌ی ایمنی‌شناسی محاسباتی."
-        }
+  "inviter": {
+    "name": {
+      "en": "",
+      "fa": ""
     }
+  },
+  "event": {
+    "name": {
+      "en": "ImmUnity Horizons",
+      "fa": "گستره‌ی ایمنی"
+    },
+    "dates": {
+      "en": "9–11 July 2025",
+      "fa": "۱۸ تا ۲۰ تیر ۱۴۰۴"
+    },
+    "location": "Tehran",
+    "organiser": {
+      "name": "Institute for Research in Fundamental Sciences",
+      "abbreviation": "IPM"
+    }
+  },
+  "message": {
+    "intro": {
+      "en": "You've been invited to join a team for the hackathon at ImmUnity Horizons.",
+      "fa": "شما برای پیوستن به تیمی در بخش هکاتون از رویداد گستره‌ی ایمنی دعوت شده‌اید."
+    },
+    "eventOverview": {
+      "en": "ImmUnity Horizons is a three-day event in Tehran (9–11 July 2025), beginning with a scientific conference and followed by a two-day hackathon. The program is hosted by the Institute for Research in Fundamental Sciences (IPM).",
+      "fa": "گستره‌ی ایمنی یک رویداد سه‌روزه در تهران است (۱۸ تا ۲۰ تیر ۱۴۰۴) که با یک کنفرانس علمی آغاز می‌شود و سپس در دو روز پایانی، هکاتونی تخصصی برگزار خواهد شد. این برنامه به‌میزبانی پژوهشگاه دانش‌های بنیادی (IPM) برگزار می‌شود."
+    },
+    "hackathonPitch": {
+      "en": "Join the two-day hackathon to explore real challenges in computational immunology, work in interdisciplinary teams, and propose creative, data-driven solutions. Participation is free, but spots are limited—submit a CV now.",
+      "fa": "در هکاتون دو روزه‌ی گستره‌ی ایمنی شرکت کنید تا به پرسش‌هایی واقعی، در حوزه‌ی ایمنی‌شناسی محاسباتی بپردازید، در تیم‌های میان‌رشته‌ای همکاری کنید و راه‌حل‌هایی خلاقانه و داده‌محور ارائه دهید. شرکت در این برنامه رایگان است، اما ظرفیت محدود است—پس رزومه‌ی خود را همین‌حالا ارسال کنید."
+    },
+    "organisedBy": {
+      "en": "Hosted by the Institute for Research in Fundamental Sciences (IPM).",
+      "fa": "به‌میزبانی پژوهشگاه دانش‌های بنیادی (IPM)."
+    },
+    "highlights": [
+      {
+        "en": "Work in interdisciplinary teams with mentorship from leading researchers",
+        "fa": "کار در تیم‌های میان‌رشته‌ای با راهنمایی پژوهشگران برجسته"
+      },
+      {
+        "en": "Access structured datasets and analytical tools",
+        "fa": "دسترسی به داده‌های ساختاریافته و ابزارهای تحلیلی"
+      },
+      {
+        "en": "Receive feedback, compete for awards, and connect with a professional community",
+        "fa": "دریافت بازخورد، رقابت برای جوایز، و ارتباط با جامعه‌ای حرفه‌ای"
+      }
+    ],
+    "ctaPrompt": {
+      "en": "Interested?",
+      "fa": "علاقه‌مندید؟"
+    },
+    "buttons": {
+      "accept": {
+        "label": {
+          "en": "Accept",
+          "fa": "می‌پذیرم"
+        },
+        "link": "/onboarding"
+      },
+      "reject": {
+        "label": {
+          "en": "Not now",
+          "fa": "فعلاً نه"
+        },
+        "action": "window.history.back()"
+      }
+    }
+  },
+  "meta": {
+    "title": {
+      "en": "Hackathon Invitation – ImmUnity Horizons",
+      "fa": "دعوت به هکاتون گستره‌ی ایمنی"
+    },
+    "description": {
+      "en": "Apply to join a team for the two-day hackathon at ImmUnity Horizons—an intensive, collaborative experience tackling questions in computational immunology.",
+      "fa": "برای پیوستن به تیمی در هکاتون دو روزه‌ی گستره‌ی ایمنی ثبت‌نام کنید—تجربه‌ای فشرده و تعاملی برای پرداختن به پرسش‌های حوزه‌ی ایمنی‌شناسی محاسباتی."
+    }
+  }
 }
