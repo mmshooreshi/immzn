@@ -160,23 +160,23 @@
   "pricing": {
     "info1": {
       "en": "Registration fees for first-day conferences:",
-      "fa": "هزینه ثبت‌نام برای کنفرانس‌های روز اول:"
+      "fa": "هزینه شرکت در کنفرانس‌ها و ارائه نهایی:"
     },
     "student": {
-      "en": "Students: 700,000 Toman",
-      "fa": "دانشجویان: ۷۰۰ هزار تومان"
+      "en": "Online participation: 3,000,000 IRR\nStudents (in-person): 6,000,000 IRR",
+      "fa": "شرکت آنلاین: ۳۰۰ هزار تومان\nدانشجویان (حضوری): ۶۰۰ هزار تومان"
     },
     "nonStudent": {
-      "en": "Non-students: 1,000,000 Toman",
-      "fa": "غیر دانشجوها: ۱ میلیون تومان"
+      "en": "Other participants (in-person): 8,000,000 IRR\n",
+      "fa": "سایر شرکت‌کنندگان (حضوری): ۸۰۰ هزار تومان"
     },
     "hackathonFree": {
-      "en": "Hackathon participation is free",
-      "fa": "شرکت در هکتون رایگان است"
+      "en": "Hackathon fees will be announced soon.",
+      "fa": "هزینه‌های مربوط به هکاتون به‌زودی اعلام خواهد شد."
     },
     "selectionNote": {
       "en": "Participant selection is based on CV evaluation.",
-      "fa": "انتخاب شرکت‌کنندگان هکتون بر اساس بررسی رزومه است."
+      "fa": "انتخاب شرکت‌کنندگان هکاتون بر اساس بررسی رزومه است."
     }
   }
 }
