@@ -35,24 +35,20 @@
       },
       "items": [
         {
-          "en": "Connect directly with leading experts. ask, discuss, and grow with those shaping the field of computational immunology.",
+          "en": "Connect directly with leading experts. Ask, discuss, and grow with those shaping the field of computational immunology.",
           "fa": "با متخصصان برجسته ارتباط مستقیم برقرار کنید؛ بپرسید، گفتگو کنید، و همراه با پیشگامان ایمنی‌شناسی محاسباتی رشد کنید."
         }
       ]
     },
     {
       "title": {
-        "en": "Pre-event support",
-        "fa": "پشتیبانی پیش‌رویداد"
+        "en": "International Collaboration from Your Country",
+        "fa": "همکاری علمی بین‌المللی از کشور خودتان"
       },
       "items": [
         {
-          "en": "Code of conduct & ethics briefing",
-          "fa": "معارفه آیین‌نامه رفتاری و اخلاقی"
-        },
-        {
-          "en": "FAQs & help-desk",
-          "fa": "سوالات متداول و میز یاری‌رسان"
+          "en": "Experience the essence of global scientific teamwork. Engage in international collaboration, without leaving your country.",
+          "fa": "با تجربه‌ای واقعی از همکاری علمی جهانی همراه شوید , بدون آن‌که کشور خود را ترک کنید، در همکاری‌های بین‌المللی مشارکت کنید."
         }
       ]
     }
@@ -60,8 +56,8 @@
   "items": [],
   "cta": {
     "label": {
-      "en": "Grab the resources",
-      "fa": "منابع را دریافت کنید"
+      "en": "",
+      "fa": "همکاری علمی بین‌المللی از کشور خودتان"
     },
     "href": "/resources"
   }
