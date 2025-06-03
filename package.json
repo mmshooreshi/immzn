@@ -43,6 +43,7 @@
     "jsonwebtoken": "^9.0.2",
     "lil-gui": "^0.20.0",
     "locomotive-scroll": "^4.1.4",
+    "lottie-web": "^5.13.0",
     "nanoid": "^5.1.5",
     "next-auth": "4.21.1",
     "ofetch": "^1.4.1",

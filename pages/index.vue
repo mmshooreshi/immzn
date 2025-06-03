@@ -174,12 +174,13 @@ useHead({
       }" />
     </div> -->
 
-    <div class="max-w-screen-lg mx-auto my-8">
-      <client-only>
-        <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="[]"
-          :initialCenter="initialCenter" :initialZoom="initialZoom" />
-      </client-only>
-
+    <div class="w-screen h-[430px] md:h-[480px] overflow-hidden  mx-auto my-8 mt-0">
+      <div class="fixed m-6">
+        <client-only>
+          <SimpleNeshanMap :key="activeTab" :apiKey="apiKey" :markers="visibleMarkers" :routes="[]"
+            :initialCenter="initialCenter" :initialZoom="initialZoom" />
+        </client-only>
+      </div>
     </div>
 
 
