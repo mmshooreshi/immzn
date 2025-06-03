@@ -81,7 +81,9 @@ watchEffect(() => {
       <figcaption v-if="isMobile">
         <h2 class="hero">{{ data?.headline }} <span class="empty"></span></h2>
       </figcaption>
-      <img class="image object-cover" src="~/public/images/event.webp" alt="" width="256" height="384" loading="lazy" />
+      <!-- <img class="image object-cover" src="~/public/images/event.webp" alt="" width="256" height="384" loading="lazy" /> -->
+      <img class="imageNew -mb-16 lg:-mb-38 lg:-ml-21 object-cover" src="~/public/images/new.png" alt="" width="360"
+        height="360" loading="lazy" />
       <figcaption class="figcaption">
         <h2 v-if="!isMobile" class="hero">
           {{ data?.headline }} <span class="empty"></span>

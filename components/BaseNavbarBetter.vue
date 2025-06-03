@@ -57,7 +57,8 @@ const itemName = (item: MenuItem) =>
         ? item.name[props.lang] ?? item.name.en ?? ''
         : item.name
 
-const isButton = (item: MenuItem) => item.slug !== 'login'
+// const isButton = (item: MenuItem) => item.slug !== 'login'
+function isButton(item: any) { return item.type != 'link' }
 
 
 // const loco = inject<LocomotiveScroll | null>('scroll')   // provided in layout
@@ -145,18 +146,24 @@ onBeforeUnmount(() => {
 
                     <!-- Login / Profile -->
                     <template v-else>
-                        <NuxtLink :to="auth.user ? '/profile' : `/${item.slug}`" class="block w-full h-full">
-                            {{ auth.user ? (lang === 'fa' ? 'پروفایل' : 'Profile') : itemName(item) }}
+                        <NuxtLink v-if="!auth.user" :href="`/${item.slug}`" @click="menuOpen = false">
+                            {{ itemName(item) }}
+                        </NuxtLink>
+                        <NuxtLink v-else :to="auth.user && false ? '/profile' : `/${item.slug}`"
+                            class="block w-full h-full">
+                            <!-- {{ auth.user ? (lang === 'fa' ? 'پروفایل' : 'Profile') : itemName(item) }} -->
+                            {{ itemName(item) }}
                         </NuxtLink>
                     </template>
+
                 </li>
             </ul>
 
             <!-- Utilities (language, theme, hamburger) --------------------------- -->
-            <div class="flex items-center gap-2 w-full md:w-auto">
+            <div class="flex text-d4 items-center gap-2 w-full md:w-auto">
                 <!-- Language -->
                 <BaseIconButton :label="`Switch language (current: ${lang.toUpperCase()})`" @click="toggleLang">
-                    {{ lang === 'fa' ? 'فا' : lang.toUpperCase() }}
+                    {{ lang === 'fa' ? 'En' : 'فا' }}
                 </BaseIconButton>
 
                 <!-- Theme -->

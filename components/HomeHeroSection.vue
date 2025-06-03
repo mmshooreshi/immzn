@@ -47,18 +47,20 @@ onBeforeUnmount(cleanup)
     <!-- purely static subheading -->
 
     <h2
-      class="sequence-item taglineC z-1 text-md text-[12px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]   text-teal-100 mx-8  leading-[1.5]"
+      class="sequence-item taglineC z-1 text-md text-[18px]  p-2 px-4  rounded-2xl md:text-xl   w-max max-w-[80vw]   text-teal-100 mx-8  leading-[1.5]"
       :class="{ 'text-left': language == 'en', 'text-right': language == 'fa' }">
-      <span class="text-white/80 text-xs" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
-        data?.tagline?.first
-      }}</span>
 
-      <span class="">{{ data?.tagline?.second }}</span>
-      <span class="">{{ data?.tagline?.third }}</span>
-      <span class="">{{ data?.tagline?.fourth }}</span>
+
+      <span class="text-white/80 text-lg" :class="{ 'mr-1': language == 'en', 'ml-1': language == 'fa' }">{{
+        data?.tagline?.first
+        }}</span>
+
+      <span class=" text-lg">{{ data?.tagline?.second }}</span>
+      <span class="text-lg">{{ data?.tagline?.third }}</span>
+      <span class="text-lg">{{ data?.tagline?.fourth }}</span>
 
       <br>
-      <span class="text-xs text-purple tracking-0">{{ data?.dates }}</span>
+      <span class="text-lg text-purple tracking-0">{{ data?.dates }}</span>
 
 
     </h2>

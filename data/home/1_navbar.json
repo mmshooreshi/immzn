@@ -15,6 +15,14 @@
   },
   {
     "name": {
+      "en": "Hackathon",
+      "fa": "هَکِتون"
+    },
+    "slug": "hack",
+    "type": "link"
+  },
+  {
+    "name": {
       "en": "Program",
       "fa": "زمانبندی"
     },
@@ -46,6 +54,7 @@
       "en": "Login/Register",
       "fa": "ورود/ثبت‌نام"
     },
-    "slug": "login"
+    "slug": "login",
+    "type": "link"
   }
 ]
