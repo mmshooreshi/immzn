@@ -30,21 +30,13 @@
     },
     {
       "title": {
-        "en": "Community hub",
-        "fa": "هاب جامعه"
+        "en": "Direct Access to Experts",
+        "fa": "ارتباط مستقیم با متخصصان"
       },
       "items": [
         {
-          "en": "Slack Q&A channels",
-          "fa": "کانال‌های پرسش و پاسخ Slack"
-        },
-        {
-          "en": "Office-hours with dataset curators",
-          "fa": "ساعات اداری با گردآورندگان داده"
-        },
-        {
-          "en": "Discord voice lounges",
-          "fa": "لانژ‌های صوتی Discord"
+          "en": "Connect directly with leading experts. ask, discuss, and grow with those shaping the field of computational immunology.",
+          "fa": "با متخصصان برجسته ارتباط مستقیم برقرار کنید؛ بپرسید، گفتگو کنید، و همراه با پیشگامان ایمنی‌شناسی محاسباتی رشد کنید."
         }
       ]
     },
