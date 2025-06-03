@@ -1,18 +1,18 @@
 {
   "headline": {
     "en": "Tools & sparks",
-    "fa": "ابزارها و جرقه‌ها"
+    "fa": "ابزارها و اندیشه‌ها "
   },
   "sections": [
     {
       "title": {
-        "en": "Workshops",
-        "fa": "کارگاه‌ها"
+        "en": "Pre-event Support ",
+        "fa": "پشتیبانی پیش از رویداد"
       },
       "items": [
         {
-          "en": "Python for Immunomics",
-          "fa": "پایتون برای ایمنی‌شناسی محاسباتی"
+          "en": "Get prepared with tailored support before the event,  from onboarding to practical guidance, we’ve got you covered.",
+          "fa": "پیش از آغاز رویداد ، با پشتیبانی هدفمند و راهنمایی‌های عملی آماده شوید , ما در کنار شما هستیم.\n\n"
         },
         {
           "en": "Fast.ai on Protein Graphs",
