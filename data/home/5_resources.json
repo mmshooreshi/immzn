@@ -13,34 +13,18 @@
         {
           "en": "Get prepared with tailored support before the event,  from onboarding to practical guidance, we’ve got you covered.",
           "fa": "پیش از آغاز رویداد ، با پشتیبانی هدفمند و راهنمایی‌های عملی آماده شوید , ما در کنار شما هستیم.\n\n"
-        },
-        {
-          "en": "Fast.ai on Protein Graphs",
-          "fa": "Fast.ai بر روی گراف‌های پروتئین"
-        },
-        {
-          "en": "Version-controlled pipelines with Nextflow",
-          "fa": "پایپ‌لاین‌های کنترل نسخه با Nextflow"
         }
       ]
     },
     {
       "title": {
-        "en": "Starter kits",
-        "fa": "کیت‌های شروع"
+        "en": "A Community Hub",
+        "fa": "فضای تعاملی و اجتماعی"
       },
       "items": [
         {
-          "en": "Curated immune datasets",
-          "fa": "مجموعه داده‌های ایمنی گزینشی"
-        },
-        {
-          "en": "Reproducible notebook templates",
-          "fa": "قالب‌های دفترچه یادداشت قابل تکرار"
-        },
-        {
-          "en": "Docker images for rapid prototyping",
-          "fa": "ایمیج‌های Docker برای نمونه‌سازی سریع"
+          "en": "Join a vibrant and inclusive space where ideas flow, questions matter, and collaboration begins before the event even starts",
+          "fa": "به فضایی زنده و دربرگیرنده بپیوندید؛ جایی که ایده‌ها شکل می‌گیرند، پرسش‌ها ارزش دارند، و همکاری پیش از شروع رویداد آغاز می‌شود.\n\n"
         }
       ]
     },
