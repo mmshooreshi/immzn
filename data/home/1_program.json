@@ -101,8 +101,8 @@
           },
           "speaker": {
             "name": {
-              "en": "Dr. Sophia Tsoka",
-              "fa": "دکتر سوفیا تسوکا"
+              "en": "",
+              "fa": ""
             },
             "affiliation": {
               "en": "*TBD",
@@ -122,59 +122,6 @@
             "en": "Slot declined; alternative speaker to be arranged",
             "fa": "سخنران رد شده؛ جایگزین در حال هماهنگی"
           }
-        },
-        {
-          "time": {
-            "start": "11:50",
-            "end": "12:30"
-          },
-          "type": "talk",
-          "title": {
-            "en": "Reproducibility and Machine Learning in Bioinformatics",
-            "fa": "قابلیت تکرار و یادگیری ماشینی در بیوانفورماتیک"
-          },
-          "speaker": {
-            "name": {
-              "en": "Dr. Fotis Psomopoulos",
-              "fa": "دکتر فوتیس پسوموپولوس"
-            },
-            "affiliation": {
-              "en": "Centre for Research and Technology Hellas, Greece",
-              "fa": "مرکز پژوهش و فناوری هلناس، یونان"
-            },
-            "status": "Confirmed"
-          },
-          "description": {
-            "en": null,
-            "fa": null
-          },
-          "location": {
-            "en": "Main Auditorium",
-            "fa": "سالن اصلی"
-          },
-          "notes": null
-        },
-        {
-          "time": {
-            "start": "12:30",
-            "end": "13:30"
-          },
-          "type": "break",
-          "title": {
-            "en": "Lunch Break & Informal Conversations",
-            "fa": "ناهار و گفت‌وگوی آزاد"
-          },
-          "speaker": null,
-          "status": null,
-          "description": {
-            "en": null,
-            "fa": null
-          },
-          "location": {
-            "en": "Lobby & Dining Area",
-            "fa": "لانژ و فضای غذاخوری"
-          },
-          "notes": null
         },
         {
           "time": {
