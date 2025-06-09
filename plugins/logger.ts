@@ -15,6 +15,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
     logger.info('✨ $log defined on globalThis')
   } else {
-    globalThis.$log?.debug?.('⚠️ $log already defined, skipping')
+    // globalThis.$log?.debug?.('⚠️ $log already defined, skipping')
   }
 })

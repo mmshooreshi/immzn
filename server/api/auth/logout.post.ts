@@ -1,5 +1,6 @@
 export default defineEventHandler((event) => {
   deleteCookie(event, 'auth_token')
-  $log.info('👋 Logged out')
+  deleteCookie(event, 'refresh_token')
+  $log.info('👋 Logged out (removed both cookies)')
   return { ok: true }
 })

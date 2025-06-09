@@ -40,6 +40,9 @@ export default defineNuxtConfig({
   // },
 
 
+
+
+
   css: [
     '~/styles/fontiran.css',
     '~/styles/_reset.scss',

@@ -122,8 +122,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+
     <header v-motion-fade-visible-once data-scroll data-scroll-sticky data-scroll-target="main"
         class="fixed top-4 left-[10px] right-[10px] w-[95%] mx-auto rounded-2xl bg-black/50 dark:bg-white/5 backdrop-blur-2xl z-50">
+
         <!-- ╭───────────────╮ -->
         <!-- │   NAV BAR    │ -->
         <!-- ╰───────────────╯ -->

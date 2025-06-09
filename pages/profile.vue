@@ -9,8 +9,8 @@ import ConferencePane from '~/components/ConferencePane.vue'
 const auth = useAuth()
 const router = useRouter()
 const user = auth.user
-const { data: team, refresh: refreshTeam } = await useFetch('/api/team/my')
-const { data: invites, refresh: refreshInvites } = await useFetch('/api/team/invites')
+const { data: team, refresh: refreshTeam } = await useFetch('/api/team/my') as any
+const { data: invites, refresh: refreshInvites } = await useFetch('/api/team/invites') as any
 
 /* convenience: refresh everything after a mutation */
 function refetchHackathon() {
@@ -62,10 +62,10 @@ definePageMeta({ requiresAuth: true })
                         <InfoItem label="User ID" :value="user?.id" />
                         <InfoItem label="Phone" :value="user?.phone" />
                         <InfoItem label="Email" :value="user?.email || '—'" />
-                        <InfoItem label="Full Name" :value="user?.fullName" />
+                        <InfoItem label="Full Name" :value="user?.fullName || '* ?'" />
                         <InfoItem label="Affiliation" :value="user?.affiliation || '—'" />
                         <InfoItem label="Role" :value="user?.role" />
-                        <InfoItem label="Field" :value="user?.field" />
+                        <InfoItem label="Field" :value="user?.field || '* ?'" />
                         <InfoItem label="Attendance" :value="user?.attendance" />
                         <InfoItem label="Tracks" :value="user?.tracks?.join(', ') || '—'" />
                         <InfoItem class="overflow-scroll" label="CV URL"

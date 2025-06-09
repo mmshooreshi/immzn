@@ -2,8 +2,10 @@
 
 import { useAuth } from '~/stores/auth'
 
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(async (to) => {
   const auth = useAuth()
-  if (to.meta.requiresAuth && !auth.user)
+  if (to.meta.requiresAuth && !auth.user) {
+    await auth.fetch()
     return navigateTo('/login')
+  }
 })

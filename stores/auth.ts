@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia'
 import type { Prisma } from '@prisma/client'
 
-export type Role       = Prisma.Role
+export type Role = Prisma.Role
 export type Attendance = Prisma.Attendance
 
 export interface AuthUser {
@@ -42,7 +42,19 @@ export const useAuth = defineStore('auth', {
       try {
         const me = await $fetch<AuthUser>('/api/me')
         this.user = me
-      } catch {
+      } catch (err: any) {
+
+        if (err?.status === 401) {
+          try {
+            console.warn('↪️ attempting silent refresh')
+            await $fetch('/api/auth/refresh', { method: 'POST' })
+            console.info('✅ silent refresh succeeded')
+            const me = await $fetch<AuthUser>('/api/me')
+            this.user = me
+            return
+          } catch {/* ignore – will fall through and clear state */ }
+        }
+
         this.user = null
       }
     },

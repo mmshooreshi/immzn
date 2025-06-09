@@ -296,7 +296,7 @@ const handleSocialLogin = (provider: string) => {
 
             <!-- Info Inputs -->
             <div :class="[language === 'fa' ? 'rtl text-right' : 'ltr text-left']" v-if="mode === 'info'"
-              class="space-y-4 ">
+              class="space-y-4 text-d4">
               <!-- Full Name -->
               <BaseInput position="left" :persian="language === 'fa'" v-model="fullName"
                 :placeholder="t.fullNamePlaceholder" :floatinglabel="t.info.fullNameLabel"
