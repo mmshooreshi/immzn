@@ -96,19 +96,19 @@
           },
           "type": "talk",
           "title": {
-            "en": "*Network Approaches in Systems Immunology",
-            "fa": "*رویکردهای شبکه‌ای در ایمونولوژی سیستمی"
+            "en": "*TBD",
+            "fa": "*در حال تکمیل"
           },
           "speaker": {
             "name": {
-              "en": "",
-              "fa": ""
+              "en": "Fotis Psomopoulos",
+              "fa": "فوتیس پسوموپولوس"
             },
             "affiliation": {
               "en": "*TBD",
               "fa": "*در حال تکمیل"
             },
-            "status": "*Declined"
+            "status": ""
           },
           "description": {
             "en": null,
@@ -119,8 +119,8 @@
             "fa": "سالن اصلی"
           },
           "notes": {
-            "en": "Slot declined; alternative speaker to be arranged",
-            "fa": "سخنران رد شده؛ جایگزین در حال هماهنگی"
+            "en": "",
+            "fa": ""
           }
         },
         {
