@@ -65,7 +65,7 @@
           },
           "type": "talk",
           "title": {
-            "en": "Genetics of the Immune System",
+            "en": "*TBD",
             "fa": "ژنتیک سیستم ایمنی"
           },
           "speaker": {
@@ -101,12 +101,12 @@
           },
           "speaker": {
             "name": {
-              "en": "Fotis Psomopoulos",
-              "fa": "فوتیس پسوموپولوس"
+              "en": "Dr. Fotis Psomopoulos",
+              "fa": "دکتر فوتیس سموپولوس"
             },
             "affiliation": {
-              "en": "*TBD",
-              "fa": "*در حال تکمیل"
+              "en": "CERTH, Thessaloniki, Greece",
+              "fa": "مرکز پژوهش و فناوری یونان (CERTH)، تسالونیکی، یونان"
             },
             "status": ""
           },
@@ -152,8 +152,8 @@
           },
           "type": "talk",
           "title": {
-            "en": "*From Standards to Discovery: The Role of IMGT in B/T Cell Repertoire Analysis",
-            "fa": "*از استانداردها تا کشف: نقش IMGT در تحلیل مجموعه B/T"
+            "en": "*TBD",
+            "fa": "*در حال تکمیل"
           },
           "speaker": {
             "name": {
@@ -186,8 +186,8 @@
           },
           "type": "talk",
           "title": {
-            "en": "Creative Horizons in Structural Immunology",
-            "fa": "افق‌های خلاق در ایمونولوژی ساختاری"
+            "en": "*TBD",
+            "fa": "*در حال تکمیل"
           },
           "speaker": {
             "name": {
@@ -239,8 +239,8 @@
           },
           "type": "talk",
           "title": {
-            "en": "Translational Cancer Immunology",
-            "fa": "ایمنی‌شناسی سرطان انتقالی"
+            "en": "*TBD",
+            "fa": "*در حال تکمیل"
           },
           "speaker": {
             "name": {
@@ -248,8 +248,8 @@
               "fa": "پروفسور سوفیا کاراگیانیس"
             },
             "affiliation": {
-              "en": "King's College London & Epsilogen Ltd",
-              "fa": "کینگز کالج لندن و شرکت اپسیلوژن"
+              "en": "King's College London ",
+              "fa": "کینگز کالج لندن "
             },
             "status": "Confirmed"
           },
